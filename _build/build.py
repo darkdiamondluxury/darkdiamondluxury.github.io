@@ -191,11 +191,25 @@ def build_sitemap():
           f'User-agent: *\nDisallow: /Despacho/\nDisallow: /_build/\n\nSitemap: {SITE}/sitemap.xml\n')
 
 
+def build_404():
+    """Página 404 de todo o domínio. Endereços da app interna (/Despacho/app/...) voltam à entrada da app,
+    porque a app trata da navegação sozinha; o resto vê uma página simples com ligações."""
+    write('/404.html', '''<!doctype html><html lang="en"><head><meta charset="utf-8"><meta name="viewport" content="width=device-width,initial-scale=1">
+<title>Page not found · Dark Diamond Luxury</title><meta name="robots" content="noindex">
+<script>if(location.pathname.indexOf('/Despacho/app')===0){location.replace('/Despacho/app/');}</script>
+<link rel="stylesheet" href="/assets/page.css"></head><body>
+<section class="phero plain"><div class="in"><h1 class="display">Page not found.</h1>
+<p class="lead">Página não encontrada · Página no encontrada</p>
+<div class="actions"><a class="btn" href="/">Dark Diamond Luxury</a><a class="btn ghost" href="/pt/">Português</a><a class="btn ghost" href="/es/">Español</a></div></div></section>
+</body></html>''')
+
+
 if __name__ == '__main__':
     for lang in LANGS:
         build_home(lang)
         for page, data in content.PAGES.items():
             build_page(page, lang, data[lang])
     build_redirects()
+    build_404()
     build_sitemap()
     print(f'{len(written)} ficheiros gerados')
