@@ -45,7 +45,7 @@ def build_home(lang):
     tpl = open(os.path.join(HERE, 'home.html'), encoding='utf-8').read()
     links = (f'<a href="#experiencia">{t["nav_exp"]}</a><a href="#destinos">{t["nav_dest"]}</a>'
              f'<a href="#servicos">{t["nav_svc"]}</a><a href="{url("agencies", lang)}">{t["nav_ag"]}</a>')
-    dlinks = f'<span>{L[lang]["dests"]}:</span> ' + ''.join(f'<a href="{url(d, lang)}">{dest_name(d, lang)}</a>' for d in DESTS)
+    dlinks = f'<span>{L[lang]["dests"]}:</span> ' + ' '.join(f'<a href="{url(d, lang)}">{dest_name(d, lang)}</a>' for d in DESTS)
     js_t = {k: v for k, v in t.items() if k not in ('title', 'desc')}
     rep = {
         '{{LANG}}': lang,
@@ -124,7 +124,7 @@ def block_html(b, lang, ctx):
         if b.get('after'):
             body += ''.join(f'<p class="muted">{p}</p>' for p in b['after'])
         if b.get('related'):
-            body += '<div class="related">' + ''.join(f'<a href="{url(d, lang)}">{dest_name(d, lang)}</a>' for d in b['related']) + '</div>'
+            body += '<div class="related">' + ' '.join(f'<a href="{url(d, lang)}">{dest_name(d, lang)}</a>' for d in b['related']) + '</div>'
         return f'<section class="sec{cls}"><div class="wrap split"><h2 class="display">{b["h"]}</h2><div class="body">{body}</div></div></section>'
     if k == 'cta':
         return (f'<section class="ctab"><div class="wrap"><div><h2 class="display">{b["h"]}</h2>'

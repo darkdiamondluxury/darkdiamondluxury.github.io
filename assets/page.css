@@ -124,6 +124,8 @@ footer .cols b{display:block;color:var(--ink);font-weight:500;margin-bottom:8px}
 footer .cols a{display:block;text-decoration:none;margin-bottom:4px}
 footer .cols a:hover{color:var(--ink)}
 footer .cols .sub{margin-top:18px}
+footer .cols .ph{display:block;margin-bottom:4px}
+footer .cols .ph a{display:inline}
 footer .cols .inline a{display:inline;margin-right:12px}
 footer .cov{margin-top:18px}
 footer .cov b{margin-bottom:2px}

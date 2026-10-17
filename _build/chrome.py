@@ -3,7 +3,7 @@ import html
 import json
 
 from config import (BRAND, COVERAGE, DESTS, EMAIL, INSTAGRAM, LANG_NAME, LANGS, LEGAL, LOCALE, PHONES, SITE, SLUGS,
-                    WHATSAPP)
+                    WHATSAPP, WHATSAPP_ALL)
 
 E = html.escape
 
@@ -112,10 +112,13 @@ def tel(p):
 
 def footer(lang):
     l = L[lang]
-    wa = f'<a href="https://wa.me/{WHATSAPP}">WhatsApp</a>' if WHATSAPP else ''
+    wa = ''
     ig = f'<a href="{INSTAGRAM}">Instagram</a>' if INSTAGRAM else ''
-    phones = ''.join(f'<a href="{tel(p)}">{p}</a>' for p in PHONES)
-    dests = ''.join(f'<a href="{url(d, lang)}">{dest_name(d, lang)}</a>' for d in DESTS)
+    phones = ''.join(
+        f'<span class="ph"><a href="{tel(p)}">{p}</a>'
+        + (f' · <a href="https://wa.me/{p.replace("+", "").replace(" ", "")}">WhatsApp</a>' if p.replace('+', '').replace(' ', '') in WHATSAPP_ALL else '')
+        + '</span>' for p in PHONES)
+    dests = ' '.join(f'<a href="{url(d, lang)}">{dest_name(d, lang)}</a>' for d in DESTS)  # espaços = pontos onde a linha pode quebrar
     return f'''<footer>
   <div class="foot-top">
     <div class="word">Dark Diamond<br><em>Luxury</em></div>

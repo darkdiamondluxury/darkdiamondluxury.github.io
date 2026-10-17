@@ -18,8 +18,14 @@ LEGAL = {
 
 PHONES = ['+351 932 666 254', '+351 960 033 622']
 EMAIL = 'darkdiamondluxury@gmail.com'
-WHATSAPP = ''          # só números com indicativo, ex.: '351932666254'. Vazio = botão mostra aviso.
+WHATSAPP = '351932666254'   # número para onde o formulário de reserva envia (só números, com indicativo)
+WHATSAPP_ALL = ['351932666254', '351960033622']   # ambos têm WhatsApp
 INSTAGRAM = ''         # ex.: 'https://instagram.com/darkdiamondluxury'
+
+FLEET = {'pt': 'Mercedes-Benz Classe S, Classe E 220, Classe V 250, Sprinter e minibus de 19 lugares',
+         'en': 'Mercedes-Benz S-Class, E 220, V 250, Sprinter and a 19-seat minibus',
+         'es': 'Mercedes-Benz Clase S, Clase E 220, Clase V 250, Sprinter y minibús de 19 plazas'}
+LANGS_SPOKEN = {'pt': 'Português, inglês, espanhol e francês', 'en': 'Portuguese, English, Spanish and French', 'es': 'Portugués, inglés, español y francés'}
 
 COVERAGE = {'pt': 'Portugal, Espanha e França', 'en': 'Portugal, Spain and France', 'es': 'Portugal, España y Francia'}
 

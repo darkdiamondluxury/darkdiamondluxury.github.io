@@ -1,6 +1,6 @@
 # Textos das páginas interiores, em EN / PT / ES.
 # Onde falta um dado da empresa aparece <span class="todo">[…]</span> (a dourado) para ser fácil de encontrar.
-from config import COVERAGE, DESTS, EMAIL, LEGAL, PHONES
+from config import COVERAGE, DESTS, EMAIL, FLEET, LANGS_SPOKEN, LEGAL, PHONES
 
 TODO = lambda s: f'<span class="todo">[{s}]</span>'  # noqa: E731
 PH = ' · '.join(PHONES)
@@ -23,24 +23,26 @@ PAGES['agencies'] = {
      '<b>Registered with Turismo de Portugal.</b> Licensed tourism activity operator, RNAAT no. 682/2022.',
      '<b>Insured.</b> Civil liability and personal accident insurance in force.',
      '<b>Flight tracking, meet and greet.</b> Your client is met at arrivals with a name sign, whatever time the flight lands.',
-     '<b>A direct line.</b> You speak to the people who plan and dispatch the service, not a call centre.',
+     '<b>A direct line, 24/7.</b> You speak to the people who plan and dispatch the service, not a call centre.',
+     '<b>Multilingual drivers.</b> Portuguese, English, Spanish and French.',
+     '<b>From one passenger to groups of 19.</b> Mercedes-Benz S-Class, E-Class and V-Class, Sprinter and a 19-seat minibus.',
      '<b>Written confirmation.</b> Every booking is confirmed in writing, and the driver\'s details are sent before the service.']),
    dict(type='split', bg='bone', h='Where we operate', p=['Based in Lisbon, with regular services across Portugal and long-distance transfers to Spain and France.'], ticks=[
      'Lisbon airport (LIS), city hotels and the cruise terminals', 'Sintra, Cascais and the Estoril coast', 'Comporta and the Alentejo coast',
      'Évora and the Alentejo', 'Fátima, Óbidos, Nazaré and Batalha', 'Porto and the Douro valley', 'The Algarve', 'Spain and France, on request']),
    dict(type='split', h='How it works', steps=[
      ('Send the booking', 'By email or WhatsApp: passenger name, date, flight or pick-up time, number of passengers and luggage.'),
-     ('We confirm', f'Availability and price confirmed in writing {TODO("response time, e.g. within 2 hours")}.'),
+     ('We confirm', 'Availability and price confirmed in writing, quickly and at any hour.'),
      ('Before the service', 'You receive the driver\'s name, phone number and vehicle.'),
      ('On the day', 'Meet and greet, flight tracking and direct contact with the driver. If anything changes, we tell you straight away.'),
-     ('Invoicing', f'{TODO("invoicing terms, e.g. monthly invoice, bank transfer")} Invoices issued by {LEGAL["name"]}, VAT PT{LEGAL["nipc"]}.')]),
+     ('Invoicing', f'Per service or monthly, as agreed. Invoices issued by {LEGAL["name"]}, VAT PT{LEGAL["nipc"]}.')]),
    dict(type='split', bg='alt', h='Services', ticks=[
      'Airport and cruise port transfers', 'Chauffeur at disposal, by the hour or by the day', 'Private tours and day trips',
      'Events, weddings and groups', 'Long distance within Portugal and to Spain and France']),
    dict(type='split', h='Company details', rows=[
      ('Trading name', 'Dark Diamond Luxury'), ('Legal name', LEGAL['name']), ('VAT number (NIPC)', LEGAL['nipc']),
      ('Registered office', ADDR), ('Tourism registration', f'RNAAT {LEGAL["rnaat"]}'),
-     ('Insurance', 'Civil liability · Personal accident'), ('Coverage', COVERAGE['en']), ('Contact', f'{EMAIL}<br>{PH}')]),
+     ('Insurance', 'Civil liability · Personal accident'), ('Fleet', FLEET['en']), ('Drivers\' languages', LANGS_SPOKEN['en']), ('Operations', '24 hours, 7 days'), ('Coverage', COVERAGE['en']), ('Contact', f'{EMAIL}<br>{PH}')]),
    dict(type='cta', h='Let\'s work together.', p='Send us your usual routes and volumes and we will prepare a rate sheet for your agency.',
         ctas=[('mail', 'Request our rates'), ('tel', 'Call us')]),
   ]),
@@ -55,24 +57,26 @@ PAGES['agencies'] = {
      '<b>Registados no Turismo de Portugal.</b> Agente de animação turística, RNAAT n.º 682/2022.',
      '<b>Com seguro.</b> Seguros de responsabilidade civil e de acidentes pessoais em vigor.',
      '<b>Seguimento de voos e receção com placa.</b> O seu cliente é recebido nas chegadas com o nome, à hora a que o voo aterrar.',
-     '<b>Contacto direto.</b> Fala com quem planeia e despacha o serviço, não com um call center.',
+     '<b>Contacto direto, 24/7.</b> Fala com quem planeia e despacha o serviço, não com um call center.',
+     '<b>Motoristas que falam a língua do cliente.</b> Português, inglês, espanhol e francês.',
+     '<b>De um passageiro a grupos de 19.</b> Mercedes-Benz Classe S, Classe E e Classe V, Sprinter e minibus de 19 lugares.',
      '<b>Confirmação por escrito.</b> Cada reserva é confirmada por escrito e os dados do motorista seguem antes do serviço.']),
    dict(type='split', bg='bone', h='Onde trabalhamos', p=['Com base em Lisboa, serviços regulares em todo o país e transfers de longa distância para Espanha e França.'], ticks=[
      'Aeroporto de Lisboa, hotéis da cidade e terminais de cruzeiros', 'Sintra, Cascais e a linha do Estoril', 'Comporta e o litoral alentejano',
      'Évora e o Alentejo', 'Fátima, Óbidos, Nazaré e Batalha', 'Porto e o vale do Douro', 'Algarve', 'Espanha e França, por pedido']),
    dict(type='split', h='Como funciona', steps=[
      ('Envie a reserva', 'Por email ou WhatsApp: nome do passageiro, data, voo ou hora de recolha, número de passageiros e malas.'),
-     ('Confirmamos', f'Disponibilidade e preço confirmados por escrito {TODO("tempo de resposta, ex.: em menos de 2 horas")}.'),
+     ('Confirmamos', 'Disponibilidade e preço confirmados por escrito, com rapidez e a qualquer hora.'),
      ('Antes do serviço', 'Recebe o nome e o telefone do motorista e o veículo.'),
      ('No dia', 'Receção com placa, seguimento do voo e contacto direto com o motorista. Se algo mudar, avisamos de imediato.'),
-     ('Faturação', f'{TODO("condições de faturação, ex.: fatura mensal, transferência")} Faturas emitidas por {LEGAL["name"]}, NIPC {LEGAL["nipc"]}.')]),
+     ('Faturação', f'Por serviço ou mensal, conforme acordado. Faturas emitidas por {LEGAL["name"]}, NIPC {LEGAL["nipc"]}.')]),
    dict(type='split', bg='alt', h='Serviços', ticks=[
      'Transfers de aeroporto e de porto de cruzeiros', 'Motorista à disposição, à hora ou ao dia', 'Tours privados e passeios de um dia',
      'Eventos, casamentos e grupos', 'Longa distância em Portugal e para Espanha e França']),
    dict(type='split', h='Dados da empresa', rows=[
      ('Nome comercial', 'Dark Diamond Luxury'), ('Firma', LEGAL['name']), ('NIPC', LEGAL['nipc']),
      ('Sede', ADDR), ('Registo de turismo', f'RNAAT {LEGAL["rnaat"]}'),
-     ('Seguros', 'Responsabilidade civil · Acidentes pessoais'), ('Cobertura', COVERAGE['pt']), ('Contacto', f'{EMAIL}<br>{PH}')]),
+     ('Seguros', 'Responsabilidade civil · Acidentes pessoais'), ('Frota', FLEET['pt']), ('Línguas dos motoristas', LANGS_SPOKEN['pt']), ('Operação', '24 horas, 7 dias'), ('Cobertura', COVERAGE['pt']), ('Contacto', f'{EMAIL}<br>{PH}')]),
    dict(type='cta', h='Vamos trabalhar juntos.', p='Envie-nos as rotas e volumes habituais e preparamos uma tabela de preços para a sua agência.',
         ctas=[('mail', 'Pedir tabela de preços'), ('tel', 'Ligar')]),
   ]),
@@ -87,24 +91,26 @@ PAGES['agencies'] = {
      '<b>Registrados en Turismo de Portugal.</b> Agente de animación turística, RNAAT n.º 682/2022.',
      '<b>Asegurados.</b> Seguros de responsabilidad civil y de accidentes personales en vigor.',
      '<b>Seguimiento de vuelos y recepción con cartel.</b> Su cliente es recibido en llegadas con su nombre, a la hora a la que aterrice el vuelo.',
-     '<b>Contacto directo.</b> Habla con quien planifica y asigna el servicio, no con un call center.',
+     '<b>Contacto directo, 24/7.</b> Habla con quien planifica y asigna el servicio, no con un call center.',
+     '<b>Chóferes que hablan el idioma del cliente.</b> Portugués, inglés, español y francés.',
+     '<b>De un pasajero a grupos de 19.</b> Mercedes-Benz Clase S, Clase E y Clase V, Sprinter y minibús de 19 plazas.',
      '<b>Confirmación por escrito.</b> Cada reserva se confirma por escrito y los datos del chófer se envían antes del servicio.']),
    dict(type='split', bg='bone', h='Dónde trabajamos', p=['Con base en Lisboa, servicios regulares en todo Portugal y traslados de larga distancia a España y Francia.'], ticks=[
      'Aeropuerto de Lisboa, hoteles de la ciudad y terminales de cruceros', 'Sintra, Cascais y la costa de Estoril', 'Comporta y la costa del Alentejo',
      'Évora y el Alentejo', 'Fátima, Óbidos, Nazaré y Batalha', 'Oporto y el valle del Duero', 'El Algarve', 'España y Francia, bajo petición']),
    dict(type='split', h='Cómo funciona', steps=[
      ('Envíe la reserva', 'Por email o WhatsApp: nombre del pasajero, fecha, vuelo u hora de recogida, número de pasajeros y maletas.'),
-     ('Confirmamos', f'Disponibilidad y precio confirmados por escrito {TODO("tiempo de respuesta, p. ej. en menos de 2 horas")}.'),
+     ('Confirmamos', 'Disponibilidad y precio confirmados por escrito, con rapidez y a cualquier hora.'),
      ('Antes del servicio', 'Recibe el nombre y el teléfono del chófer y el vehículo.'),
      ('El día del servicio', 'Recepción con cartel, seguimiento del vuelo y contacto directo con el chófer. Si algo cambia, le avisamos de inmediato.'),
-     ('Facturación', f'{TODO("condiciones de facturación, p. ej. factura mensual, transferencia")} Facturas emitidas por {LEGAL["name"]}, NIF PT{LEGAL["nipc"]}.')]),
+     ('Facturación', f'Por servicio o mensual, según lo acordado. Facturas emitidas por {LEGAL["name"]}, NIF PT{LEGAL["nipc"]}.')]),
    dict(type='split', bg='alt', h='Servicios', ticks=[
      'Traslados de aeropuerto y de puerto de cruceros', 'Chófer a disposición, por horas o por días', 'Tours privados y excursiones de un día',
      'Eventos, bodas y grupos', 'Larga distancia en Portugal y a España y Francia']),
    dict(type='split', h='Datos de la empresa', rows=[
      ('Nombre comercial', 'Dark Diamond Luxury'), ('Razón social', LEGAL['name']), ('NIF (NIPC)', LEGAL['nipc']),
      ('Domicilio social', ADDR), ('Registro de turismo', f'RNAAT {LEGAL["rnaat"]}'),
-     ('Seguros', 'Responsabilidad civil · Accidentes personales'), ('Cobertura', COVERAGE['es']), ('Contacto', f'{EMAIL}<br>{PH}')]),
+     ('Seguros', 'Responsabilidad civil · Accidentes personales'), ('Flota', FLEET['es']), ('Idiomas de los chóferes', LANGS_SPOKEN['es']), ('Operación', '24 horas, 7 días'), ('Cobertura', COVERAGE['es']), ('Contacto', f'{EMAIL}<br>{PH}')]),
    dict(type='cta', h='Trabajemos juntos.', p='Envíenos sus rutas y volúmenes habituales y preparamos una tabla de tarifas para su agencia.',
         ctas=[('mail', 'Solicitar tarifas'), ('tel', 'Llamar')]),
   ]),
@@ -131,7 +137,7 @@ PAGES['airport'] = {
    dict(type='split', bg='bone', h='Journey times from the airport', rows=TIMES, after=['Indicative times without traffic.']),
    dict(type='split', h='Good to know', ticks=[
      'A private vehicle just for your group: no shared shuttles.', 'Child seats on request: tell us the children\'s ages when booking.',
-     'Departures too: pick-up at your hotel at the time you choose.', 'Price confirmed in writing before you book.'], related=DESTS),
+     'Departures too: pick-up at your hotel at the time you choose.', 'Drivers who speak Portuguese, English, Spanish and French.', 'Available 24/7, whatever time you land.', 'Price confirmed in writing before you book.'], related=DESTS),
    dict(type='cta', h='Landing soon?', p='Send us your flight and destination. We reply with confirmation and price.', ctas=[('book', 'Book airport transfer'), ('tel', 'Call us')]),
   ]),
  'pt': dict(
@@ -149,7 +155,7 @@ PAGES['airport'] = {
    dict(type='split', bg='bone', h='Tempos de viagem a partir do aeroporto', rows=TIMES, after=['Tempos indicativos, sem trânsito.']),
    dict(type='split', h='Bom saber', ticks=[
      'Veículo privado só para o seu grupo: sem shuttles partilhados.', 'Cadeiras de criança por pedido: indique a idade das crianças ao reservar.',
-     'Também para partidas: recolha no hotel à hora que escolher.', 'Preço confirmado por escrito antes de reservar.'], related=DESTS),
+     'Também para partidas: recolha no hotel à hora que escolher.', 'Motoristas que falam português, inglês, espanhol e francês.', 'Disponível 24/7, a qualquer hora do voo.', 'Preço confirmado por escrito antes de reservar.'], related=DESTS),
    dict(type='cta', h='Vai aterrar em breve?', p='Envie-nos o voo e o destino. Respondemos com a confirmação e o preço.', ctas=[('book', 'Reservar transfer'), ('tel', 'Ligar')]),
   ]),
  'es': dict(
@@ -167,7 +173,7 @@ PAGES['airport'] = {
    dict(type='split', bg='bone', h='Tiempos de viaje desde el aeropuerto', rows=TIMES, after=['Tiempos orientativos, sin tráfico.']),
    dict(type='split', h='Conviene saber', ticks=[
      'Vehículo privado solo para su grupo: sin shuttles compartidos.', 'Sillas infantiles bajo petición: indíquenos la edad de los niños al reservar.',
-     'También para salidas: recogida en su hotel a la hora que elija.', 'Precio confirmado por escrito antes de reservar.'], related=DESTS),
+     'También para salidas: recogida en su hotel a la hora que elija.', 'Chóferes que hablan portugués, inglés, español y francés.', 'Disponible 24/7, a cualquier hora del vuelo.', 'Precio confirmado por escrito antes de reservar.'], related=DESTS),
    dict(type='cta', h='¿Aterriza pronto?', p='Envíenos el vuelo y el destino. Le respondemos con la confirmación y el precio.', ctas=[('book', 'Reservar traslado'), ('tel', 'Llamar')]),
   ]),
 }
@@ -186,7 +192,7 @@ PAGES['cruise'] = {
    dict(type='split', h='What we do at the port', ticks=[
      '<b>Port and airport.</b> Transfers on embarkation and disembarkation day.', '<b>Port and hotel.</b> For stays before or after the cruise.',
      '<b>Private shore excursions.</b> Lisbon, Sintra, Cascais or Fátima, with a driver who plans the return around the all-aboard time.',
-     '<b>Groups.</b> Vans for families and small groups, with room for luggage.']),
+     '<b>Groups.</b> V-Class, Sprinter and a 19-seat minibus, with room for luggage.']),
    dict(type='split', bg='bone', h='Lisbon\'s cruise terminals', p=[
      'Most ships dock at the Lisbon Cruise Terminal, next to Santa Apolónia and Alfama, close to the city centre and around 20 minutes from the airport.',
      'Some ships use the Alcântara or Rocha Conde de Óbidos terminals, further west. Tell us the ship\'s name and we will meet you at the right place.']),
@@ -204,7 +210,7 @@ PAGES['cruise'] = {
    dict(type='split', h='O que fazemos no porto', ticks=[
      '<b>Porto e aeroporto.</b> Transfers no dia de embarque e de desembarque.', '<b>Porto e hotel.</b> Para estadias antes ou depois do cruzeiro.',
      '<b>Excursões privadas em terra.</b> Lisboa, Sintra, Cascais ou Fátima, com um motorista que planeia o regresso em função da hora de embarque.',
-     '<b>Grupos.</b> Carrinhas para famílias e pequenos grupos, com espaço para as malas.']),
+     '<b>Grupos.</b> Classe V, Sprinter e minibus de 19 lugares, com espaço para as malas.']),
    dict(type='split', bg='bone', h='Os terminais de cruzeiros de Lisboa', p=[
      'A maioria dos navios atraca no Terminal de Cruzeiros de Lisboa, junto a Santa Apolónia e Alfama, perto do centro e a cerca de 20 minutos do aeroporto.',
      'Alguns navios usam os terminais de Alcântara ou da Rocha Conde de Óbidos, mais a oeste. Diga-nos o nome do navio e esperamos no sítio certo.']),
@@ -222,7 +228,7 @@ PAGES['cruise'] = {
    dict(type='split', h='Qué hacemos en el puerto', ticks=[
      '<b>Puerto y aeropuerto.</b> Traslados el día de embarque y de desembarque.', '<b>Puerto y hotel.</b> Para estancias antes o después del crucero.',
      '<b>Excursiones privadas en tierra.</b> Lisboa, Sintra, Cascais o Fátima, con un chófer que planifica el regreso según la hora de embarque.',
-     '<b>Grupos.</b> Furgonetas para familias y grupos pequeños, con espacio para el equipaje.']),
+     '<b>Grupos.</b> Clase V, Sprinter y minibús de 19 plazas, con espacio para el equipaje.']),
    dict(type='split', bg='bone', h='Las terminales de cruceros de Lisboa', p=[
      'La mayoría de los barcos atraca en la Terminal de Cruceros de Lisboa, junto a Santa Apolónia y Alfama, cerca del centro y a unos 20 minutos del aeropuerto.',
      'Algunos barcos utilizan las terminales de Alcântara o Rocha Conde de Óbidos, más al oeste. Díganos el nombre del barco y le esperamos en el lugar correcto.']),
@@ -335,21 +341,21 @@ DL = {  # rótulos comuns às páginas de destino
             desc='Private transfer from Lisbon or Lisbon airport to {nt}, about {t}. One-way, return or a day trip with your driver at your disposal. Price confirmed before you book.',
             h1='Private transfer from Lisbon to {nt}', about='About {nt}', see='Worth seeing', opts='How to go',
             o=['<b>One-way or return transfer</b>, from the airport, your hotel, the cruise port or any address.', '<b>Day trip</b> with the driver waiting and moving you between stops.', '{combo}'],
-            facts='The journey', rows=[('From Lisbon airport', '≈ {km} km'), ('Journey time', '≈ {t}'), ('Vehicle', 'Car or Mercedes-Benz V-Class van'), ('Pick-up', 'Airport, hotel, cruise port or any address')],
+            facts='The journey', rows=[('From Lisbon airport', '≈ {km} km'), ('Journey time', '≈ {t}'), ('Vehicle', FLEET['en']), ('Pick-up', 'Airport, hotel, cruise port or any address')],
             note='Indicative times without traffic.', others='Other destinations', book='Book this transfer', call='Call us',
             cta='Going to {nt}?', ctap='Tell us the date, time and number of passengers. We reply with confirmation and price.'),
  'pt': dict(title='Transfer privado de Lisboa para {nt} · Passeios com motorista · Dark Diamond Luxury',
             desc='Transfer privado de Lisboa ou do aeroporto para {nt}, cerca de {t}. Só ida, ida e volta ou passeio de um dia com motorista à disposição. Preço confirmado antes de reservar.',
             h1='Transfer privado de Lisboa para {nt}', about='Sobre {nt}', see='A não perder', opts='Como ir',
             o=['<b>Transfer só de ida ou ida e volta</b>, a partir do aeroporto, do hotel, do porto de cruzeiros ou de qualquer morada.', '<b>Passeio de um dia</b> com o motorista à espera e a levá-lo entre paragens.', '{combo}'],
-            facts='A viagem', rows=[('Desde o aeroporto de Lisboa', '≈ {km} km'), ('Duração', '≈ {t}'), ('Veículo', 'Carro ou carrinha Mercedes-Benz Classe V'), ('Recolha', 'Aeroporto, hotel, porto de cruzeiros ou qualquer morada')],
+            facts='A viagem', rows=[('Desde o aeroporto de Lisboa', '≈ {km} km'), ('Duração', '≈ {t}'), ('Veículo', FLEET['pt']), ('Recolha', 'Aeroporto, hotel, porto de cruzeiros ou qualquer morada')],
             note='Tempos indicativos, sem trânsito.', others='Outros destinos', book='Reservar este transfer', call='Ligar',
             cta='Vai {ng}?', ctap='Diga-nos a data, a hora e o número de passageiros. Respondemos com a confirmação e o preço.'),
  'es': dict(title='Traslado privado de Lisboa {ng} · Excursiones con chófer · Dark Diamond Luxury',
             desc='Traslado privado desde Lisboa o el aeropuerto {ng}, unos {t}. Solo ida, ida y vuelta o excursión de un día con chófer a disposición. Precio confirmado antes de reservar.',
             h1='Traslado privado de Lisboa {ng}', about='Sobre {nt}', see='Imprescindibles', opts='Cómo ir',
             o=['<b>Traslado solo ida o ida y vuelta</b>, desde el aeropuerto, el hotel, el puerto de cruceros o cualquier dirección.', '<b>Excursión de un día</b> con el chófer esperando y llevándole entre paradas.', '{combo}'],
-            facts='El viaje', rows=[('Desde el aeropuerto de Lisboa', '≈ {km} km'), ('Duración', '≈ {t}'), ('Vehículo', 'Coche o furgoneta Mercedes-Benz Clase V'), ('Recogida', 'Aeropuerto, hotel, puerto de cruceros o cualquier dirección')],
+            facts='El viaje', rows=[('Desde el aeropuerto de Lisboa', '≈ {km} km'), ('Duración', '≈ {t}'), ('Vehículo', FLEET['es']), ('Recogida', 'Aeropuerto, hotel, puerto de cruceros o cualquier dirección')],
             note='Tiempos orientativos, sin tráfico.', others='Otros destinos', book='Reservar este traslado', call='Llamar',
             cta='¿Va {ng}?', ctap='Díganos la fecha, la hora y el número de pasajeros. Le respondemos con la confirmación y el precio.'),
 }
