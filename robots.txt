@@ -1,5 +1,6 @@
-# O site público pode ser indexado; a app interna (/Despacho/) não.
+# O site público pode ser indexado; a app interna (/Despacho/) e o gerador (/_build/) não.
 User-agent: *
 Disallow: /Despacho/
+Disallow: /_build/
 
 Sitemap: https://darkdiamondluxury.github.io/sitemap.xml
