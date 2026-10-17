@@ -562,6 +562,7 @@ document.getElementById('form').addEventListener('submit', e=>{
   const t=T[lang], g=id=>document.getElementById(id).value.trim();
   const d={svc:t.svcs[svcPick],from:g('fFrom')||'—',bags:g('fBags')||'0',cabin:g('fCabin')||'0',notes:g('fNotes'),to:g('fTo')||'—',date:g('fDate')||'—',time:g('fTime'),pax:g('fPax')||'—',flight:g('fFlight'),name:g('fName')||'—'};
   if(!WHATSAPP){ const h=document.getElementById('hint'); h.textContent=t.nowa; h.style.color='var(--gold)'; return; }
+  if(window.goatcounter&&goatcounter.count) goatcounter.count({path:'reserva-whatsapp',title:'Pedido de reserva enviado',event:true});
   window.open(`https://wa.me/${WHATSAPP}?text=${encodeURIComponent(t.msg(d))}`,'_blank','noopener');
 });
 
@@ -667,5 +668,6 @@ if(window.gsap && !reduce){
   addEventListener('load',()=>ScrollTrigger.refresh());
 }
 </script>
+<script data-goatcounter="https://darkdiamondluxury.goatcounter.com/count" async src="https://gc.zgo.at/count.js"></script>
 </body>
 </html>

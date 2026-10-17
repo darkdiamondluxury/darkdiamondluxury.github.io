@@ -1,0 +1,5 @@
+# O site público pode ser indexado; a app interna (/Despacho/) não.
+User-agent: *
+Disallow: /Despacho/
+
+Sitemap: https://darkdiamondluxury.github.io/sitemap.xml
