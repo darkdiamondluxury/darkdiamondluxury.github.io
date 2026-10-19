@@ -449,8 +449,9 @@ PRIV = {
 <h2>Quem é responsável pelos seus dados</h2>
 <p>{LEGAL["name"]} (Dark Diamond Luxury), NIPC {LEGAL["nipc"]}, {ADDR}. Contacto: <a href="mailto:{EMAIL}">{EMAIL}</a>.</p>
 <h2>Este site</h2>
-<ul><li>Não usa cookies nem guarda os dados que escreve no formulário de reserva.</li>
-<li>O formulário apenas prepara uma mensagem e abre o WhatsApp. O que enviar passa a ser tratado pelo WhatsApp (Meta) e por nós, para responder ao seu pedido.</li>
+<ul><li>Não usa cookies.</li>
+<li>Quando envia o formulário de reserva, guardamos o pedido (serviço, trajeto, data, hora, voo, passageiros, malas, nome, telefone, email e notas) no nosso sistema de gestão de serviços (Supabase), apenas para lhe responder e organizar o serviço. Se não reservar, apagamos o pedido.</li>
+<li>O formulário também abre o WhatsApp com a mensagem pronta. O que enviar por lá passa a ser tratado pelo WhatsApp (Meta) e por nós.</li>
 <li>Contamos visitas de forma anónima com o GoatCounter, sem cookies e sem identificar quem visita.</li></ul>
 <h2>Quando reserva um serviço</h2>
 <p>Tratamos o nome, o contacto, os dados do voo, as moradas de recolha e destino, o número de passageiros e as notas que nos der, para prestar o serviço (execução do contrato) e para cumprir obrigações fiscais e contabilísticas. Os dados necessários são partilhados com o motorista que faz o serviço. Se a reserva vier de uma agência ou parceiro, recebemos estes dados deles.</p>
@@ -463,8 +464,9 @@ PRIV = {
 <h2>Who is responsible for your data</h2>
 <p>{LEGAL["name"]} (Dark Diamond Luxury), VAT no. {LEGAL["nipc"]}, {ADDR}, Portugal. Contact: <a href="mailto:{EMAIL}">{EMAIL}</a>.</p>
 <h2>This website</h2>
-<ul><li>It does not use cookies and does not store what you type in the booking form.</li>
-<li>The form only prepares a message and opens WhatsApp. What you send is then processed by WhatsApp (Meta) and by us, to reply to your request.</li>
+<ul><li>It does not use cookies.</li>
+<li>When you send the booking form, we store the request (service, route, date, time, flight, passengers, luggage, name, phone, email and notes) in our service management system (Supabase), only to reply to you and organise the service. If you do not book, we delete the request.</li>
+<li>The form also opens WhatsApp with the message ready. What you send there is processed by WhatsApp (Meta) and by us.</li>
 <li>We count visits anonymously with GoatCounter, without cookies and without identifying visitors.</li></ul>
 <h2>When you book a service</h2>
 <p>We process your name, contact details, flight details, pick-up and drop-off addresses, number of passengers and any notes you give us, to provide the service (performance of a contract) and to meet tax and accounting obligations. The necessary details are shared with the driver who carries out the service. If the booking comes from an agency or partner, we receive these details from them.</p>
@@ -477,8 +479,9 @@ PRIV = {
 <h2>Responsable de sus datos</h2>
 <p>{LEGAL["name"]} (Dark Diamond Luxury), NIF {LEGAL["nipc"]}, {ADDR}, Portugal. Contacto: <a href="mailto:{EMAIL}">{EMAIL}</a>.</p>
 <h2>Este sitio</h2>
-<ul><li>No utiliza cookies ni guarda lo que escribe en el formulario de reserva.</li>
-<li>El formulario solo prepara un mensaje y abre WhatsApp. Lo que envíe pasa a ser tratado por WhatsApp (Meta) y por nosotros, para responder a su solicitud.</li>
+<ul><li>No utiliza cookies.</li>
+<li>Cuando envía el formulario de reserva, guardamos la solicitud (servicio, trayecto, fecha, hora, vuelo, pasajeros, maletas, nombre, teléfono, email y notas) en nuestro sistema de gestión de servicios (Supabase), solo para responderle y organizar el servicio. Si no reserva, borramos la solicitud.</li>
+<li>El formulario también abre WhatsApp con el mensaje listo. Lo que envíe por allí pasa a ser tratado por WhatsApp (Meta) y por nosotros.</li>
 <li>Contamos las visitas de forma anónima con GoatCounter, sin cookies y sin identificar a los visitantes.</li></ul>
 <h2>Cuando reserva un servicio</h2>
 <p>Tratamos su nombre, datos de contacto, datos del vuelo, direcciones de recogida y destino, número de pasajeros y las notas que nos facilite, para prestar el servicio (ejecución del contrato) y cumplir obligaciones fiscales y contables. Los datos necesarios se comparten con el chófer que realiza el servicio. Si la reserva llega a través de una agencia o partner, recibimos estos datos de ellos.</p>

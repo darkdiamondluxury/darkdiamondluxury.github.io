@@ -393,6 +393,9 @@ footer .credits a{text-decoration:underline}
         <div><label for="fBags" data-i18n="l_bags">Malas de porão</label><input id="fBags" type="number" min="0" max="30" inputmode="numeric" value="2"></div>
         <div><label for="fCabin" data-i18n="l_cabin">Bagagem de mão</label><input id="fCabin" type="number" min="0" max="30" inputmode="numeric" value="1"></div>
         <div class="full"><label for="fName" data-i18n="l_name">Nome</label><input id="fName" autocomplete="name"></div>
+        <div><label for="fPhone" data-i18n="l_phone">Telefone / WhatsApp</label><input id="fPhone" type="tel" autocomplete="tel" inputmode="tel" placeholder="+351 …"></div>
+        <div><label for="fEmail" data-i18n="l_email">Email (opcional)</label><input id="fEmail" type="email" autocomplete="email"></div>
+        <div style="position:absolute;left:-9999px" aria-hidden="true"><label for="fWeb">Website</label><input id="fWeb" tabindex="-1" autocomplete="off"></div>
         <div class="full"><label for="fNotes" data-i18n="l_notes">Notas (opcional)</label><textarea id="fNotes" rows="3" data-i18n-ph="ph_notes" placeholder="Cadeira de criança, paragem pelo caminho, pedidos especiais…"></textarea></div>
         <div class="full">
           <button class="btn" type="submit" data-i18n="send">Enviar pelo WhatsApp</button>
@@ -420,6 +423,7 @@ document.body.classList.remove('no-js');
 
 /* ---------- Configuração: preencher quando houver dados ---------- */
 const WHATSAPP = '{{WHATSAPP}}';   // definido em _build/config.py
+const BK_URL = '{{BK_URL}}', BK_KEY = '{{BK_KEY}}';   // pedidos de reserva entram na app (ver config.py)
 
 /* ---------- Textos (gerados por _build/build.py a partir de _build/home_i18n.py) ---------- */
 const lang = '{{LANG}}';
@@ -487,8 +491,18 @@ document.getElementById('form').addEventListener('submit', e=>{
   e.preventDefault();
   const t=T[lang], g=id=>document.getElementById(id).value.trim();
   const d={svc:t.svcs[svcPick],from:g('fFrom')||'—',bags:g('fBags')||'0',cabin:g('fCabin')||'0',notes:g('fNotes'),to:g('fTo')||'—',date:g('fDate')||'—',time:g('fTime'),pax:g('fPax')||'—',flight:g('fFlight'),name:g('fName')||'—'};
-  if(!WHATSAPP){ const h=document.getElementById('hint'); h.textContent=t.nowa; h.style.color='var(--gold)'; return; }
-  if(window.goatcounter&&goatcounter.count) goatcounter.count({path:'reserva-whatsapp',title:'Pedido de reserva enviado',event:true});
+  const h=document.getElementById('hint');
+  if(!g('fPhone') && !g('fEmail')){ h.textContent=t.need_phone; h.style.color='var(--gold)'; document.getElementById('fPhone').focus(); return; }
+  // 1) guarda o pedido na app do escritório (Pedidos do site). "keepalive" deixa o envio terminar mesmo que a página mude.
+  try{
+    fetch(BK_URL,{method:'POST',keepalive:true,headers:{'content-type':'application/json',apikey:BK_KEY,authorization:'Bearer '+BK_KEY},
+      body:JSON.stringify({p:{lang,service:t.svcs[svcPick],direction:svcPick===0?t.dirs[dirPick]:'',pickup:g('fFrom'),dropoff:g('fTo'),date:g('fDate'),time:g('fTime'),
+        pax:g('fPax'),bags:g('fBags'),cabin:g('fCabin'),flight:g('fFlight'),name:g('fName'),phone:g('fPhone'),email:g('fEmail'),notes:g('fNotes'),website:g('fWeb')}})})
+      .then(r=>{ if(r.ok){ h.textContent=t.sent_ok; h.style.color='var(--gold)'; } }).catch(()=>{});
+  }catch(err){}
+  if(window.goatcounter&&goatcounter.count) goatcounter.count({path:'reserva-pedido',title:'Pedido de reserva enviado',event:true});
+  // 2) abre o WhatsApp com a mensagem pronta (tem de ser logo no clique, senão o browser bloqueia a janela)
+  if(!WHATSAPP){ h.textContent=t.sent_ok; h.style.color='var(--gold)'; return; }
   window.open(`https://wa.me/${WHATSAPP}?text=${encodeURIComponent(t.msg(d))}`,'_blank','noopener');
 });
 

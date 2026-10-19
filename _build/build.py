@@ -18,7 +18,7 @@ ROOT = os.path.dirname(HERE)
 sys.path.insert(0, HERE)
 
 from chrome import GOAT, L, SVG_DEFS, dest_name, footer, head, nav, org_ld, tel, url  # noqa: E402
-from config import DESTS, EMAIL, IMG, LANGS, PHONES, REDIRECTS, SITE, SLUGS, WHATSAPP  # noqa: E402
+from config import BOOKINGS_KEY, BOOKINGS_URL, DESTS, EMAIL, IMG, LANGS, PHONES, REDIRECTS, SITE, SLUGS, WHATSAPP  # noqa: E402
 import content  # noqa: E402
 from home_i18n import MSG, MSG_FLIGHT, MSG_NOTES, PLACES, T  # noqa: E402
 
@@ -58,6 +58,8 @@ def build_home(lang):
         '{{DLINKS}}': dlinks,
         '{{AG_URL}}': url('agencies', lang),
         '{{WHATSAPP}}': WHATSAPP,
+        '{{BK_URL}}': BOOKINGS_URL,
+        '{{BK_KEY}}': BOOKINGS_KEY,
         '{{GOAT}}': GOAT,
     }
     for k, v in rep.items():

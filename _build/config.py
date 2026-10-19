@@ -19,6 +19,11 @@ LEGAL = {
 PHONES = ['+351 932 666 254', '+351 960 033 622']
 EMAIL = 'darkdiamondluxury@gmail.com'
 WHATSAPP = '351932666254'   # número para onde o formulário de reserva envia (só números, com indicativo)
+# Pedidos de reserva do formulário entram na app (tabela booking_requests, função submit_booking).
+# A chave "anon" é pública por natureza: só deixa chamar a função que guarda pedidos, nada mais.
+# Ambiente: PRÉ-PROD. Quando a app passar a produção, trocar pelos valores do projeto "despacho".
+BOOKINGS_URL = 'https://ccwzqtdxugutkgdupgxc.supabase.co/rest/v1/rpc/submit_booking'
+BOOKINGS_KEY = 'eyJhbGciOiJIUzI1NiIsInR5cCI6IkpXVCJ9.eyJpc3MiOiJzdXBhYmFzZSIsInJlZiI6ImNjd3pxdGR4dWd1dGtnZHVwZ3hjIiwicm9sZSI6ImFub24iLCJpYXQiOjE3OTIwNjE1NTgsImV4cCI6MjEwNzYzNzU1OH0.xLQwoKKGOUXW3g4SN3B6wnRUcjO0EhXZ7dREUpzASBQ'
 WHATSAPP_ALL = ['351932666254', '351960033622']   # ambos têm WhatsApp
 INSTAGRAM = ''         # ex.: 'https://instagram.com/darkdiamondluxury'
 
