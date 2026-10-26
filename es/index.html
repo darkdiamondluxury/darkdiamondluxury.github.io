@@ -6,7 +6,7 @@
 <meta name="viewport" content="width=device-width,initial-scale=1,viewport-fit=cover">
 <title>Dark Diamond Luxury · Traslados privados y chófer en Lisboa</title>
 <meta name="description" content="Su chófer, a su medida. Traslados privados, tours, eventos y chófer a disposición desde Lisboa. Portugal, España y Francia.">
-<meta name="theme-color" content="#0b0a08">
+<meta name="theme-color" content="#171510">
 <link rel="canonical" href="https://darkdiamondluxury.github.io/es/">
 <link rel="alternate" hreflang="en" href="https://darkdiamondluxury.github.io/"><link rel="alternate" hreflang="pt" href="https://darkdiamondluxury.github.io/pt/"><link rel="alternate" hreflang="es" href="https://darkdiamondluxury.github.io/es/"><link rel="alternate" hreflang="x-default" href="https://darkdiamondluxury.github.io/">
 <link rel="icon" href="/assets/favicon.svg" type="image/svg+xml">
@@ -31,10 +31,10 @@
 
 :root{
   /* Dark Diamond: preto e dourado */
-  --green:#0b0a08; --green-2:#13110d; --green-3:#201d16;
-  --gold:#D4AF37; --gold-hi:#E6C45A;
+  --green:#171510; --green-2:#201d17; --green-3:#2d2920;
+  --gold:#D6B85C; --gold-hi:#E8D084;
   --ink:#EEEADF; --muted:#B5AFA0; --ivory:#F2EDE0;
-  --black:#050504;
+  --black:#0a0908;
   --display:"Jost","Helvetica Neue",Arial,sans-serif;
   --text:"Jost","Helvetica Neue",Arial,sans-serif;
   --ease-out:cubic-bezier(.23,1,.32,1);
@@ -45,7 +45,7 @@
 }
 *{box-sizing:border-box;margin:0}
 html{-webkit-text-size-adjust:100%}
-body{background:var(--black);color:var(--ink);font-family:var(--text);font-size:clamp(1.0625rem,1rem + .25vw,1.1875rem);line-height:1.5;-webkit-font-smoothing:antialiased;overflow-x:hidden}
+body{background:var(--green);color:var(--ink);font-family:var(--text);font-size:clamp(1.0625rem,1rem + .25vw,1.1875rem);line-height:1.5;-webkit-font-smoothing:antialiased;overflow-x:hidden}
 img{display:block;max-width:100%}
 a{color:inherit;text-underline-offset:.18em;text-decoration-thickness:.07em}
 ::selection{background:var(--gold);color:var(--black)}
@@ -79,8 +79,11 @@ button,input,select,textarea{font:inherit;color:inherit}
 
 /* ---------- hero ---------- */
 .hero{position:relative;min-height:100svh;display:flex;align-items:flex-end;padding:130px var(--pad) clamp(36px,6vh,72px);overflow:hidden;isolation:isolate}
-.hero{background:var(--black)}
-.js .hero .bg img{filter:brightness(.9) contrast(2.2)}
+.hero{background:var(--green)}
+#heroImg{filter:url(#lightsOff)}
+#heroOn,#heroGlow{position:absolute;inset:0;width:100%;height:100%;object-fit:cover;object-position:60% 50%}
+#heroGlow{opacity:0;mix-blend-mode:screen;filter:contrast(2.2) brightness(.85) blur(22px)}
+.js #heroOn{opacity:0}
 .hero .bg{position:absolute;inset:0;z-index:-2;background:var(--green-2);-webkit-mask-image:linear-gradient(180deg,#000 0,#000 calc(100% - var(--fd)),transparent 100%);mask-image:linear-gradient(180deg,#000 0,#000 calc(100% - var(--fd)),transparent 100%)}
 .hero .bg img{width:100%;height:100%;object-fit:cover;object-position:60% 50%}
 .hero::after{content:"";position:absolute;inset:0;z-index:-1;background:linear-gradient(180deg,rgba(7,9,8,.38) 0%,rgba(7,9,8,.08) 35%,rgba(7,9,8,.32) 100%)}
@@ -109,7 +112,7 @@ button,input,select,textarea{font:inherit;color:inherit}
 @media (max-width:480px){.qrow{grid-template-columns:1fr}}
 
 /* ---------- sem cerimónia ---------- */
-.stmt{position:relative;isolation:isolate;background:var(--black);min-height:100svh;display:flex;align-items:center;overflow:hidden}
+.stmt{position:relative;isolation:isolate;background:var(--green);min-height:100svh;display:flex;align-items:center;overflow:hidden}
 .stmt .pic{position:absolute;inset:0;z-index:-2;background:var(--green-2);-webkit-mask-image:linear-gradient(180deg,transparent 0,#000 var(--fd),#000 calc(100% - var(--fd)),transparent 100%);mask-image:linear-gradient(180deg,transparent 0,#000 var(--fd),#000 calc(100% - var(--fd)),transparent 100%)}
 .stmt .pic img{position:absolute;inset:0;width:100%;height:100%;object-fit:cover}
 .stmt::after{content:"";position:absolute;inset:0;z-index:-1;background:linear-gradient(90deg,rgba(7,9,8,.55) 0%,rgba(7,9,8,.22) 50%,rgba(7,9,8,0) 85%)}
@@ -126,7 +129,7 @@ button,input,select,textarea{font:inherit;color:inherit}
 @media (max-width:860px){.stmt::after{background:linear-gradient(180deg,rgba(7,9,8,.2),rgba(7,9,8,.45))}}
 
 /* ---------- destinos ---------- */
-.dest{position:relative;isolation:isolate;background:var(--black);padding:var(--gap) 0 clamp(60px,10vh,110px)}
+.dest{position:relative;isolation:isolate;background:var(--green);padding:var(--gap) 0 clamp(60px,10vh,110px)}
 .dest .bgimg{position:absolute;inset:0;z-index:-2;-webkit-mask-image:linear-gradient(180deg,transparent 0,#000 var(--fd),#000 calc(100% - var(--fd)),transparent 100%);mask-image:linear-gradient(180deg,transparent 0,#000 var(--fd),#000 calc(100% - var(--fd)),transparent 100%)}
 .dest .bgimg img{width:100%;height:100%;object-fit:cover}
 .dest::after{content:"";position:absolute;inset:0;z-index:-1;background:rgba(7,9,8,.34)}
@@ -155,7 +158,7 @@ button,input,select,textarea{font:inherit;color:inherit}
 .dest .note{padding:12px var(--pad) 0;font-size:.92rem;color:var(--muted)}
 
 /* ---------- serviços ---------- */
-.services{background:var(--ivory);color:var(--black);padding:var(--gap) var(--pad)}
+.services{background:#46391f;color:var(--ink);padding:var(--gap) var(--pad)}
 .services .wrap{display:grid;grid-template-columns:minmax(0,.8fr) minmax(0,1.2fr);gap:clamp(30px,6vw,100px)}
 .services h2{font-size:clamp(2.8rem,1rem + 5.2vw,6rem);max-width:8ch;position:sticky;top:120px;align-self:start}
 .svc{list-style:none;padding:0;display:grid;grid-auto-rows:1fr;gap:clamp(10px,1.2vw,14px)}
@@ -174,7 +177,7 @@ button,input,select,textarea{font:inherit;color:inherit}
 @media (max-width:560px){.svc .in{grid-template-columns:1fr;grid-template-areas:"h" "p" "a"}.svc .act{flex-direction:row;align-items:center;gap:10px 20px;margin-top:8px}.svc li{min-height:250px}}
 
 /* ---------- frota ---------- */
-.vclass{position:relative;min-height:100svh;display:flex;align-items:flex-end;background:var(--black);overflow:hidden;isolation:isolate}
+.vclass{position:relative;min-height:100svh;display:flex;align-items:flex-end;background:var(--green);overflow:hidden;isolation:isolate}
 .vclass .img{position:absolute;inset:0;z-index:-2;background:var(--green-2);-webkit-mask-image:linear-gradient(180deg,transparent 0,#000 var(--fd),#000 calc(100% - var(--fd)),transparent 100%);mask-image:linear-gradient(180deg,transparent 0,#000 var(--fd),#000 calc(100% - var(--fd)),transparent 100%)}
 .vclass .img img{position:absolute;inset:0;width:100%;height:100%;object-fit:cover;object-position:50% 45%}
 .vclass::after{content:"";position:absolute;inset:0;z-index:-1;background:linear-gradient(90deg,rgba(7,9,8,.7) 0%,rgba(7,9,8,.38) 32%,rgba(7,9,8,0) 58%)}
@@ -191,7 +194,7 @@ button,input,select,textarea{font:inherit;color:inherit}
 
 /* ---------- reserva ---------- */
 .book{position:relative;background:var(--green-2);padding:var(--gap) var(--pad)}
-.book::before{content:"";position:absolute;left:0;right:0;top:0;height:var(--fd);background:linear-gradient(180deg,var(--black),rgba(7,9,8,0));pointer-events:none}
+.book::before{content:"";position:absolute;left:0;right:0;top:0;height:var(--fd);background:linear-gradient(180deg,var(--green),rgba(23,21,16,0));pointer-events:none}
 .book>*{position:relative}
 .book .wrap{display:grid;grid-template-columns:minmax(0,.9fr) minmax(0,1.1fr);gap:clamp(30px,6vw,100px);align-items:start}
 .book h2{font-size:clamp(2.8rem,1rem + 5vw,6rem);max-width:8ch}
@@ -207,7 +210,7 @@ button,input,select,textarea{font:inherit;color:inherit}
 @media (max-width:860px){.book .wrap{grid-template-columns:1fr}.form{grid-template-columns:1fr}}
 
 /* ---------- parceiros ---------- */
-.partners{background:var(--gold);color:var(--black);padding:var(--gap) var(--pad)}
+.partners{background:linear-gradient(120deg,#B08A33 0%,#E9D58A 32%,#C9A24D 58%,#F0DFA0 82%,#B98F3A 100%);color:var(--black);padding:var(--gap) var(--pad)}
 .partners .wrap{max-width:1380px;margin:0 auto;display:grid;grid-template-columns:minmax(0,1.25fr) minmax(0,1fr);gap:clamp(24px,5vw,90px);align-items:end}
 .partners h2{font-size:clamp(2.8rem,1rem + 5.4vw,6.2rem);max-width:12ch}
 .partners p{max-width:40ch;font-size:clamp(1.1rem,1rem + .4vw,1.3rem)}
@@ -250,6 +253,7 @@ footer .credits a{text-decoration:underline}
   <symbol id="dd" viewBox="0 0 24 24"><path d="M6 3h12l4 6-10 12L2 9z" fill="none" stroke="currentColor" stroke-width="1.6" stroke-linejoin="round"/><path d="M2 9h20M9 3l3 18 3-18" fill="none" stroke="currentColor" stroke-width="1.2" stroke-linejoin="round" opacity=".7"/></symbol>
 </svg>
 
+<svg width="0" height="0" style="position:absolute" aria-hidden="true"><filter id="lightsOff" color-interpolation-filters="sRGB"><feComponentTransfer><feFuncR type="table" tableValues="0 .1 .2 .3 .4 .5 .56 .44 .34 .3 .3"/><feFuncG type="table" tableValues="0 .1 .2 .3 .4 .5 .56 .44 .34 .3 .3"/><feFuncB type="table" tableValues="0 .1 .2 .3 .4 .5 .56 .44 .34 .3 .3"/></feComponentTransfer></filter></svg>
 <a class="btn float-cta" id="floatCta" href="#reservar"><span data-i18n="cta">Pedir presupuesto</span></a>
 <header class="nav" id="nav">
   <a class="brand" href="/es/" aria-label="Dark Diamond Luxury"><svg><use href="#dd"/></svg>Dark Diamond <span class="lux">Luxury</span></a>
@@ -261,7 +265,7 @@ footer .credits a{text-decoration:underline}
 <main id="top">
   <!-- HERO -->
   <section class="hero" aria-labelledby="h1">
-    <div class="bg"><img id="heroImg" onerror="this.style.display='none'" src="https://images.unsplash.com/photo-1765461734605-34657fa04db2?auto=format&fit=crop&w=2200&q=70" alt="" fetchpriority="high"></div>
+    <div class="bg"><img id="heroImg" onerror="this.style.display='none'" src="https://images.unsplash.com/photo-1765461734605-34657fa04db2?auto=format&fit=crop&w=2200&q=70" alt="" fetchpriority="high"><img id="heroOn" src="https://images.unsplash.com/photo-1765461734605-34657fa04db2?auto=format&fit=crop&w=2200&q=70" alt="" aria-hidden="true"><img id="heroGlow" src="https://images.unsplash.com/photo-1765461734605-34657fa04db2?auto=format&fit=crop&w=2200&q=70" alt="" aria-hidden="true"></div>
     <div class="hero-in">
       <h1 class="display" id="h1"><span class="line"><span data-i18n="h1a">Su chófer,</span></span><span class="line"><span data-i18n="h1b">a su medida.</span></span></h1>
       <p class="sub" data-i18n="sub">Traslados, tours, eventos y chófer a disposición en Portugal, España y Francia. Vehículos cuidados, puntualidad y seguimiento de su vuelo.</p>
@@ -569,20 +573,15 @@ if(window.gsap && !reduce){
 
   // Entrada: a fotografia assenta, o título sobe, o resto chega
   gsap.timeline({defaults:{ease:E}})
-    .from('#heroImg',{scale:1.14,duration:2.2,ease:'power3.out'},0)
-    // as luzes da carrinha acendem: a cena começa às escuras (só os faróis brilham) e "pega" com duas tremeluzidas
-    .fromTo('#heroImg',{filter:'brightness(.9) contrast(2.2)'},{keyframes:[
-      {filter:'brightness(.9) contrast(2.2)',duration:.35},
-      {filter:'brightness(1) contrast(1.5)',duration:.12},
-      {filter:'brightness(.9) contrast(2.2)',duration:.1},
-      {filter:'brightness(1) contrast(1.35)',duration:.14},
-      {filter:'brightness(.9) contrast(2)',duration:.12},
-      {filter:'brightness(1) contrast(1)',duration:1.1,ease:'power2.out'}],
-      onStart:()=>document.documentElement.classList.remove('js'),
-      onComplete:()=>gsap.set('#heroImg',{clearProps:'filter'})},0)
+    .from('.hero .bg img',{scale:1.14,duration:2.2,ease:'power3.out'},0)
+    // as luzes da carrinha começam apagadas e acendem (com tremeluzir) à medida que as letras aparecem
+    .fromTo('#heroOn',{opacity:0},{keyframes:[
+      {opacity:.55,duration:.08},{opacity:.1,duration:.12},{opacity:.85,duration:.1},{opacity:.35,duration:.1},{opacity:1,duration:.7,ease:'power2.out'}],
+      onStart:()=>document.documentElement.classList.remove('js')},.7)
+    .fromTo('#heroGlow',{opacity:0},{keyframes:[{opacity:.4,duration:.1},{opacity:.05,duration:.12},{opacity:.5,duration:.2},{opacity:.38,duration:.9,ease:'power2.out'}]},.7)
     .from('.hero h1 .line>span',{yPercent:110,duration:1.2,stagger:.12},.15)
     .from('.hero .sub, .hero .pick',{y:22,opacity:0,duration:.9,stagger:.1},.6);
-  gsap.to('#heroImg',{yPercent:10,ease:'none',scrollTrigger:{trigger:'.hero',start:'top top',end:'bottom top',scrub:true}});
+  gsap.to('.hero .bg img',{yPercent:10,ease:'none',scrollTrigger:{trigger:'.hero',start:'top top',end:'bottom top',scrub:true}});
 
   // O gesto principal: a frase acende-se palavra a palavra com o scroll
   const lead=document.querySelector('.stmt .lead');

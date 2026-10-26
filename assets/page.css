@@ -3,9 +3,9 @@
 @font-face{font-family:"Jost";src:url(/assets/jost-latin-400-normal.woff2) format("woff2");font-weight:400;font-display:swap}
 @font-face{font-family:"Jost";src:url(/assets/jost-latin-500-normal.woff2) format("woff2");font-weight:500;font-display:swap}
 :root{
-  --green:#0b0a08; --green-2:#13110d; --green-3:#201d16;
-  --gold:#D4AF37; --olive:#9A7B1F; --bone:#ECE8DC; --bone-2:#E2DDCD;
-  --ink:#EEEADF; --muted:#B5AFA0; --black:#050504;
+  --green:#171510; --green-2:#201d17; --green-3:#2d2920;
+  --gold:#D6B85C; --olive:#9A7B1F; --bone:#ECE8DC; --bone-2:#E2DDCD;
+  --ink:#EEEADF; --muted:#B5AFA0; --black:#0a0908;
   --font:"Jost","Helvetica Neue",Arial,sans-serif;
   --ease-out:cubic-bezier(.23,1,.32,1);
   --pad:clamp(20px,4vw,56px);
@@ -47,9 +47,9 @@ a{color:inherit;text-underline-offset:.18em;text-decoration-thickness:.07em}
 .phero{position:relative;min-height:78svh;display:grid;align-items:end;padding:130px var(--pad) clamp(44px,8vh,90px);isolation:isolate;overflow:hidden}
 .phero .bg{position:absolute;inset:0;z-index:-2;background:var(--green-2)}
 .phero .bg img{width:100%;height:100%;object-fit:cover}
-.phero::after{content:"";position:absolute;inset:0;z-index:-1;background:linear-gradient(180deg,rgba(11,10,8,.55) 0%,rgba(11,10,8,.35) 40%,rgba(11,10,8,.92) 100%)}
+.phero::after{content:"";position:absolute;inset:0;z-index:-1;background:linear-gradient(180deg,rgba(23,21,16,.55) 0%,rgba(23,21,16,.35) 40%,rgba(23,21,16,.92) 100%)}
 .phero.plain{min-height:62svh}
-.phero.plain::after{background:radial-gradient(90% 80% at 80% 0%,#201d16 0,rgba(11,10,8,0) 60%)}
+.phero.plain::after{background:radial-gradient(90% 80% at 80% 0%,#2d2920 0,rgba(23,21,16,0) 60%)}
 .phero .in{max-width:1100px}
 .crumbs{font-size:.9rem;color:var(--muted);margin-bottom:18px}
 .crumbs a{text-decoration:none}
