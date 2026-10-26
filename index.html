@@ -291,6 +291,42 @@ footer .word em{background:linear-gradient(120deg,#A27A38,#F3DFA2 45%,#C69F5B 70
 .brand .dm{color:var(--silver)}
 @media (max-width:520px){.brand{font-size:.84rem;letter-spacing:.02em;gap:8px}}
 @media (max-width:370px){.brand .lux{display:none}}
+
+/* ---------- telemóvel ---------- */
+@media (max-width:860px),(hover:none){.float-cta{display:inline-flex!important}}
+@media (max-width:640px){
+:root{--fd:clamp(80px,13vh,130px);--gap:clamp(72px,11svh,100px)}
+.hero{padding:104px var(--pad) 28px}
+.hero h1{font-size:clamp(2.1rem,.6rem + 7.4vw,2.8rem);line-height:1.02}
+.hero p.sub{margin-top:16px;font-size:1.05rem;line-height:1.5}
+.pick{margin-top:22px}
+.pick .pq{font-size:1rem;margin-bottom:10px}
+.qf input{min-height:52px}
+.quote .chips{flex-wrap:nowrap;overflow-x:auto;margin:14px calc(-1*var(--pad)) 0;padding:0 var(--pad) 4px;scrollbar-width:none;-webkit-overflow-scrolling:touch}
+.quote .chips::-webkit-scrollbar{display:none}
+.quote .chips button{flex:0 0 auto;padding:9px 15px;font-size:.92rem}
+.stmt{min-height:92svh}
+.stmt h2{font-size:clamp(2rem,.6rem + 7vw,2.7rem);max-width:none;overflow-wrap:normal}
+.stmt .lead{font-size:1.3rem}
+.stmt .nums{display:grid;grid-template-columns:repeat(3,1fr);gap:14px}
+.stmt .nums div{min-width:0;max-width:none}
+.stmt .nums b{font-size:1.3rem;white-space:nowrap}
+.stmt .nums span{font-size:.86rem}
+.dest,.services{min-height:min(92svh,820px)}
+.dest h2,.services h2{font-size:clamp(2.1rem,.6rem + 7.4vw,2.8rem);max-width:10ch}
+.dest .head,.services .head{align-items:flex-start}
+.track{padding-top:28px}
+.place{font-size:clamp(1.9rem,.6rem + 6.2vw,2.4rem)}
+.sel{gap:14px}
+.sel .tm b{font-size:1.9rem}
+.swipe{display:none!important}
+.dlinks{font-size:.95rem}
+.dest .note,.services .note{font-size:.92rem}
+.vclass .txt{padding-top:34svh}
+.book,.partners{padding-top:var(--gap)}
+.float-cta{left:var(--pad);right:var(--pad);justify-content:center;min-height:54px;font-size:1.02rem;bottom:calc(14px + env(safe-area-inset-bottom))}
+footer{padding-bottom:96px}
+}
 </style>
 </head>
 <body>
