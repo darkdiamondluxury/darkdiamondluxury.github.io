@@ -132,11 +132,12 @@ button,input,select,textarea{font:inherit;color:inherit}
 .svc{list-style:none;padding:0;display:grid;grid-auto-rows:1fr;gap:clamp(10px,1.2vw,14px)}
 .svc li{position:relative;overflow:hidden;border-radius:16px;background:var(--green-3);min-height:clamp(210px,30vh,260px);display:flex;isolation:isolate}
 .svc li img{position:absolute;inset:0;width:100%;height:100%;object-fit:cover;z-index:-2;transition:transform .9s var(--ease-out)}
-.svc li::after{content:"";position:absolute;inset:0;z-index:-1;background:linear-gradient(90deg,rgba(7,9,8,.86) 0%,rgba(7,9,8,.62) 55%,rgba(7,9,8,.35) 100%)}
+.svc li::after{content:"";position:absolute;inset:0;z-index:-1;background:linear-gradient(0deg,rgba(7,9,8,.62) 0%,rgba(7,9,8,0) 62%),linear-gradient(90deg,rgba(7,9,8,.5) 0%,rgba(7,9,8,.18) 60%,rgba(7,9,8,0) 100%)}
 @media (hover:hover){.svc li:hover img{transform:scale(1.05)}.svc li:hover h3{color:var(--gold)}}
 .svc .in{align-self:end;display:grid;grid-template-columns:minmax(0,1fr) auto;grid-template-areas:"h a" "p a";align-items:end;column-gap:24px;row-gap:8px;padding:clamp(20px,2vw,28px);width:100%}
 .svc h3{grid-area:h;font-family:var(--display);font-weight:300;font-size:clamp(1.9rem,1.2rem + 1.7vw,2.9rem);letter-spacing:-.025em;line-height:1.02;transition:color .25s}
-.svc p{grid-area:p;color:var(--ink);opacity:.88;max-width:44ch}
+.svc p{grid-area:p;color:var(--ink);max-width:44ch}
+.svc h3,.svc p{text-shadow:0 1px 14px rgba(7,9,8,.55)}
 .svc .act{grid-area:a;display:flex;flex-direction:column;align-items:flex-end;gap:10px}
 .svc .more{color:var(--gold);text-underline-offset:.2em;font-size:.96rem}
 .svc .mini{padding:12px 22px;font-size:.96rem;white-space:nowrap}
