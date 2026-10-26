@@ -156,7 +156,7 @@ button,input,select,textarea{font:inherit;color:inherit}
 .dest .note{padding:12px var(--pad) 0;font-size:.92rem;color:var(--muted)}
 
 /* ---------- serviços ---------- */
-.services{background:#46391f;color:var(--ink);padding:var(--gap) var(--pad)}
+.services{background:linear-gradient(120deg,#B08A33 0%,#E9D58A 32%,#C9A24D 58%,#F0DFA0 82%,#B98F3A 100%);color:var(--black);padding:var(--gap) var(--pad)}
 .services .wrap{display:grid;grid-template-columns:minmax(0,.8fr) minmax(0,1.2fr);gap:clamp(30px,6vw,100px)}
 .services h2{font-size:clamp(2.8rem,1rem + 5.2vw,6rem);max-width:8ch;position:sticky;top:120px;align-self:start}
 .svc{list-style:none;padding:0;display:grid;grid-auto-rows:1fr;gap:clamp(10px,1.2vw,14px)}
@@ -165,7 +165,7 @@ button,input,select,textarea{font:inherit;color:inherit}
 .svc li::after{content:"";position:absolute;inset:0;z-index:-1;background:linear-gradient(0deg,rgba(7,9,8,.62) 0%,rgba(7,9,8,0) 62%),linear-gradient(90deg,rgba(7,9,8,.5) 0%,rgba(7,9,8,.18) 60%,rgba(7,9,8,0) 100%)}
 @media (hover:hover){.svc li:hover img{transform:scale(1.05)}.svc li:hover h3{color:var(--gold)}}
 .svc .in{align-self:end;display:grid;grid-template-columns:minmax(0,1fr) auto;grid-template-areas:"h a" "p a";align-items:end;column-gap:24px;row-gap:8px;padding:clamp(20px,2vw,28px);width:100%}
-.svc h3{grid-area:h;font-family:var(--display);font-weight:300;font-size:clamp(1.9rem,1.2rem + 1.7vw,2.9rem);letter-spacing:-.025em;line-height:1.02;transition:color .25s}
+.svc h3{grid-area:h;color:var(--ink);font-family:var(--display);font-weight:300;font-size:clamp(1.9rem,1.2rem + 1.7vw,2.9rem);letter-spacing:-.025em;line-height:1.02;transition:color .25s}
 .svc p{grid-area:p;color:var(--ink);max-width:44ch}
 .svc h3,.svc p{text-shadow:0 1px 14px rgba(7,9,8,.55)}
 .svc .act{grid-area:a;display:flex;flex-direction:column;align-items:flex-end;gap:10px}
@@ -191,24 +191,25 @@ button,input,select,textarea{font:inherit;color:inherit}
 @media (max-width:860px){.vclass .img img{object-position:62% 35%}.vclass::after{background:linear-gradient(0deg,rgba(7,9,8,.95) 0%,rgba(7,9,8,.74) 46%,rgba(7,9,8,0) 72%)}.vclass .txt{width:100%;padding-top:40svh}}
 
 /* ---------- reserva ---------- */
-.book{position:relative;isolation:isolate;background:var(--green-2);padding:var(--gap) var(--pad)}
+.book{position:relative;isolation:isolate;background:var(--green);padding:var(--gap) var(--pad)}
 .book::before{content:"";position:absolute;left:0;right:0;top:0;height:var(--fd);background:linear-gradient(180deg,var(--green),rgba(23,21,16,0));pointer-events:none}
 .book>*{position:relative}
-.book>.bgimg{position:absolute;inset:0;z-index:-2;-webkit-mask-image:linear-gradient(180deg,transparent 0,#000 var(--fd),#000 calc(100% - var(--fd)),transparent 100%);mask-image:linear-gradient(180deg,transparent 0,#000 var(--fd),#000 calc(100% - var(--fd)),transparent 100%)}
-.book>.bgimg img{width:100%;height:100%;object-fit:cover}
-.book>.bgimg::after{content:"";position:absolute;inset:0;background:linear-gradient(90deg,rgba(10,9,8,.42),rgba(10,9,8,.16))}
-.book h2,.book .lead{text-shadow:0 1px 18px rgba(7,9,8,.55)}
 .book .wrap{display:grid;grid-template-columns:minmax(0,.9fr) minmax(0,1.1fr);gap:clamp(30px,6vw,100px);align-items:start}
 .book h2{font-size:clamp(2.8rem,1rem + 5vw,6rem);max-width:8ch}
 .book .lead{margin-top:20px;max-width:34ch;color:var(--muted)}
-.form{display:grid;grid-template-columns:1fr 1fr;gap:14px}
+.form{display:grid;grid-template-columns:1fr 1fr;gap:14px;background:linear-gradient(120deg,#B08A33 0%,#E9D58A 32%,#C9A24D 58%,#F0DFA0 82%,#B98F3A 100%);color:var(--black);border-radius:24px;padding:clamp(22px,3vw,40px)}
+.form label,.form .hint{color:var(--black)}
+.form .chips button{background:rgba(10,9,8,.12);color:var(--black)}
+@media (hover:hover){.form .chips button:hover{background:rgba(10,9,8,.22)}}
+.form .chips button[aria-pressed="true"]{background:var(--black);color:var(--gold-hi)}
+.form .btn{background:var(--black);color:var(--gold-hi)}
 .form .full{grid-column:1/-1}
-.form label{display:block;font-size:.92rem;color:var(--muted);margin-bottom:7px}
+.form label{display:block;font-size:.92rem;margin-bottom:7px}
 .form input,.form select,.form textarea{width:100%;background:var(--black);border:0;border-radius:12px;padding:15px 16px;font-size:1rem;color:var(--ink);appearance:none}
 .form input::placeholder,.form textarea::placeholder{color:#7f8573}
 .form textarea{resize:vertical;min-height:96px}
 .form .btn{margin-top:10px}
-.form .hint{font-size:.92rem;color:var(--muted);margin-top:8px}
+.form .hint{font-size:.92rem;margin-top:8px}
 @media (max-width:860px){.book .wrap{grid-template-columns:1fr}.form{grid-template-columns:1fr}}
 
 /* ---------- parceiros ---------- */
@@ -346,7 +347,6 @@ footer .credits a{text-decoration:underline}
 
   <!-- RESERVA -->
   <section class="book" id="reservar" aria-labelledby="b-h">
-    <div class="bgimg" aria-hidden="true"><img src="https://images.unsplash.com/photo-1768024175212-98eb7cd5ca46?auto=format&fit=crop&w=2000&q=70" alt="" loading="lazy" onerror="this.style.display='none'"></div>
     <div class="wrap">
       <div>
         <h2 class="display" id="b-h" data-i18n="bh">Prefere dar mais detalhes?</h2>
@@ -545,17 +545,17 @@ document.getElementById('form').addEventListener('submit', e=>{
   const t=T[lang], g=id=>document.getElementById(id).value.trim();
   const d={svc:t.svcs[svcPick],from:g('fFrom')||'—',bags:g('fBags')||'0',cabin:g('fCabin')||'0',notes:g('fNotes'),to:g('fTo')||'—',date:g('fDate')||'—',time:g('fTime'),pax:g('fPax')||'—',flight:g('fFlight'),name:g('fName')||'—'};
   const h=document.getElementById('hint');
-  if(!g('fPhone') && !g('fEmail')){ h.textContent=t.need_phone; h.style.color='var(--gold)'; document.getElementById('fPhone').focus(); return; }
+  if(!g('fPhone') && !g('fEmail')){ h.textContent=t.need_phone; h.style.color='var(--black)'; document.getElementById('fPhone').focus(); return; }
   // 1) guarda o pedido na app do escritório (Pedidos do site). "keepalive" deixa o envio terminar mesmo que a página mude.
   try{
     fetch(BK_URL,{method:'POST',keepalive:true,headers:{'content-type':'application/json',apikey:BK_KEY,authorization:'Bearer '+BK_KEY},
       body:JSON.stringify({p:{lang,service:t.svcs[svcPick],direction:svcPick===0?t.dirs[dirPick]:'',pickup:g('fFrom'),dropoff:g('fTo'),date:g('fDate'),time:g('fTime'),
         pax:g('fPax'),bags:g('fBags'),cabin:g('fCabin'),flight:g('fFlight'),name:g('fName'),phone:g('fPhone'),email:g('fEmail'),notes:g('fNotes'),website:g('fWeb')}})})
-      .then(r=>{ if(r.ok){ h.textContent=t.sent_ok; h.style.color='var(--gold)'; } }).catch(()=>{});
+      .then(r=>{ if(r.ok){ h.textContent=t.sent_ok; h.style.color='var(--black)'; } }).catch(()=>{});
   }catch(err){}
   if(window.goatcounter&&goatcounter.count) goatcounter.count({path:'reserva-pedido',title:'Pedido de reserva enviado',event:true});
   // 2) abre o WhatsApp com a mensagem pronta (tem de ser logo no clique, senão o browser bloqueia a janela)
-  if(!WHATSAPP){ h.textContent=t.sent_ok; h.style.color='var(--gold)'; return; }
+  if(!WHATSAPP){ h.textContent=t.sent_ok; h.style.color='var(--black)'; return; }
   window.open(`https://wa.me/${WHATSAPP}?text=${encodeURIComponent(t.msg(d))}`,'_blank','noopener');
 });
 
