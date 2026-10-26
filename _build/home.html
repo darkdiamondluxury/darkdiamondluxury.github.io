@@ -127,18 +127,20 @@ button,input,select,textarea{font:inherit;color:inherit}
 
 /* ---------- serviços ---------- */
 .services{background:var(--black);padding:var(--gap) var(--pad)}
-.services .wrap{display:grid;grid-template-columns:minmax(0,.8fr) minmax(0,1.2fr);gap:clamp(30px,6vw,100px)}
-.services h2{font-size:clamp(2.8rem,1rem + 5.2vw,6rem);max-width:8ch;position:sticky;top:120px;align-self:start}
-.svc{list-style:none;padding:0}
-.svc li{display:grid;grid-template-columns:minmax(0,1fr) auto;align-items:end;column-gap:24px;padding:clamp(22px,3.4vh,34px) 0}
-.svc li>div{display:grid;gap:8px}
-.svc h3{font-family:var(--display);font-weight:300;font-size:clamp(2rem,1.2rem + 2.2vw,3.5rem);letter-spacing:-.025em;line-height:1.02;transition:color .25s}
-@media (hover:hover){.svc li:hover h3{color:var(--gold)}}
-.svc p{color:var(--muted);max-width:46ch}
-.svc .more{justify-self:start;color:var(--gold);text-underline-offset:.2em;font-size:.96rem}
+.services h2{font-size:clamp(2.8rem,1rem + 5.2vw,6rem);max-width:10ch;margin-bottom:clamp(32px,6vh,64px)}
+.svc{list-style:none;padding:0;display:grid;grid-template-columns:repeat(3,minmax(0,1fr));gap:clamp(12px,1.6vw,20px)}
+.svc li{position:relative;overflow:hidden;border-radius:18px;background:var(--green-3);min-height:clamp(300px,42vh,400px);display:flex;isolation:isolate}
+.svc li img{position:absolute;inset:0;width:100%;height:100%;object-fit:cover;z-index:-2;transition:transform .9s var(--ease-out)}
+.svc li::after{content:"";position:absolute;inset:0;z-index:-1;background:linear-gradient(180deg,rgba(7,9,8,.15) 0%,rgba(7,9,8,.55) 55%,rgba(7,9,8,.92) 100%)}
+@media (hover:hover){.svc li:hover img{transform:scale(1.05)}}
+.svc .in{margin-top:auto;display:grid;gap:10px;padding:clamp(20px,2vw,28px);width:100%}
+.svc h3{font-family:var(--display);font-weight:300;font-size:clamp(1.9rem,1.2rem + 1.5vw,2.6rem);letter-spacing:-.025em;line-height:1.04}
+.svc p{color:var(--ink);opacity:.86;max-width:40ch}
+.svc .act{display:flex;flex-wrap:wrap;align-items:center;gap:10px 20px;margin-top:6px}
+.svc .more{color:var(--gold);text-underline-offset:.2em;font-size:.96rem}
 .svc .mini{padding:12px 22px;font-size:.96rem;white-space:nowrap}
-@media (max-width:560px){.svc li{grid-template-columns:1fr;row-gap:14px}.svc .mini{justify-self:start}}
-@media (max-width:860px){.services .wrap{grid-template-columns:1fr}.services h2{position:static}}
+@media (max-width:1100px){.svc{grid-template-columns:repeat(2,minmax(0,1fr))}}
+@media (max-width:620px){.svc{grid-template-columns:1fr}.svc li{min-height:300px}}
 
 /* ---------- frota ---------- */
 .vclass{position:relative;min-height:100svh;display:flex;align-items:flex-end;background:var(--black);overflow:hidden;isolation:isolate}
@@ -272,12 +274,12 @@ footer .credits a{text-decoration:underline}
     <div class="wrap">
       <h2 class="display" id="svc-h" data-i18n="svch">Ao seu ritmo.</h2>
       <ul class="svc">
-        <li><div><h3 data-i18n="v1h">Aeroporto</h3><p data-i18n="v1p">…</p><a class="more" href="{{AIRPORT_URL}}" data-i18n="more">Saber mais</a></div><a class="btn mini" href="#reservar" data-svc="0" data-i18n="cta_short">Reservar</a></li>
-        <li><div><h3 data-i18n="v2h">À disposição</h3><p data-i18n="v2p">…</p></div><a class="btn mini" href="#reservar" data-svc="1" data-i18n="cta_short">Reservar</a></li>
-        <li><div><h3 data-i18n="v3h">Tours privados</h3><p data-i18n="v3p">…</p></div><a class="btn mini" href="#reservar" data-svc="2" data-i18n="cta_short">Reservar</a></li>
-        <li><div><h3 data-i18n="v4h">Eventos e casamentos</h3><p data-i18n="v4p">…</p></div><a class="btn mini" href="#reservar" data-svc="3" data-i18n="cta_short">Reservar</a></li>
-        <li><div><h3 data-i18n="v5h">Longa distância</h3><p data-i18n="v5p">…</p></div><a class="btn mini" href="#reservar" data-svc="4" data-i18n="cta_short">Reservar</a></li>
-        <li><div><h3 data-i18n="v6h">Cruzeiros</h3><p data-i18n="v6p">…</p><a class="more" href="{{CRUISE_URL}}" data-i18n="more">Saber mais</a></div><a class="btn mini" href="#reservar" data-svc="5" data-i18n="cta_short">Reservar</a></li>
+        <li><img src="https://images.unsplash.com/photo-1500835556837-99ac94a94552?auto=format&fit=crop&w=1000&q=70" alt="" loading="lazy" onerror="this.style.display='none'"><div class="in"><h3 data-i18n="v1h">Aeroporto</h3><p data-i18n="v1p">…</p><div class="act"><a class="btn mini" href="#reservar" data-svc="0" data-i18n="cta_short">Reservar</a><a class="more" href="{{AIRPORT_URL}}" data-i18n="more">Saber mais</a></div></div></li>
+        <li><img src="https://images.unsplash.com/photo-1646898463399-c3d670138056?auto=format&fit=crop&w=1000&q=70" alt="" loading="lazy" onerror="this.style.display='none'"><div class="in"><h3 data-i18n="v2h">À disposição</h3><p data-i18n="v2p">…</p><div class="act"><a class="btn mini" href="#reservar" data-svc="1" data-i18n="cta_short">Reservar</a></div></div></li>
+        <li><img src="https://images.unsplash.com/photo-1697394494123-c6c1323a14f7?auto=format&fit=crop&w=1000&q=70" alt="" loading="lazy" onerror="this.style.display='none'"><div class="in"><h3 data-i18n="v3h">Tours privados</h3><p data-i18n="v3p">…</p><div class="act"><a class="btn mini" href="#reservar" data-svc="2" data-i18n="cta_short">Reservar</a></div></div></li>
+        <li><img src="https://images.unsplash.com/photo-1519226612673-73c0234437ef?auto=format&fit=crop&w=1000&q=70" alt="" loading="lazy" onerror="this.style.display='none'"><div class="in"><h3 data-i18n="v4h">Eventos e casamentos</h3><p data-i18n="v4p">…</p><div class="act"><a class="btn mini" href="#reservar" data-svc="3" data-i18n="cta_short">Reservar</a></div></div></li>
+        <li><img src="https://images.unsplash.com/photo-1713576561112-b6f42f40b1db?auto=format&fit=crop&w=1000&q=70" alt="" loading="lazy" onerror="this.style.display='none'"><div class="in"><h3 data-i18n="v5h">Longa distância</h3><p data-i18n="v5p">…</p><div class="act"><a class="btn mini" href="#reservar" data-svc="4" data-i18n="cta_short">Reservar</a></div></div></li>
+        <li><img src="https://images.unsplash.com/photo-1764334321119-22e12fccb6ff?auto=format&fit=crop&w=1000&q=70" alt="" loading="lazy" onerror="this.style.display='none'"><div class="in"><h3 data-i18n="v6h">Cruzeiros</h3><p data-i18n="v6p">…</p><div class="act"><a class="btn mini" href="#reservar" data-svc="5" data-i18n="cta_short">Reservar</a><a class="more" href="{{CRUISE_URL}}" data-i18n="more">Saber mais</a></div></div></li>
       </ul>
     </div>
   </section>
@@ -369,7 +371,7 @@ function render(){
   document.documentElement.lang = lang;
   document.querySelectorAll('[data-i18n]').forEach(el=>{ const v=t[el.dataset.i18n]; if(typeof v==='string') el.textContent=v; });
   document.querySelectorAll('[data-i18n-ph]').forEach(el=>{ el.placeholder=t[el.dataset.i18nPh]; });
-  document.getElementById('track').innerHTML = PLACES.map(([n,m],i)=>`<button class="place" type="button" data-i="${i}"><span class="nm">${n}</span><span class="tm"><b>≈ ${m}</b> ${t.from}</span><span class="go">${t.go}</span></button>`).join('');
+  document.getElementById('track').innerHTML = PLACES.map(([n,m],i)=>`<button class="place" type="button" data-i="${i}"><span class="nm">${n}</span><span class="tm">${m?`<b>≈ ${m}</b> ${t.from}`:`<b>${t.onreq}</b>`}</span><span class="go">${t.go}</span></button>`).join('');
   document.getElementById('dirChips').innerHTML = t.dirs.map((s,i)=>`<button type="button" aria-pressed="${i===dirPick}" data-i="${i}">${s}</button>`).join('');
   applyDir(false);
   document.getElementById('svcChips').innerHTML = t.svcs.map((s,i)=>`<button type="button" aria-pressed="${i===svcPick}" data-i="${i}">${s}</button>`).join('');

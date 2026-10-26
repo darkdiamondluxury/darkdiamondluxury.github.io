@@ -54,7 +54,7 @@ def build_home(lang):
         '{{FOOTER}}': footer(lang),
         '{{T_JSON}}': json.dumps(js_t, ensure_ascii=False),
         '{{MSG_JSON}}': json.dumps({'tpl': MSG[lang], 'flight': MSG_FLIGHT[lang], 'notes': MSG_NOTES[lang]}, ensure_ascii=False),
-        '{{PLACES_JSON}}': json.dumps([[n, m] for n, m, _ in PLACES], ensure_ascii=False),
+        '{{PLACES_JSON}}': json.dumps([[n[lang] if isinstance(n, dict) else n, m] for n, m, _ in PLACES], ensure_ascii=False),
         '{{DLINKS}}': dlinks,
         '{{AIRPORT_URL}}': url('airport', lang),
         '{{CRUISE_URL}}': url('cruise', lang),
