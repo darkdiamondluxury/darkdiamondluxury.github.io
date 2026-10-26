@@ -1,11 +1,12 @@
 <!doctype html>
 <html lang="en">
 <head>
+<script>document.documentElement.classList.add('js');setTimeout(function(){document.documentElement.classList.remove('js')},5000)</script>
 <meta charset="utf-8">
 <meta name="viewport" content="width=device-width,initial-scale=1,viewport-fit=cover">
 <title>Dark Diamond Luxury · Private transfers and chauffeur in Lisbon</title>
 <meta name="description" content="Your chauffeur, tailored to you. Private transfers, tours, events and chauffeur at disposal from Lisbon. Portugal, Spain and France.">
-<meta name="theme-color" content="#082016">
+<meta name="theme-color" content="#0b0a08">
 <link rel="canonical" href="https://darkdiamondluxury.github.io/">
 <link rel="alternate" hreflang="en" href="https://darkdiamondluxury.github.io/"><link rel="alternate" hreflang="pt" href="https://darkdiamondluxury.github.io/pt/"><link rel="alternate" hreflang="es" href="https://darkdiamondluxury.github.io/es/"><link rel="alternate" hreflang="x-default" href="https://darkdiamondluxury.github.io/">
 <link rel="icon" href="/assets/favicon.svg" type="image/svg+xml">
@@ -29,11 +30,11 @@
 @font-face{font-family:"Jost";src:url(/assets/jost-latin-500-normal.woff2) format("woff2");font-weight:500;font-display:swap}
 
 :root{
-  /* Dark Diamond: verde profundo, preto e dourado */
-  --green:#082016; --green-2:#0d2a1e; --green-3:#123526;
-  --gold:#CAB26A; --gold-hi:#d8c27c;
-  --ink:#EEEADF; --muted:#AEB09E;
-  --black:#070908;
+  /* Dark Diamond: preto e dourado */
+  --green:#0b0a08; --green-2:#13110d; --green-3:#201d16;
+  --gold:#D4AF37; --gold-hi:#E6C45A;
+  --ink:#EEEADF; --muted:#B5AFA0; --ivory:#F2EDE0;
+  --black:#050504;
   --display:"Jost","Helvetica Neue",Arial,sans-serif;
   --text:"Jost","Helvetica Neue",Arial,sans-serif;
   --ease-out:cubic-bezier(.23,1,.32,1);
@@ -79,6 +80,7 @@ button,input,select,textarea{font:inherit;color:inherit}
 /* ---------- hero ---------- */
 .hero{position:relative;min-height:100svh;display:flex;align-items:flex-end;padding:130px var(--pad) clamp(36px,6vh,72px);overflow:hidden;isolation:isolate}
 .hero{background:var(--black)}
+.js .hero .bg img{filter:brightness(.9) contrast(2.2)}
 .hero .bg{position:absolute;inset:0;z-index:-2;background:var(--green-2);-webkit-mask-image:linear-gradient(180deg,#000 0,#000 calc(100% - var(--fd)),transparent 100%);mask-image:linear-gradient(180deg,#000 0,#000 calc(100% - var(--fd)),transparent 100%)}
 .hero .bg img{width:100%;height:100%;object-fit:cover;object-position:60% 50%}
 .hero::after{content:"";position:absolute;inset:0;z-index:-1;background:linear-gradient(180deg,rgba(7,9,8,.38) 0%,rgba(7,9,8,.08) 35%,rgba(7,9,8,.32) 100%)}
@@ -153,7 +155,7 @@ button,input,select,textarea{font:inherit;color:inherit}
 .dest .note{padding:12px var(--pad) 0;font-size:.92rem;color:var(--muted)}
 
 /* ---------- serviços ---------- */
-.services{background:var(--black);padding:var(--gap) var(--pad)}
+.services{background:var(--ivory);color:var(--black);padding:var(--gap) var(--pad)}
 .services .wrap{display:grid;grid-template-columns:minmax(0,.8fr) minmax(0,1.2fr);gap:clamp(30px,6vw,100px)}
 .services h2{font-size:clamp(2.8rem,1rem + 5.2vw,6rem);max-width:8ch;position:sticky;top:120px;align-self:start}
 .svc{list-style:none;padding:0;display:grid;grid-auto-rows:1fr;gap:clamp(10px,1.2vw,14px)}
@@ -559,6 +561,7 @@ addEventListener('scroll',()=>nav.classList.toggle('solid', scrollY>innerHeight*
 
 /* ---------- Movimento ---------- */
 const reduce = matchMedia('(prefers-reduced-motion: reduce)').matches;
+if(!(window.gsap && !reduce)) document.documentElement.classList.remove('js');
 if(window.gsap && !reduce){
   gsap.registerPlugin(ScrollTrigger);
   ScrollTrigger.config({ignoreMobileResize:true});
@@ -567,6 +570,16 @@ if(window.gsap && !reduce){
   // Entrada: a fotografia assenta, o título sobe, o resto chega
   gsap.timeline({defaults:{ease:E}})
     .from('#heroImg',{scale:1.14,duration:2.2,ease:'power3.out'},0)
+    // as luzes da carrinha acendem: a cena começa às escuras (só os faróis brilham) e "pega" com duas tremeluzidas
+    .fromTo('#heroImg',{filter:'brightness(.9) contrast(2.2)'},{keyframes:[
+      {filter:'brightness(.9) contrast(2.2)',duration:.35},
+      {filter:'brightness(1) contrast(1.5)',duration:.12},
+      {filter:'brightness(.9) contrast(2.2)',duration:.1},
+      {filter:'brightness(1) contrast(1.35)',duration:.14},
+      {filter:'brightness(.9) contrast(2)',duration:.12},
+      {filter:'brightness(1) contrast(1)',duration:1.1,ease:'power2.out'}],
+      onStart:()=>document.documentElement.classList.remove('js'),
+      onComplete:()=>gsap.set('#heroImg',{clearProps:'filter'})},0)
     .from('.hero h1 .line>span',{yPercent:110,duration:1.2,stagger:.12},.15)
     .from('.hero .sub, .hero .pick',{y:22,opacity:0,duration:.9,stagger:.1},.6);
   gsap.to('#heroImg',{yPercent:10,ease:'none',scrollTrigger:{trigger:'.hero',start:'top top',end:'bottom top',scrub:true}});

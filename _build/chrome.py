@@ -48,7 +48,7 @@ def head(page, lang, title, desc, extra_ld=None):
 <meta name="viewport" content="width=device-width,initial-scale=1,viewport-fit=cover">
 <title>{E(title)}</title>
 <meta name="description" content="{E(desc)}">
-<meta name="theme-color" content="#082016">
+<meta name="theme-color" content="#0b0a08">
 <link rel="canonical" href="{SITE}{url(page, lang)}">
 {alts}
 <link rel="icon" href="/assets/favicon.svg" type="image/svg+xml">
