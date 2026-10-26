@@ -3,8 +3,8 @@
 <head>
 <meta charset="utf-8">
 <meta name="viewport" content="width=device-width,initial-scale=1,viewport-fit=cover">
-<title>Dark Diamond Luxury · Transfers privados em Lisboa e motorista privado</title>
-<meta name="description" content="Transfers privados do aeroporto de Lisboa, tours e motorista à disposição. Recebido pelo nome, à hora certa. Portugal, Espanha e França.">
+<title>Dark Diamond Luxury · Transfers privados e motorista em Lisboa</title>
+<meta name="description" content="Luxo sem cerimónia. Transfers privados do aeroporto de Lisboa, tours e motorista à disposição. Portugal, Espanha e França.">
 <meta name="theme-color" content="#082016">
 <link rel="canonical" href="https://darkdiamondluxury.github.io/pt/">
 <link rel="alternate" hreflang="en" href="https://darkdiamondluxury.github.io/"><link rel="alternate" hreflang="pt" href="https://darkdiamondluxury.github.io/pt/"><link rel="alternate" hreflang="es" href="https://darkdiamondluxury.github.io/es/"><link rel="alternate" hreflang="x-default" href="https://darkdiamondluxury.github.io/">
@@ -13,8 +13,8 @@
 <link rel="apple-touch-icon" href="/assets/apple-touch-icon.png">
 <meta property="og:type" content="website">
 <meta property="og:site_name" content="Dark Diamond Luxury">
-<meta property="og:title" content="Dark Diamond Luxury · Transfers privados em Lisboa e motorista privado">
-<meta property="og:description" content="Transfers privados do aeroporto de Lisboa, tours e motorista à disposição. Recebido pelo nome, à hora certa. Portugal, Espanha e França.">
+<meta property="og:title" content="Dark Diamond Luxury · Transfers privados e motorista em Lisboa">
+<meta property="og:description" content="Luxo sem cerimónia. Transfers privados do aeroporto de Lisboa, tours e motorista à disposição. Portugal, Espanha e França.">
 <meta property="og:url" content="https://darkdiamondluxury.github.io/pt/">
 <meta property="og:image" content="https://darkdiamondluxury.github.io/assets/og.png">
 <meta property="og:image:width" content="1200"><meta property="og:image:height" content="630">
@@ -29,17 +29,16 @@
 @font-face{font-family:"Jost";src:url(/assets/jost-latin-500-normal.woff2) format("woff2");font-weight:500;font-display:swap}
 
 :root{
-  /* Dark Diamond */
+  /* Dark Diamond: verde profundo, preto e dourado */
   --green:#082016; --green-2:#0d2a1e; --green-3:#123526;
-  --gold:#CAB26A; --olive:#7C844C; --stone:#7C7C6C;
-  --bone:#ECE8DC; --bone-2:#E2DDCD;
+  --gold:#CAB26A; --gold-hi:#d8c27c;
   --ink:#EEEADF; --muted:#AEB09E;
+  --black:#070908;
   --display:"Jost","Helvetica Neue",Arial,sans-serif;
-  --black:#070908; --black-2:#111412;
   --text:"Jost","Helvetica Neue",Arial,sans-serif;
   --ease-out:cubic-bezier(.23,1,.32,1);
-  --ease-io:cubic-bezier(.77,0,.175,1);
   --pad:clamp(20px,4vw,56px);
+  --gap:clamp(90px,16vh,190px);
   color-scheme:dark;
 }
 *{box-sizing:border-box;margin:0}
@@ -47,231 +46,181 @@ html{-webkit-text-size-adjust:100%}
 body{background:var(--green);color:var(--ink);font-family:var(--text);font-size:clamp(1.0625rem,1rem + .25vw,1.1875rem);line-height:1.5;-webkit-font-smoothing:antialiased;overflow-x:hidden}
 img{display:block;max-width:100%}
 a{color:inherit;text-underline-offset:.18em;text-decoration-thickness:.07em}
-::selection{background:var(--gold);color:var(--green)}
+::selection{background:var(--gold);color:var(--black)}
 :focus-visible{outline:2px solid var(--gold);outline-offset:3px;border-radius:2px}
 button,input,select,textarea{font:inherit;color:inherit}
-.display{font-family:var(--display);font-weight:300;letter-spacing:-.015em;line-height:1.02;text-wrap:balance}
+.display{font-family:var(--display);font-weight:300;letter-spacing:-.025em;line-height:1;text-wrap:balance}
 
 /* ---------- navegação ---------- */
 .nav{position:fixed;inset:0 0 auto 0;z-index:50;display:flex;align-items:center;gap:28px;padding:18px var(--pad);transition:background .4s var(--ease-out),padding .4s var(--ease-out)}
 .nav.solid{background:var(--green);padding-block:12px}
 .brand{white-space:nowrap;display:flex;align-items:center;gap:10px;text-decoration:none;font-family:var(--display);font-size:1.28rem;font-weight:400;letter-spacing:.01em}
 .brand .lux{color:var(--gold)}
-@media (max-width:520px){.brand{font-size:1.08rem;gap:8px}.brand svg{width:19px;height:19px}.lang a{padding:5px 9px}}
 .brand svg{width:22px;height:22px;color:var(--gold)}
+@media (max-width:520px){.brand{font-size:1.08rem;gap:8px}.brand svg{width:19px;height:19px}.lang a{padding:5px 9px}}
 .nav .links{display:flex;gap:26px;margin-left:auto}
-.nav .links a{text-decoration:none;color:var(--muted);font-size:.95rem;transition:color .2s}
-.nav .links a:hover{color:var(--ink)}
+.nav .links a{text-decoration:none;color:var(--ink);opacity:.8;font-size:.95rem;transition:opacity .2s}
+.nav .links a:hover{opacity:1}
 .lang{display:flex;gap:2px;background:var(--black);border-radius:99px;padding:3px}
 .lang a{border-radius:99px;padding:5px 11px;font-size:.82rem;color:var(--muted);text-decoration:none}
 .lang a:hover{color:var(--ink)}
 .lang a[aria-current]{background:var(--gold);color:var(--black)}
-.btn{display:inline-flex;align-items:center;justify-content:center;gap:10px;border:0;border-radius:99px;padding:15px 26px;background:var(--gold);color:var(--black);font-weight:500;font-size:1rem;letter-spacing:.01em;text-decoration:none;cursor:pointer;transition:transform .16s var(--ease-out),background .2s}
+.btn{display:inline-flex;align-items:center;justify-content:center;gap:10px;border:0;border-radius:99px;padding:15px 26px;background:var(--gold);color:var(--black);font-weight:500;font-size:1rem;letter-spacing:.01em;text-decoration:none;cursor:pointer;transition:transform .16s var(--ease-out),background .2s,color .2s}
 .btn:active{transform:scale(.97)}
-@media (hover:hover){.btn:hover{background:#d8c27c}}
+@media (hover:hover){.btn:hover{background:var(--gold-hi)}}
 .btn.dark{background:var(--black);color:var(--gold)}
-@media (hover:hover){.btn.dark:hover{background:var(--gold);color:var(--black)}}
+@media (hover:hover){.btn.dark:hover{background:var(--green);color:var(--gold-hi)}}
 .btn svg{width:16px;height:16px;color:currentColor}
-.btn.ghost{background:transparent;color:var(--ink);box-shadow:inset 0 0 0 1.5px rgba(238,234,223,.45)}
 .nav .btn{padding:10px 20px;font-size:.92rem}
 @media (max-width:860px){.nav .links{display:none}.nav{gap:12px}.nav .lang{margin-left:auto}}
 @media (max-width:520px){.nav>.btn{display:none}}
 
 /* ---------- hero ---------- */
-.hero{position:relative;min-height:100svh;display:grid;align-items:end;padding:120px var(--pad) clamp(40px,7vh,80px);overflow:hidden;isolation:isolate}
+.hero{position:relative;min-height:100svh;display:flex;align-items:flex-end;padding:130px var(--pad) clamp(36px,6vh,72px);overflow:hidden;isolation:isolate}
 .hero .bg{position:absolute;inset:0;z-index:-2;background:var(--green-2)}
-.hero .bg img{width:100%;height:100%;object-fit:cover;object-position:60% 50%;filter:saturate(.75) contrast(1.05)}
-.hero::after{content:"";position:absolute;inset:0;z-index:-1;background:linear-gradient(180deg,rgba(8,32,22,.55) 0%,rgba(8,32,22,.25) 35%,rgba(8,32,22,.92) 100%)}
-.hero-grid{display:grid;grid-template-columns:minmax(0,1.4fr) minmax(0,.6fr);gap:clamp(24px,5vw,80px);align-items:end}
-.hero h1{font-size:clamp(3rem,1rem + 5.1vw,6.6rem)}
-.hero h1 .line>span{white-space:nowrap}
-@media (max-width:560px){.hero h1 .line>span{white-space:normal}}
-.hero h1 .line{display:block;overflow:hidden;padding-bottom:.06em}
+.hero .bg img{width:100%;height:100%;object-fit:cover;object-position:60% 50%}
+.hero::after{content:"";position:absolute;inset:0;z-index:-1;background:linear-gradient(180deg,rgba(7,9,8,.55) 0%,rgba(7,9,8,.3) 38%,rgba(7,9,8,.9) 100%)}
+.hero-in{width:100%}
+.hero h1{font-size:clamp(3rem,1rem + 7.4vw,7.4rem);line-height:.94;letter-spacing:-.04em}
+.hero h1 .line{display:block;overflow:hidden;padding-bottom:.1em;margin-bottom:-.06em}
 .hero h1 .line>span{display:block}
-.hero p.sub{margin-top:26px;max-width:40ch;font-size:clamp(1.1rem,1rem + .5vw,1.4rem);color:var(--ink);opacity:.9}
-.hero .actions{display:flex;flex-wrap:wrap;gap:12px;margin-top:30px}
+.hero p.sub{margin-top:22px;max-width:46ch;font-size:clamp(1.1rem,1rem + .45vw,1.35rem)}
+.pick{margin-top:clamp(26px,5vh,46px);max-width:900px}
+.pick .pq{font-size:1.05rem;margin-bottom:12px}
+.chips{display:flex;flex-wrap:wrap;gap:8px}
+.chips button{border:0;border-radius:99px;padding:10px 17px;background:var(--black);color:var(--ink);cursor:pointer;font-size:.97rem;transition:background .2s,color .2s,transform .16s var(--ease-out)}
+.chips button:active{transform:scale(.97)}
+@media (hover:hover){.chips button:hover{background:var(--green-3)}}
+.chips button[aria-pressed="true"]{background:var(--gold);color:var(--black)}
+.pres{display:flex;flex-wrap:wrap;align-items:center;gap:14px 26px;margin-top:20px}
+.pres .res{font-size:1.1rem}
+.pres .res b{font-family:var(--display);font-weight:400;font-size:clamp(1.6rem,1.2rem + 1vw,2.2rem);color:var(--gold);margin-right:.35em;letter-spacing:-.01em}
 
-/* placa de chegada: o elemento da marca */
-.board{background:var(--bone);color:var(--black);border-radius:4px;padding:26px 28px 22px;transform:rotate(-1.2deg);box-shadow:0 30px 60px -20px rgba(0,0,0,.55)}
-.board .greet{font-size:.95rem;color:#3b4a40}
-.board .name{font-family:var(--display);font-weight:300;font-size:clamp(2rem,1.2rem + 2.6vw,3.4rem);line-height:1;letter-spacing:-.02em;margin-top:6px;min-height:1em;word-break:break-word}
-.board .name.empty,.bigboard .name.empty{opacity:.32}
-.board .mark .lux{color:#9a7f35}
-.board .mark{display:flex;align-items:center;gap:8px;margin-top:18px;font-size:.85rem;color:#4b5a4f}
-.board .mark svg{width:15px;height:15px;color:var(--olive)}
-.board-input{margin-top:16px;display:flex;flex-direction:column;gap:6px}
-.board-input label{font-size:.88rem;color:var(--muted)}
-.board-input input{background:var(--black);border:0;border-radius:10px;padding:13px 14px;font-size:1rem;color:var(--ink)}
-.board-input input::placeholder{color:#8f937f}
-@media (max-width:860px){.hero-grid{grid-template-columns:1fr}.board-wrap{max-width:420px}}
+/* ---------- sem cerimónia ---------- */
+.stmt{background:var(--green);display:grid;grid-template-columns:minmax(0,.9fr) minmax(0,1.1fr);min-height:100svh}
+.stmt .pic{position:relative;background:var(--green-2);overflow:hidden;min-height:60svh}
+.stmt .pic img{position:absolute;inset:0;width:100%;height:100%;object-fit:cover}
+.stmt .txt{padding:var(--gap) var(--pad);display:flex;flex-direction:column;justify-content:center;gap:clamp(26px,5vh,48px)}
+.stmt h2{font-size:clamp(2.8rem,1rem + 5.2vw,6rem);max-width:9ch}
+.stmt .lead{font-size:clamp(1.35rem,1rem + 1.25vw,2.15rem);line-height:1.28;font-weight:300;max-width:34ch}
+.stmt .lead .w{display:inline-block}
+.nums{display:flex;flex-wrap:wrap;gap:26px clamp(28px,4vw,56px)}
+.nums div{min-width:140px;max-width:220px}
+.nums b{display:block;font-family:var(--display);font-weight:300;font-size:clamp(2.1rem,1.2rem + 2vw,3.2rem);line-height:1;letter-spacing:-.02em;color:var(--gold)}
+.nums span{display:block;margin-top:8px;color:var(--muted);font-size:.97rem;line-height:1.35}
+@media (max-width:860px){.stmt{grid-template-columns:1fr}.stmt .pic{min-height:46svh}}
 
-/* ---------- história com scroll ---------- */
-.story{position:relative;height:420vh}
-.story .stage{position:sticky;top:0;height:100svh;overflow:hidden}
-.panel{position:absolute;inset:0;display:grid;align-items:end;padding:0 var(--pad) clamp(48px,10vh,110px);clip-path:inset(100% 0 0 0);will-change:clip-path}
-.panel:first-child{clip-path:inset(0 0 0 0)}
-.panel .ph{position:absolute;inset:0;z-index:-1;background:var(--green-2)}
-.panel .ph img{width:100%;height:100%;object-fit:cover;transform:scale(1.12);will-change:transform}
-.panel .ph::after{content:"";position:absolute;inset:0;background:linear-gradient(0deg,rgba(8,32,22,.9) 0%,rgba(8,32,22,.15) 55%)}
-.panel{isolation:isolate}
-.panel h2{font-size:clamp(2.6rem,1rem + 6vw,7rem);max-width:12ch}
-.panel p{margin-top:16px;max-width:38ch;font-size:clamp(1.05rem,1rem + .35vw,1.3rem);opacity:.92}
-.panel.field{background:var(--green-3)}
-.panel-cta{margin-top:26px}
-.panel.field .bigboard{position:absolute;right:var(--pad);top:50%;translate:0 -58%;width:min(46vw,620px);background:var(--bone);color:var(--green);border-radius:4px;padding:clamp(22px,3vw,44px);rotate:1.5deg}
-.bigboard .name{font-family:var(--display);font-weight:300;font-size:clamp(2.4rem,1rem + 5vw,6.2rem);line-height:.95;letter-spacing:-.03em;word-break:break-word}
-.bigboard .greet{font-size:1rem;color:#3b4a40;margin-bottom:10px}
-.counter{position:absolute;right:var(--pad);bottom:clamp(48px,10vh,110px);display:flex;gap:8px}
-.counter i{display:block;width:28px;height:3px;border-radius:2px;background:rgba(238,234,223,.25);transition:background .3s}
-.counter i.on{background:var(--gold)}
-@media (max-width:860px){.panel.field .bigboard{position:relative;right:auto;top:auto;translate:none;width:100%;margin-bottom:28px}.panel.field{align-content:end}.counter{display:none}}
-
-/* ---------- destinos (scroll horizontal) ---------- */
-.dest{position:relative;background:var(--bone);color:var(--black)}
-.dest .pin{height:100svh;display:flex;flex-direction:column;justify-content:center;overflow:hidden}
-.dest .head{padding:0 var(--pad);display:flex;justify-content:space-between;align-items:end;gap:20px;flex-wrap:wrap}
-.dest h2{font-size:clamp(2.4rem,1rem + 4.6vw,5.4rem);max-width:12ch}
-.dest .head p{max-width:34ch;color:#3e4c42}
-.track{display:flex;gap:clamp(36px,6vw,110px);padding:clamp(40px,8vh,90px) var(--pad) 0;width:max-content;will-change:transform;backface-visibility:hidden}
-/* carrossel com deslize nativo em todos os ecrãs; o scroll vertical nunca fica preso */
-.dest .pin{height:auto;padding:clamp(80px,14vh,150px) 0 clamp(60px,10vh,110px)}
-.track{width:auto;overflow-x:auto;scroll-snap-type:x mandatory;scroll-padding-inline:var(--pad);scroll-behavior:smooth;-webkit-overflow-scrolling:touch;scrollbar-width:none;padding-bottom:6px;overscroll-behavior-x:contain}
+/* ---------- destinos ---------- */
+.dest{position:relative;isolation:isolate;background:var(--black);padding:var(--gap) 0 clamp(60px,10vh,110px)}
+.dest .bgimg{position:absolute;inset:0;z-index:-2}
+.dest .bgimg img{width:100%;height:100%;object-fit:cover}
+.dest::after{content:"";position:absolute;inset:0;z-index:-1;background:rgba(7,9,8,.76)}
+.dest .head{padding:0 var(--pad);display:flex;justify-content:space-between;align-items:end;gap:20px 40px;flex-wrap:wrap}
+.dest h2{font-size:clamp(2.8rem,1rem + 5.2vw,6rem);max-width:9ch}
+.dest .head p{max-width:34ch}
+.arrows{display:flex;gap:8px}
+.arrows button{width:52px;height:52px;border:0;border-radius:99px;background:var(--black);color:var(--gold);font-size:1.3rem;cursor:pointer;transition:background .2s,color .2s,transform .16s var(--ease-out)}
+.arrows button:active{transform:scale(.95)}
+@media (hover:hover){.arrows button:hover:not(:disabled){background:var(--gold);color:var(--black)}}
+.arrows button:disabled{opacity:.35;cursor:default}
+.track{display:flex;gap:14px;overflow-x:auto;scroll-snap-type:x mandatory;scroll-padding-inline:var(--pad);scroll-behavior:smooth;-webkit-overflow-scrolling:touch;scrollbar-width:none;overscroll-behavior-x:contain;padding:clamp(36px,7vh,70px) var(--pad) 6px}
 .track::-webkit-scrollbar{display:none}
 .track.drag{scroll-snap-type:none;scroll-behavior:auto;cursor:grabbing}
-.place{scroll-snap-align:start}
-.dest .arrows{display:flex;gap:10px}
-.dest .arrows button{width:56px;height:56px;border-radius:50%;border:0;background:var(--black);color:var(--gold);font-size:1.4rem;cursor:pointer;transition:transform .16s var(--ease-out),opacity .2s}
-.dest .arrows button:active{transform:scale(.94)}
-.dest .arrows button:disabled{opacity:.25;cursor:default}
-@media (hover:hover) and (pointer:fine){.track{cursor:grab}}
-@media (max-width:860px),(hover:none){
-  .dest .place .nm{font-size:clamp(2.5rem,12vw,4.2rem)}
-  .dest p.swipe{display:block}
-  .dest .arrows{display:none}
-  .track{gap:44px}
-}
-.place{flex:none;background:none;border:0;padding:0;text-align:left;cursor:pointer;color:var(--black)}
-.place .nm{font-family:var(--display);font-weight:300;font-size:clamp(3.2rem,1rem + 8vw,9.5rem);line-height:.92;letter-spacing:-.02em;display:block;transition:color .25s}
-.place .tm{display:flex;align-items:center;gap:10px;margin-top:14px;font-size:1.05rem;color:#3e4c42;font-variant-numeric:tabular-nums}
-.place .tm b{font-weight:500;color:var(--black)}
-.place .go{display:inline-flex;align-items:center;margin-top:16px;padding:12px 22px;border-radius:99px;background:var(--black);color:var(--gold);font-size:.96rem;font-weight:500;transition:background .2s,color .2s,transform .16s var(--ease-out)}
-@media (hover:hover){.place:hover .nm{color:#9a7f35}.place:hover .go{background:var(--gold);color:var(--black)}}
-.place:active .go{transform:scale(.97)}
-
-.dest .note{padding:26px var(--pad) 0;font-size:.9rem;color:#56645a}
-.swipe{display:none;padding:14px var(--pad) 0;font-size:.9rem;color:#56645a}
+.place{flex:0 0 clamp(240px,23vw,320px);scroll-snap-align:start;text-align:left;border:0;border-radius:4px;background:var(--green);color:var(--ink);cursor:pointer;padding:28px 26px 26px;min-height:clamp(260px,38vh,340px);display:flex;flex-direction:column;justify-content:space-between;gap:30px;transition:background .25s}
+@media (hover:hover){.place:hover{background:var(--green-3)}.place:hover .go{color:var(--gold-hi)}}
+.place .nm{font-family:var(--display);font-weight:300;font-size:clamp(1.9rem,1.2rem + 1.6vw,2.7rem);line-height:1;letter-spacing:-.02em}
+.place .tm{color:var(--muted);font-size:.97rem}
+.place .tm b{display:block;font-family:var(--display);font-weight:300;font-size:2.3rem;line-height:1.1;letter-spacing:-.02em;color:var(--gold)}
+.place .go{color:var(--gold);font-weight:500;font-size:.97rem}
+.swipe{display:none;padding:14px var(--pad) 0;font-size:.92rem;color:var(--muted)}
+@media (hover:none){.swipe{display:block}}
+.dlinks{padding:22px var(--pad) 0;font-size:.95rem;color:var(--muted)}
+.dlinks a{color:var(--ink);margin-right:14px;white-space:nowrap}
+.dest .note{padding:12px var(--pad) 0;font-size:.92rem;color:var(--muted)}
 
 /* ---------- serviços ---------- */
-.services{background:var(--bone);color:var(--black);padding:clamp(80px,14vh,170px) var(--pad) clamp(30px,6vh,70px)}
+.services{background:var(--black);padding:var(--gap) var(--pad)}
 .services .wrap{display:grid;grid-template-columns:minmax(0,.8fr) minmax(0,1.2fr);gap:clamp(30px,6vw,100px)}
-.services h2{font-size:clamp(2.4rem,1rem + 4.2vw,5rem);position:sticky;top:120px;align-self:start}
+.services h2{font-size:clamp(2.8rem,1rem + 5.2vw,6rem);max-width:8ch;position:sticky;top:120px;align-self:start}
 .svc{list-style:none;padding:0}
-.svc li{padding:22px 0;display:grid;grid-template-columns:minmax(0,1fr);gap:6px}
-.svc li+li{margin-top:6px}
-.svc h3{font-family:var(--display);font-weight:300;font-size:clamp(1.8rem,1.2rem + 1.8vw,3rem);letter-spacing:-.02em;line-height:1.05}
-.svc p{color:#2c302d;max-width:46ch}
-.svc li{grid-template-columns:minmax(0,1fr) auto;align-items:end;column-gap:24px;padding:28px 0}
+.svc li{display:grid;grid-template-columns:minmax(0,1fr) auto;align-items:end;column-gap:24px;padding:clamp(22px,3.4vh,34px) 0}
 .svc li>div{display:grid;gap:8px}
-.svc h3{color:var(--black);font-size:clamp(2rem,1.2rem + 2vw,3.3rem);transition:color .25s}
-@media (hover:hover){.svc li:hover h3{color:#9a7f35}}
+.svc h3{font-family:var(--display);font-weight:300;font-size:clamp(2rem,1.2rem + 2.2vw,3.5rem);letter-spacing:-.025em;line-height:1.02;transition:color .25s}
+@media (hover:hover){.svc li:hover h3{color:var(--gold)}}
+.svc p{color:var(--muted);max-width:46ch}
 .svc .mini{padding:12px 22px;font-size:.96rem;white-space:nowrap}
 @media (max-width:560px){.svc li{grid-template-columns:1fr;row-gap:14px}.svc .mini{justify-self:start}}
-@media (max-width:860px){.services{padding-top:40px}.services .wrap{grid-template-columns:1fr}.services h2{position:static}}
+@media (max-width:860px){.services .wrap{grid-template-columns:1fr}.services h2{position:static}}
 
-/* ---------- classe V ---------- */
+/* ---------- frota ---------- */
 .vclass{position:relative;min-height:100svh;display:flex;align-items:flex-end;background:var(--black);overflow:hidden;isolation:isolate}
-.vclass .img{position:absolute;inset:0;z-index:-2;background:var(--black)}
-.vclass .img img{position:absolute;inset:0;width:100%;height:100%;object-fit:cover;object-position:50% 45%;filter:saturate(.85)}
-.vclass::after{content:"";position:absolute;inset:0;z-index:-1;background:linear-gradient(90deg,rgba(7,9,8,.9) 0%,rgba(7,9,8,.62) 30%,rgba(7,9,8,0) 58%),linear-gradient(0deg,rgba(7,9,8,.6) 0%,rgba(7,9,8,0) 40%)}
-.vclass .txt{position:relative;width:min(100%,560px);padding:clamp(120px,30vh,320px) var(--pad) clamp(50px,8vh,90px);display:flex;flex-direction:column;justify-content:flex-end}
-.vclass h2{font-size:clamp(2.4rem,1rem + 3.4vw,4.4rem);max-width:10ch}
-.vclass h2 .w{display:inline-block;will-change:transform,opacity}
-.vclass p{margin-top:20px;max-width:34ch;color:var(--ink);opacity:.92}
-.facts{display:flex;flex-wrap:wrap;gap:22px 30px;margin-top:32px}
-.facts div{min-width:120px}
-.facts b{display:block;font-family:var(--display);font-weight:300;font-size:clamp(1.6rem,1rem + 1.6vw,2.4rem);color:var(--gold);letter-spacing:-.01em;line-height:1}
-.facts span{display:block;margin-top:6px;color:var(--muted);font-size:.95rem}
-@media (max-width:860px){.vclass .img img{object-position:62% 35%}.vclass::after{background:linear-gradient(0deg,rgba(7,9,8,.95) 0%,rgba(7,9,8,.72) 42%,rgba(7,9,8,0) 68%)}.vclass .txt{width:100%;padding-top:42svh}}
+.vclass .img{position:absolute;inset:0;z-index:-2;background:var(--green-2)}
+.vclass .img img{position:absolute;inset:0;width:100%;height:100%;object-fit:cover;object-position:50% 45%}
+.vclass::after{content:"";position:absolute;inset:0;z-index:-1;background:linear-gradient(90deg,rgba(7,9,8,.9) 0%,rgba(7,9,8,.62) 32%,rgba(7,9,8,0) 62%),linear-gradient(0deg,rgba(7,9,8,.6) 0%,rgba(7,9,8,0) 40%)}
+.vclass .txt{position:relative;width:min(100%,600px);padding:clamp(120px,30vh,320px) var(--pad) clamp(50px,8vh,90px);display:flex;flex-direction:column;justify-content:flex-end}
+.vclass h2{font-size:clamp(2.6rem,1rem + 4vw,5rem);max-width:15ch}
+.vclass p{margin-top:20px;max-width:36ch;color:var(--ink)}
+.vclass p.fl{color:var(--muted);margin-top:14px}
+.vclass .nums{margin-top:30px}
+.vclass .nums b{font-size:clamp(1.7rem,1.2rem + 1.1vw,2.3rem)}
+.vclass .nums div{min-width:0;max-width:none}
+.vclass .btn{margin-top:34px;align-self:flex-start}
+@media (max-width:860px){.vclass .img img{object-position:62% 35%}.vclass::after{background:linear-gradient(0deg,rgba(7,9,8,.95) 0%,rgba(7,9,8,.74) 46%,rgba(7,9,8,0) 72%)}.vclass .txt{width:100%;padding-top:40svh}}
 
 /* ---------- reserva ---------- */
-.book{background:var(--green-2);padding:clamp(80px,14vh,170px) var(--pad)}
+.book{background:var(--green-2);padding:var(--gap) var(--pad)}
 .book .wrap{display:grid;grid-template-columns:minmax(0,.9fr) minmax(0,1.1fr);gap:clamp(30px,6vw,100px);align-items:start}
-.book h2{font-size:clamp(2.6rem,1rem + 4.6vw,5.6rem);max-width:9ch}
+.book h2{font-size:clamp(2.8rem,1rem + 5vw,6rem);max-width:8ch}
 .book .lead{margin-top:20px;max-width:34ch;color:var(--muted)}
 .form{display:grid;grid-template-columns:1fr 1fr;gap:14px}
 .form .full{grid-column:1/-1}
-.form label{display:block;font-size:.9rem;color:var(--muted);margin-bottom:7px}
+.form label{display:block;font-size:.92rem;color:var(--muted);margin-bottom:7px}
 .form input,.form select,.form textarea{width:100%;background:var(--black);border:0;border-radius:12px;padding:15px 16px;font-size:1rem;color:var(--ink);appearance:none}
 .form input::placeholder,.form textarea::placeholder{color:#7f8573}
 .form textarea{resize:vertical;min-height:96px}
-.chips{display:flex;flex-wrap:wrap;gap:8px}
-.chips button{border:0;border-radius:99px;padding:10px 16px;background:var(--black);color:var(--ink);cursor:pointer;font-size:.95rem;transition:background .2s,color .2s,transform .16s var(--ease-out)}
-.chips button:active{transform:scale(.97)}
-.chips button[aria-pressed="true"]{background:var(--gold);color:var(--black)}
 .form .btn{margin-top:10px}
-.form .hint{font-size:.88rem;color:var(--muted);margin-top:6px}
+.form .hint{font-size:.92rem;color:var(--muted);margin-top:8px}
 @media (max-width:860px){.book .wrap{grid-template-columns:1fr}.form{grid-template-columns:1fr}}
 
+/* ---------- parceiros ---------- */
+.partners{background:var(--gold);color:var(--black);padding:var(--gap) var(--pad)}
+.partners .wrap{max-width:1380px;margin:0 auto;display:grid;grid-template-columns:minmax(0,1.25fr) minmax(0,1fr);gap:clamp(24px,5vw,90px);align-items:end}
+.partners h2{font-size:clamp(2.8rem,1rem + 5.4vw,6.2rem);max-width:12ch}
+.partners p{max-width:40ch;font-size:clamp(1.1rem,1rem + .4vw,1.3rem)}
+.partners .btn{margin-top:26px}
+@media (max-width:860px){.partners .wrap{grid-template-columns:1fr}}
+
 /* ---------- rodapé ---------- */
-footer{background:var(--green);padding:clamp(70px,12vh,130px) var(--pad) 40px;overflow:hidden}
-footer .word{font-family:var(--display);font-weight:300;font-size:clamp(2.8rem,9.6vw,11rem);line-height:.95;letter-spacing:-.02em;white-space:nowrap;color:var(--ink)}
+footer{background:var(--green);padding:clamp(70px,12vh,130px) var(--pad) 40px;overflow:hidden;position:relative}
+footer .word{font-family:var(--display);font-weight:300;font-size:clamp(2.8rem,9.6vw,11rem);line-height:.95;letter-spacing:-.03em;white-space:nowrap;color:var(--ink);pointer-events:none;user-select:none}
 footer .word em{font-style:normal;color:var(--gold)}
 footer .foot-top{display:grid;grid-template-columns:minmax(0,1fr) auto;align-items:center;gap:clamp(20px,4vw,60px)}
-footer .word{pointer-events:none;user-select:none}
 .totop{position:relative;z-index:2;justify-self:end}
 .totop *{pointer-events:none}
 footer .cols{display:grid;grid-template-columns:repeat(3,minmax(0,1fr));gap:30px;margin-top:56px;font-size:.95rem;color:var(--muted)}
 footer .cols b{display:block;color:var(--ink);font-weight:500;margin-bottom:8px}
 footer .cols a{display:block;text-decoration:none;margin-bottom:4px}
 footer .cols a:hover{color:var(--ink)}
-footer .legalline{margin-top:44px;font-size:.85rem;color:var(--muted);max-width:110ch;line-height:1.6}
+footer .legalline{margin-top:44px;font-size:.88rem;color:var(--muted);max-width:110ch;line-height:1.6}
 footer .cols .sub{margin-top:18px}
 footer .cols .ph{display:block;margin-bottom:4px}
 footer .cols .ph a{display:inline}
 footer .cols .inline a{display:inline;margin-right:12px}
 footer .cov{margin-top:18px}
 footer .cov b{margin-bottom:2px}
-footer .credits{margin-top:14px;font-size:.82rem;color:#7f8573;max-width:110ch}
+footer .credits{margin-top:14px;font-size:.85rem;color:#8d9280;max-width:110ch}
 footer .credits a{text-decoration:underline}
 @media (max-width:860px){footer .foot-top{grid-template-columns:1fr}.totop{justify-self:start}footer .cols{grid-template-columns:1fr}}
 
-/* transição entre ecrãs: a cor do ecrã anterior prolonga-se e dissolve-se com o scroll */
-.veil{position:absolute;left:0;right:0;top:0;height:min(100%,110svh);z-index:5;pointer-events:none;transform-origin:50% 0%;
-  background:linear-gradient(180deg,var(--vc) 0%,var(--vc) 18%,color-mix(in srgb,var(--vc) 85%,transparent) 38%,color-mix(in srgb,var(--vc) 40%,transparent) 62%,transparent 100%)}
-.book,footer{position:relative}
-.float-cta{position:fixed;z-index:60;right:var(--pad);bottom:calc(18px + env(safe-area-inset-bottom));box-shadow:0 14px 34px -10px rgba(0,0,0,.55);opacity:0;transform:translateY(16px);pointer-events:none;transition:opacity .3s var(--ease-out),transform .3s var(--ease-out),background .2s}
+.float-cta{position:fixed;z-index:60;right:var(--pad);bottom:calc(18px + env(safe-area-inset-bottom));opacity:0;transform:translateY(16px);pointer-events:none;transition:opacity .3s var(--ease-out),transform .3s var(--ease-out),background .2s}
 .float-cta.on{opacity:1;transform:none;pointer-events:auto}
-@media (max-width:860px),(hover:none){/* transição entre ecrãs: a cor do ecrã anterior prolonga-se e dissolve-se com o scroll */
-.veil{position:absolute;left:0;right:0;top:0;height:min(100%,110svh);z-index:5;pointer-events:none;transform-origin:50% 0%;
-  background:linear-gradient(180deg,var(--vc) 0%,var(--vc) 18%,color-mix(in srgb,var(--vc) 85%,transparent) 38%,color-mix(in srgb,var(--vc) 40%,transparent) 62%,transparent 100%)}
-.book,footer{position:relative}
-.float-cta{display:none!important}}
-
-/* placeholders visíveis para preencher */
+@media (max-width:860px),(hover:none){.float-cta{display:none!important}}
 .todo{color:var(--gold)}
-.pband{background:var(--bone);color:var(--black);padding:clamp(70px,12vh,120px) var(--pad);position:relative}
-.pband .wrap{max-width:1100px;margin:0 auto;display:grid;grid-template-columns:minmax(0,1.2fr) minmax(0,1fr);gap:clamp(20px,4vw,60px);align-items:end}
-.pband h2{font-size:clamp(2rem,4.4vw,3.6rem)}
-.pband p{color:#3b4136;max-width:52ch}
-.pband .btn{grid-column:2;justify-self:start}
-@media (max-width:860px){.pband .wrap{grid-template-columns:1fr}.pband .btn{grid-column:1}}
-.dlinks{margin-top:18px;font-size:.95rem;color:var(--muted)}
-.dlinks a{color:var(--ink);margin-right:14px;white-space:nowrap}
 
-/* sem animações: tudo visível e empilhado */
-@media (prefers-reduced-motion:reduce){
-  html{scroll-behavior:auto}
-  .story{height:auto}.story .stage{position:static;height:auto}
-  .panel{position:relative;min-height:90svh;clip-path:none!important}
-  .panel .ph img{transform:none}
-  .dest .pin{height:auto;padding:90px 0}
-  .track{width:auto;flex-wrap:wrap}
-}
-.no-js .story{height:auto}.no-js .story .stage{position:static;height:auto}.no-js .panel{position:relative;min-height:90svh;clip-path:none}
-.no-js .dest .pin{height:auto;padding:90px 0}.no-js .track{width:auto;flex-wrap:wrap}
+@media (prefers-reduced-motion:reduce){html{scroll-behavior:auto}.track{scroll-behavior:auto}}
 </style>
 </head>
-<body class="no-js">
+<body>
 
 <svg width="0" height="0" style="position:absolute" aria-hidden="true">
   <symbol id="dd" viewBox="0 0 24 24"><path d="M6 3h12l4 6-10 12L2 9z" fill="none" stroke="currentColor" stroke-width="1.6" stroke-linejoin="round"/><path d="M2 9h20M9 3l3 18 3-18" fill="none" stroke="currentColor" stroke-width="1.2" stroke-linejoin="round" opacity=".7"/></symbol>
@@ -280,7 +229,7 @@ footer .credits a{text-decoration:underline}
 <a class="btn float-cta" id="floatCta" href="#reservar"><span data-i18n="cta">Reservar transfer</span></a>
 <header class="nav" id="nav">
   <a class="brand" href="/pt/" aria-label="Dark Diamond Luxury"><svg><use href="#dd"/></svg>Dark Diamond <span class="lux">Luxury</span></a>
-  <nav class="links" aria-label="Principal"><a href="#experiencia">Experiência</a><a href="#destinos">Destinos</a><a href="#servicos">Serviços</a><a href="/pt/agencias/">Agências</a></nav>
+  <nav class="links" aria-label="Principal"><a href="#destinos">Destinos</a><a href="#servicos">Serviços</a><a href="#frota">Frota</a><a href="#parceiros">Parceiros</a></nav>
   <nav class="lang" aria-label="Língua"><a href="/pt/" hreflang="pt" lang="pt" aria-current="true">PT</a><a href="/" hreflang="en" lang="en">EN</a><a href="/es/" hreflang="es" lang="es">ES</a></nav>
   <a class="btn" href="#reservar">Reservar</a>
 </header>
@@ -289,79 +238,46 @@ footer .credits a{text-decoration:underline}
   <!-- HERO -->
   <section class="hero" aria-labelledby="h1">
     <div class="bg"><img id="heroImg" onerror="this.style.display='none'" src="https://images.unsplash.com/photo-1765461734605-34657fa04db2?auto=format&fit=crop&w=2200&q=70" alt="" fetchpriority="high"></div>
-    <div class="hero-grid">
-      <div>
-        <h1 class="display" id="h1"><span class="line"><span data-i18n="h1a">Lisboa recebe-o</span></span><span class="line"><span data-i18n="h1b">pelo nome.</span></span></h1>
-        <p class="sub" data-i18n="sub">Transfers privados e motorista ao seu dispor, em Lisboa e em todo o país.</p>
-        <div class="actions">
-          <a class="btn" href="#reservar" data-i18n="cta">Reservar transfer</a>
-          <a class="btn ghost" href="#experiencia" data-i18n="cta2">Ver a experiência</a>
-        </div>
-      </div>
-      <div class="board-wrap">
-        <div class="board" id="board" aria-live="polite">
-          <div class="greet" data-i18n="welcome">Bem-vindo a Lisboa</div>
-          <div class="name js-name empty">O seu nome</div>
-          <div class="mark"><svg><use href="#dd"/></svg>Dark Diamond <span class="lux">Luxury</span></div>
-        </div>
-        <div class="board-input">
-          <label for="nameIn" data-i18n="try">Escreva o seu nome: é assim que o vamos receber</label>
-          <input id="nameIn" maxlength="28" autocomplete="name" data-i18n-ph="try_ph" placeholder="O seu nome">
+    <div class="hero-in">
+      <h1 class="display" id="h1"><span class="line"><span data-i18n="h1a">Luxo, sem</span></span><span class="line"><span data-i18n="h1b">cerimónia.</span></span></h1>
+      <p class="sub" data-i18n="sub">Transfers privados e motorista em Lisboa, Portugal, Espanha e França. Carros impecáveis, horas cumpridas e zero vénias.</p>
+      <div class="pick">
+        <p class="pq" id="pickQ" data-i18n="pick_q">Para onde vai?</p>
+        <div class="chips" id="pickChips" role="group" aria-labelledby="pickQ"></div>
+        <div class="pres">
+          <p class="res" id="pickRes" aria-live="polite"></p>
+          <a class="btn" id="pickGo" href="#reservar" data-i18n="pick_cta">Reservar este trajeto</a>
         </div>
       </div>
     </div>
   </section>
 
-  <!-- HISTÓRIA -->
-  <section class="story" id="experiencia" aria-label="A experiência">
-    <div class="stage">
-      <article class="panel">
-        <div class="ph"><img src="https://images.unsplash.com/photo-1503944251010-cbf290919d9d?auto=format&fit=crop&w=2000&q=70" alt="" loading="lazy" onerror="this.style.display='none'"></div>
-        <div>
-          <h2 class="display" data-i18n="s1h">Aterra.</h2>
-          <p data-i18n="s1p">Acompanhamos o seu voo. Se chegar mais cedo ou mais tarde, o motorista também.</p>
-        </div>
-      </article>
-      <article class="panel field">
-        <div class="bigboard" aria-hidden="true"><div class="greet" data-i18n="welcome">Bem-vindo a Lisboa</div><div class="name js-name empty">O seu nome</div></div>
-        <div>
-          <h2 class="display" data-i18n="s2h">Alguém espera por si.</h2>
-          <p data-i18n="s2p">À saída das chegadas, com o seu nome. Ajudamos com as malas e seguimos.</p>
-          <a class="btn panel-cta" href="#reservar" data-i18n="cta">Reservar transfer</a>
-        </div>
-      </article>
-      <article class="panel">
-        <div class="ph"><img src="https://images.unsplash.com/photo-1580929945040-a16adedf9f6a?auto=format&fit=crop&w=2000&q=70" alt="" loading="lazy" onerror="this.style.display='none'"></div>
-        <div>
-          <h2 class="display" data-i18n="s3h">Entre. Descanse.</h2>
-          <p data-i18n="s3p">Bancos em pele, espaço para todos e silêncio a bordo. A viagem é sua.</p>
-        </div>
-      </article>
-      <article class="panel">
-        <div class="ph"><img src="https://images.unsplash.com/photo-1558102400-72da9fdbecae?auto=format&fit=crop&w=2000&q=70" alt="" loading="lazy" onerror="this.style.display='none'"></div>
-        <div>
-          <h2 class="display" data-i18n="s4h">Lisboa pela janela.</h2>
-          <p data-i18n="s4p">Ao hotel, à reunião ou ao jantar. À hora marcada, sem pressas.</p>
-          <a class="btn panel-cta" href="#reservar" data-i18n="cta">Reservar transfer</a>
-        </div>
-      </article>
-      <div class="counter" aria-hidden="true"><i class="on"></i><i></i><i></i><i></i></div>
+  <!-- SEM CERIMÓNIA -->
+  <section class="stmt" aria-labelledby="st-h">
+    <div class="pic"><img src="https://images.unsplash.com/photo-1503944251010-cbf290919d9d?auto=format&fit=crop&w=1600&q=70" alt="" loading="lazy" onerror="this.style.display='none'"></div>
+    <div class="txt">
+      <h2 class="display" id="st-h" data-i18n="sth">Sem tapete vermelho.</h2>
+      <p class="lead" data-i18n="stp">Não fazemos vénias nem conversa de elevador. Acompanhamos o voo, o carro está limpo e a hora é cumprida. O resto é connosco.</p>
+      <div class="nums">
+        <div><b data-i18n="fa_b">24/7</b><span data-i18n="fa_s">a qualquer hora do voo</span></div>
+        <div><b data-i18n="fb_b">4 línguas</b><span data-i18n="fb_s">português, inglês, espanhol e francês</span></div>
+        <div><b data-i18n="fc_b">3 países</b><span data-i18n="fc_s">Portugal, Espanha e França</span></div>
+      </div>
     </div>
   </section>
 
   <!-- DESTINOS -->
   <section class="dest" id="destinos" aria-labelledby="dest-h">
-    <div class="pin">
-      <div class="head">
-        <h2 class="display" id="dest-h" data-i18n="dh">Para onde vamos?</h2>
-        <p data-i18n="dp">Tempo aproximado de viagem a partir do aeroporto de Lisboa. Escolha um destino para reservar.</p>
-        <div class="arrows"><button type="button" id="prevD" aria-label="Destinos anteriores">←</button><button type="button" id="nextD" aria-label="Mais destinos">→</button></div>
-      </div>
-      <div class="track" id="track"></div>
-      <p class="swipe" data-i18n="swipe">Deslize para ver mais destinos</p>
-      <p class="dlinks"><span>Destinos:</span> <a href="/pt/lisboa-sintra/">Sintra</a> <a href="/pt/lisboa-cascais/">Cascais</a> <a href="/pt/lisboa-comporta/">Comporta</a> <a href="/pt/lisboa-evora/">Évora</a> <a href="/pt/lisboa-fatima/">Fátima</a> <a href="/pt/lisboa-algarve/">Algarve</a> <a href="/pt/lisboa-porto/">Porto</a></p>
-      <p class="note" data-i18n="dnote">Tempos indicativos, sem trânsito. Levamo-lo a qualquer destino em Portugal, Espanha e França.</p>
+    <div class="bgimg"><img src="https://images.unsplash.com/photo-1558102400-72da9fdbecae?auto=format&fit=crop&w=2000&q=70" alt="" loading="lazy" onerror="this.style.display='none'"></div>
+    <div class="head">
+      <h2 class="display" id="dest-h" data-i18n="dh">Para onde vamos?</h2>
+      <p data-i18n="dp">Tempo aproximado de viagem a partir do aeroporto de Lisboa. Escolha um destino para reservar.</p>
+      <div class="arrows"><button type="button" id="prevD" aria-label="←">←</button><button type="button" id="nextD" aria-label="→">→</button></div>
     </div>
+    <div class="track" id="track"></div>
+    <p class="swipe" data-i18n="swipe">Deslize para ver mais destinos</p>
+    <p class="dlinks"><span>Destinos:</span> <a href="/pt/lisboa-sintra/">Sintra</a> <a href="/pt/lisboa-cascais/">Cascais</a> <a href="/pt/lisboa-comporta/">Comporta</a> <a href="/pt/lisboa-evora/">Évora</a> <a href="/pt/lisboa-fatima/">Fátima</a> <a href="/pt/lisboa-algarve/">Algarve</a> <a href="/pt/lisboa-porto/">Porto</a></p>
+    <p class="note" data-i18n="dnote">Tempos indicativos, sem trânsito. Levamo-lo a qualquer destino em Portugal, Espanha e França.</p>
   </section>
 
   <!-- SERVIÇOS -->
@@ -369,27 +285,27 @@ footer .credits a{text-decoration:underline}
     <div class="wrap">
       <h2 class="display" id="svc-h" data-i18n="svch">Ao seu ritmo.</h2>
       <ul class="svc">
-        <li><div><h3 data-i18n="v1h">Aeroporto</h3><p data-i18n="v1p">Recolha com o seu nome nas chegadas e acompanhamento do voo. Também para partidas.</p></div><a class="btn dark mini" href="#reservar" data-svc="0" data-i18n="cta_short">Reservar</a></li>
-        <li><div><h3 data-i18n="v2h">À disposição</h3><p data-i18n="v2p">Um motorista e um carro só para si, à hora ou ao dia, para reuniões, compras ou um dia cheio.</p></div><a class="btn dark mini" href="#reservar" data-svc="1" data-i18n="cta_short">Reservar</a></li>
-        <li><div><h3 data-i18n="v3h">Tours privados</h3><p data-i18n="v3p">Sintra, Cascais, Fátima, Évora ou o Douro, ao seu ritmo e com paragens onde quiser.</p></div><a class="btn dark mini" href="#reservar" data-svc="2" data-i18n="cta_short">Reservar</a></li>
-        <li><div><h3 data-i18n="v4h">Eventos e casamentos</h3><p data-i18n="v4p">Convidados recebidos e levados a horas, com a coordenação feita por nós.</p></div><a class="btn dark mini" href="#reservar" data-svc="3" data-i18n="cta_short">Reservar</a></li>
-        <li><div><h3 data-i18n="v5h">Longa distância</h3><p data-i18n="v5p">Porto, Algarve, Espanha e França, de porta a porta.</p></div><a class="btn dark mini" href="#reservar" data-svc="4" data-i18n="cta_short">Reservar</a></li>
+        <li><div><h3 data-i18n="v1h">Aeroporto</h3><p data-i18n="v1p">Esperamos por si nas chegadas, com o seu nome numa placa, e acompanhamos o voo. Também levamos às partidas.</p></div><a class="btn mini" href="#reservar" data-svc="0" data-i18n="cta_short">Reservar</a></li>
+        <li><div><h3 data-i18n="v2h">À disposição</h3><p data-i18n="v2p">Um motorista e um carro só para si, à hora ou ao dia: reuniões, compras ou um dia sem olhar para o relógio.</p></div><a class="btn mini" href="#reservar" data-svc="1" data-i18n="cta_short">Reservar</a></li>
+        <li><div><h3 data-i18n="v3h">Tours privados</h3><p data-i18n="v3p">Sintra, Cascais, Fátima, Évora ou o Douro, ao seu ritmo e com paragens onde quiser.</p></div><a class="btn mini" href="#reservar" data-svc="2" data-i18n="cta_short">Reservar</a></li>
+        <li><div><h3 data-i18n="v4h">Eventos e casamentos</h3><p data-i18n="v4p">Convidados recebidos e levados a horas, com a coordenação feita por nós.</p></div><a class="btn mini" href="#reservar" data-svc="3" data-i18n="cta_short">Reservar</a></li>
+        <li><div><h3 data-i18n="v5h">Longa distância</h3><p data-i18n="v5p">Porto, Algarve, Espanha e França, de porta a porta.</p></div><a class="btn mini" href="#reservar" data-svc="4" data-i18n="cta_short">Reservar</a></li>
       </ul>
     </div>
   </section>
 
-  <!-- CLASSE V -->
-  <section class="vclass" id="classe-v" aria-labelledby="v-h">
-    <div class="img"><img src="https://images.unsplash.com/photo-1765461734605-34657fa04db2?auto=format&fit=crop&w=1800&q=70" alt="" loading="lazy" onerror="this.style.display='none'"></div>
+  <!-- FROTA -->
+  <section class="vclass" id="frota" aria-labelledby="v-h">
+    <div class="img"><img src="https://images.unsplash.com/photo-1580929945040-a16adedf9f6a?auto=format&fit=crop&w=2000&q=70" alt="" loading="lazy" onerror="this.style.display='none'"></div>
     <div class="txt">
       <h2 class="display" id="v-h" data-i18n="vh">Uma sala de estar sobre rodas.</h2>
-      <p data-i18n="vp">A Mercedes-Benz Classe V é o centro da nossa frota: espaço para o grupo e para as malas, bancos frente a frente e um interior pensado para conversar ou descansar. Para cada ocasião há também Classe S, Classe E, Sprinter e um minibus de 19 lugares.</p>
-      <div class="facts">
+      <p data-i18n="vp">A Mercedes-Benz Classe V é o centro da nossa frota: espaço para o grupo e para as malas, bancos frente a frente e um interior pensado para conversar ou descansar.</p>
+      <p class="fl" data-i18n="fl">Para cada ocasião: Classe S, Classe E 220, Classe V 250, Sprinter e um minibus de 19 lugares.</p>
+      <div class="nums">
         <div><b data-i18n="f1b">Até 19 lugares</b><span data-i18n="f1s">da Classe S ao minibus</span></div>
         <div><b data-i18n="f2b">Bagagem</b><span data-i18n="f2s">malas de porão incluídas</span></div>
-        <div><b>24/7</b><span data-i18n="f3s">a qualquer hora do voo</span></div>
       </div>
-      <a class="btn" href="#reservar" data-i18n="cta" style="margin-top:36px;align-self:flex-start">Reservar transfer</a>
+      <a class="btn" href="#reservar" data-i18n="cta">Reservar transfer</a>
     </div>
   </section>
 
@@ -429,12 +345,15 @@ footer .credits a{text-decoration:underline}
       </form>
     </div>
   </section>
-  <!-- AGÊNCIAS -->
-  <section class="pband" aria-labelledby="pb-h">
+
+  <!-- PARCEIROS -->
+  <section class="partners" id="parceiros" aria-labelledby="pb-h">
     <div class="wrap">
-      <h2 class="display" id="pb-h" data-i18n="pbh">É uma agência ou operador turístico?</h2>
-      <p data-i18n="pbp">Trabalhamos com agências, operadores e linhas de cruzeiro em Portugal, Espanha e França. Veja como trabalhamos e peça a nossa tabela.</p>
-      <a class="btn dark" href="/pt/agencias/" data-i18n="pbc">Trabalhar connosco</a>
+      <h2 class="display" id="pb-h" data-i18n="pbh">Quer trabalhar connosco?</h2>
+      <div>
+        <p data-i18n="pbp">Trabalhamos com agências, operadores e linhas de cruzeiro em Portugal, Espanha e França. Veja como trabalhamos e peça as nossas condições.</p>
+        <a class="btn dark" href="/pt/agencias/" data-i18n="pbc">Ser nosso parceiro</a>
+      </div>
     </div>
   </section>
 </main>
@@ -463,34 +382,34 @@ footer .credits a{text-decoration:underline}
 <script src="/assets/gsap.min.js"></script>
 <script src="/assets/ScrollTrigger.min.js"></script>
 <script>
-document.body.classList.remove('no-js');
-
-/* ---------- Configuração: preencher quando houver dados ---------- */
-const WHATSAPP = '351932666254';   // definido em _build/config.py
+/* ---------- Configuração (definida em _build/config.py) ---------- */
+const WHATSAPP = '351932666254';
 const BK_URL = 'https://ccwzqtdxugutkgdupgxc.supabase.co/rest/v1/rpc/submit_booking', BK_KEY = 'eyJhbGciOiJIUzI1NiIsInR5cCI6IkpXVCJ9.eyJpc3MiOiJzdXBhYmFzZSIsInJlZiI6ImNjd3pxdGR4dWd1dGtnZHVwZ3hjIiwicm9sZSI6ImFub24iLCJpYXQiOjE3OTIwNjE1NTgsImV4cCI6MjEwNzYzNzU1OH0.xLQwoKKGOUXW3g4SN3B6wnRUcjO0EhXZ7dREUpzASBQ';   // pedidos de reserva entram na app (ver config.py)
 
 /* ---------- Textos (gerados por _build/build.py a partir de _build/home_i18n.py) ---------- */
 const lang = 'pt';
-const T = {}; T[lang] = {"nav_exp": "Experiência", "nav_dest": "Destinos", "nav_svc": "Serviços", "nav_fleet": "Classe V", "nav_ag": "Agências", "cta_short": "Reservar", "h1a": "Lisboa recebe-o", "h1b": "pelo nome.", "sub": "Transfers privados e motorista ao seu dispor, em Lisboa e em todo o país.", "cta": "Reservar transfer", "cta2": "Ver a experiência", "welcome": "Bem-vindo a Lisboa", "yourname": "O seu nome", "try_ph": "O seu nome", "try": "Escreva o seu nome: é assim que o vamos receber", "s1h": "Aterra.", "s1p": "Acompanhamos o seu voo. Se chegar mais cedo ou mais tarde, o motorista também.", "s2h": "Alguém espera por si.", "s2p": "À saída das chegadas, com o seu nome. Ajudamos com as malas e seguimos.", "s3h": "Entre. Descanse.", "s3p": "Bancos em pele, espaço para todos e silêncio a bordo. A viagem é sua.", "s4h": "Lisboa pela janela.", "s4p": "Ao hotel, à reunião ou ao jantar. À hora marcada, sem pressas.", "dh": "Para onde vamos?", "dp": "Tempo aproximado de viagem a partir do aeroporto de Lisboa. Escolha um destino para reservar.", "dnote": "Tempos indicativos, sem trânsito. Levamo-lo a qualquer destino em Portugal, Espanha e França.", "swipe": "Deslize para ver mais destinos", "go": "Reservar este destino", "more": "Saber mais", "svch": "Ao seu ritmo.", "v1h": "Aeroporto", "v1p": "Recolha com o seu nome nas chegadas e acompanhamento do voo. Também para partidas.", "v2h": "À disposição", "v2p": "Um motorista e um carro só para si, à hora ou ao dia, para reuniões, compras ou um dia cheio.", "v3h": "Tours privados", "v3p": "Sintra, Cascais, Fátima, Évora ou o Douro, ao seu ritmo e com paragens onde quiser.", "v4h": "Eventos e casamentos", "v4p": "Convidados recebidos e levados a horas, com a coordenação feita por nós.", "v5h": "Longa distância", "v5p": "Porto, Algarve, Espanha e França, de porta a porta.", "vh": "Uma sala de estar sobre rodas.", "vp": "A Mercedes-Benz Classe V é o centro da nossa frota: espaço para o grupo e para as malas, bancos frente a frente e um interior pensado para conversar ou descansar. Para cada ocasião há também Classe S, Classe E, Sprinter e um minibus de 19 lugares.", "f1b": "Até 19 lugares", "f1s": "da Classe S ao minibus", "f2b": "Bagagem", "f2s": "malas de porão incluídas", "f3s": "a qualquer hora do voo", "bh": "Reserve em segundos.", "bp": "Diga-nos o essencial. Respondemos no WhatsApp com a confirmação e o preço.", "l_svc": "Serviço", "l_to": "Destino", "ph_to": "Hotel, morada ou cidade", "l_dir": "Sentido", "l_from": "Recolha", "ph_from": "Aeroporto de Lisboa", "l_bags": "Malas de porão", "l_cabin": "Bagagem de mão", "l_notes": "Notas (opcional)", "ph_notes": "Cadeira de criança, paragem pelo caminho, pedidos especiais…", "dirs": ["Do aeroporto", "Para o aeroporto", "Outro trajeto"], "airport": "Aeroporto de Lisboa", "l_date": "Data", "l_time": "Hora", "l_pax": "Passageiros", "l_flight": "Voo (opcional)", "l_name": "Nome", "l_phone": "Telefone / WhatsApp", "l_email": "Email (opcional)", "need_phone": "Indique um telefone para lhe respondermos.", "sent_ok": "Pedido recebido. Respondemos em breve com a confirmação e o preço.", "send": "Enviar pedido", "hint": "Recebemos o pedido e abrimos o WhatsApp com a mensagem pronta, se quiser falar connosco já. Usamos os seus dados só para responder ao pedido.", "nowa": "O número de WhatsApp ainda não está definido neste site. Contacte-nos pelo telefone ou email no fundo da página.", "pbh": "É uma agência ou operador turístico?", "pbp": "Trabalhamos com agências, operadores e linhas de cruzeiro em Portugal, Espanha e França. Veja como trabalhamos e peça a nossa tabela.", "pbc": "Trabalhar connosco", "top": "Voltar ao início", "svcs": ["Aeroporto", "À disposição", "Tour", "Evento", "Longa distância"], "from": "desde o aeroporto", "dest_label": "Destinos"};
+const T = {}; T[lang] = {"nav_dest": "Destinos", "nav_svc": "Serviços", "nav_fleet": "Frota", "nav_ag": "Parceiros", "cta_short": "Reservar", "h1a": "Luxo, sem", "h1b": "cerimónia.", "sub": "Transfers privados e motorista em Lisboa, Portugal, Espanha e França. Carros impecáveis, horas cumpridas e zero vénias.", "cta": "Reservar transfer", "pick_q": "Para onde vai?", "pick_cta": "Reservar este trajeto", "sth": "Sem tapete vermelho.", "stp": "Não fazemos vénias nem conversa de elevador. Acompanhamos o voo, o carro está limpo e a hora é cumprida. O resto é connosco.", "fa_b": "24/7", "fa_s": "a qualquer hora do voo", "fb_b": "4 línguas", "fb_s": "português, inglês, espanhol e francês", "fc_b": "3 países", "fc_s": "Portugal, Espanha e França", "dh": "Para onde vamos?", "dp": "Tempo aproximado de viagem a partir do aeroporto de Lisboa. Escolha um destino para reservar.", "dnote": "Tempos indicativos, sem trânsito. Levamo-lo a qualquer destino em Portugal, Espanha e França.", "swipe": "Deslize para ver mais destinos", "go": "Reservar este destino", "more": "Saber mais", "svch": "Ao seu ritmo.", "v1h": "Aeroporto", "v1p": "Esperamos por si nas chegadas, com o seu nome numa placa, e acompanhamos o voo. Também levamos às partidas.", "v2h": "À disposição", "v2p": "Um motorista e um carro só para si, à hora ou ao dia: reuniões, compras ou um dia sem olhar para o relógio.", "v3h": "Tours privados", "v3p": "Sintra, Cascais, Fátima, Évora ou o Douro, ao seu ritmo e com paragens onde quiser.", "v4h": "Eventos e casamentos", "v4p": "Convidados recebidos e levados a horas, com a coordenação feita por nós.", "v5h": "Longa distância", "v5p": "Porto, Algarve, Espanha e França, de porta a porta.", "vh": "Uma sala de estar sobre rodas.", "vp": "A Mercedes-Benz Classe V é o centro da nossa frota: espaço para o grupo e para as malas, bancos frente a frente e um interior pensado para conversar ou descansar.", "fl": "Para cada ocasião: Classe S, Classe E 220, Classe V 250, Sprinter e um minibus de 19 lugares.", "f1b": "Até 19 lugares", "f1s": "da Classe S ao minibus", "f2b": "Bagagem", "f2s": "malas de porão incluídas", "bh": "Reserve em segundos.", "bp": "Diga-nos o essencial. Respondemos no WhatsApp com a confirmação e o preço.", "l_svc": "Serviço", "l_to": "Destino", "ph_to": "Hotel, morada ou cidade", "l_dir": "Sentido", "l_from": "Recolha", "ph_from": "Aeroporto de Lisboa", "l_bags": "Malas de porão", "l_cabin": "Bagagem de mão", "l_notes": "Notas (opcional)", "ph_notes": "Cadeira de criança, paragem pelo caminho, pedidos especiais…", "dirs": ["Do aeroporto", "Para o aeroporto", "Outro trajeto"], "airport": "Aeroporto de Lisboa", "l_date": "Data", "l_time": "Hora", "l_pax": "Passageiros", "l_flight": "Voo (opcional)", "l_name": "Nome", "l_phone": "Telefone / WhatsApp", "l_email": "Email (opcional)", "need_phone": "Indique um telefone para lhe respondermos.", "sent_ok": "Pedido recebido. Respondemos em breve com a confirmação e o preço.", "send": "Enviar pedido", "hint": "Recebemos o pedido e abrimos o WhatsApp com a mensagem pronta, se quiser falar connosco já. Usamos os seus dados só para responder ao pedido.", "nowa": "O número de WhatsApp ainda não está definido neste site. Contacte-nos pelo telefone ou email no fundo da página.", "pbh": "Quer trabalhar connosco?", "pbp": "Trabalhamos com agências, operadores e linhas de cruzeiro em Portugal, Espanha e França. Veja como trabalhamos e peça as nossas condições.", "pbc": "Ser nosso parceiro", "top": "Voltar ao início", "svcs": ["Aeroporto", "À disposição", "Tour", "Evento", "Longa distância"], "from": "desde o aeroporto", "dest_label": "Destinos"};
 const MSGT = {"tpl": "Olá! Gostaria de reservar.\nServiço: {svc}\nRecolha: {from}\nDestino: {to}\nData: {date} {time}\nPassageiros: {pax}\nMalas: {bags} de porão, {cabin} de mão{flight}\nNome: {name}{notes}", "flight": "\nVoo: ", "notes": "\nNotas: "};
 T[lang].msg = d => MSGT.tpl.replace(/\{(\w+)\}/g, (_, k) => k==='flight' ? (d.flight ? MSGT.flight + d.flight : '') : k==='notes' ? (d.notes ? MSGT.notes + d.notes : '') : (d[k] ?? ''));
 const PLACES = [["Baixa · Chiado", "20 min"], ["Cascais", "35 min"], ["Sintra", "35 min"], ["Comporta", "1h15"], ["Évora", "1h30"], ["Fátima", "1h30"], ["Algarve", "2h45"], ["Porto", "3h"]];
 
-let svcPick = 0, dirPick = 0;
+let svcPick = 0, dirPick = 0, pickI = 1;
 
 function render(){
   const t = T[lang];
   document.documentElement.lang = lang;
   document.querySelectorAll('[data-i18n]').forEach(el=>{ const v=t[el.dataset.i18n]; if(typeof v==='string') el.textContent=v; });
   document.querySelectorAll('[data-i18n-ph]').forEach(el=>{ el.placeholder=t[el.dataset.i18nPh]; });
-  const tr = document.getElementById('track');
-  tr.innerHTML = PLACES.map(([n,m],i)=>`<button class="place" type="button" data-i="${i}"><span class="nm">${n}</span><span class="tm"><b>≈ ${m}</b> ${t.from}</span><span class="go">${t.go}</span></button>`).join('');
-  const dc = document.getElementById('dirChips');
-  dc.innerHTML = t.dirs.map((s,i)=>`<button type="button" aria-pressed="${i===dirPick}" data-i="${i}">${s}</button>`).join('');
+  document.getElementById('track').innerHTML = PLACES.map(([n,m],i)=>`<button class="place" type="button" data-i="${i}"><span class="nm">${n}</span><span class="tm"><b>≈ ${m}</b> ${t.from}</span><span class="go">${t.go}</span></button>`).join('');
+  document.getElementById('dirChips').innerHTML = t.dirs.map((s,i)=>`<button type="button" aria-pressed="${i===dirPick}" data-i="${i}">${s}</button>`).join('');
   applyDir(false);
-  const ch = document.getElementById('svcChips');
-  ch.innerHTML = t.svcs.map((s,i)=>`<button type="button" aria-pressed="${i===svcPick}" data-i="${i}">${s}</button>`).join('');
-  if(!document.getElementById('nameIn').value.trim()) document.querySelectorAll('.js-name').forEach(n=>{n.textContent = t.yourname; n.classList.add('empty');});
+  document.getElementById('svcChips').innerHTML = t.svcs.map((s,i)=>`<button type="button" aria-pressed="${i===svcPick}" data-i="${i}">${s}</button>`).join('');
+  renderPick();
+}
+function renderPick(){
+  const t=T[lang], p=PLACES[pickI];
+  document.getElementById('pickChips').innerHTML = PLACES.map(([n],i)=>`<button type="button" aria-pressed="${i===pickI}" data-i="${i}">${n}</button>`).join('');
+  document.getElementById('pickRes').innerHTML = `<b>≈ ${p[1]}</b>${t.from}`;
 }
 function applyDir(user){
   const t=T[lang], f=document.getElementById('fFrom'), to=document.getElementById('fTo');
@@ -498,7 +417,6 @@ function applyDir(user){
   if(dirPick===0){ if(isAir(f.value)) f.value=t.airport; if(isAir(to.value)) to.value=''; }
   else if(dirPick===1){ if(isAir(to.value)) to.value=t.airport; if(isAir(f.value)) f.value=''; }
   else if(user){ if(isAir(f.value)) f.value=''; if(isAir(to.value)) to.value=''; }
-  document.getElementById('svcWrap')?.classList.toggle('x',false);
 }
 render();
 // Vindo de uma página de destino (ex.: ?to=Sintra): preenche o destino no formulário
@@ -507,30 +425,31 @@ document.getElementById('dirChips').addEventListener('click', e=>{
   const b=e.target.closest('button'); if(!b) return; dirPick=+b.dataset.i;
   document.querySelectorAll('#dirChips button').forEach(x=>x.setAttribute('aria-pressed', x===b)); applyDir(true);
 });
-document.getElementById('yr').textContent = new Date().getFullYear();
-
-/* placa com o nome */
-const nameIn = document.getElementById('nameIn');
-nameIn.addEventListener('input', ()=>{
-  const v = nameIn.value.trim();
-  document.querySelectorAll('.js-name').forEach(n=>{ n.textContent = v || T[lang].yourname; n.classList.toggle('empty',!v); });
-  const f=document.getElementById('fName'); if(!f.dataset.touched) f.value=v;
-});
-document.getElementById('fName').addEventListener('input', e=> e.target.dataset.touched='1');
-
-/* destinos -> reserva */
-document.getElementById('track').addEventListener('click', e=>{
-  const b=e.target.closest('.place'); if(!b) return;
-  document.getElementById('fTo').value = PLACES[+b.dataset.i][0];
-  jump(document.getElementById('reservar'));
-  setTimeout(()=>document.getElementById('fDate').focus({preventScroll:true}), 700);
-});
 document.getElementById('svcChips').addEventListener('click', e=>{
   const b=e.target.closest('button'); if(!b) return; svcPick=+b.dataset.i;
   document.querySelectorAll('#svcChips button').forEach(x=>x.setAttribute('aria-pressed', x===b));
 });
+document.getElementById('yr').textContent = new Date().getFullYear();
 
-/* reserva -> WhatsApp */
+/* escolher um destino (no topo ou no carrossel) leva à reserva já preenchida: aeroporto -> destino */
+function bookPlace(i){
+  svcPick=0; dirPick=0;
+  document.querySelectorAll('#svcChips button').forEach((x,k)=>x.setAttribute('aria-pressed', k===0));
+  document.querySelectorAll('#dirChips button').forEach((x,k)=>x.setAttribute('aria-pressed', k===0));
+  applyDir(true);
+  document.getElementById('fTo').value = PLACES[i][0];
+  jump(document.getElementById('reservar'));
+  setTimeout(()=>document.getElementById('fDate').focus({preventScroll:true}), 700);
+}
+document.getElementById('pickChips').addEventListener('click', e=>{
+  const b=e.target.closest('button'); if(!b) return; pickI=+b.dataset.i; renderPick();
+});
+document.getElementById('pickGo').addEventListener('click', e=>{ e.preventDefault(); bookPlace(pickI); });
+document.getElementById('track').addEventListener('click', e=>{
+  const b=e.target.closest('.place'); if(!b) return; bookPlace(+b.dataset.i);
+});
+
+/* reserva -> app + WhatsApp */
 document.getElementById('form').addEventListener('submit', e=>{
   e.preventDefault();
   const t=T[lang], g=id=>document.getElementById(id).value.trim();
@@ -550,7 +469,7 @@ document.getElementById('form').addEventListener('submit', e=>{
   window.open(`https://wa.me/${WHATSAPP}?text=${encodeURIComponent(t.msg(d))}`,'_blank','noopener');
 });
 
-/* Links internos e "voltar ao início": salto imediato, sem atravessar as animações */
+/* Links internos e "voltar ao início": salto imediato */
 function jump(el){ const y = el ? el.getBoundingClientRect().top + scrollY : 0; scrollTo({top:y, behavior:'instant'}); }
 document.getElementById('toTop').addEventListener('click', ()=>jump(null));
 document.querySelectorAll('a[href^="#"]').forEach(a=>a.addEventListener('click', e=>{
@@ -573,16 +492,13 @@ document.querySelectorAll('a[href^="#"]').forEach(a=>a.addEventListener('click',
   tr.addEventListener('click',e=>{ if(moved){ e.stopPropagation(); e.preventDefault(); moved=false; } },true);
 })();
 
-/* botão flutuante de reserva: aparece depois do topo, esconde-se na reserva e no rodapé */
+/* botão flutuante de reserva: aparece depois do topo e esconde-se na reserva */
 (()=>{
-  // aparece depois do topo; esconde-se onde a secção já tem os seus botões (serviços, reserva, rodapé)
-  const f=document.getElementById('floatCta'), seen=new Map();
-  const hide=['form'];
+  const f=document.getElementById('floatCta'), seen=new Map(), hero=document.querySelector('.hero');
   const io=new IntersectionObserver(es=>{es.forEach(e=>seen.set(e.target,e.isIntersecting));
-    const heroOut=!seen.get(document.querySelector('.hero'));
-    const busy=[...seen].some(([el,v])=>v && el!==document.querySelector('.hero'));
-    f.classList.toggle('on', heroOut && !busy);},{threshold:0});
-  io.observe(document.querySelector('.hero')); hide.forEach(id=>io.observe(document.getElementById(id)));
+    const busy=[...seen].some(([el,v])=>v && el!==hero);
+    f.classList.toggle('on', !seen.get(hero) && !busy);},{threshold:0});
+  io.observe(hero); ['form','parceiros','servicos','frota'].forEach(id=>io.observe(document.getElementById(id)));
 })();
 document.querySelectorAll('[data-svc]').forEach(a=>a.addEventListener('click',()=>{
   svcPick=+a.dataset.svc; document.querySelectorAll('#svcChips button').forEach((x,i)=>x.setAttribute('aria-pressed', i===svcPick));
@@ -599,56 +515,21 @@ if(window.gsap && !reduce){
   ScrollTrigger.config({ignoreMobileResize:true});
   const E='expo.out';
 
-  // 1) Entrada: a imagem assenta, o título sobe, a placa chega
-  const tl=gsap.timeline({defaults:{ease:E}});
-  tl.from('#heroImg',{scale:1.18,duration:2.4,ease:'power3.out'},0)
-    .from('.hero h1 .line>span',{yPercent:110,duration:1.3,stagger:.12},.2)
-    .from('.hero .sub, .hero .actions',{y:24,opacity:0,duration:1,stagger:.08},.7)
-    .from('.board',{y:60,rotate:-6,opacity:0,duration:1.4},.55)
-    .from('.board-input',{opacity:0,y:16,duration:.9},1.1);
-  gsap.to('#heroImg',{yPercent:12,ease:'none',scrollTrigger:{trigger:'.hero',start:'top top',end:'bottom top',scrub:true}});
+  // Entrada: a fotografia assenta, o título sobe, o resto chega
+  gsap.timeline({defaults:{ease:E}})
+    .from('#heroImg',{scale:1.14,duration:2.2,ease:'power3.out'},0)
+    .from('.hero h1 .line>span',{yPercent:110,duration:1.2,stagger:.12},.15)
+    .from('.hero .sub, .hero .pick',{y:22,opacity:0,duration:.9,stagger:.1},.6);
+  gsap.to('#heroImg',{yPercent:10,ease:'none',scrollTrigger:{trigger:'.hero',start:'top top',end:'bottom top',scrub:true}});
 
-  // 2) História: cada painel abre-se de baixo para cima por cima do anterior
-  const panels=gsap.utils.toArray('.panel'), dots=gsap.utils.toArray('.counter i');
-  const st=gsap.timeline({scrollTrigger:{trigger:'.story',start:'top top',end:'bottom bottom',scrub:.6,
-    onUpdate:s=>{const k=Math.min(panels.length-1,Math.floor(s.progress*panels.length*.999));dots.forEach((d,i)=>d.classList.toggle('on',i===k));}}});
-  panels.forEach((p,i)=>{
-    const img=p.querySelector('.ph img'), h=p.querySelector('h2'), tx=p.querySelector('p'), bb=p.querySelector('.bigboard');
-    if(i>0) st.to(p,{clipPath:'inset(0% 0 0 0)',duration:1,ease:'power2.inOut'},i-1+.25);
-    if(img) st.fromTo(img,{scale:1.18},{scale:1,duration:1.6,ease:'none'},Math.max(0,i-1+.25));
-    if(i>0) st.from([h,tx],{y:50,opacity:0,duration:.6,stagger:.08,ease:'power2.out'},i-1+.75);
-    if(bb) st.from(bb,{y:120,rotate:-8,opacity:0,duration:.7,ease:'power2.out'},i-1+.6);
-  });
-  st.to({}, {duration:.4});
+  // O gesto principal: a frase acende-se palavra a palavra com o scroll
+  const lead=document.querySelector('.stmt .lead');
+  lead.innerHTML = lead.textContent.trim().split(/\s+/).map(w=>`<span class="w">${w}</span>`).join(' ');
+  gsap.fromTo('.stmt .lead .w',{opacity:.22},{opacity:1,stagger:.08,ease:'none',scrollTrigger:{trigger:'.stmt .lead',start:'top 82%',end:'bottom 48%',scrub:.6}});
 
-  // 3) Destinos: a faixa anda na horizontal enquanto se faz scroll
-  const track=document.getElementById('track');
-    gsap.from('.place',{x:60,opacity:0,duration:1,stagger:.07,ease:'expo.out',scrollTrigger:{trigger:'.dest',start:'top 75%'}});
-
-  // 4) Entradas suaves por secção
-  const rise=(sel,trig)=>gsap.from(sel,{y:32,opacity:0,duration:1,stagger:.08,ease:E,scrollTrigger:{trigger:trig||sel,start:'top 82%'}});
-  rise('.services h2','.services'); rise('.svc li','.svc');
-  gsap.fromTo('.vclass .img img',{scale:1.18},{scale:1,ease:'none',scrollTrigger:{trigger:'.vclass',start:'top bottom',end:'bottom bottom',scrub:true}});
-  // transições em fade entre todos os ecrãs: [secção que entra, cor do fundo do ecrã anterior]
-  [['.story','#0a1f16'],['.dest','#09201a'],['.vclass','#ECE8DC'],['.book','#08090a'],['.pband','#0d2a1e'],['footer','#ECE8DC']].forEach(([sel,col])=>{
-    const sec=document.querySelector(sel); if(!sec) return;
-    const v=document.createElement('div'); v.className='veil'; v.setAttribute('aria-hidden','true'); v.style.setProperty('--vc',col);
-    sec.prepend(v);
-    gsap.fromTo(v,{scaleY:1},{scaleY:0,ease:'none',scrollTrigger:{trigger:sec,start:'top 100%',end:'top -5%',scrub:true}});
-  });
-  // Classe V: o texto surge palavra a palavra ao ritmo do scroll
-  const vh2=document.querySelector('.vclass h2');
-  const splitV=()=>{ vh2.innerHTML = vh2.textContent.trim().split(/\s+/).map(w=>`<span class="w">${w}</span>`).join(' '); };
-  splitV();
-  const vt=gsap.timeline({scrollTrigger:{trigger:'.vclass .txt',start:'top 95%',end:'bottom 70%',scrub:.8}});
-  vt.from('.vclass h2 .w',{yPercent:70,opacity:0,filter:'blur(6px)',stagger:.12,duration:.6,ease:'power2.out'})
-    .from('.vclass p',{y:30,opacity:0,duration:.6},'-=.2')
-    .from('.facts div',{y:24,opacity:0,stagger:.15,duration:.5},'-=.2')
-    .from('.vclass .txt .btn',{y:20,opacity:0,duration:.4},'-=.1');
-  window.__splitV=splitV;
-  rise('.book h2, .book .lead','.book'); rise('.form > div','.form');
-  gsap.from('footer .word',{y:40,opacity:0,duration:1.2,ease:E,scrollTrigger:{trigger:'footer',start:'top 85%'}});
-
+  gsap.from('.place',{x:50,opacity:0,duration:.9,stagger:.06,ease:E,scrollTrigger:{trigger:'.dest',start:'top 70%'}});
+  gsap.from('.svc li',{y:28,opacity:0,duration:.9,stagger:.08,ease:E,scrollTrigger:{trigger:'.svc',start:'top 82%'}});
+  gsap.fromTo('.vclass .img img',{scale:1.12},{scale:1,ease:'none',scrollTrigger:{trigger:'.vclass',start:'top bottom',end:'bottom bottom',scrub:true}});
   addEventListener('load',()=>ScrollTrigger.refresh());
 }
 </script>

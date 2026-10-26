@@ -43,8 +43,8 @@ def write(slug_or_file, text):
 def build_home(lang):
     t = T[lang]
     tpl = open(os.path.join(HERE, 'home.html'), encoding='utf-8').read()
-    links = (f'<a href="#experiencia">{t["nav_exp"]}</a><a href="#destinos">{t["nav_dest"]}</a>'
-             f'<a href="#servicos">{t["nav_svc"]}</a><a href="{url("agencies", lang)}">{t["nav_ag"]}</a>')
+    links = (f'<a href="#destinos">{t["nav_dest"]}</a><a href="#servicos">{t["nav_svc"]}</a>'
+             f'<a href="#frota">{t["nav_fleet"]}</a><a href="#parceiros">{t["nav_ag"]}</a>')
     dlinks = f'<span>{L[lang]["dests"]}:</span> ' + ' '.join(f'<a href="{url(d, lang)}">{dest_name(d, lang)}</a>' for d in DESTS)
     js_t = {k: v for k, v in t.items() if k not in ('title', 'desc')}
     rep = {
@@ -72,8 +72,6 @@ def build_home(lang):
         return m.group(1) + (E(v) if isinstance(v, str) else m.group(4)) + m.group(5)
     tpl = re.sub(r'(<(\w+)\b[^>]*\bdata-i18n="(\w+)"[^>]*>)(.*?)(</\2>)', fill, tpl, flags=re.S)
     tpl = re.sub(r'(data-i18n-ph="(\w+)"\s+placeholder=")[^"]*(")', lambda m: m.group(1) + E(t[m.group(2)]) + m.group(3), tpl)
-    # nome por omissão na placa
-    tpl = tpl.replace('<div class="name js-name empty">O seu nome</div>', f'<div class="name js-name empty">{E(t["yourname"])}</div>')
     assert '{{' not in tpl, re.findall(r'\{\{\w+\}\}', tpl)
     write(url('home', lang), tpl)
 
