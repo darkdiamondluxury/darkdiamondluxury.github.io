@@ -137,16 +137,18 @@ button,input,select,textarea{font:inherit;color:inherit}
 .arrows button:active{transform:scale(.95)}
 @media (hover:hover){.arrows button:hover:not(:disabled){background:var(--gold);color:var(--black)}}
 .arrows button:disabled{opacity:.35;cursor:default}
-.track{display:flex;gap:14px;overflow-x:auto;scroll-snap-type:x mandatory;scroll-padding-inline:var(--pad);scroll-behavior:smooth;-webkit-overflow-scrolling:touch;scrollbar-width:none;overscroll-behavior-x:contain;padding:clamp(36px,7vh,70px) var(--pad) 6px}
+.dest .bgimg img{position:absolute;inset:0;opacity:0;transition:opacity 1.1s ease}
+.dest .bgimg img.on{opacity:1}
+.dest::after{background:linear-gradient(180deg,rgba(7,9,8,.18) 0%,rgba(7,9,8,.34) 60%,rgba(7,9,8,.5) 100%)}
+.track{display:flex;gap:clamp(28px,5vw,80px);align-items:baseline;overflow-x:auto;scroll-snap-type:x mandatory;scroll-behavior:smooth;-webkit-overflow-scrolling:touch;scrollbar-width:none;overscroll-behavior-x:contain;padding:clamp(60px,12vh,130px) 42vw 10px}
 .track::-webkit-scrollbar{display:none}
 .track.drag{scroll-snap-type:none;scroll-behavior:auto;cursor:grabbing}
-.place{flex:0 0 clamp(240px,23vw,320px);scroll-snap-align:start;text-align:left;border:1px solid rgba(255,255,255,.22);border-radius:24px;background:rgba(18,16,12,.16);color:var(--ink);cursor:pointer;padding:28px 26px 26px;min-height:clamp(260px,38vh,340px);display:flex;flex-direction:column;justify-content:space-between;gap:30px;transition:background .3s,border-color .3s,transform .3s var(--ease-out);box-shadow:inset 0 1px 0 rgba(255,255,255,.35),inset 0 -1px 0 rgba(255,255,255,.06),0 18px 40px -18px rgba(0,0,0,.55)}
-@supports ((backdrop-filter:blur(1px)) or (-webkit-backdrop-filter:blur(1px))){.place{background:linear-gradient(160deg,rgba(255,255,255,.12) 0%,rgba(255,255,255,.02) 50%,rgba(10,9,8,.1) 100%);-webkit-backdrop-filter:blur(8px) saturate(1.3);backdrop-filter:blur(8px) saturate(1.3)}}
-@media (hover:hover){.place:hover{border-color:rgba(255,255,255,.4);transform:translateY(-4px)}.place:hover .go{color:var(--gold-hi)}}
-.place .nm{text-shadow:0 1px 3px rgba(7,9,8,.45),0 2px 18px rgba(7,9,8,.6);font-family:var(--display);font-weight:300;font-size:clamp(1.9rem,1.2rem + 1.6vw,2.7rem);line-height:1;letter-spacing:-.02em}
-.place .tm{color:var(--ink);font-size:1.02rem;text-shadow:0 1px 3px rgba(7,9,8,.45),0 2px 14px rgba(7,9,8,.6)}
-.place .tm b{display:block;font-family:var(--display);font-weight:300;font-size:2.3rem;line-height:1.1;letter-spacing:-.02em;color:var(--gold-hi);text-shadow:0 1px 3px rgba(7,9,8,.5),0 2px 16px rgba(7,9,8,.65)}
-.place .go{color:var(--gold-hi);font-weight:500;font-size:1.02rem;text-shadow:0 1px 3px rgba(7,9,8,.5),0 2px 14px rgba(7,9,8,.6)}
+.place{flex:0 0 auto;scroll-snap-align:center;border:0;background:none;color:var(--ink);cursor:pointer;padding:6px 4px;font-family:var(--display);font-weight:300;font-size:clamp(2.4rem,.8rem + 5.4vw,5.6rem);line-height:1.05;letter-spacing:-.025em;white-space:nowrap;opacity:.42;transform:scale(.8);transform-origin:50% 100%;transition:opacity .5s,transform .6s var(--ease-out),color .4s;text-shadow:0 1px 3px rgba(7,9,8,.4),0 2px 24px rgba(7,9,8,.6)}
+.place[aria-current="true"]{opacity:1;transform:none;color:#fff}
+@media (hover:hover){.place:not([aria-current="true"]):hover{opacity:.75}}
+.sel{padding:clamp(18px,3vh,32px) var(--pad) 0;display:flex;align-items:center;justify-content:center;gap:18px 34px;flex-wrap:wrap;text-align:center}
+.sel .tm{font-size:1.1rem;color:var(--ink);text-shadow:0 1px 3px rgba(7,9,8,.45),0 2px 14px rgba(7,9,8,.6)}
+.sel .tm b{font-family:var(--display);font-weight:300;font-size:clamp(1.8rem,1.2rem + 1.6vw,2.6rem);letter-spacing:-.02em;color:var(--gold-hi);margin-right:8px}
 .swipe{display:none;padding:14px var(--pad) 0;font-size:.92rem;color:var(--muted)}
 @media (hover:none){.swipe{display:block}}
 .dlinks{padding:22px var(--pad) 0;font-size:.95rem;color:var(--muted)}
@@ -295,13 +297,14 @@ footer .credits a{text-decoration:underline}
 
   <!-- DESTINOS -->
   <section class="dest" id="destinos" aria-labelledby="dest-h">
-    <div class="bgimg"><img src="https://images.unsplash.com/photo-1558102400-72da9fdbecae?auto=format&fit=crop&w=2000&q=70" alt="" loading="lazy" onerror="this.style.display='none'"></div>
+    <div class="bgimg" id="destBg" aria-hidden="true"></div>
     <div class="head">
       <h2 class="display" id="dest-h" data-i18n="dh">Para onde vamos?</h2>
       <p data-i18n="dp">Tempo aproximado de viagem a partir do aeroporto de Lisboa. Escolha um destino para reservar.</p>
       <div class="arrows"><button type="button" id="prevD" aria-label="←">←</button><button type="button" id="nextD" aria-label="→">→</button></div>
     </div>
-    <div class="track" id="track"></div>
+    <div class="track" id="track" role="listbox" aria-label="Destinos"></div>
+    <div class="sel"><p class="tm" id="selTm" aria-live="polite"></p><button type="button" class="btn" id="selGo"></button></div>
     <p class="swipe" data-i18n="swipe">Deslize para ver mais destinos</p>
     <p class="dlinks"><span>Destinos:</span> <a href="/pt/lisboa-sintra/">Sintra</a> <a href="/pt/lisboa-cascais/">Cascais</a> <a href="/pt/lisboa-comporta/">Comporta</a> <a href="/pt/lisboa-evora/">Évora</a> <a href="/pt/lisboa-fatima/">Fátima</a> <a href="/pt/lisboa-algarve/">Algarve</a> <a href="/pt/lisboa-porto/">Porto</a></p>
     <p class="note" data-i18n="dnote">Tempos indicativos, sem trânsito. Levamo-lo a qualquer destino em Portugal, Espanha e França.</p>
@@ -409,7 +412,16 @@ footer .credits a{text-decoration:underline}
     <a href="https://unsplash.com/photos/a-castle-like-building-with-a-yellow-roof-LhYFlcgQQJA">Hasmik Ghazaryan Olson</a>,
     <a href="https://unsplash.com/photos/landscape-photography-of-white-canopy-tent-dcb2pog89fQ">Photos by Lanty</a>,
     <a href="https://unsplash.com/photos/an-aerial-view-of-a-highway-in-the-mountains-lu3gOnEVFZw">Marlon Santizo</a>,
-    <a href="https://unsplash.com/photos/cruise-ship-sails-through-dramatic-sunset-clouds-over-the-ocean-bO3cow4Ezq4">zhao chen</a>.
+    <a href="https://unsplash.com/photos/cruise-ship-sails-through-dramatic-sunset-clouds-over-the-ocean-bO3cow4Ezq4">zhao chen</a>,
+    <a href="https://unsplash.com/photos/yellow-tram-in-historic-lisbon-street-ljhCEaHYWJ8">Aayush Gupta</a>,
+    <a href="https://unsplash.com/s/photos/cascais">Calin Stan</a>,
+    <a href="https://unsplash.com/photos/an-aerial-view-of-a-beach-and-ocean-MZ187oc9b9M">Diogo Monteiro</a>,
+    <a href="https://unsplash.com/photos/a-group-of-stone-pillars-sitting-next-to-each-other-PP2SUFjOoCE">Beatriz Queiroz</a>,
+    <a href="https://unsplash.com/photos/jagged-coastal-cliffs-with-arches-and-ocean-waves--eeaFLsJDbY">Jeffrey Eisen</a>,
+    <a href="https://unsplash.com/photos/boats-on-douro-river-in-porto-Prb-sjOUBFs">Nick Karvounis</a>,
+    <a href="https://unsplash.com/photos/metropolis-building-and-gran-via-madrid-WBGjg0DsO_g">Florian Wehde</a>,
+    <a href="https://unsplash.com/photos/plaza-de-espana-architecture-in-seville-a96wj8idE_I">Tânia Mousinho</a>,
+    <a href="https://unsplash.com/photos/many-boats-docked-in-a-marina-with-white-buildings-SmVxCpaziJg">ionut dobre</a>.
     © <span id="yr">2026</span> Dark Diamond Luxury.</p>
 </footer>
 
@@ -427,14 +439,28 @@ const MSGT = {"tpl": "Olá! Gostaria de reservar.\nServiço: {svc}\nRecolha: {fr
 T[lang].msg = d => MSGT.tpl.replace(/\{(\w+)\}/g, (_, k) => k==='flight' ? (d.flight ? MSGT.flight + d.flight : '') : k==='notes' ? (d.notes ? MSGT.notes + d.notes : '') : (d[k] ?? ''));
 const PLACES = [["Baixa · Chiado", "20 min"], ["Cascais", "35 min"], ["Sintra", "35 min"], ["Comporta", "1h15"], ["Évora", "1h30"], ["Fátima", "1h30"], ["Algarve", "2h45"], ["Porto", "3h"], ["Madrid", "6h"], ["Sevilha", "4h"], ["Marbella", "5h30"]];
 
-let svcPick = 0, dirPick = 0, pickI = 1;
+let svcPick = 0, dirPick = 0, pickI = 1, destI = 0, lockUntil = 0;
+const U = id => `https://images.unsplash.com/photo-${id}?auto=format&fit=crop&w=2000&q=70`;
+/* uma fotografia por destino (mesma ordem de PLACES); Fátima ainda sem foto confirmada -> usa Sintra */
+const DIMG = ['1585208798174-6cedd86e019a','1587973878097-ef3aabd5eeaa','1697394494123-c6c1323a14f7','1636834843464-2133f4226f7c','1644183521042-377da9d4aea3','1697394494123-c6c1323a14f7','1764077299795-ff605e3f7301','1555881400-74d7acaacd8b','1539037116277-4db20889f2d4','1661442196003-f2f6eb54bd94','1770929356134-426035b1a404'].map(U);
+function setDest(i,center){
+  destI=i; const t=T[lang], tr=document.getElementById('track'), m=PLACES[i][1];
+  tr.querySelectorAll('.place').forEach((b,k)=>b.setAttribute('aria-current',k===i));
+  document.querySelectorAll('#destBg img').forEach(im=>im.classList.toggle('on',+im.dataset.i===i));
+  document.getElementById('selTm').innerHTML = m?`<b>≈ ${m}</b> ${t.from}`:`<b>${t.onreq}</b>`;
+  document.getElementById('selGo').textContent = t.go;
+  document.getElementById('prevD').disabled = i===0; document.getElementById('nextD').disabled = i===PLACES.length-1;
+  if(center){ lockUntil=Date.now()+800; const b=tr.children[i]; tr.scrollTo({left:b.offsetLeft+b.offsetWidth/2-tr.clientWidth/2}); }
+}
 
 function render(){
   const t = T[lang];
   document.documentElement.lang = lang;
   document.querySelectorAll('[data-i18n]').forEach(el=>{ const v=t[el.dataset.i18n]; if(typeof v==='string') el.textContent=v; });
   document.querySelectorAll('[data-i18n-ph]').forEach(el=>{ el.placeholder=t[el.dataset.i18nPh]; });
-  document.getElementById('track').innerHTML = PLACES.map(([n,m],i)=>`<button class="place" type="button" data-i="${i}"><span class="nm">${n}</span><span class="tm">${m?`<b>≈ ${m}</b> ${t.from}`:`<b>${t.onreq}</b>`}</span><span class="go">${t.go}</span></button>`).join('');
+  document.getElementById('track').innerHTML = PLACES.map(([n],i)=>`<button class="place" type="button" role="option" data-i="${i}" aria-current="${i===destI}">${n}</button>`).join('');
+  document.getElementById('destBg').innerHTML = DIMG.map((u,i)=>`<img src="${u}" alt="" ${i===destI?'':'loading="lazy"'} class="${i===destI?'on':''}" data-i="${i}" onerror="this.remove()">`).join('');
+  setDest(destI,false);
   document.getElementById('dirChips').innerHTML = t.dirs.map((s,i)=>`<button type="button" aria-pressed="${i===dirPick}" data-i="${i}">${s}</button>`).join('');
   applyDir(false);
   document.getElementById('svcChips').innerHTML = t.svcs.map((s,i)=>`<button type="button" aria-pressed="${i===svcPick}" data-i="${i}">${s}</button>`).join('');
@@ -495,9 +521,7 @@ document.getElementById('quote').addEventListener('submit', e=>{
   const msg=t.qmsg.replace('{to}',g('qTo')||'—').replace('{date}',g('qDate')||'—').replace('{phone}',g('qPhone'));
   window.open(`https://wa.me/${WHATSAPP}?text=${encodeURIComponent(msg)}`,'_blank','noopener');
 });
-document.getElementById('track').addEventListener('click', e=>{
-  const b=e.target.closest('.place'); if(!b) return; bookPlace(+b.dataset.i);
-});
+document.getElementById('selGo').addEventListener('click', ()=>bookPlace(destI));
 
 /* reserva -> app + WhatsApp */
 document.getElementById('form').addEventListener('submit', e=>{
@@ -527,18 +551,21 @@ document.querySelectorAll('a[href^="#"]').forEach(a=>a.addEventListener('click',
   if(id && id!=='top' && !el) return; e.preventDefault(); jump(el);
 }));
 
-/* destinos: setas e arrastar com o rato */
+/* destinos: o que está ao centro fica selecionado; setas, clique e arrastar com o rato */
 (()=>{
   const tr=document.getElementById('track'), pv=document.getElementById('prevD'), nx=document.getElementById('nextD');
-  const step=()=>Math.max(300, tr.clientWidth*.7);
-  const upd=()=>{ pv.disabled = tr.scrollLeft<8; nx.disabled = tr.scrollLeft+tr.clientWidth >= tr.scrollWidth-8; };
-  pv.addEventListener('click',()=>tr.scrollBy({left:-step()}));
-  nx.addEventListener('click',()=>tr.scrollBy({left:step()}));
-  tr.addEventListener('scroll',upd,{passive:true}); addEventListener('resize',upd); setTimeout(upd,300);
+  let raf=0;
+  const near=()=>{ raf=0; if(Date.now()<lockUntil) return; const c=tr.scrollLeft+tr.clientWidth/2; let best=0,d=1e9;
+    [...tr.children].forEach((b,k)=>{ const x=Math.abs(b.offsetLeft+b.offsetWidth/2-c); if(x<d){d=x;best=k;} });
+    if(best!==destI) setDest(best,false); };
+  tr.addEventListener('scroll',()=>{ if(!raf) raf=requestAnimationFrame(near); },{passive:true});
+  pv.addEventListener('click',()=>setDest(Math.max(0,destI-1),true));
+  nx.addEventListener('click',()=>setDest(Math.min(PLACES.length-1,destI+1),true));
+  tr.addEventListener('click',e=>{ const b=e.target.closest('.place'); if(b) setDest(+b.dataset.i,true); });
   let down=false,sx=0,sl=0,moved=false;
   tr.addEventListener('pointerdown',e=>{ if(e.pointerType!=='mouse') return; down=true;moved=false;sx=e.clientX;sl=tr.scrollLeft; });
   addEventListener('pointermove',e=>{ if(!down) return; const dx=e.clientX-sx; if(Math.abs(dx)>4){moved=true;tr.classList.add('drag');} tr.scrollLeft=sl-dx; });
-  addEventListener('pointerup',()=>{ if(!down) return; down=false; tr.classList.remove('drag'); });
+  addEventListener('pointerup',()=>{ if(!down) return; down=false; tr.classList.remove('drag'); if(moved) setDest(destI,true); });
   tr.addEventListener('click',e=>{ if(moved){ e.stopPropagation(); e.preventDefault(); moved=false; } },true);
 })();
 
@@ -579,7 +606,6 @@ if(window.gsap && !reduce){
   lead.innerHTML = lead.textContent.trim().split(/\s+/).map(w=>`<span class="w">${w}</span>`).join(' ');
   gsap.fromTo('.stmt .lead .w',{opacity:.22},{opacity:1,stagger:.08,ease:'none',scrollTrigger:{trigger:'.stmt .lead',start:'top 82%',end:'bottom 48%',scrub:.6}});
 
-  gsap.from('.place',{x:50,opacity:0,duration:.9,stagger:.06,ease:E,scrollTrigger:{trigger:'.dest',start:'top 70%'}});
   gsap.from('.svc li',{y:28,opacity:0,duration:.9,stagger:.08,ease:E,scrollTrigger:{trigger:'.svc',start:'top 82%'}});
   gsap.fromTo('.vclass .img img',{scale:1.12},{scale:1,ease:'none',scrollTrigger:{trigger:'.vclass',start:'top bottom',end:'bottom bottom',scrub:true}});
   addEventListener('load',()=>ScrollTrigger.refresh());
