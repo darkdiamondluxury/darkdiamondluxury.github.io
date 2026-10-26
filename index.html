@@ -193,13 +193,33 @@ button,input,select,textarea{font:inherit;color:inherit}
 /* fades entre ecrãs: o dourado dissolve-se no preto quente */
 .services::before,.partners::before{content:"";position:absolute;left:0;right:0;top:0;height:var(--fd);z-index:-1;background:linear-gradient(180deg,var(--green),rgba(23,21,16,0));pointer-events:none}
 .services::after,.partners::after{content:"";position:absolute;left:0;right:0;bottom:0;height:var(--fd);z-index:-1;background:linear-gradient(0deg,var(--green),rgba(23,21,16,0));pointer-events:none}
-/* serviços em liquid glass (teste) */
-.svc li{background:rgba(255,255,255,.2);border:1px solid rgba(255,255,255,.55);-webkit-backdrop-filter:blur(14px) saturate(1.4);backdrop-filter:blur(14px) saturate(1.4);box-shadow:inset 0 1px 0 rgba(255,255,255,.7),inset 0 -1px 0 rgba(255,255,255,.12),0 18px 40px -20px rgba(60,40,0,.45)}
-.svc li img,.svc li::after{display:none}
-.svc h3,.svc p{color:var(--black);text-shadow:none}
-.svc .more{color:var(--black)}
-.svc .mini{background:var(--black);color:var(--gold-hi)}
-@media (hover:hover){.svc li:hover h3{color:var(--black)}}
+/* serviços: as fotos ficam, com acabamento liquid glass */
+.svc li{border:1px solid rgba(255,255,255,.55);box-shadow:inset 0 1px 0 rgba(255,255,255,.7),inset 0 -1px 0 rgba(255,255,255,.12),0 18px 40px -20px rgba(60,40,0,.45)}
+.svc li::after{background:linear-gradient(160deg,rgba(255,255,255,.22) 0%,rgba(255,255,255,.04) 38%,rgba(255,255,255,0) 55%),linear-gradient(0deg,rgba(7,9,8,.62) 0%,rgba(7,9,8,0) 62%),linear-gradient(90deg,rgba(7,9,8,.5) 0%,rgba(7,9,8,.18) 60%,rgba(7,9,8,0) 100%)}
+/* o dourado de parceiros é pequeno: fades mais curtos para ter protagonismo */
+.partners::before,.partners::after{height:calc(var(--fd)*.35)}
+@media (max-width:860px){.services .wrap{grid-template-columns:1fr}.services h2{position:static}}
+@media (max-width:560px){.svc .in{grid-template-columns:1fr;grid-template-areas:"h" "p" "a"}.svc .act{flex-direction:row;align-items:center;gap:10px 20px;margin-top:8px}.svc li{min-height:250px}}
+
+/* ---------- frota ---------- */
+.vclass{position:relative;min-height:100svh;display:flex;align-items:flex-end;background:var(--green);overflow:hidden;isolation:isolate}
+.vclass .img{position:absolute;inset:0;z-index:-2;background:var(--green-2);-webkit-mask-image:linear-gradient(180deg,transparent 0,#000 var(--fd),#000 calc(100% - var(--fd)),transparent 100%);mask-image:linear-gradient(180deg,transparent 0,#000 var(--fd),#000 calc(100% - var(--fd)),transparent 100%)}
+.vclass .img img{position:absolute;inset:0;width:100%;height:100%;object-fit:cover;object-position:50% 45%}
+.vclass::after{content:"";position:absolute;inset:0;z-index:-1;background:linear-gradient(90deg,rgba(7,9,8,.7) 0%,rgba(7,9,8,.38) 32%,rgba(7,9,8,0) 58%)}
+.vclass h2,.vclass p,.vclass .nums span{text-shadow:0 1px 18px rgba(7,9,8,.55)}
+.vclass .txt{position:relative;width:min(100%,600px);padding:clamp(120px,30vh,320px) var(--pad) clamp(50px,8vh,90px);display:flex;flex-direction:column;justify-content:flex-end}
+.vclass h2{font-size:clamp(2.6rem,1rem + 4vw,5rem);max-width:15ch}
+.vclass p{margin-top:20px;max-width:36ch;color:var(--ink)}
+.vclass p.fl{color:var(--muted);margin-top:14px}
+.vclass .nums{margin-top:30px}
+.vclass .nums b{font-size:clamp(1.7rem,1.2rem + 1.1vw,2.3rem)}
+.vclass .nums div{min-width:0;max-width:none}
+.vclass .btn{margin-top:34px;align-self:flex-start}
+@media (max-width:860px){.vclass .img img{object-position:62% 35%}.vclass::after{background:linear-gradient(0deg,rgba(7,9,8,.95) 0%,rgba(7,9,8,.74) 46%,rgba(7,9,8,0) 72%)}.vclass .txt{width:100%;padding-top:40svh}}
+
+/* fades entre ecrãs: o dourado dissolve-se no preto quente */
+.services::before,.partners::before{content:"";position:absolute;left:0;right:0;top:0;height:var(--fd);z-index:-1;background:linear-gradient(180deg,var(--green),rgba(23,21,16,0));pointer-events:none}
+.services::after,.partners::after{content:"";position:absolute;left:0;right:0;bottom:0;height:var(--fd);z-index:-1;background:linear-gradient(0deg,var(--green),rgba(23,21,16,0));pointer-events:none}
 
 /* ---------- reserva ---------- */
 .book{position:relative;isolation:isolate;background:var(--green);padding:var(--gap) var(--pad)}
