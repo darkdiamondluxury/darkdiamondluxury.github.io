@@ -72,9 +72,16 @@ button,input,select,textarea{font:inherit;color:inherit}
 .chips button:active{transform:scale(.97)}
 @media (hover:hover){.chips button:hover{background:var(--green-3)}}
 .chips button[aria-pressed="true"]{background:var(--gold);color:var(--black)}
-.pres{display:flex;flex-wrap:wrap;align-items:center;gap:14px 26px;margin-top:20px}
-.pres .res{font-size:1.1rem}
-.pres .res b{font-family:var(--display);font-weight:400;font-size:clamp(1.6rem,1.2rem + 1vw,2.2rem);color:var(--gold);margin-right:.35em;letter-spacing:-.01em}
+.sr{position:absolute;width:1px;height:1px;overflow:hidden;clip:rect(0 0 0 0);white-space:nowrap}
+.quote{max-width:1000px}
+.qrow{display:grid;grid-template-columns:minmax(0,1.5fr) minmax(0,1fr) minmax(0,1fr) auto;gap:10px}
+.qf input{width:100%;height:100%;min-height:54px;background:var(--black);border:0;border-radius:99px;padding:0 22px;font-size:1rem;color:var(--ink);appearance:none}
+.qf input::placeholder{color:#7f8573}
+.qrow .btn{white-space:nowrap;padding:0 30px;min-height:54px}
+.quote .chips{margin-top:14px}
+.qhint{margin-top:12px;min-height:1.5em;color:var(--gold);font-size:1rem}
+@media (max-width:860px){.qrow{grid-template-columns:1fr 1fr}.qrow .qf:first-child{grid-column:1/-1}.qrow .btn{grid-column:1/-1}}
+@media (max-width:480px){.qrow{grid-template-columns:1fr}}
 
 /* ---------- sem cerimónia ---------- */
 .stmt{background:var(--green);display:grid;grid-template-columns:minmax(0,.9fr) minmax(0,1.1fr);min-height:100svh}
@@ -207,7 +214,7 @@ footer .credits a{text-decoration:underline}
   <symbol id="dd" viewBox="0 0 24 24"><path d="M6 3h12l4 6-10 12L2 9z" fill="none" stroke="currentColor" stroke-width="1.6" stroke-linejoin="round"/><path d="M2 9h20M9 3l3 18 3-18" fill="none" stroke="currentColor" stroke-width="1.2" stroke-linejoin="round" opacity=".7"/></symbol>
 </svg>
 
-<a class="btn float-cta" id="floatCta" href="#reservar"><span data-i18n="cta">Reservar transfer</span></a>
+<a class="btn float-cta" id="floatCta" href="#reservar"><span data-i18n="cta">Pedir orçamento</span></a>
 {{NAV}}
 
 <main id="top">
@@ -217,14 +224,18 @@ footer .credits a{text-decoration:underline}
     <div class="hero-in">
       <h1 class="display" id="h1"><span class="line"><span data-i18n="h1a">O seu motorista,</span></span><span class="line"><span data-i18n="h1b">à sua medida.</span></span></h1>
       <p class="sub" data-i18n="sub">Transfers privados e motorista em Lisboa, Portugal, Espanha e França.</p>
-      <div class="pick">
-        <p class="pq" id="pickQ" data-i18n="pick_q">Para onde vai?</p>
-        <div class="chips" id="pickChips" role="group" aria-labelledby="pickQ"></div>
-        <div class="pres">
-          <p class="res" id="pickRes" aria-live="polite"></p>
-          <a class="btn" id="pickGo" href="#reservar" data-i18n="pick_cta">Reservar este trajeto</a>
+      <form class="pick quote" id="quote" novalidate>
+        <p class="pq" id="pickQ" data-i18n="pick_q">Para onde o levam os seus sonhos?</p>
+        <div class="qrow">
+          <label class="qf"><span class="sr" data-i18n="q_to">Destino</span><input id="qTo" data-i18n-ph="q_to_ph" placeholder="Cidade, hotel ou morada" autocomplete="off"></label>
+          <label class="qf"><span class="sr" data-i18n="q_date">Data</span><input id="qDate" type="date"></label>
+          <label class="qf"><span class="sr" data-i18n="l_phone">Telefone / WhatsApp</span><input id="qPhone" type="tel" autocomplete="tel" inputmode="tel" data-i18n-ph="q_phone_ph" placeholder="Telefone / WhatsApp"></label>
+          <button class="btn" type="submit" data-i18n="q_send">Pedir orçamento</button>
         </div>
-      </div>
+        <div class="chips" id="pickChips" role="group" aria-labelledby="pickQ"></div>
+        <div style="position:absolute;left:-9999px" aria-hidden="true"><label for="qWeb">Website</label><input id="qWeb" tabindex="-1" autocomplete="off"></div>
+        <p class="qhint" id="qHint" aria-live="polite"></p>
+      </form>
     </div>
   </section>
 
@@ -365,9 +376,8 @@ function render(){
   renderPick();
 }
 function renderPick(){
-  const t=T[lang], p=PLACES[pickI];
-  document.getElementById('pickChips').innerHTML = PLACES.map(([n],i)=>`<button type="button" aria-pressed="${i===pickI}" data-i="${i}">${n}</button>`).join('');
-  document.getElementById('pickRes').innerHTML = `<b>≈ ${p[1]}</b>${t.from}`;
+  const cur=document.getElementById('qTo').value.trim().toLowerCase();
+  document.getElementById('pickChips').innerHTML = PLACES.map(([n],i)=>`<button type="button" aria-pressed="${n.toLowerCase()===cur}" data-i="${i}">${n}</button>`).join('');
 }
 function applyDir(user){
   const t=T[lang], f=document.getElementById('fFrom'), to=document.getElementById('fTo');
@@ -400,9 +410,26 @@ function bookPlace(i){
   setTimeout(()=>document.getElementById('fDate').focus({preventScroll:true}), 700);
 }
 document.getElementById('pickChips').addEventListener('click', e=>{
-  const b=e.target.closest('button'); if(!b) return; pickI=+b.dataset.i; renderPick();
+  const b=e.target.closest('button'); if(!b) return; pickI=+b.dataset.i;
+  document.getElementById('qTo').value = PLACES[pickI][0]; renderPick();
 });
-document.getElementById('pickGo').addEventListener('click', e=>{ e.preventDefault(); bookPlace(pickI); });
+document.getElementById('qTo').addEventListener('input', renderPick);
+
+/* pedido de orçamento (topo) -> app + WhatsApp */
+document.getElementById('quote').addEventListener('submit', e=>{
+  e.preventDefault();
+  const t=T[lang], g=id=>document.getElementById(id).value.trim(), h=document.getElementById('qHint');
+  if(!g('qPhone')){ h.textContent=t.need_phone; document.getElementById('qPhone').focus(); return; }
+  try{
+    fetch(BK_URL,{method:'POST',keepalive:true,headers:{'content-type':'application/json',apikey:BK_KEY,authorization:'Bearer '+BK_KEY},
+      body:JSON.stringify({p:{lang,service:t.q_svc,direction:'',pickup:'',dropoff:g('qTo'),date:g('qDate'),time:'',pax:'',bags:'',cabin:'',flight:'',name:'',phone:g('qPhone'),email:'',notes:'',website:g('qWeb')}})})
+      .then(r=>{ if(r.ok){ h.textContent=t.q_ok; } }).catch(()=>{});
+  }catch(err){}
+  if(window.goatcounter&&goatcounter.count) goatcounter.count({path:'orcamento-pedido',title:'Pedido de orçamento enviado',event:true});
+  if(!WHATSAPP){ h.textContent=t.q_ok; return; }
+  const msg=t.qmsg.replace('{to}',g('qTo')||'—').replace('{date}',g('qDate')||'—').replace('{phone}',g('qPhone'));
+  window.open(`https://wa.me/${WHATSAPP}?text=${encodeURIComponent(msg)}`,'_blank','noopener');
+});
 document.getElementById('track').addEventListener('click', e=>{
   const b=e.target.closest('.place'); if(!b) return; bookPlace(+b.dataset.i);
 });
