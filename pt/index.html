@@ -429,9 +429,9 @@ footer .credits a{text-decoration:underline}
     <a href="https://unsplash.com/photos/many-boats-docked-in-a-marina-with-white-buildings-SmVxCpaziJg">ionut dobre</a>,
     <a href="https://unsplash.com/photos/a-view-of-a-golf-course-with-the-ocean-in-the-background-Alo3lgdV2CU">Frederik Rosar</a>,
     <a href="https://www.pexels.com/photo/aerial-view-of-fatima-sanctuary-in-portugal-30443719/">magr S (Pexels)</a>,
-    <a href="https://unsplash.com/photos/a-view-of-a-beach-from-a-high-point-of-view-4cyQdz7lhlU">Ethan Bucher</a>,
+    <a href="https://www.pexels.com/photo/sunny-praia-da-rocha-beach-in-algarve-portugal-33887497/">Carel Voorhorst (Pexels)</a>,
     <a href="https://unsplash.com/photos/c1iZp1LoIpM">Pascal Bernardon</a>,
-    <a href="https://unsplash.com/photos/Ew2NANUmKP4">Viktor Ritsvall</a>,
+    <a href="https://www.pexels.com/photo/yachts-sailing-in-puerto-banus-under-la-concha-33305408/">Miguel Rivera (Pexels)</a>,
     <a href="https://unsplash.com/photos/a-commercial-airplane-flying-through-fluffy-clouds-7gJyHcCStT0">Hieu</a>,
     <a href="https://unsplash.com/photos/man-in-suit-walks-past-black-suvs-in-parking-lot-KDA9cnw8jZw">Jonah London</a>,
     <a href="https://unsplash.com/photos/silhouettes-of-a-couple-looking-at-each-other-at-sunset-QaNSHeDl3A4">Pedro Pulido</a>,
@@ -458,7 +458,7 @@ const PLACES = [["Baixa · Chiado", "20 min"], ["Cascais", "35 min"], ["Sintra",
 let svcPick = 0, dirPick = 0, pickI = 1, destI = 0, lockUntil = 0;
 const U = id => id.startsWith('http') ? id : `https://images.unsplash.com/photo-${id}?auto=format&fit=crop&w=2000&q=70`;
 /* uma fotografia por destino (mesma ordem de PLACES);  */
-const DIMG = ['1585208798174-6cedd86e019a','1587973878097-ef3aabd5eeaa','1697394494123-c6c1323a14f7','1672825952732-ecef34882416','1644183521042-377da9d4aea3','https://images.pexels.com/photos/30443719/pexels-photo-30443719.jpeg?auto=compress&cs=tinysrgb&w=2000','1689753332414-fac89fde536a','1768565540385-5195e32bb44b','1539037116277-4db20889f2d4','1661442196003-f2f6eb54bd94','1657469291895-754b9c4328fd'].map(U);
+const DIMG = ['1585208798174-6cedd86e019a','1587973878097-ef3aabd5eeaa','1697394494123-c6c1323a14f7','1672825952732-ecef34882416','1644183521042-377da9d4aea3','https://images.pexels.com/photos/30443719/pexels-photo-30443719.jpeg?auto=compress&cs=tinysrgb&w=2000','https://images.pexels.com/photos/33887497/pexels-photo-33887497.jpeg?auto=compress&cs=tinysrgb&w=2000','1768565540385-5195e32bb44b','1539037116277-4db20889f2d4','1661442196003-f2f6eb54bd94','https://images.pexels.com/photos/33305408/pexels-photo-33305408.jpeg?auto=compress&cs=tinysrgb&w=2000'].map(U);
 function setDest(i,center){
   destI=i; const t=T[lang], tr=document.getElementById('track'), m=PLACES[i][1];
   tr.querySelectorAll('.place').forEach((b,k)=>b.setAttribute('aria-current',k===i));
