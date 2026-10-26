@@ -113,4 +113,4 @@ MSG_NOTES = {'pt': '\nNotas: ', 'en': '\nNotes: ', 'es': '\nNotas: '}
 PLACES = [('Baixa · Chiado', '20 min', None), ('Cascais', '35 min', 'd-cascais'), ('Sintra', '35 min', 'd-sintra'),
           ('Comporta', '1h15', 'd-comporta'), ('Évora', '1h30', 'd-evora'), ('Fátima', '1h30', 'd-fatima'),
           ('Algarve', '2h45', 'd-algarve'), ('Porto', '3h', 'd-porto'),
-          ('Madrid', '6h', None), ({'pt': 'Sevilha', 'en': 'Seville', 'es': 'Sevilla'}, '4h', None), ('Ibiza', None, None)]
+          ('Madrid', '6h', None), ({'pt': 'Sevilha', 'en': 'Seville', 'es': 'Sevilla'}, '4h', None), ('Marbella', '5h30', None)]
