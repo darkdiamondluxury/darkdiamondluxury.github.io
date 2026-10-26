@@ -1,10 +1,12 @@
+@font-face{font-family:"Cinzel";src:url(/assets/cinzel-latin-400-normal.woff2) format("woff2");font-weight:400;font-display:swap}
+@font-face{font-family:"Cinzel";src:url(/assets/cinzel-latin-500-normal.woff2) format("woff2");font-weight:500;font-display:swap}
 /* Páginas interiores (agências, aeroporto, cruzeiros, destinos, legal). Mesma identidade da página inicial. */
 @font-face{font-family:"Jost";src:url(/assets/jost-latin-300-normal.woff2) format("woff2");font-weight:300;font-display:swap}
 @font-face{font-family:"Jost";src:url(/assets/jost-latin-400-normal.woff2) format("woff2");font-weight:400;font-display:swap}
 @font-face{font-family:"Jost";src:url(/assets/jost-latin-500-normal.woff2) format("woff2");font-weight:500;font-display:swap}
 :root{
   --green:#171510; --green-2:#201d17; --green-3:#2d2920;
-  --gold:#D6B85C; --olive:#9A7B1F; --bone:#ECE8DC; --bone-2:#E2DDCD;
+  --gold:#D1AC66; --silver:#C9C8C6; --display:"Cinzel","Trajan Pro",Georgia,serif; --olive:#9A7B1F; --bone:#ECE8DC; --bone-2:#E2DDCD;
   --ink:#EEEADF; --muted:#B5AFA0; --black:#0a0908;
   --font:"Jost","Helvetica Neue",Arial,sans-serif;
   --ease-out:cubic-bezier(.23,1,.32,1);
@@ -140,3 +142,16 @@ footer .word svg{width:.78em;height:.78em;color:var(--gold);margin-right:.14em;v
 @media (max-width:520px){.brand img{width:34px;height:34px}}
 footer .word img{width:1.9em;height:1.9em;border-radius:50%;float:left;margin:.02em .22em 0 0;shape-outside:circle()}
 @media (max-width:860px){footer .word img{width:1.9em;height:1.9em}}
+
+h1,h2,h3,.brand{font-family:var(--display);font-weight:400}
+.phero h1{font-size:clamp(2.1rem,4.8vw,4.2rem);line-height:1.08;letter-spacing:.01em}
+.split h2{font-size:clamp(1.5rem,2.8vw,2.3rem)}
+.ctab h2{font-size:clamp(1.5rem,3vw,2.4rem)}
+.brand{font-size:1.02rem;letter-spacing:.04em}
+footer .word{font-family:var(--display);font-weight:400;letter-spacing:.02em;font-size:clamp(2.1rem,7vw,7.6rem);line-height:1.02}
+footer .word .dk{background:linear-gradient(120deg,#A27A38,#F3DFA2 45%,#C69F5B 70%,#FBE8AE);-webkit-background-clip:text;background-clip:text;color:transparent}
+footer .word .dm{background:linear-gradient(120deg,#8a8a8a,#fff 45%,#c4c3c2 70%,#f2f2f2);-webkit-background-clip:text;background-clip:text;color:transparent}
+footer .word em{background:linear-gradient(120deg,#A27A38,#F3DFA2 45%,#C69F5B 70%,#FBE8AE);-webkit-background-clip:text;background-clip:text;color:transparent}
+.brand .dk{color:var(--gold)}.brand .dm{color:var(--silver)}
+@media (max-width:520px){.brand{font-size:.84rem;letter-spacing:.02em;gap:8px}}
+@media (max-width:370px){.brand .lux{display:none}}

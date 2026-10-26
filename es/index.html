@@ -23,6 +23,8 @@
 <script type="application/ld+json">{"@context": "https://schema.org", "@type": "LocalBusiness", "name": "Dark Diamond Luxury", "legalName": "Artur Danilo, Unipessoal Lda", "url": "https://darkdiamondluxury.github.io/", "image": "https://darkdiamondluxury.github.io/assets/og.png", "logo": "https://darkdiamondluxury.github.io/assets/icon-512.png", "telephone": "+351 932 666 254", "email": "darkdiamondluxury@gmail.com", "vatID": "PT515565458", "address": {"@type": "PostalAddress", "streetAddress": "Av. Vergílio Ferreira, Lote 764, 6.º Esq.", "postalCode": "1950-339", "addressLocality": "Lisboa", "addressCountry": "PT"}, "areaServed": [{"@type": "Country", "name": "Portugal"}, {"@type": "Country", "name": "Spain"}, {"@type": "Country", "name": "France"}], "description": "Traslados privados, tours y chófer a disposición en Lisboa, Portugal, España y Francia."}</script>
 <link rel="preload" href="/assets/jost-latin-300-normal.woff2" as="font" type="font/woff2" crossorigin>
 <style>
+@font-face{font-family:"Cinzel";src:url(/assets/cinzel-latin-400-normal.woff2) format("woff2");font-weight:400;font-display:swap}
+@font-face{font-family:"Cinzel";src:url(/assets/cinzel-latin-500-normal.woff2) format("woff2");font-weight:500;font-display:swap}
 @font-face{font-family:"Jost";src:url(/assets/jost-latin-300-normal.woff2) format("woff2");font-weight:300;font-display:swap}
 @font-face{font-family:"Jost";src:url(/assets/jost-latin-400-normal.woff2) format("woff2");font-weight:400;font-display:swap}
 @font-face{font-family:"Jost";src:url(/assets/jost-latin-500-normal.woff2) format("woff2");font-weight:500;font-display:swap}
@@ -30,10 +32,10 @@
 :root{
   /* Dark Diamond: preto e dourado */
   --green:#171510; --green-2:#201d17; --green-3:#2d2920;
-  --gold:#D6B85C; --gold-hi:#E8D084;
+  --gold:#D1AC66; --gold-hi:#F0DA9C; --silver:#C9C8C6;
   --ink:#EEEADF; --muted:#B5AFA0; --ivory:#F2EDE0;
   --black:#0a0908;
-  --display:"Jost","Helvetica Neue",Arial,sans-serif;
+  --display:"Cinzel","Trajan Pro",Georgia,serif;
   --text:"Jost","Helvetica Neue",Arial,sans-serif;
   --ease-out:cubic-bezier(.23,1,.32,1);
   --pad:clamp(20px,4vw,56px);
@@ -155,7 +157,7 @@ button,input,select,textarea{font:inherit;color:inherit}
 .dest .note{padding:12px var(--pad) 0;font-size:.92rem;color:var(--muted)}
 
 /* ---------- serviços ---------- */
-.services{position:relative;isolation:isolate;background:linear-gradient(120deg,#B08A33 0%,#E9D58A 32%,#C9A24D 58%,#F0DFA0 82%,#B98F3A 100%);color:var(--black);padding:var(--gap) var(--pad)}
+.services{position:relative;isolation:isolate;background:linear-gradient(120deg,#A27A38 0%,#F3DFA2 30%,#C69F5B 56%,#FBE8AE 82%,#A27A38 100%);color:var(--black);padding:var(--gap) var(--pad)}
 .services .wrap{display:grid;grid-template-columns:minmax(0,.8fr) minmax(0,1.2fr);gap:clamp(30px,6vw,100px)}
 .services h2{font-size:clamp(2.8rem,1rem + 5.2vw,6rem);max-width:8ch;position:sticky;top:120px;align-self:start}
 .svc{list-style:none;padding:0;display:grid;grid-auto-rows:1fr;gap:clamp(10px,1.2vw,14px)}
@@ -230,7 +232,7 @@ button,input,select,textarea{font:inherit;color:inherit}
 .book .wrap{display:grid;grid-template-columns:minmax(0,.9fr) minmax(0,1.1fr);gap:clamp(30px,6vw,100px);align-items:start}
 .book h2{font-size:clamp(2.8rem,1rem + 5vw,6rem);max-width:8ch}
 .book .lead{margin-top:20px;max-width:34ch;color:var(--muted)}
-.form{display:grid;grid-template-columns:1fr 1fr;gap:14px;background:linear-gradient(120deg,#B08A33 0%,#E9D58A 32%,#C9A24D 58%,#F0DFA0 82%,#B98F3A 100%);color:var(--black);border-radius:24px;padding:clamp(22px,3vw,40px)}
+.form{display:grid;grid-template-columns:1fr 1fr;gap:14px;background:linear-gradient(120deg,#A27A38 0%,#F3DFA2 30%,#C69F5B 56%,#FBE8AE 82%,#A27A38 100%);color:var(--black);border-radius:24px;padding:clamp(22px,3vw,40px)}
 .form label,.form .hint{color:var(--black)}
 .form .chips button{background:rgba(10,9,8,.12);color:var(--black)}
 @media (hover:hover){.form .chips button:hover{background:rgba(10,9,8,.22)}}
@@ -246,7 +248,7 @@ button,input,select,textarea{font:inherit;color:inherit}
 @media (max-width:860px){.book .wrap{grid-template-columns:1fr}.form{grid-template-columns:1fr}}
 
 /* ---------- parceiros ---------- */
-.partners{min-height:min(100svh,900px);display:flex;align-items:center;position:relative;isolation:isolate;background:linear-gradient(120deg,#B08A33 0%,#E9D58A 32%,#C9A24D 58%,#F0DFA0 82%,#B98F3A 100%);color:var(--black);padding:var(--gap) var(--pad)}
+.partners{min-height:min(100svh,900px);display:flex;align-items:center;position:relative;isolation:isolate;background:linear-gradient(120deg,#A27A38 0%,#F3DFA2 30%,#C69F5B 56%,#FBE8AE 82%,#A27A38 100%);color:var(--black);padding:var(--gap) var(--pad)}
 .partners .wrap{width:100%;max-width:1380px;margin:0 auto;display:grid;grid-template-columns:minmax(0,1.25fr) minmax(0,1fr);gap:clamp(24px,5vw,90px);align-items:end}
 .partners h2{font-size:clamp(2.8rem,1rem + 5.4vw,6.2rem);max-width:12ch}
 .partners p{max-width:40ch;font-size:clamp(1.1rem,1rem + .4vw,1.3rem)}
@@ -286,6 +288,27 @@ footer .credits a{text-decoration:underline}
 .todo{color:var(--gold)}
 
 @media (prefers-reduced-motion:reduce){html{scroll-behavior:auto}.track{scroll-behavior:auto}}
+
+/* tipografia e cores alinhadas com o logótipo: Cinzel + ouro champanhe + prata */
+.display,.brand,.place,.svc h3,.sel .tm b,.nums b,footer .word{font-weight:400;letter-spacing:.01em;text-transform:none}
+.hero h1{font-size:clamp(2.3rem,.8rem + 5.6vw,5.6rem);line-height:1.04;letter-spacing:.01em}
+.stmt h2,.dest h2,.services h2,.book h2{font-size:clamp(2.1rem,.8rem + 4vw,4.6rem);line-height:1.06;max-width:12ch}
+.vclass h2{font-size:clamp(2rem,.8rem + 3.2vw,3.9rem);line-height:1.08;max-width:16ch}
+.partners h2{font-size:clamp(2.1rem,.8rem + 4.2vw,4.8rem);line-height:1.06;max-width:14ch}
+.place{font-size:clamp(1.9rem,.6rem + 4.2vw,4.4rem);letter-spacing:.02em}
+.svc h3{font-size:clamp(1.5rem,1rem + 1.2vw,2.2rem);letter-spacing:.02em;line-height:1.1}
+.sel .tm b{font-size:clamp(1.4rem,1rem + 1.2vw,2rem)}
+.nums b{font-size:clamp(1.6rem,1.1rem + 1.4vw,2.4rem)}
+.brand{font-size:1.02rem;letter-spacing:.04em}
+.brand .lux{color:var(--gold)}
+footer .word{font-size:clamp(2.1rem,7vw,7.6rem);line-height:1.02;letter-spacing:.02em}
+footer .word .dk{background:linear-gradient(120deg,#A27A38,#F3DFA2 45%,#C69F5B 70%,#FBE8AE);-webkit-background-clip:text;background-clip:text;color:transparent}
+footer .word .dm{background:linear-gradient(120deg,#8a8a8a,#fff 45%,#c4c3c2 70%,#f2f2f2);-webkit-background-clip:text;background-clip:text;color:transparent}
+footer .word em{background:linear-gradient(120deg,#A27A38,#F3DFA2 45%,#C69F5B 70%,#FBE8AE);-webkit-background-clip:text;background-clip:text;color:transparent}
+.brand .dk{color:var(--gold)}
+.brand .dm{color:var(--silver)}
+@media (max-width:520px){.brand{font-size:.84rem;letter-spacing:.02em;gap:8px}}
+@media (max-width:370px){.brand .lux{display:none}}
 </style>
 </head>
 <body>
@@ -296,7 +319,7 @@ footer .credits a{text-decoration:underline}
 
 <a class="btn float-cta" id="floatCta" href="#reservar"><span data-i18n="cta">Pedir presupuesto</span></a>
 <header class="nav" id="nav">
-  <a class="brand" href="/es/" aria-label="Dark Diamond Luxury"><img src="/assets/logo.png" alt="" width="40" height="40">Dark Diamond <span class="lux">Luxury</span></a>
+  <a class="brand" href="/es/" aria-label="Dark Diamond Luxury"><img src="/assets/logo.png" alt="" width="40" height="40"><span class="dk">Dark</span> <span class="dm">Diamond</span> <span class="lux">Luxury</span></a>
   <nav class="links" aria-label="Principal"><a href="#destinos">Destinos</a><a href="#servicos">Servicios</a><a href="#frota">Flota</a><a href="#parceiros">Partners</a></nav>
   <nav class="lang" aria-label="Idioma"><a href="/pt/" hreflang="pt" lang="pt">PT</a><a href="/" hreflang="en" lang="en">EN</a><a href="/es/" hreflang="es" lang="es" aria-current="true">ES</a></nav>
   <a class="btn" href="#reservar">Reservar</a>
@@ -434,7 +457,7 @@ footer .credits a{text-decoration:underline}
 
 <footer>
   <div class="foot-top">
-    <div class="word"><img src="/assets/logo.png" alt="" width="200" height="200">Dark Diamond<br><em>Luxury</em></div>
+    <div class="word"><img src="/assets/logo.png" alt="" width="200" height="200"><span class="dk">Dark</span> <span class="dm">Diamond</span><br><em>Luxury</em></div>
     <button class="btn totop" type="button" id="toTop"><span>Volver arriba</span><span aria-hidden="true">↑</span></button>
   </div>
   <div class="cols">
