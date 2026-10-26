@@ -128,6 +128,7 @@ button,input,select,textarea{font:inherit;color:inherit}
 .svc h3{font-family:var(--display);font-weight:300;font-size:clamp(2rem,1.2rem + 2.2vw,3.5rem);letter-spacing:-.025em;line-height:1.02;transition:color .25s}
 @media (hover:hover){.svc li:hover h3{color:var(--gold)}}
 .svc p{color:var(--muted);max-width:46ch}
+.svc .more{justify-self:start;color:var(--gold);text-underline-offset:.2em;font-size:.96rem}
 .svc .mini{padding:12px 22px;font-size:.96rem;white-space:nowrap}
 @media (max-width:560px){.svc li{grid-template-columns:1fr;row-gap:14px}.svc .mini{justify-self:start}}
 @media (max-width:860px){.services .wrap{grid-template-columns:1fr}.services h2{position:static}}
@@ -260,11 +261,12 @@ footer .credits a{text-decoration:underline}
     <div class="wrap">
       <h2 class="display" id="svc-h" data-i18n="svch">Ao seu ritmo.</h2>
       <ul class="svc">
-        <li><div><h3 data-i18n="v1h">Aeroporto</h3><p data-i18n="v1p">…</p></div><a class="btn mini" href="#reservar" data-svc="0" data-i18n="cta_short">Reservar</a></li>
+        <li><div><h3 data-i18n="v1h">Aeroporto</h3><p data-i18n="v1p">…</p><a class="more" href="{{AIRPORT_URL}}" data-i18n="more">Saber mais</a></div><a class="btn mini" href="#reservar" data-svc="0" data-i18n="cta_short">Reservar</a></li>
         <li><div><h3 data-i18n="v2h">À disposição</h3><p data-i18n="v2p">…</p></div><a class="btn mini" href="#reservar" data-svc="1" data-i18n="cta_short">Reservar</a></li>
         <li><div><h3 data-i18n="v3h">Tours privados</h3><p data-i18n="v3p">…</p></div><a class="btn mini" href="#reservar" data-svc="2" data-i18n="cta_short">Reservar</a></li>
         <li><div><h3 data-i18n="v4h">Eventos e casamentos</h3><p data-i18n="v4p">…</p></div><a class="btn mini" href="#reservar" data-svc="3" data-i18n="cta_short">Reservar</a></li>
         <li><div><h3 data-i18n="v5h">Longa distância</h3><p data-i18n="v5p">…</p></div><a class="btn mini" href="#reservar" data-svc="4" data-i18n="cta_short">Reservar</a></li>
+        <li><div><h3 data-i18n="v6h">Cruzeiros</h3><p data-i18n="v6p">…</p><a class="more" href="{{CRUISE_URL}}" data-i18n="more">Saber mais</a></div><a class="btn mini" href="#reservar" data-svc="5" data-i18n="cta_short">Reservar</a></li>
       </ul>
     </div>
   </section>

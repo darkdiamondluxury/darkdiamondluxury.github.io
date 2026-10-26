@@ -56,6 +56,8 @@ def build_home(lang):
         '{{MSG_JSON}}': json.dumps({'tpl': MSG[lang], 'flight': MSG_FLIGHT[lang], 'notes': MSG_NOTES[lang]}, ensure_ascii=False),
         '{{PLACES_JSON}}': json.dumps([[n, m] for n, m, _ in PLACES], ensure_ascii=False),
         '{{DLINKS}}': dlinks,
+        '{{AIRPORT_URL}}': url('airport', lang),
+        '{{CRUISE_URL}}': url('cruise', lang),
         '{{AG_URL}}': url('agencies', lang),
         '{{WHATSAPP}}': WHATSAPP,
         '{{BK_URL}}': BOOKINGS_URL,
@@ -144,9 +146,11 @@ def build_page(page, lang, d):
             f'<h1 class="display">{d["h1"]}</h1><p class="lead">{d["lead"]}</p>'
             f'{cta_buttons(lang, d.get("ctas", []), ctx) if d.get("ctas") else ""}</div></section>')
     blocks = ''.join(block_html(b, lang, ctx) for b in d.get('blocks', []))
-    links = ''.join(
-        f'<a href="{url(p, lang)}"{" aria-current=" + chr(34) + "page" + chr(34) if p == page else ""}>{lab}</a>'
-        for p, lab in (('airport', l['airport']), ('cruise', l['cruise']), ('agencies', l['agencies'])))
+    t = T[lang]
+    h = url('home', lang)
+    links = (f'<a href="{h}#destinos">{t["nav_dest"]}</a><a href="{h}#servicos">{t["nav_svc"]}</a>'
+             f'<a href="{h}#frota">{t["nav_fleet"]}</a>'
+             f'<a href="{url("agencies", lang)}"{" aria-current=" + chr(34) + "page" + chr(34) if page == "agencies" else ""}>{t["nav_ag"]}</a>')
     ld = org_ld(lang) if page in ('agencies',) else None
     doc = f'''<!doctype html>
 <html lang="{lang}">

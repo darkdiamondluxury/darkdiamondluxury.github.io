@@ -127,9 +127,9 @@ def footer(lang):
   <div class="cols">
     <div><b>{l['contact']}</b>{phones}<a href="mailto:{EMAIL}">{EMAIL}</a>{wa}{ig}
       <p class="cov"><b>{l['coverage']}</b>{COVERAGE[lang]}</p></div>
-    <div><b>{l['services']}</b><a href="{url('airport', lang)}">{l['airport']}</a><a href="{url('cruise', lang)}">{l['cruise']}</a><a href="{url('agencies', lang)}">{l['agencies']}</a>
+    <div><b>{l['services']}</b><a href="{url('airport', lang)}">{l['airport']}</a><a href="{url('cruise', lang)}">{l['cruise']}</a>
       <b class="sub">{l['dests']}</b><span class="inline">{dests}</span></div>
-    <div><b>{l['info']}</b><a href="{url('legal', lang)}">{l['legal']}</a><a href="{url('privacy', lang)}">{l['privacy']}</a><a href="https://www.livroreclamacoes.pt" rel="noopener">{l['complaints']}</a><a href="{url('support', lang)}">{l['support']}</a></div>
+    <div><b>{l['info']}</b><a href="{url('agencies', lang)}">{l['agencies']}</a><a href="{url('legal', lang)}">{l['legal']}</a><a href="{url('privacy', lang)}">{l['privacy']}</a><a href="https://www.livroreclamacoes.pt" rel="noopener">{l['complaints']}</a><a href="{url('support', lang)}">{l['support']}</a></div>
   </div>
   <p class="legalline">{BRAND} {l['brand_of']} {LEGAL['name']} · {l['nipc']} {LEGAL['nipc']} · {LEGAL['street']}, {LEGAL['postcode']} {LEGAL['city']} · {l['rnaat']} {LEGAL['rnaat']}</p>
   <p class="credits"><span>{l['credits']}</span>
