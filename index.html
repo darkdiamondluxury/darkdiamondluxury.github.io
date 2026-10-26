@@ -253,7 +253,7 @@ footer .credits a{text-decoration:underline}
   <symbol id="dd" viewBox="0 0 24 24"><path d="M6 3h12l4 6-10 12L2 9z" fill="none" stroke="currentColor" stroke-width="1.6" stroke-linejoin="round"/><path d="M2 9h20M9 3l3 18 3-18" fill="none" stroke="currentColor" stroke-width="1.2" stroke-linejoin="round" opacity=".7"/></symbol>
 </svg>
 
-<svg width="0" height="0" style="position:absolute" aria-hidden="true"><filter id="lightsOff" color-interpolation-filters="sRGB"><feColorMatrix type="saturate" values="0.3"/><feComponentTransfer><feFuncR type="table" tableValues="0 .1 .2 .26 .24 .2 .17 .14 .12 .1 .1"/><feFuncG type="table" tableValues="0 .1 .2 .26 .24 .2 .17 .14 .12 .1 .1"/><feFuncB type="table" tableValues="0 .1 .2 .26 .24 .2 .17 .14 .12 .1 .1"/></feComponentTransfer></filter></svg>
+<svg width="0" height="0" style="position:absolute" aria-hidden="true"><filter id="lightsOff" color-interpolation-filters="sRGB"><feColorMatrix type="saturate" values="0.3"/><feComponentTransfer><feFuncR type="table" tableValues="0 .07 .13 .17 .15 .12 .1 .08 .06 .05 .05"/><feFuncG type="table" tableValues="0 .07 .13 .17 .15 .12 .1 .08 .06 .05 .05"/><feFuncB type="table" tableValues="0 .07 .13 .17 .15 .12 .1 .08 .06 .05 .05"/></feComponentTransfer></filter></svg>
 <a class="btn float-cta" id="floatCta" href="#reservar"><span data-i18n="cta">Get a quote</span></a>
 <header class="nav" id="nav">
   <a class="brand" href="/" aria-label="Dark Diamond Luxury"><svg><use href="#dd"/></svg>Dark Diamond <span class="lux">Luxury</span></a>
@@ -574,11 +574,9 @@ if(window.gsap && !reduce){
   // Entrada: a fotografia assenta, o título sobe, o resto chega
   gsap.timeline({defaults:{ease:E}})
     .from('.hero .bg img',{scale:1.14,duration:2.2,ease:'power3.out'},0)
-    // as luzes da carrinha começam apagadas e acendem (com tremeluzir) à medida que as letras aparecem
-    .fromTo('#heroOn',{opacity:0},{keyframes:[
-      {opacity:.55,duration:.08},{opacity:.1,duration:.12},{opacity:.85,duration:.1},{opacity:.35,duration:.1},{opacity:1,duration:.7,ease:'power2.out'}],
-      onStart:()=>document.documentElement.classList.remove('js')},.7)
-    .fromTo('#heroGlow',{opacity:0},{keyframes:[{opacity:.4,duration:.1},{opacity:.05,duration:.12},{opacity:.5,duration:.2},{opacity:.38,duration:.9,ease:'power2.out'}]},.7)
+    // as luzes da carrinha começam apagadas e acendem devagar, em fade, depois de as letras aparecerem
+    .fromTo('#heroOn',{opacity:0},{opacity:1,duration:2.2,ease:'sine.inOut',onStart:()=>document.documentElement.classList.remove('js')},.9)
+    .fromTo('#heroGlow',{opacity:0},{opacity:.34,duration:2.6,ease:'sine.inOut'},1.2)
     .from('.hero h1 .line>span',{yPercent:110,duration:1.2,stagger:.12},.15)
     .from('.hero .sub, .hero .pick',{y:22,opacity:0,duration:.9,stagger:.1},.6);
   gsap.to('.hero .bg img',{yPercent:10,ease:'none',scrollTrigger:{trigger:'.hero',start:'top top',end:'bottom top',scrub:true}});
