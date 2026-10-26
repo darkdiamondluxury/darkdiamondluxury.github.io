@@ -191,9 +191,13 @@ button,input,select,textarea{font:inherit;color:inherit}
 @media (max-width:860px){.vclass .img img{object-position:62% 35%}.vclass::after{background:linear-gradient(0deg,rgba(7,9,8,.95) 0%,rgba(7,9,8,.74) 46%,rgba(7,9,8,0) 72%)}.vclass .txt{width:100%;padding-top:40svh}}
 
 /* ---------- reserva ---------- */
-.book{position:relative;background:var(--green-2);padding:var(--gap) var(--pad)}
+.book{position:relative;isolation:isolate;background:var(--green-2);padding:var(--gap) var(--pad)}
 .book::before{content:"";position:absolute;left:0;right:0;top:0;height:var(--fd);background:linear-gradient(180deg,var(--green),rgba(23,21,16,0));pointer-events:none}
 .book>*{position:relative}
+.book>.bgimg{position:absolute;inset:0;z-index:-2;-webkit-mask-image:linear-gradient(180deg,transparent 0,#000 var(--fd),#000 calc(100% - var(--fd)),transparent 100%);mask-image:linear-gradient(180deg,transparent 0,#000 var(--fd),#000 calc(100% - var(--fd)),transparent 100%)}
+.book>.bgimg img{width:100%;height:100%;object-fit:cover}
+.book>.bgimg::after{content:"";position:absolute;inset:0;background:linear-gradient(90deg,rgba(10,9,8,.42),rgba(10,9,8,.16))}
+.book h2,.book .lead{text-shadow:0 1px 18px rgba(7,9,8,.55)}
 .book .wrap{display:grid;grid-template-columns:minmax(0,.9fr) minmax(0,1.1fr);gap:clamp(30px,6vw,100px);align-items:start}
 .book h2{font-size:clamp(2.8rem,1rem + 5vw,6rem);max-width:8ch}
 .book .lead{margin-top:20px;max-width:34ch;color:var(--muted)}
@@ -315,12 +319,12 @@ footer .credits a{text-decoration:underline}
     <div class="wrap">
       <h2 class="display" id="svc-h" data-i18n="svch">A su ritmo.</h2>
       <ul class="svc">
-        <li><img src="https://images.unsplash.com/photo-1500835556837-99ac94a94552?auto=format&fit=crop&w=1000&q=70" alt="" loading="lazy" onerror="this.style.display='none'"><div class="in"><h3 data-i18n="v1h">Aeropuerto</h3><p data-i18n="v1p">Le esperamos en llegadas, con su nombre en un cartel, y seguimos su vuelo. También para salidas.</p><div class="act"><a class="btn mini" href="#reservar" data-svc="0" data-i18n="cta_short">Reservar</a><a class="more" href="/es/traslado-aeropuerto-lisboa/" data-i18n="more">Más información</a></div></div></li>
-        <li><img src="https://images.unsplash.com/photo-1646898463399-c3d670138056?auto=format&fit=crop&w=1000&q=70" alt="" loading="lazy" onerror="this.style.display='none'"><div class="in"><h3 data-i18n="v2h">A disposición</h3><p data-i18n="v2p">Un chófer y un coche solo para usted, por horas o por días: reuniones, compras o un día sin mirar el reloj.</p><div class="act"><a class="btn mini" href="#reservar" data-svc="1" data-i18n="cta_short">Reservar</a></div></div></li>
+        <li><img src="https://images.unsplash.com/photo-1761371717824-4b3cb948ca9a?auto=format&fit=crop&w=1000&q=70" alt="" loading="lazy" onerror="this.style.display='none'"><div class="in"><h3 data-i18n="v1h">Aeropuerto</h3><p data-i18n="v1p">Le esperamos en llegadas, con su nombre en un cartel, y seguimos su vuelo. También para salidas.</p><div class="act"><a class="btn mini" href="#reservar" data-svc="0" data-i18n="cta_short">Reservar</a><a class="more" href="/es/traslado-aeropuerto-lisboa/" data-i18n="more">Más información</a></div></div></li>
+        <li><img src="https://images.unsplash.com/photo-1730800328198-f9efbf9db53f?auto=format&fit=crop&w=1000&q=70" alt="" loading="lazy" onerror="this.style.display='none'"><div class="in"><h3 data-i18n="v2h">A disposición</h3><p data-i18n="v2p">Un chófer y un coche solo para usted, por horas o por días: reuniones, compras o un día sin mirar el reloj.</p><div class="act"><a class="btn mini" href="#reservar" data-svc="1" data-i18n="cta_short">Reservar</a></div></div></li>
         <li><img src="https://images.unsplash.com/photo-1697394494123-c6c1323a14f7?auto=format&fit=crop&w=1000&q=70" alt="" loading="lazy" onerror="this.style.display='none'"><div class="in"><h3 data-i18n="v3h">Tours privados</h3><p data-i18n="v3p">Sintra, Cascais, Fátima, Évora o el Duero, a su ritmo y parando donde quiera.</p><div class="act"><a class="btn mini" href="#reservar" data-svc="2" data-i18n="cta_short">Reservar</a></div></div></li>
-        <li><img src="https://images.unsplash.com/photo-1519226612673-73c0234437ef?auto=format&fit=crop&w=1000&q=70" alt="" loading="lazy" onerror="this.style.display='none'"><div class="in"><h3 data-i18n="v4h">Eventos y bodas</h3><p data-i18n="v4p">Invitados recibidos y llevados a tiempo, con la coordinación a nuestro cargo.</p><div class="act"><a class="btn mini" href="#reservar" data-svc="3" data-i18n="cta_short">Reservar</a></div></div></li>
-        <li><img src="https://images.unsplash.com/photo-1713576561112-b6f42f40b1db?auto=format&fit=crop&w=1000&q=70" alt="" loading="lazy" onerror="this.style.display='none'"><div class="in"><h3 data-i18n="v5h">Larga distancia</h3><p data-i18n="v5p">Oporto, el Algarve, España y Francia, puerta a puerta.</p><div class="act"><a class="btn mini" href="#reservar" data-svc="4" data-i18n="cta_short">Reservar</a></div></div></li>
-        <li><img src="https://images.unsplash.com/photo-1764334321119-22e12fccb6ff?auto=format&fit=crop&w=1000&q=70" alt="" loading="lazy" onerror="this.style.display='none'"><div class="in"><h3 data-i18n="v6h">Cruceros</h3><p data-i18n="v6p">Le recibimos en el muelle y le llevamos al hotel, al aeropuerto o a una excursión, siempre según el horario del barco.</p><div class="act"><a class="btn mini" href="#reservar" data-svc="5" data-i18n="cta_short">Reservar</a><a class="more" href="/es/traslado-terminal-cruceros-lisboa/" data-i18n="more">Más información</a></div></div></li>
+        <li><img src="https://images.unsplash.com/photo-1516536900061-d881b27e8ff8?auto=format&fit=crop&w=1000&q=70" alt="" loading="lazy" onerror="this.style.display='none'"><div class="in"><h3 data-i18n="v4h">Eventos y bodas</h3><p data-i18n="v4p">Invitados recibidos y llevados a tiempo, con la coordinación a nuestro cargo.</p><div class="act"><a class="btn mini" href="#reservar" data-svc="3" data-i18n="cta_short">Reservar</a></div></div></li>
+        <li><img src="https://images.unsplash.com/photo-1724185022490-cf80fbc82888?auto=format&fit=crop&w=1000&q=70" alt="" loading="lazy" onerror="this.style.display='none'"><div class="in"><h3 data-i18n="v5h">Larga distancia</h3><p data-i18n="v5p">Oporto, el Algarve, España y Francia, puerta a puerta.</p><div class="act"><a class="btn mini" href="#reservar" data-svc="4" data-i18n="cta_short">Reservar</a></div></div></li>
+        <li><img src="https://images.unsplash.com/photo-1599640842225-85d111c60e6b?auto=format&fit=crop&w=1000&q=70" alt="" loading="lazy" onerror="this.style.display='none'"><div class="in"><h3 data-i18n="v6h">Cruceros</h3><p data-i18n="v6p">Le recibimos en el muelle y le llevamos al hotel, al aeropuerto o a una excursión, siempre según el horario del barco.</p><div class="act"><a class="btn mini" href="#reservar" data-svc="5" data-i18n="cta_short">Reservar</a><a class="more" href="/es/traslado-terminal-cruceros-lisboa/" data-i18n="more">Más información</a></div></div></li>
       </ul>
     </div>
   </section>
@@ -342,6 +346,7 @@ footer .credits a{text-decoration:underline}
 
   <!-- RESERVA -->
   <section class="book" id="reservar" aria-labelledby="b-h">
+    <div class="bgimg" aria-hidden="true"><img src="https://images.unsplash.com/photo-1768024175212-98eb7cd5ca46?auto=format&fit=crop&w=2000&q=70" alt="" loading="lazy" onerror="this.style.display='none'"></div>
     <div class="wrap">
       <div>
         <h2 class="display" id="b-h" data-i18n="bh">¿Prefiere dar más detalles?</h2>
@@ -421,7 +426,18 @@ footer .credits a{text-decoration:underline}
     <a href="https://unsplash.com/photos/boats-on-douro-river-in-porto-Prb-sjOUBFs">Nick Karvounis</a>,
     <a href="https://unsplash.com/photos/metropolis-building-and-gran-via-madrid-WBGjg0DsO_g">Florian Wehde</a>,
     <a href="https://unsplash.com/photos/plaza-de-espana-architecture-in-seville-a96wj8idE_I">Tânia Mousinho</a>,
-    <a href="https://unsplash.com/photos/many-boats-docked-in-a-marina-with-white-buildings-SmVxCpaziJg">ionut dobre</a>.
+    <a href="https://unsplash.com/photos/many-boats-docked-in-a-marina-with-white-buildings-SmVxCpaziJg">ionut dobre</a>,
+    <a href="https://unsplash.com/photos/a-woman-in-a-white-dress-is-walking-on-the-beach-Boy3Fh5l3WY">Ben Hickingbotham</a>,
+    <a href="https://unsplash.com/photos/gray-and-white-concrete-building-AtfCB5opHoE">Tânia Mousinho</a>,
+    <a href="https://unsplash.com/photos/a-large-rock-arch-over-a-beach-dykJmSGHs_k">Colin + Meg</a>,
+    <a href="https://unsplash.com/photos/c1iZp1LoIpM">Pascal Bernardon</a>,
+    <a href="https://unsplash.com/photos/Ew2NANUmKP4">Viktor Ritsvall</a>,
+    <a href="https://unsplash.com/photos/a-commercial-airplane-flying-through-fluffy-clouds-7gJyHcCStT0">Hieu</a>,
+    <a href="https://unsplash.com/photos/a-man-in-a-suit-standing-next-to-a-black-car--eUrpy0fjXE">Antonio Araujo</a>,
+    <a href="https://unsplash.com/photos/woman-wearing-wedding-dress-smiling-inside-car-hcn12YN0ckM">Marius Muresan</a>,
+    <a href="https://unsplash.com/photos/a-scenic-view-of-a-valley-with-a-river-running-through-it-n0IVV6m5hfI">Thomas Gabernig</a>,
+    <a href="https://unsplash.com/photos/white-cruise-ship-on-sea-during-daytime-xEJoSsDCnR8">Georgy Trofimov</a>,
+    <a href="https://unsplash.com/photos/dark-car-interior-with-starry-headliner-9hD5_2LrU3g">Rana Singh</a>.
     © <span id="yr">2026</span> Dark Diamond Luxury.</p>
 </footer>
 
@@ -441,8 +457,8 @@ const PLACES = [["Baixa · Chiado", "20 min"], ["Cascais", "35 min"], ["Sintra",
 
 let svcPick = 0, dirPick = 0, pickI = 1, destI = 0, lockUntil = 0;
 const U = id => `https://images.unsplash.com/photo-${id}?auto=format&fit=crop&w=2000&q=70`;
-/* uma fotografia por destino (mesma ordem de PLACES); Fátima ainda sem foto confirmada -> usa Sintra */
-const DIMG = ['1585208798174-6cedd86e019a','1587973878097-ef3aabd5eeaa','1697394494123-c6c1323a14f7','1636834843464-2133f4226f7c','1644183521042-377da9d4aea3','1697394494123-c6c1323a14f7','1764077299795-ff605e3f7301','1555881400-74d7acaacd8b','1539037116277-4db20889f2d4','1661442196003-f2f6eb54bd94','1770929356134-426035b1a404'].map(U);
+/* uma fotografia por destino (mesma ordem de PLACES);  */
+const DIMG = ['1585208798174-6cedd86e019a','1587973878097-ef3aabd5eeaa','1697394494123-c6c1323a14f7','1634823551484-31c48df89fbf','1644183521042-377da9d4aea3','1567340299524-84ea1e848d26','1651237110403-2c6b2cc2a116','1768565540385-5195e32bb44b','1539037116277-4db20889f2d4','1661442196003-f2f6eb54bd94','1657469291895-754b9c4328fd'].map(U);
 function setDest(i,center){
   destI=i; const t=T[lang], tr=document.getElementById('track'), m=PLACES[i][1];
   tr.querySelectorAll('.place').forEach((b,k)=>b.setAttribute('aria-current',k===i));
