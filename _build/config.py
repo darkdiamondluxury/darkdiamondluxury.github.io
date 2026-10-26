@@ -27,9 +27,9 @@ BOOKINGS_KEY = 'eyJhbGciOiJIUzI1NiIsInR5cCI6IkpXVCJ9.eyJpc3MiOiJzdXBhYmFzZSIsInJ
 WHATSAPP_ALL = ['351932666254', '351960033622']   # ambos têm WhatsApp
 INSTAGRAM = ''         # ex.: 'https://instagram.com/darkdiamondluxury'
 
-FLEET = {'pt': 'Mercedes-Benz Classe S, Classe E 220, Classe V 250, Sprinter e minibus de 19 lugares',
-         'en': 'Mercedes-Benz S-Class, E 220, V 250, Sprinter and a 19-seat minibus',
-         'es': 'Mercedes-Benz Clase S, Clase E 220, Clase V 250, Sprinter y minibús de 19 plazas'}
+FLEET = {'pt': 'Mercedes-Benz Classe S, Classe E, Classe V, Sprinter e minibus de 19 lugares',
+         'en': 'Mercedes-Benz S-Class, E-Class, V-Class, Sprinter and a 19-seat minibus',
+         'es': 'Mercedes-Benz Clase S, Clase E, Clase V, Sprinter y minibús de 19 plazas'}
 LANGS_SPOKEN = {'pt': 'Português, inglês, espanhol e francês', 'en': 'Portuguese, English, Spanish and French', 'es': 'Portugués, inglés, español y francés'}
 
 COVERAGE = {'pt': 'Portugal, Espanha e França', 'en': 'Portugal, Spain and France', 'es': 'Portugal, España y Francia'}
