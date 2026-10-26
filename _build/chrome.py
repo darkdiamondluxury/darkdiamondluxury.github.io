@@ -121,7 +121,7 @@ def footer(lang):
     dests = ' '.join(f'<a href="{url(d, lang)}">{dest_name(d, lang)}</a>' for d in DESTS)  # espaços = pontos onde a linha pode quebrar
     return f'''<footer>
   <div class="foot-top">
-    <div class="word">Dark Diamond<br><em>Luxury</em></div>
+    <div class="word"><svg aria-hidden="true"><use href="#dd"/></svg>Dark Diamond<br><em>Luxury</em></div>
     <button class="btn totop" type="button" id="toTop"><span>{l['top']}</span><span aria-hidden="true">↑</span></button>
   </div>
   <div class="cols">

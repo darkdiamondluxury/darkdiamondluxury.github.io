@@ -124,7 +124,7 @@ button,input,select,textarea{font:inherit;color:inherit}
 @media (max-width:860px){.stmt::after{background:linear-gradient(180deg,rgba(7,9,8,.2),rgba(7,9,8,.45))}}
 
 /* ---------- destinos ---------- */
-.dest{position:relative;isolation:isolate;background:var(--green);padding:var(--gap) 0 clamp(60px,10vh,110px)}
+.dest{position:relative;isolation:isolate;background:var(--green);padding:var(--gap) 0 clamp(60px,10vh,110px);min-height:min(100svh,980px);display:flex;flex-direction:column;justify-content:center}
 .dest .bgimg{position:absolute;inset:0;z-index:-2;-webkit-mask-image:linear-gradient(180deg,transparent 0,#000 var(--fd),#000 calc(100% - var(--fd)),transparent 100%);mask-image:linear-gradient(180deg,transparent 0,#000 var(--fd),#000 calc(100% - var(--fd)),transparent 100%)}
 .dest .bgimg img{width:100%;height:100%;object-fit:cover}
 .dest::after{content:"";position:absolute;inset:0;z-index:-1;background:rgba(7,9,8,.22)}
@@ -194,8 +194,10 @@ button,input,select,textarea{font:inherit;color:inherit}
 .services::before,.partners::before{content:"";position:absolute;left:0;right:0;top:0;height:var(--fd);z-index:-1;background:linear-gradient(180deg,var(--green),rgba(23,21,16,0));pointer-events:none}
 .services::after,.partners::after{content:"";position:absolute;left:0;right:0;bottom:0;height:var(--fd);z-index:-1;background:linear-gradient(0deg,var(--green),rgba(23,21,16,0));pointer-events:none}
 /* serviços: as fotos ficam, com acabamento liquid glass */
-.svc li{border:1px solid rgba(255,255,255,.55);box-shadow:inset 0 1px 0 rgba(255,255,255,.7),inset 0 -1px 0 rgba(255,255,255,.12),0 18px 40px -20px rgba(60,40,0,.45)}
+.svc li{background:rgba(255,255,255,.14);-webkit-backdrop-filter:blur(14px) saturate(1.4);backdrop-filter:blur(14px) saturate(1.4);border:1px solid rgba(255,255,255,.6);box-shadow:inset 0 1px 0 rgba(255,255,255,.7),inset 0 -1px 0 rgba(255,255,255,.12),0 18px 40px -20px rgba(60,40,0,.45)}
 .svc li::after{background:linear-gradient(160deg,rgba(255,255,255,.22) 0%,rgba(255,255,255,.04) 38%,rgba(255,255,255,0) 55%),linear-gradient(0deg,rgba(7,9,8,.62) 0%,rgba(7,9,8,0) 62%),linear-gradient(90deg,rgba(7,9,8,.5) 0%,rgba(7,9,8,.18) 60%,rgba(7,9,8,0) 100%)}
+/* fotos translúcidas: o dourado atravessa-as, como vidro */
+.svc li img{opacity:.72}
 /* o dourado de parceiros é pequeno: fades mais curtos para ter protagonismo */
 .partners::before,.partners::after{height:calc(var(--fd)*.35)}
 @media (max-width:860px){.services .wrap{grid-template-columns:1fr}.services h2{position:static}}
@@ -244,8 +246,8 @@ button,input,select,textarea{font:inherit;color:inherit}
 @media (max-width:860px){.book .wrap{grid-template-columns:1fr}.form{grid-template-columns:1fr}}
 
 /* ---------- parceiros ---------- */
-.partners{position:relative;isolation:isolate;background:linear-gradient(120deg,#B08A33 0%,#E9D58A 32%,#C9A24D 58%,#F0DFA0 82%,#B98F3A 100%);color:var(--black);padding:var(--gap) var(--pad)}
-.partners .wrap{max-width:1380px;margin:0 auto;display:grid;grid-template-columns:minmax(0,1.25fr) minmax(0,1fr);gap:clamp(24px,5vw,90px);align-items:end}
+.partners{min-height:min(100svh,900px);display:flex;align-items:center;position:relative;isolation:isolate;background:linear-gradient(120deg,#B08A33 0%,#E9D58A 32%,#C9A24D 58%,#F0DFA0 82%,#B98F3A 100%);color:var(--black);padding:var(--gap) var(--pad)}
+.partners .wrap{width:100%;max-width:1380px;margin:0 auto;display:grid;grid-template-columns:minmax(0,1.25fr) minmax(0,1fr);gap:clamp(24px,5vw,90px);align-items:end}
 .partners h2{font-size:clamp(2.8rem,1rem + 5.4vw,6.2rem);max-width:12ch}
 .partners p{max-width:40ch;font-size:clamp(1.1rem,1rem + .4vw,1.3rem)}
 .partners .btn{margin-top:26px}
@@ -254,6 +256,7 @@ button,input,select,textarea{font:inherit;color:inherit}
 /* ---------- rodapé ---------- */
 footer{background:var(--green);padding:clamp(70px,12vh,130px) var(--pad) 40px;overflow:hidden;position:relative}
 footer .word{font-family:var(--display);font-weight:300;font-size:clamp(2.8rem,9.6vw,11rem);line-height:.95;letter-spacing:-.03em;white-space:nowrap;color:var(--ink);pointer-events:none;user-select:none}
+footer .word svg{width:.78em;height:.78em;color:var(--gold);margin-right:.14em;vertical-align:-.03em}
 footer .word em{font-style:normal;color:var(--gold)}
 footer .foot-top{display:grid;grid-template-columns:minmax(0,1fr) auto;align-items:center;gap:clamp(20px,4vw,60px)}
 .totop{position:relative;z-index:2;justify-self:end}
@@ -427,7 +430,7 @@ footer .credits a{text-decoration:underline}
 
 <footer>
   <div class="foot-top">
-    <div class="word">Dark Diamond<br><em>Luxury</em></div>
+    <div class="word"><svg aria-hidden="true"><use href="#dd"/></svg>Dark Diamond<br><em>Luxury</em></div>
     <button class="btn totop" type="button" id="toTop"><span>Back to top</span><span aria-hidden="true">↑</span></button>
   </div>
   <div class="cols">
