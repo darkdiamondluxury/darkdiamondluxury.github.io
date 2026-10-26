@@ -51,7 +51,6 @@ def head(page, lang, title, desc, extra_ld=None):
 <meta name="theme-color" content="#171510">
 <link rel="canonical" href="{SITE}{url(page, lang)}">
 {alts}
-<link rel="icon" href="/assets/favicon.svg" type="image/svg+xml">
 <link rel="icon" href="/assets/favicon-32.png" sizes="32x32" type="image/png">
 <link rel="apple-touch-icon" href="/assets/apple-touch-icon.png">
 <meta property="og:type" content="website">
@@ -94,7 +93,7 @@ def lang_switch(page, lang):
 def nav(page, lang, links_html, cta_href):
     l = L[lang]
     return f'''<header class="nav" id="nav">
-  <a class="brand" href="{url('home', lang)}" aria-label="{BRAND}"><svg><use href="#dd"/></svg>Dark Diamond <span class="lux">Luxury</span></a>
+  <a class="brand" href="{url('home', lang)}" aria-label="{BRAND}"><img src="/assets/logo.png" alt="" width="40" height="40">Dark Diamond <span class="lux">Luxury</span></a>
   <nav class="links" aria-label="{l['nav_label']}">{links_html}</nav>
   {lang_switch(page, lang)}
   <a class="btn" href="{cta_href}">{l['book']}</a>
@@ -121,7 +120,7 @@ def footer(lang):
     dests = ' '.join(f'<a href="{url(d, lang)}">{dest_name(d, lang)}</a>' for d in DESTS)  # espaços = pontos onde a linha pode quebrar
     return f'''<footer>
   <div class="foot-top">
-    <div class="word"><svg aria-hidden="true"><use href="#dd"/></svg>Dark Diamond<br><em>Luxury</em></div>
+    <div class="word"><img src="/assets/logo.png" alt="" width="200" height="200">Dark Diamond<br><em>Luxury</em></div>
     <button class="btn totop" type="button" id="toTop"><span>{l['top']}</span><span aria-hidden="true">↑</span></button>
   </div>
   <div class="cols">

@@ -8,7 +8,6 @@
 <meta name="theme-color" content="#171510">
 <link rel="canonical" href="https://darkdiamondluxury.github.io/">
 <link rel="alternate" hreflang="en" href="https://darkdiamondluxury.github.io/"><link rel="alternate" hreflang="pt" href="https://darkdiamondluxury.github.io/pt/"><link rel="alternate" hreflang="es" href="https://darkdiamondluxury.github.io/es/"><link rel="alternate" hreflang="x-default" href="https://darkdiamondluxury.github.io/">
-<link rel="icon" href="/assets/favicon.svg" type="image/svg+xml">
 <link rel="icon" href="/assets/favicon-32.png" sizes="32x32" type="image/png">
 <link rel="apple-touch-icon" href="/assets/apple-touch-icon.png">
 <meta property="og:type" content="website">
@@ -194,10 +193,10 @@ button,input,select,textarea{font:inherit;color:inherit}
 .services::before,.partners::before{content:"";position:absolute;left:0;right:0;top:0;height:var(--fd);z-index:-1;background:linear-gradient(180deg,var(--green),rgba(23,21,16,0));pointer-events:none}
 .services::after,.partners::after{content:"";position:absolute;left:0;right:0;bottom:0;height:var(--fd);z-index:-1;background:linear-gradient(0deg,var(--green),rgba(23,21,16,0));pointer-events:none}
 /* serviços: as fotos ficam, com acabamento liquid glass */
-.svc li{background:rgba(255,255,255,.14);-webkit-backdrop-filter:blur(14px) saturate(1.4);backdrop-filter:blur(14px) saturate(1.4);border:1px solid rgba(255,255,255,.6);box-shadow:inset 0 1px 0 rgba(255,255,255,.7),inset 0 -1px 0 rgba(255,255,255,.12),0 18px 40px -20px rgba(60,40,0,.45)}
-.svc li::after{background:linear-gradient(160deg,rgba(255,255,255,.22) 0%,rgba(255,255,255,.04) 38%,rgba(255,255,255,0) 55%),linear-gradient(0deg,rgba(7,9,8,.62) 0%,rgba(7,9,8,0) 62%),linear-gradient(90deg,rgba(7,9,8,.5) 0%,rgba(7,9,8,.18) 60%,rgba(7,9,8,0) 100%)}
+.svc li{background:rgba(255,255,255,.26);-webkit-backdrop-filter:blur(14px) saturate(1.4);backdrop-filter:blur(14px) saturate(1.4);border:1.5px solid rgba(255,255,255,.75);box-shadow:inset 0 1px 0 rgba(255,255,255,.7),inset 0 -1px 0 rgba(255,255,255,.12),0 18px 40px -20px rgba(60,40,0,.45)}
+.svc li::after{background:linear-gradient(155deg,rgba(255,255,255,.4) 0%,rgba(255,255,255,.12) 30%,rgba(255,255,255,0) 52%),linear-gradient(0deg,rgba(7,9,8,.62) 0%,rgba(7,9,8,0) 62%),linear-gradient(90deg,rgba(7,9,8,.5) 0%,rgba(7,9,8,.18) 60%,rgba(7,9,8,0) 100%)}
 /* fotos translúcidas: o dourado atravessa-as, como vidro */
-.svc li img{opacity:.72}
+.svc li img{opacity:.6}
 /* o dourado de parceiros é pequeno: fades mais curtos para ter protagonismo */
 @media (max-width:860px){.services .wrap{grid-template-columns:1fr}.services h2{position:static}}
 @media (max-width:560px){.svc .in{grid-template-columns:1fr;grid-template-areas:"h" "p" "a"}.svc .act{flex-direction:row;align-items:center;gap:10px 20px;margin-top:8px}.svc li{min-height:250px}}
@@ -222,7 +221,7 @@ button,input,select,textarea{font:inherit;color:inherit}
 .services::before,.partners::before{content:"";position:absolute;left:0;right:0;top:0;height:var(--fd);z-index:-1;background:linear-gradient(180deg,var(--green),rgba(23,21,16,0));pointer-events:none}
 .services::after,.partners::after{content:"";position:absolute;left:0;right:0;bottom:0;height:var(--fd);z-index:-1;background:linear-gradient(0deg,var(--green),rgba(23,21,16,0));pointer-events:none}
 
-.partners::before,.partners::after{height:clamp(60px,10vh,110px)}
+.partners::before,.partners::after{height:clamp(40px,6vh,64px)}
 
 /* ---------- reserva ---------- */
 .book{position:relative;isolation:isolate;background:var(--green);padding:var(--gap) var(--pad)}
@@ -258,6 +257,10 @@ button,input,select,textarea{font:inherit;color:inherit}
 footer{background:var(--green);padding:clamp(70px,12vh,130px) var(--pad) 40px;overflow:hidden;position:relative}
 footer .word{font-family:var(--display);font-weight:300;font-size:clamp(2.8rem,9.6vw,11rem);line-height:.95;letter-spacing:-.03em;white-space:nowrap;color:var(--ink);pointer-events:none;user-select:none}
 footer .word svg{width:.78em;height:.78em;color:var(--gold);margin-right:.14em;vertical-align:-.03em}
+.brand img{width:40px;height:40px;border-radius:50%}
+@media (max-width:520px){.brand img{width:34px;height:34px}}
+footer .word img{width:1.9em;height:1.9em;border-radius:50%;float:left;margin:.02em .22em 0 0;shape-outside:circle()}
+@media (max-width:860px){footer .word img{width:1.9em;height:1.9em}}
 footer .word em{font-style:normal;color:var(--gold)}
 footer .foot-top{display:grid;grid-template-columns:minmax(0,1fr) auto;align-items:center;gap:clamp(20px,4vw,60px)}
 .totop{position:relative;z-index:2;justify-self:end}
@@ -293,7 +296,7 @@ footer .credits a{text-decoration:underline}
 
 <a class="btn float-cta" id="floatCta" href="#reservar"><span data-i18n="cta">Get a quote</span></a>
 <header class="nav" id="nav">
-  <a class="brand" href="/" aria-label="Dark Diamond Luxury"><svg><use href="#dd"/></svg>Dark Diamond <span class="lux">Luxury</span></a>
+  <a class="brand" href="/" aria-label="Dark Diamond Luxury"><img src="/assets/logo.png" alt="" width="40" height="40">Dark Diamond <span class="lux">Luxury</span></a>
   <nav class="links" aria-label="Main"><a href="#destinos">Destinations</a><a href="#servicos">Services</a><a href="#frota">Fleet</a><a href="#parceiros">Partners</a></nav>
   <nav class="lang" aria-label="Language"><a href="/pt/" hreflang="pt" lang="pt">PT</a><a href="/" hreflang="en" lang="en" aria-current="true">EN</a><a href="/es/" hreflang="es" lang="es">ES</a></nav>
   <a class="btn" href="#reservar">Book</a>
@@ -431,7 +434,7 @@ footer .credits a{text-decoration:underline}
 
 <footer>
   <div class="foot-top">
-    <div class="word"><svg aria-hidden="true"><use href="#dd"/></svg>Dark Diamond<br><em>Luxury</em></div>
+    <div class="word"><img src="/assets/logo.png" alt="" width="200" height="200">Dark Diamond<br><em>Luxury</em></div>
     <button class="btn totop" type="button" id="toTop"><span>Back to top</span><span aria-hidden="true">↑</span></button>
   </div>
   <div class="cols">

@@ -135,3 +135,8 @@ footer .credits a{text-decoration:underline}
 @media (max-width:860px){footer .foot-top{grid-template-columns:1fr}.totop{justify-self:start}footer .cols{grid-template-columns:1fr}}
 
 footer .word svg{width:.78em;height:.78em;color:var(--gold);margin-right:.14em;vertical-align:-.03em}
+
+.brand img{width:40px;height:40px;border-radius:50%}
+@media (max-width:520px){.brand img{width:34px;height:34px}}
+footer .word img{width:1.9em;height:1.9em;border-radius:50%;float:left;margin:.02em .22em 0 0;shape-outside:circle()}
+@media (max-width:860px){footer .word img{width:1.9em;height:1.9em}}
