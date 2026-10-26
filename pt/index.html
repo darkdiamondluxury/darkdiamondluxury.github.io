@@ -199,7 +199,6 @@ button,input,select,textarea{font:inherit;color:inherit}
 /* fotos translúcidas: o dourado atravessa-as, como vidro */
 .svc li img{opacity:.72}
 /* o dourado de parceiros é pequeno: fades mais curtos para ter protagonismo */
-.partners::before,.partners::after{height:calc(var(--fd)*.35)}
 @media (max-width:860px){.services .wrap{grid-template-columns:1fr}.services h2{position:static}}
 @media (max-width:560px){.svc .in{grid-template-columns:1fr;grid-template-areas:"h" "p" "a"}.svc .act{flex-direction:row;align-items:center;gap:10px 20px;margin-top:8px}.svc li{min-height:250px}}
 
@@ -222,6 +221,8 @@ button,input,select,textarea{font:inherit;color:inherit}
 /* fades entre ecrãs: o dourado dissolve-se no preto quente */
 .services::before,.partners::before{content:"";position:absolute;left:0;right:0;top:0;height:var(--fd);z-index:-1;background:linear-gradient(180deg,var(--green),rgba(23,21,16,0));pointer-events:none}
 .services::after,.partners::after{content:"";position:absolute;left:0;right:0;bottom:0;height:var(--fd);z-index:-1;background:linear-gradient(0deg,var(--green),rgba(23,21,16,0));pointer-events:none}
+
+.partners::before,.partners::after{height:clamp(60px,10vh,110px)}
 
 /* ---------- reserva ---------- */
 .book{position:relative;isolation:isolate;background:var(--green);padding:var(--gap) var(--pad)}
