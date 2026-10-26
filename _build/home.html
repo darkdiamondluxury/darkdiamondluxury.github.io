@@ -19,7 +19,7 @@
   --ease-out:cubic-bezier(.23,1,.32,1);
   --pad:clamp(20px,4vw,56px);
   --gap:clamp(90px,16vh,190px);
-  --fd:clamp(90px,18vh,200px);
+  --fd:clamp(140px,30vh,340px);
   color-scheme:dark;
 }
 *{box-sizing:border-box;margin:0}
@@ -136,7 +136,7 @@ button,input,select,textarea{font:inherit;color:inherit}
 .dest .note{padding:12px var(--pad) 0;font-size:.92rem;color:var(--muted)}
 
 /* ---------- serviços ---------- */
-.services{background:linear-gradient(120deg,#B08A33 0%,#E9D58A 32%,#C9A24D 58%,#F0DFA0 82%,#B98F3A 100%);color:var(--black);padding:var(--gap) var(--pad)}
+.services{position:relative;isolation:isolate;background:linear-gradient(120deg,#B08A33 0%,#E9D58A 32%,#C9A24D 58%,#F0DFA0 82%,#B98F3A 100%);color:var(--black);padding:var(--gap) var(--pad)}
 .services .wrap{display:grid;grid-template-columns:minmax(0,.8fr) minmax(0,1.2fr);gap:clamp(30px,6vw,100px)}
 .services h2{font-size:clamp(2.8rem,1rem + 5.2vw,6rem);max-width:8ch;position:sticky;top:120px;align-self:start}
 .svc{list-style:none;padding:0;display:grid;grid-auto-rows:1fr;gap:clamp(10px,1.2vw,14px)}
@@ -170,6 +170,17 @@ button,input,select,textarea{font:inherit;color:inherit}
 .vclass .btn{margin-top:34px;align-self:flex-start}
 @media (max-width:860px){.vclass .img img{object-position:62% 35%}.vclass::after{background:linear-gradient(0deg,rgba(7,9,8,.95) 0%,rgba(7,9,8,.74) 46%,rgba(7,9,8,0) 72%)}.vclass .txt{width:100%;padding-top:40svh}}
 
+/* fades entre ecrãs: o dourado dissolve-se no preto quente */
+.services::before,.partners::before{content:"";position:absolute;left:0;right:0;top:0;height:var(--fd);z-index:-1;background:linear-gradient(180deg,var(--green),rgba(23,21,16,0));pointer-events:none}
+.services::after,.partners::after{content:"";position:absolute;left:0;right:0;bottom:0;height:var(--fd);z-index:-1;background:linear-gradient(0deg,var(--green),rgba(23,21,16,0));pointer-events:none}
+/* serviços em liquid glass (teste) */
+.svc li{background:rgba(255,255,255,.2);border:1px solid rgba(255,255,255,.55);-webkit-backdrop-filter:blur(14px) saturate(1.4);backdrop-filter:blur(14px) saturate(1.4);box-shadow:inset 0 1px 0 rgba(255,255,255,.7),inset 0 -1px 0 rgba(255,255,255,.12),0 18px 40px -20px rgba(60,40,0,.45)}
+.svc li img,.svc li::after{display:none}
+.svc h3,.svc p{color:var(--black);text-shadow:none}
+.svc .more{color:var(--black)}
+.svc .mini{background:var(--black);color:var(--gold-hi)}
+@media (hover:hover){.svc li:hover h3{color:var(--black)}}
+
 /* ---------- reserva ---------- */
 .book{position:relative;isolation:isolate;background:var(--green);padding:var(--gap) var(--pad)}
 .book::before{content:"";position:absolute;left:0;right:0;top:0;height:var(--fd);background:linear-gradient(180deg,var(--green),rgba(23,21,16,0));pointer-events:none}
@@ -193,7 +204,7 @@ button,input,select,textarea{font:inherit;color:inherit}
 @media (max-width:860px){.book .wrap{grid-template-columns:1fr}.form{grid-template-columns:1fr}}
 
 /* ---------- parceiros ---------- */
-.partners{background:linear-gradient(120deg,#B08A33 0%,#E9D58A 32%,#C9A24D 58%,#F0DFA0 82%,#B98F3A 100%);color:var(--black);padding:var(--gap) var(--pad)}
+.partners{position:relative;isolation:isolate;background:linear-gradient(120deg,#B08A33 0%,#E9D58A 32%,#C9A24D 58%,#F0DFA0 82%,#B98F3A 100%);color:var(--black);padding:var(--gap) var(--pad)}
 .partners .wrap{max-width:1380px;margin:0 auto;display:grid;grid-template-columns:minmax(0,1.25fr) minmax(0,1fr);gap:clamp(24px,5vw,90px);align-items:end}
 .partners h2{font-size:clamp(2.8rem,1rem + 5.4vw,6.2rem);max-width:12ch}
 .partners p{max-width:40ch;font-size:clamp(1.1rem,1rem + .4vw,1.3rem)}
