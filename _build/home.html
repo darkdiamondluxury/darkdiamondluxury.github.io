@@ -1,7 +1,6 @@
 <!doctype html>
 <html lang="{{LANG}}">
 <head>
-<script>document.documentElement.classList.add('js');setTimeout(function(){document.documentElement.classList.remove('js')},5000)</script>
 {{HEAD}}
 <link rel="preload" href="/assets/jost-latin-300-normal.woff2" as="font" type="font/woff2" crossorigin>
 <style>
@@ -60,10 +59,6 @@ button,input,select,textarea{font:inherit;color:inherit}
 /* ---------- hero ---------- */
 .hero{position:relative;min-height:100svh;display:flex;align-items:flex-end;padding:130px var(--pad) clamp(36px,6vh,72px);overflow:hidden;isolation:isolate}
 .hero{background:var(--green)}
-#heroImg{filter:url(#lightsOff)}
-#heroOn,#heroGlow{position:absolute;inset:0;width:100%;height:100%;object-fit:cover;object-position:60% 50%}
-#heroGlow{opacity:0;mix-blend-mode:screen;filter:contrast(2.2) brightness(.85) blur(22px)}
-.js #heroOn{opacity:0}
 .hero .bg{position:absolute;inset:0;z-index:-2;background:var(--green-2);-webkit-mask-image:linear-gradient(180deg,#000 0,#000 calc(100% - var(--fd)),transparent 100%);mask-image:linear-gradient(180deg,#000 0,#000 calc(100% - var(--fd)),transparent 100%)}
 .hero .bg img{width:100%;height:100%;object-fit:cover;object-position:60% 50%}
 .hero::after{content:"";position:absolute;inset:0;z-index:-1;background:linear-gradient(180deg,rgba(7,9,8,.38) 0%,rgba(7,9,8,.08) 35%,rgba(7,9,8,.32) 100%)}
@@ -233,14 +228,13 @@ footer .credits a{text-decoration:underline}
   <symbol id="dd" viewBox="0 0 24 24"><path d="M6 3h12l4 6-10 12L2 9z" fill="none" stroke="currentColor" stroke-width="1.6" stroke-linejoin="round"/><path d="M2 9h20M9 3l3 18 3-18" fill="none" stroke="currentColor" stroke-width="1.2" stroke-linejoin="round" opacity=".7"/></symbol>
 </svg>
 
-<svg width="0" height="0" style="position:absolute" aria-hidden="true"><filter id="lightsOff" color-interpolation-filters="sRGB"><feColorMatrix type="saturate" values="0.3"/><feComponentTransfer><feFuncR type="table" tableValues="0 .07 .13 .17 .15 .12 .1 .08 .06 .05 .05"/><feFuncG type="table" tableValues="0 .07 .13 .17 .15 .12 .1 .08 .06 .05 .05"/><feFuncB type="table" tableValues="0 .07 .13 .17 .15 .12 .1 .08 .06 .05 .05"/></feComponentTransfer></filter></svg>
 <a class="btn float-cta" id="floatCta" href="#reservar"><span data-i18n="cta">Pedir orçamento</span></a>
 {{NAV}}
 
 <main id="top">
   <!-- HERO -->
   <section class="hero" aria-labelledby="h1">
-    <div class="bg"><img id="heroImg" onerror="this.style.display='none'" src="https://images.unsplash.com/photo-1765461734605-34657fa04db2?auto=format&fit=crop&w=2200&q=70" alt="" fetchpriority="high"><img id="heroOn" src="https://images.unsplash.com/photo-1765461734605-34657fa04db2?auto=format&fit=crop&w=2200&q=70" alt="" aria-hidden="true"><img id="heroGlow" src="https://images.unsplash.com/photo-1765461734605-34657fa04db2?auto=format&fit=crop&w=2200&q=70" alt="" aria-hidden="true"></div>
+    <div class="bg"><img id="heroImg" onerror="this.style.display='none'" src="https://images.unsplash.com/photo-1765461734605-34657fa04db2?auto=format&fit=crop&w=2200&q=70" alt="" fetchpriority="high"></div>
     <div class="hero-in">
       <h1 class="display" id="h1"><span class="line"><span data-i18n="h1a">O seu motorista,</span></span><span class="line"><span data-i18n="h1b">à sua medida.</span></span></h1>
       <p class="sub" data-i18n="sub">Transfers privados e motorista em Lisboa, Portugal, Espanha e França.</p>
@@ -515,7 +509,6 @@ addEventListener('scroll',()=>nav.classList.toggle('solid', scrollY>innerHeight*
 
 /* ---------- Movimento ---------- */
 const reduce = matchMedia('(prefers-reduced-motion: reduce)').matches;
-if(!(window.gsap && !reduce)) document.documentElement.classList.remove('js');
 if(window.gsap && !reduce){
   gsap.registerPlugin(ScrollTrigger);
   ScrollTrigger.config({ignoreMobileResize:true});
@@ -524,9 +517,8 @@ if(window.gsap && !reduce){
   // Entrada: a fotografia assenta, o título sobe, o resto chega
   gsap.timeline({defaults:{ease:E}})
     .from('.hero .bg img',{scale:1.14,duration:2.2,ease:'power3.out'},0)
-    // as luzes da carrinha começam apagadas e acendem devagar, em fade, depois de as letras aparecerem
-    .fromTo('#heroOn',{opacity:0},{opacity:1,duration:2.2,ease:'sine.inOut',onStart:()=>document.documentElement.classList.remove('js')},.9)
-    .fromTo('#heroGlow',{opacity:0},{opacity:.34,duration:2.6,ease:'sine.inOut'},1.2)
+    // a carrinha surge em fade, ao mesmo ritmo que as letras
+    .from('.hero .bg',{opacity:0,duration:2.4,ease:'sine.inOut'},.1)
     .from('.hero h1 .line>span',{yPercent:110,duration:1.2,stagger:.12},.15)
     .from('.hero .sub, .hero .pick',{y:22,opacity:0,duration:.9,stagger:.1},.6);
   gsap.to('.hero .bg img',{yPercent:10,ease:'none',scrollTrigger:{trigger:'.hero',start:'top top',end:'bottom top',scrub:true}});
