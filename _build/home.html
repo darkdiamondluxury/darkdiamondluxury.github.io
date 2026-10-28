@@ -315,6 +315,7 @@ footer{padding-bottom:96px}
 /* alvos de toque: pelo menos 44 px (recomendação para ecrãs táteis) */
 .chips button,.qhint,.dlinks a{min-height:44px}
 .chips button{display:inline-flex;align-items:center}
+.chips button.more{background:none;color:var(--gold);box-shadow:inset 0 0 0 1.5px rgba(201,162,94,.6)}
 </style>
 </head>
 <body>
@@ -426,7 +427,7 @@ footer{padding-bottom:96px}
         <div><label for="fDate" data-i18n="l_date">Data</label><input id="fDate" type="text" inputmode="numeric" autocomplete="off" maxlength="10" data-i18n-ph="date_ph" placeholder="dd/mm/aaaa"></div>
         <div><label for="fTime" data-i18n="l_time">Hora</label><input id="fTime" type="time"></div>
         <div><label for="fPax" data-i18n="l_pax">Passageiros</label><input id="fPax" type="number" min="1" max="20" inputmode="numeric" value="2"></div>
-        <div><label for="fFlight" data-i18n="l_flight">Voo (opcional)</label><input id="fFlight" placeholder="TP1234" autocapitalize="characters"></div>
+        <div id="flightWrap"><label for="fFlight" data-i18n="l_flight">Voo (opcional)</label><input id="fFlight" placeholder="TP1234" autocapitalize="characters"></div>
         <div><label for="fBags" data-i18n="l_bags">Malas de porão</label><input id="fBags" type="number" min="0" max="30" inputmode="numeric" value="2"></div>
         <div><label for="fCabin" data-i18n="l_cabin">Bagagem de mão</label><input id="fCabin" type="number" min="0" max="30" inputmode="numeric" value="1"></div>
         <div class="full"><label for="fName" data-i18n="l_name">Nome</label><input id="fName" autocomplete="name"></div>
@@ -519,9 +520,12 @@ function render(){
   document.getElementById('svcChips').innerHTML = t.svcs.map((s,i)=>`<button type="button" aria-pressed="${i===svcPick}" data-i="${i}">${s}</button>`).join('');
   renderPick();
 }
+let pickAll=false;
 function renderPick(){
   const cur=document.getElementById('qTo').value.trim().toLowerCase();
-  document.getElementById('pickChips').innerHTML = PLACES.map(([n],i)=>`<button type="button" aria-pressed="${n.toLowerCase()===cur}" data-i="${i}">${n}</button>`).join('');
+  const list=pickAll?PLACES:PLACES.slice(0,6);
+  document.getElementById('pickChips').innerHTML = list.map(([n],i)=>`<button type="button" aria-pressed="${n.toLowerCase()===cur}" data-i="${i}">${n}</button>`).join('')
+    + (pickAll?'':`<button type="button" class="more" data-more="1">${T[lang].more_dest} →</button>`);
 }
 function applyDir(user){
   const t=T[lang], f=document.getElementById('fFrom'), to=document.getElementById('fTo');
@@ -539,8 +543,11 @@ document.getElementById('dirChips').addEventListener('click', e=>{
 });
 document.getElementById('svcChips').addEventListener('click', e=>{
   const b=e.target.closest('button'); if(!b) return; svcPick=+b.dataset.i;
-  document.querySelectorAll('#svcChips button').forEach(x=>x.setAttribute('aria-pressed', x===b));
+  document.querySelectorAll('#svcChips button').forEach(x=>x.setAttribute('aria-pressed', x===b)); flightToggle();
 });
+/* voo só interessa nos transfers de aeroporto (serviço 0) */
+function flightToggle(){ document.getElementById('flightWrap').style.display = svcPick===0 ? '' : 'none'; }
+flightToggle();
 document.getElementById('yr').textContent = new Date().getFullYear();
 
 /* escolher um destino (no topo ou no carrossel) leva à reserva já preenchida: aeroporto -> destino */
@@ -548,13 +555,15 @@ function bookPlace(i){
   svcPick=0; dirPick=0;
   document.querySelectorAll('#svcChips button').forEach((x,k)=>x.setAttribute('aria-pressed', k===0));
   document.querySelectorAll('#dirChips button').forEach((x,k)=>x.setAttribute('aria-pressed', k===0));
-  applyDir(true);
+  applyDir(true); flightToggle();
   document.getElementById('fTo').value = PLACES[i][0];
   jump(document.getElementById('reservar'));
   setTimeout(()=>document.getElementById('fDate').focus({preventScroll:true}), 700);
 }
 document.getElementById('pickChips').addEventListener('click', e=>{
-  const b=e.target.closest('button'); if(!b) return; pickI=+b.dataset.i;
+  const b=e.target.closest('button'); if(!b) return;
+  if(b.dataset.more){ pickAll=true; renderPick(); return; }
+  pickI=+b.dataset.i;
   document.getElementById('qTo').value = PLACES[pickI][0]; renderPick();
 });
 document.getElementById('qTo').addEventListener('input', renderPick);
