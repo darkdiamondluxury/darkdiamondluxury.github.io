@@ -509,3 +509,6 @@ SUP = {
         f'<h2>¿Necesita ayuda?</h2><p>Para problemas de acceso, contraseña o funcionamiento de la app, contáctenos:</p><p>Email: <a href="mailto:{EMAIL}">{EMAIL}</a><br>Teléfono: {PH}</p><p>El acceso a la app lo crea la gerencia. Si es chófer y aún no tiene acceso, hable con la oficina.</p>'),
 }
 PAGES['support'] = {l: dict(title=f'{v[0]} · Dark Diamond Luxury', desc=v[1], crumb=v[0], h1=v[0], lead=v[1], blocks=[dict(type='prose', html=v[2])]) for l, v in SUP.items()}
+
+from services_pages import PAGES_NEW  # noqa: E402
+PAGES.update(PAGES_NEW)

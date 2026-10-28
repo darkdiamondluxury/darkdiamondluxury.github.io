@@ -60,6 +60,10 @@ def build_home(lang):
         '{{DLINKS}}': dlinks,
         '{{AIRPORT_URL}}': url('airport', lang),
         '{{CRUISE_URL}}': url('cruise', lang),
+        '{{CHAUFFEUR_URL}}': url('chauffeur', lang),
+        '{{TOURS_URL}}': url('tours', lang),
+        '{{EVENTS_URL}}': url('events', lang),
+        '{{LONG_URL}}': url('longdistance', lang),
         '{{AG_URL}}': url('agencies', lang),
         '{{WHATSAPP}}': WHATSAPP,
         '{{BK_URL}}': BOOKINGS_URL,
@@ -161,7 +165,7 @@ def build_page(page, lang, d):
 <link rel="preload" href="/assets/jost-latin-300-normal.woff2" as="font" type="font/woff2" crossorigin>
 <link rel="stylesheet" href="/assets/page.css?v={CSSV}">
 </head>
-<body class="pg-{page}{' gp' if page in ('agencies','airport','cruise') or page.startswith('d-') else ''}">
+<body class="pg-{page}{' gp' if page in ('agencies','airport','cruise','chauffeur','tours','events','longdistance') or page.startswith('d-') else ''}">
 {SVG_DEFS}
 {nav(page, lang, links, url('home', lang) + '#reservar')}
 <main>

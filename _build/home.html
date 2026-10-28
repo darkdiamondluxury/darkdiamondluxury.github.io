@@ -468,7 +468,7 @@ const U = id => id.startsWith('http') ? id : `https://images.unsplash.com/photo-
 /* uma fotografia por destino (mesma ordem de PLACES);  */
 const DIMG = ['1585208798174-6cedd86e019a','1587973878097-ef3aabd5eeaa','1697394494123-c6c1323a14f7','1672825952732-ecef34882416','1644183521042-377da9d4aea3','https://images.pexels.com/photos/30443719/pexels-photo-30443719.jpeg?auto=compress&cs=tinysrgb&w=2000','https://images.pexels.com/photos/33887497/pexels-photo-33887497.jpeg?auto=compress&cs=tinysrgb&w=2000','1768565540385-5195e32bb44b','1539037116277-4db20889f2d4','1661442196003-f2f6eb54bd94','https://images.pexels.com/photos/28428861/pexels-photo-28428861.jpeg?auto=compress&cs=tinysrgb&w=2000'].map(U);
 const SVCI = ['1562584674-b0e112e53fd7','1765459856355-6e086cfe27f1','1697394494123-c6c1323a14f7','1768777277442-daa05eba8b89','1724185022490-cf80fbc82888','1599640842225-85d111c60e6b'].map(U);
-const SVCMORE = ['{{AIRPORT_URL}}',null,null,null,null,'{{CRUISE_URL}}'];
+const SVCMORE = ['{{AIRPORT_URL}}','{{CHAUFFEUR_URL}}','{{TOURS_URL}}','{{EVENTS_URL}}','{{LONG_URL}}','{{CRUISE_URL}}'];
 let svcI = 0;
 function setSvc(i,center){
   svcI=i; const t=T[lang], tr=document.getElementById('svcTrack');
