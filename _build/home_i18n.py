@@ -13,7 +13,7 @@ T = {
   fa_b='24/7', fa_s='a qualquer hora do voo', fb_b='4 línguas', fb_s='português, inglês, espanhol e francês', fc_b='3 países', fc_s='Portugal, Espanha e França',
   dh='Para onde vamos?', dp='Tempo aproximado de viagem a partir do aeroporto de Lisboa. Escolha um destino para reservar.',
   onreq='Sob consulta', dnote='Tempos indicativos, que podem variar. Levamo-lo a qualquer destino em Portugal, Espanha e França.', swipe='Deslize para ver mais destinos', go='Reservar este destino', more='Saber mais',
-  svch='Ao seu ritmo.', svcp='Escolha o serviço que procura.', v1h='Aeroporto', v1p='Esperamos por si nas chegadas, com o seu nome numa placa, e acompanhamos o voo. Também levamos às partidas.',
+  svch='Ao seu ritmo.', svcp='Escolha o serviço que procura.', v1h='Aeroporto', v1p='Acompanhamos o voo e esperamos por si nas chegadas. Também o deixamos nas partidas.',
   v2h='À disposição', v2p='Um motorista e um carro só para si, à hora ou ao dia: reuniões, compras ou um dia sem olhar para o relógio.',
   v3h='Tours privados', v3p='Sintra, Cascais, Fátima, Évora ou o Douro, ao seu ritmo e com paragens onde quiser.',
   v4h='Eventos e casamentos', v4p='Convidados recebidos e levados a horas, com a coordenação feita por nós.',
