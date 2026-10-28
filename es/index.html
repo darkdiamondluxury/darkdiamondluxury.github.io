@@ -569,6 +569,9 @@ const DIMG = ['1585208798174-6cedd86e019a','1587973878097-ef3aabd5eeaa','1697394
 const SVCI = ['1562584674-b0e112e53fd7','1765459856355-6e086cfe27f1','1697394494123-c6c1323a14f7','1768777277442-daa05eba8b89','1724185022490-cf80fbc82888','1599640842225-85d111c60e6b'].map(U);
 const SVCMORE = ['/es/traslado-aeropuerto-lisboa/','/es/chofer-a-disposicion-lisboa/','/es/tours-privados-portugal/','/es/eventos-bodas-transporte/','/es/traslados-larga-distancia/','/es/traslado-terminal-cruceros-lisboa/'];
 let svcI = 0;
+/* pré-carregar todas as fotografias dos carrosséis em segundo plano, para o movimento sair fluido desde o primeiro slide */
+function preloadSel(){ [...DIMG,...SVCI].forEach(u=>{ const x=new Image(); x.decoding='async'; x.src=u; }); }
+(window.requestIdleCallback||(f=>setTimeout(f,400)))(preloadSel);
 function setSvc(i,center){
   svcI=i; const t=T[lang], tr=document.getElementById('svcTrack');
   tr.querySelectorAll('.place').forEach((b,k)=>b.setAttribute('aria-current',k===i));
@@ -593,10 +596,10 @@ function render(){
   document.querySelectorAll('[data-i18n]').forEach(el=>{ const v=t[el.dataset.i18n]; if(typeof v==='string') el.textContent=v; });
   document.querySelectorAll('[data-i18n-ph]').forEach(el=>{ el.placeholder=t[el.dataset.i18nPh]; });
   document.getElementById('track').innerHTML = PLACES.map(([n],i)=>`<button class="place" type="button" role="option" data-i="${i}" aria-current="${i===destI}">${n}</button>`).join('');
-  document.getElementById('destBg').innerHTML = DIMG.map((u,i)=>`<img src="${u}" alt="" ${i===destI?'':'loading="lazy"'} class="${i===destI?'on':''}" data-i="${i}" onerror="this.remove()">`).join('');
+  document.getElementById('destBg').innerHTML = DIMG.map((u,i)=>`<img src="${u}" alt="" decoding="async" class="${i===destI?'on':''}" data-i="${i}" onerror="this.remove()">`).join('');
   setDest(destI,false);
   document.getElementById('svcTrack').innerHTML = [1,2,3,4,5,6].map((n,i)=>`<button class="place" type="button" role="option" data-i="${i}" aria-current="${i===svcI}">${t['v'+n+'h']}</button>`).join('');
-  document.getElementById('svcBg').innerHTML = SVCI.map((u,i)=>`<img src="${u}" alt="" ${i===svcI?'':'loading="lazy"'} class="${i===svcI?'on':''}" data-i="${i}" onerror="this.remove()">`).join('');
+  document.getElementById('svcBg').innerHTML = SVCI.map((u,i)=>`<img src="${u}" alt="" decoding="async" class="${i===svcI?'on':''}" data-i="${i}" onerror="this.remove()">`).join('');
   setSvc(svcI,false);
   document.getElementById('dirChips').innerHTML = t.dirs.map((s,i)=>`<button type="button" aria-pressed="${i===dirPick}" data-i="${i}">${s}</button>`).join('');
   applyDir(false);
