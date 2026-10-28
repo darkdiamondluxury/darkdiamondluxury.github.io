@@ -1,9 +1,6 @@
 @font-face{font-family:"Cinzel";src:url(/assets/cinzel-latin-400-normal.woff2) format("woff2");font-weight:400;font-display:swap}
 @font-face{font-family:"Cinzel";src:url(/assets/cinzel-latin-500-normal.woff2) format("woff2");font-weight:500;font-display:swap}
 /* Páginas interiores (agências, aeroporto, cruzeiros, destinos, legal). Mesma identidade da página inicial. */
-@font-face{font-family:"Jost";src:url(/assets/jost-latin-300-normal.woff2) format("woff2");font-weight:300;font-display:swap}
-@font-face{font-family:"Jost";src:url(/assets/jost-latin-400-normal.woff2) format("woff2");font-weight:400;font-display:swap}
-@font-face{font-family:"Jost";src:url(/assets/jost-latin-500-normal.woff2) format("woff2");font-weight:500;font-display:swap}
 :root{
   --green:#050505; --green-2:#0c0c0b; --green-3:#171614;
   --gold:#C9A25E; --silver:#C9C8C6; --display:"Cinzel","Trajan Pro",Georgia,serif; --olive:#9A7B1F; --bone:#ECE8DC; --bone-2:#E2DDCD;

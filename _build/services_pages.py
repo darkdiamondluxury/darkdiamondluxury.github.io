@@ -175,7 +175,7 @@ PAGES_NEW['events'] = {
   ]),
  'pt': dict(
   title='Transporte para Eventos e Casamentos em Portugal · Dark Diamond Luxury',
-  desc='Transporte com motorista para grandes eventos, eventos corporativos como a Web Summit, desporto profissional, golfe e casamentos em Portugal. Convidados recebidos e levados a horas.',
+  desc='Transporte com motorista para grandes eventos, eventos corporativos como a Web Summit, desporto profissional, golfe e casamentos em Portugal.',
   subject='Pedido de transporte para evento',
   crumb='Eventos e casamentos', h1='Eventos e casamentos, com transporte a horas.', img='events',
   lead='Convidados recebidos e levados a horas, com a coordenação feita por nós.',
@@ -200,7 +200,7 @@ PAGES_NEW['events'] = {
   ]),
  'es': dict(
   title='Transporte para Eventos y Bodas en Portugal · Dark Diamond Luxury',
-  desc='Transporte con chófer para grandes eventos, eventos corporativos como la Web Summit, deporte profesional, golf y bodas en Portugal. Invitados recibidos y llevados a la hora.',
+  desc='Transporte con chófer para grandes eventos, eventos corporativos como la Web Summit, deporte profesional, golf y bodas en Portugal.',
   subject='Solicitud de transporte para evento',
   crumb='Eventos y bodas', h1='Eventos y bodas, con transporte puntual.', img='events',
   lead='Invitados recibidos y llevados a la hora, con la coordinación a nuestro cargo.',
@@ -230,7 +230,7 @@ PAGES_NEW['events'] = {
 # =====================================================================================
 PAGES_NEW['longdistance'] = {
  'en': dict(
-  title='Long-Distance Private Transfers in Portugal, Spain and France · Dark Diamond Luxury',
+  title='Long-Distance Private Transfers · Dark Diamond Luxury',
   desc='Private door-to-door transfers from Lisbon to Porto, the Algarve, Madrid, Seville, Marbella and France, in a private vehicle with a professional driver.',
   crumb='Long distance', h1='Long-distance transfers, door to door.', img='longdist',
   lead='Porto, the Algarve, Spain and France, door to door, in a private vehicle.',
@@ -250,7 +250,7 @@ PAGES_NEW['longdistance'] = {
    dict(type='cta', h='Planning a long trip?', p='Tell us the route, the date and the number of passengers. We reply with confirmation and price.', ctas=[('book', 'Book a transfer'), ('tel', 'Call')]),
   ]),
  'pt': dict(
-  title='Transfers de Longa Distância em Portugal, Espanha e França · Dark Diamond Luxury',
+  title='Transfers de Longa Distância · Dark Diamond Luxury',
   desc='Transfers privados de porta a porta de Lisboa para o Porto, Algarve, Madrid, Sevilha, Marbella e França, em viatura privada e com motorista profissional.',
   crumb='Longa distância', h1='Transfers de longa distância, de porta a porta.', img='longdist',
   lead='Porto, Algarve, Espanha e França, de porta a porta, em viatura privada.',
@@ -270,7 +270,7 @@ PAGES_NEW['longdistance'] = {
    dict(type='cta', h='Vai fazer uma viagem longa?', p='Indique o trajeto, a data e o número de passageiros. Respondemos com a confirmação e o preço.', ctas=[('book', 'Reservar transfer'), ('tel', 'Ligar')]),
   ]),
  'es': dict(
-  title='Traslados Privados de Larga Distancia en Portugal, España y Francia · Dark Diamond Luxury',
+  title='Traslados de Larga Distancia · Dark Diamond Luxury',
   desc='Traslados privados puerta a puerta de Lisboa a Oporto, el Algarve, Madrid, Sevilla, Marbella y Francia, en vehículo privado y con chófer profesional.',
   crumb='Larga distancia', h1='Traslados de larga distancia, de puerta a puerta.', img='longdist',
   lead='Oporto, el Algarve, España y Francia, de puerta a puerta, en vehículo privado.',

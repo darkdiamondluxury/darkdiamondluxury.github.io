@@ -162,7 +162,7 @@ def build_page(page, lang, d):
 <html lang="{lang}">
 <head>
 {head(page, lang, d['title'], d['desc'], ld)}
-<link rel="preload" href="/assets/jost-latin-300-normal.woff2" as="font" type="font/woff2" crossorigin>
+<link rel="preload" href="/assets/cinzel-latin-400-normal.woff2" as="font" type="font/woff2" crossorigin>
 <link rel="stylesheet" href="/assets/page.css?v={CSSV}">
 </head>
 <body class="pg-{page}{' gp' if page in ('agencies','airport','cruise','chauffeur','tours','events','longdistance') or page.startswith('d-') else ''}">

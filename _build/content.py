@@ -13,8 +13,8 @@ PAGES = {}
 # =====================================================================================
 PAGES['agencies'] = {
  'en': dict(
-  title='Ground transportation partner in Portugal for travel agencies · Dark Diamond Luxury',
-  desc='Private transfers, tours and chauffeur services for travel agencies, tour operators, DMCs and cruise lines in Portugal, Spain and France. Registered with Turismo de Portugal, RNAAT 682/2022.',
+  title='Ground partner in Portugal for travel agencies · Dark Diamond Luxury',
+  desc='Private transfers, tours and chauffeur services for agencies, tour operators, DMCs and cruise lines in Portugal, Spain and France. RNAAT 682/2022.',
   crumb='Agencies and partners', h1='Your ground partner in Portugal.',
   lead='Private transfers, tours and chauffeured services for travel agencies, tour operators, DMCs and cruise lines. Portugal, Spain and France.',
   subject='Partnership request / rates', ctas=[('mail', 'Request our rates'), ('tel', 'Call us')],
@@ -47,8 +47,8 @@ PAGES['agencies'] = {
         ctas=[('mail', 'Request our rates'), ('tel', 'Call us')]),
   ]),
  'pt': dict(
-  title='Parceiro de transporte em Portugal para agências de viagens · Dark Diamond Luxury',
-  desc='Transfers privados, tours e motorista para agências de viagens, operadores turísticos, DMCs e linhas de cruzeiro em Portugal, Espanha e França. Registada no Turismo de Portugal, RNAAT 682/2022.',
+  title='Parceiro de transporte para agências em Portugal · Dark Diamond Luxury',
+  desc='Transfers privados, tours e motorista para agências, operadores turísticos, DMCs e linhas de cruzeiro em Portugal, Espanha e França. RNAAT 682/2022.',
   crumb='Agências e parceiros', h1='O seu parceiro em terra, em Portugal.',
   lead='Transfers privados, tours e serviços com motorista para agências de viagens, operadores turísticos, DMCs e linhas de cruzeiro. Portugal, Espanha e França.',
   subject='Pedido de parceria / tabela de preços', ctas=[('mail', 'Pedir tabela de preços'), ('tel', 'Ligar')],
@@ -81,8 +81,8 @@ PAGES['agencies'] = {
         ctas=[('mail', 'Pedir tabela de preços'), ('tel', 'Ligar')]),
   ]),
  'es': dict(
-  title='Partner de transporte en Portugal para agencias de viajes · Dark Diamond Luxury',
-  desc='Traslados privados, tours y chófer para agencias de viajes, turoperadores, DMCs y navieras en Portugal, España y Francia. Registrada en Turismo de Portugal, RNAAT 682/2022.',
+  title='Partner de transporte para agencias en Portugal · Dark Diamond Luxury',
+  desc='Traslados privados, tours y chófer para agencias, turoperadores, DMCs y navieras en Portugal, España y Francia. RNAAT 682/2022.',
   crumb='Agencias y partners', h1='Su partner en tierra, en Portugal.',
   lead='Traslados privados, tours y servicios con chófer para agencias de viajes, turoperadores, DMCs y navieras. Portugal, España y Francia.',
   subject='Solicitud de colaboración / tarifas', ctas=[('mail', 'Solicitar tarifas'), ('tel', 'Llamar')],
@@ -123,8 +123,8 @@ TIMES = [('Baixa · Chiado', '20 min'), ('Belém', '25 min'), ('Parque das Naç�
          ('Comporta', '1h15'), ('Évora', '1h30'), ('Fátima', '1h30'), ('Algarve', '2h45'), ('Porto', '3h')]
 PAGES['airport'] = {
  'en': dict(
-  title='Lisbon Airport Transfer · Private meet and greet · Dark Diamond Luxury',
-  desc='Private transfer from Lisbon Airport (LIS) to your hotel or anywhere in Portugal. Flight tracking, meet and greet at arrivals with your name, price confirmed before you book.',
+  title='Lisbon Airport Transfer · Meet and greet · Dark Diamond Luxury',
+  desc='Private transfer from Lisbon Airport (LIS) to your hotel or anywhere in Portugal. Flight tracking, meet and greet with your name, price confirmed before booking.',
   crumb='Lisbon airport transfer', h1='Lisbon airport transfers, met by name.', img='plane',
   lead='Private transfer from Lisbon Humberto Delgado Airport (LIS) to your hotel, home or anywhere in Portugal. Your driver tracks the flight and waits at arrivals with your name.',
   ctas=[('book', 'Book airport transfer'), ('tel', 'Call us')],
@@ -141,8 +141,8 @@ PAGES['airport'] = {
    dict(type='cta', h='Landing soon?', p='Send us your flight and destination. We reply with confirmation and price.', ctas=[('book', 'Book airport transfer'), ('tel', 'Call us')]),
   ]),
  'pt': dict(
-  title='Transfer do Aeroporto de Lisboa · Receção com placa · Dark Diamond Luxury',
-  desc='Transfer privado do aeroporto de Lisboa para o seu hotel ou para qualquer ponto do país. Seguimento do voo, receção nas chegadas com o seu nome, preço confirmado antes de reservar.',
+  title='Transfer do Aeroporto de Lisboa · Dark Diamond Luxury',
+  desc='Transfer privado do aeroporto de Lisboa para o seu hotel ou para qualquer ponto do país. Seguimento do voo, receção com o seu nome, preço confirmado antes de reservar.',
   crumb='Transfer aeroporto de Lisboa', h1='Transfers do aeroporto de Lisboa, recebido pelo nome.', img='plane',
   lead='Transfer privado do Aeroporto Humberto Delgado (LIS) para o seu hotel, casa ou qualquer ponto do país. O motorista acompanha o voo e espera nas chegadas com o seu nome.',
   ctas=[('book', 'Reservar transfer'), ('tel', 'Ligar')],
@@ -159,8 +159,8 @@ PAGES['airport'] = {
    dict(type='cta', h='Vai aterrar em breve?', p='Envie-nos o voo e o destino. Respondemos com a confirmação e o preço.', ctas=[('book', 'Reservar transfer'), ('tel', 'Ligar')]),
   ]),
  'es': dict(
-  title='Traslado Aeropuerto de Lisboa · Recepción con cartel · Dark Diamond Luxury',
-  desc='Traslado privado desde el aeropuerto de Lisboa a su hotel o a cualquier punto de Portugal. Seguimiento del vuelo, recepción en llegadas con su nombre y precio confirmado antes de reservar.',
+  title='Traslado Aeropuerto de Lisboa · Dark Diamond Luxury',
+  desc='Traslado privado desde el aeropuerto de Lisboa a su hotel o a cualquier punto de Portugal. Seguimiento del vuelo, recepción con su nombre y precio antes de reservar.',
   crumb='Traslado aeropuerto de Lisboa', h1='Traslados desde el aeropuerto de Lisboa, con su nombre.', img='plane',
   lead='Traslado privado desde el Aeropuerto Humberto Delgado (LIS) a su hotel, su casa o cualquier punto de Portugal. El chófer sigue el vuelo y le espera en llegadas con su nombre.',
   ctas=[('book', 'Reservar traslado'), ('tel', 'Llamar')],
@@ -183,8 +183,8 @@ PAGES['airport'] = {
 # =====================================================================================
 PAGES['cruise'] = {
  'en': dict(
-  title='Lisbon Cruise Port Transfers and Private Shore Excursions · Dark Diamond Luxury',
-  desc='Private transfers between the Lisbon cruise terminals, the airport and hotels, plus private shore excursions to Sintra, Cascais and Lisbon, planned around your all-aboard time.',
+  title='Lisbon Cruise Port Transfers and Excursions · Dark Diamond Luxury',
+  desc='Private transfers between Lisbon\'s cruise terminals, the airport and hotels, plus shore excursions to Sintra, Cascais and Lisbon, timed to your all-aboard.',
   crumb='Lisbon cruise terminal', h1='Lisbon cruise port transfers and shore excursions.', img='cruise',
   lead='From the ship to the airport, your hotel or a private tour, timed around your port call. For passengers, agencies and cruise lines.',
   ctas=[('book', 'Book a port transfer'), ('agencies', 'For agencies and cruise lines')],
@@ -201,8 +201,8 @@ PAGES['cruise'] = {
    dict(type='cta', h='Docking in Lisbon?', p='Tell us the ship, the date and what you would like to do. We reply with a plan and a price.', ctas=[('book', 'Book a port transfer'), ('tel', 'Call us')]),
   ]),
  'pt': dict(
-  title='Transfers no Terminal de Cruzeiros de Lisboa e excursões privadas · Dark Diamond Luxury',
-  desc='Transfers privados entre os terminais de cruzeiros de Lisboa, o aeroporto e os hotéis, e excursões privadas a Sintra, Cascais e Lisboa, planeadas em função da hora de regresso ao navio.',
+  title='Transfers no Terminal de Cruzeiros de Lisboa · Dark Diamond Luxury',
+  desc='Transfers privados entre os terminais de cruzeiros de Lisboa, o aeroporto e os hotéis, e excursões a Sintra, Cascais e Lisboa, à hora de regresso ao navio.',
   crumb='Terminal de cruzeiros de Lisboa', h1='Transfers no porto de cruzeiros de Lisboa e excursões em terra.', img='cruise',
   lead='Do navio para o aeroporto, para o hotel ou para um tour privado, ao ritmo da escala. Para passageiros, agências e linhas de cruzeiro.',
   ctas=[('book', 'Reservar transfer'), ('agencies', 'Para agências e linhas de cruzeiro')],
@@ -215,12 +215,12 @@ PAGES['cruise'] = {
      'A maioria dos navios atraca no Terminal de Cruzeiros de Lisboa, junto a Santa Apolónia e Alfama, perto do centro e a cerca de 20 minutos do aeroporto.',
      'Alguns navios usam os terminais de Alcântara ou da Rocha Conde de Óbidos, mais a oeste. Diga-nos o nome do navio e esperamos no sítio certo.']),
    dict(type='split', h='De volta ao navio a horas', p=[
-     'Nas excursões em terra planeamos o dia a partir da hora de regresso a bordo, com margem para o trânsito. Fica com o número do motorista e ele com o seu.']),
+     'Nas excursões em terra planeamos o dia a partir da hora de regresso a bordo, com margem para o trânsito. Terá o número do motorista e ele o seu.']),
    dict(type='cta', h='Vai fazer escala em Lisboa?', p='Diga-nos o navio, a data e o que gostaria de fazer. Respondemos com um plano e um preço.', ctas=[('book', 'Reservar transfer'), ('tel', 'Ligar')]),
   ]),
  'es': dict(
-  title='Traslados en la Terminal de Cruceros de Lisboa y excursiones privadas · Dark Diamond Luxury',
-  desc='Traslados privados entre las terminales de cruceros de Lisboa, el aeropuerto y los hoteles, y excursiones privadas a Sintra, Cascais y Lisboa, planificadas según la hora de regreso al barco.',
+  title='Traslados en la Terminal de Cruceros de Lisboa · Dark Diamond Luxury',
+  desc='Traslados privados entre las terminales de cruceros de Lisboa, el aeropuerto y los hoteles, y excursiones a Sintra, Cascais y Lisboa, a la hora de regreso al barco.',
   crumb='Terminal de cruceros de Lisboa', h1='Traslados en el puerto de cruceros de Lisboa y excursiones en tierra.', img='cruise',
   lead='Del barco al aeropuerto, al hotel o a un tour privado, al ritmo de la escala. Para pasajeros, agencias y navieras.',
   ctas=[('book', 'Reservar traslado'), ('agencies', 'Para agencias y navieras')],
@@ -337,22 +337,22 @@ D = {
 }
 
 DL = {  # rótulos comuns às páginas de destino
- 'en': dict(title='Private transfer from Lisbon to {nt} · Day trips with driver · Dark Diamond Luxury',
-            desc='Private transfer from Lisbon or Lisbon airport to {nt}, about {t}. One-way, return or a day trip with your driver at your disposal. Price confirmed before you book.',
+ 'en': dict(title='Private transfer from Lisbon to {nt} · Dark Diamond Luxury',
+            desc='Private transfer from Lisbon or Lisbon airport to {nt}, about {t}. One-way, return or a day trip with a driver. Price confirmed before you book.',
             h1='Private transfer from Lisbon to {nt}', about='About {nt}', see='Worth seeing', opts='How to go',
             o=['<b>One-way or return transfer</b>, from the airport, your hotel, the cruise port or any address.', '<b>Day trip</b> with the driver waiting and moving you between stops.', '{combo}'],
             facts='The journey', rows=[('From Lisbon airport', '≈ {km} km'), ('Journey time', '≈ {t}'), ('Vehicle', FLEET['en']), ('Pick-up', 'Airport, hotel, cruise port or any address')],
             note='Indicative times, which may vary.', others='Other destinations', book='Book this transfer', call='Call us',
             cta='Going to {nt}?', ctap='Tell us the date, time and number of passengers. We reply with confirmation and price.'),
- 'pt': dict(title='Transfer privado de Lisboa para {nt} · Passeios com motorista · Dark Diamond Luxury',
-            desc='Transfer privado de Lisboa ou do aeroporto para {nt}, cerca de {t}. Só ida, ida e volta ou passeio de um dia com motorista à disposição. Preço confirmado antes de reservar.',
+ 'pt': dict(title='Transfer privado de Lisboa para {nt} · Dark Diamond Luxury',
+            desc='Transfer privado de Lisboa ou do aeroporto para {nt}, cerca de {t}. Só ida, ida e volta ou passeio de um dia com motorista. Preço confirmado antes de reservar.',
             h1='Transfer privado de Lisboa para {nt}', about='Sobre {nt}', see='A não perder', opts='Como ir',
             o=['<b>Transfer só de ida ou ida e volta</b>, a partir do aeroporto, do hotel, do porto de cruzeiros ou de qualquer morada.', '<b>Passeio de um dia</b> com o motorista à espera e a levá-lo entre paragens.', '{combo}'],
             facts='A viagem', rows=[('Desde o aeroporto de Lisboa', '≈ {km} km'), ('Duração', '≈ {t}'), ('Veículo', FLEET['pt']), ('Recolha', 'Aeroporto, hotel, porto de cruzeiros ou qualquer morada')],
             note='Tempos indicativos, que podem variar.', others='Outros destinos', book='Reservar este transfer', call='Ligar',
             cta='Vai {ng}?', ctap='Diga-nos a data, a hora e o número de passageiros. Respondemos com a confirmação e o preço.'),
- 'es': dict(title='Traslado privado de Lisboa {ng} · Excursiones con chófer · Dark Diamond Luxury',
-            desc='Traslado privado desde Lisboa o el aeropuerto {ng}, unos {t}. Solo ida, ida y vuelta o excursión de un día con chófer a disposición. Precio confirmado antes de reservar.',
+ 'es': dict(title='Traslado privado de Lisboa {ng} · Dark Diamond Luxury',
+            desc='Traslado privado desde Lisboa o el aeropuerto {ng}, unos {t}. Solo ida, ida y vuelta o excursión de un día con chófer. Precio confirmado antes de reservar.',
             h1='Traslado privado de Lisboa {ng}', about='Sobre {nt}', see='Imprescindibles', opts='Cómo ir',
             o=['<b>Traslado solo ida o ida y vuelta</b>, desde el aeropuerto, el hotel, el puerto de cruceros o cualquier dirección.', '<b>Excursión de un día</b> con el chófer esperando y llevándole entre paradas.', '{combo}'],
             facts='El viaje', rows=[('Desde el aeropuerto de Lisboa', '≈ {km} km'), ('Duración', '≈ {t}'), ('Vehículo', FLEET['es']), ('Recogida', 'Aeropuerto, hotel, puerto de cruceros o cualquier dirección')],
