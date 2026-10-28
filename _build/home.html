@@ -124,6 +124,7 @@ button,input,select,textarea{font:inherit;color:inherit}
 .place{text-shadow:0 1px 3px rgba(0,0,0,.75),0 3px 26px rgba(0,0,0,.9);opacity:.55}
 .track{display:flex;gap:clamp(28px,5vw,80px);align-items:baseline;overflow-x:auto;scroll-snap-type:x mandatory;scroll-behavior:smooth;-webkit-overflow-scrolling:touch;scrollbar-width:none;overscroll-behavior-x:contain;padding:clamp(60px,12vh,130px) 42vw 10px}
 .track::-webkit-scrollbar{display:none}
+.track{touch-action:pan-x}
 .track.drag{scroll-snap-type:none;scroll-behavior:auto;cursor:grabbing}
 .place{flex:0 0 auto;scroll-snap-align:center;border:0;background:none;color:var(--ink);cursor:pointer;padding:6px 4px;font-family:var(--display);font-weight:300;font-size:clamp(2.4rem,.8rem + 5.4vw,5.6rem);line-height:1.05;letter-spacing:-.025em;white-space:nowrap;opacity:.42;transform:scale(.8);transform-origin:50% 100%;transition:opacity .5s,transform .6s var(--ease-out),color .4s;text-shadow:0 1px 3px rgba(0,0,0,.4),0 2px 24px rgba(0,0,0,.6)}
 .place[aria-current="true"]{opacity:1;transform:none;color:#fff}
@@ -310,6 +311,7 @@ footer .word em{background:linear-gradient(120deg,#A27A38,#F3DFA2 45%,#C69F5B 70
 .svcsel{gap:22px;padding-top:clamp(28px,5svh,44px)}
 .services{min-height:100svh}
 .services .track{padding-top:clamp(56px,11svh,110px)}
+.track{scroll-behavior:auto}
 .services .svcsel{padding-top:clamp(40px,8svh,72px)}
 .svcsel p{min-height:4.3em}
 .svcact{gap:12px 26px}
