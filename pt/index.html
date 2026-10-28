@@ -714,6 +714,24 @@ function bindSel(tr,pv,nx,get,set,n){
 }
 bindSel(document.getElementById('track'),null,null,()=>destI,setDest,PLACES.length);
 bindSel(document.getElementById('svcTrack'),null,null,()=>svcI,setSvc,6);
+/* recentrar os carrosséis: depois da fonte carregar, ao voltar atrás e ao rodar o ecrã */
+function centerTrack(tr,i){
+  const b=tr.children[i]; if(!b) return;
+  const br=b.getBoundingClientRect(), tb=tr.getBoundingClientRect();
+  tr.style.scrollBehavior='auto';
+  tr.scrollLeft += (br.left+br.width/2) - (tb.left+tr.clientWidth/2);
+  tr.style.scrollBehavior='';
+}
+function recenterTracks(){
+  lockUntil=Date.now()+400;
+  centerTrack(document.getElementById('track'),destI);
+  centerTrack(document.getElementById('svcTrack'),svcI);
+}
+recenterTracks();
+if(document.fonts&&document.fonts.ready) document.fonts.ready.then(recenterTracks);
+addEventListener('load',recenterTracks);
+addEventListener('pageshow',recenterTracks);
+let rzT=0; addEventListener('resize',()=>{ clearTimeout(rzT); rzT=setTimeout(recenterTracks,150); });
 document.getElementById('svcGo').addEventListener('click',()=>{
   svcPick=svcI; document.querySelectorAll('#svcChips button').forEach((x,k)=>x.setAttribute('aria-pressed', k===svcI));
   jump(document.getElementById('reservar'));
