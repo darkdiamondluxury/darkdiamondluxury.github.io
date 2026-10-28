@@ -63,7 +63,7 @@ REDIRECTS = {'/privacidade.html': SLUGS['privacy']['pt'], '/suporte.html': SLUGS
 # Fotografias (Unsplash License), reutilizadas nas páginas.
 IMG = {
     'van': 'https://images.unsplash.com/photo-1765461734605-34657fa04db2?auto=format&fit=crop&w=2000&q=70',
-    'plane': 'https://images.unsplash.com/photo-1503944251010-cbf290919d9d?auto=format&fit=crop&w=2000&q=70',
+    'plane': 'https://images.unsplash.com/photo-1773673496557-e55445604766?auto=format&fit=crop&w=2000&q=70',
     'leather': 'https://images.unsplash.com/photo-1580929945040-a16adedf9f6a?auto=format&fit=crop&w=2000&q=70',
     'bridge': 'https://images.unsplash.com/photo-1558102400-72da9fdbecae?auto=format&fit=crop&w=2000&q=70',
 }

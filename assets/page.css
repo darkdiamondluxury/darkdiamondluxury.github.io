@@ -157,29 +157,40 @@ footer .word em{background:linear-gradient(120deg,#A27A38,#F3DFA2 45%,#C69F5B 70
 @media (max-width:370px){.brand .lux{display:none}}
 
 /* ---------- página de parceiros: letra dourada nos ecrãs pretos, ecrã dourado metálico, losangos cheios ---------- */
-.pg-agencies{--gold-grad:linear-gradient(120deg,#A27A38 0%,#F3DFA2 30%,#C69F5B 56%,#FBE8AE 82%,#A27A38 100%)}
-.pg-agencies,.pg-agencies .phero .lead,.pg-agencies .crumbs,.pg-agencies .crumbs a,.pg-agencies p.muted,.pg-agencies .sec p,.pg-agencies .rows dt,.pg-agencies .rows dd,.pg-agencies .ticks li,.pg-agencies .steps li{color:var(--gold)}
-.pg-agencies .phero h1,.pg-agencies .split h2,.pg-agencies .steps b,.pg-agencies .ticks b{color:var(--gold)}
-.pg-agencies .crumbs a:hover{color:var(--gold-hi,#F1DBA0)}
-.pg-agencies .phero .lead,.pg-agencies .sec p,.pg-agencies .ticks li,.pg-agencies .steps li,.pg-agencies .rows>div{font-weight:400}
-.pg-agencies .ticks b,.pg-agencies .steps b{font-weight:500}
-.pg-agencies .ticks li::before{background:var(--gold);border:0;width:11px;height:11px}
-.pg-agencies .steps li::before{font-family:var(--display);font-weight:400}
-.pg-agencies .rows,.pg-agencies .rows>div{border-color:rgba(201,162,94,.3)}
-.pg-agencies .sec.bone,.pg-agencies .ctab{background:var(--gold-grad);color:var(--black)}
-.pg-agencies .sec.bone .split h2,.pg-agencies .sec.bone h2,.pg-agencies .sec.bone p,.pg-agencies .sec.bone .ticks li,.pg-agencies .sec.bone .ticks b,.pg-agencies .sec.bone .steps li,.pg-agencies .sec.bone .steps b,.pg-agencies .ctab h2,.pg-agencies .ctab p{color:var(--black)}
-.pg-agencies .sec.bone .ticks li::before{background:var(--black);border:0}
-.pg-agencies .sec.bone .steps li::before{color:var(--black)}
-.pg-agencies .ctab .btn{background:var(--black);color:var(--gold)}
-@media (hover:hover){.pg-agencies .ctab .btn:hover{background:#1a1a18}}
-.pg-agencies .ctab .btn.ghost{background:transparent;color:var(--black)}
+.gp{--gold-grad:linear-gradient(120deg,#A27A38 0%,#F3DFA2 30%,#C69F5B 56%,#FBE8AE 82%,#A27A38 100%)}
+.gp,.gp .phero .lead,.gp .crumbs,.gp .crumbs a,.gp p.muted,.gp .sec p,.gp .rows dt,.gp .rows dd,.gp .ticks li,.gp .steps li{color:var(--gold)}
+.gp .phero h1,.gp .split h2,.gp .steps b,.gp .ticks b{color:var(--gold)}
+.gp .crumbs a:hover{color:var(--gold-hi,#F1DBA0)}
+.gp .phero .lead,.gp .sec p,.gp .ticks li,.gp .steps li,.gp .rows>div{font-weight:400}
+.gp .ticks b,.gp .steps b{font-weight:500}
+.gp .ticks li::before{background:var(--gold);border:0;width:11px;height:11px}
+.gp .steps li::before{font-family:var(--display);font-weight:400}
+.gp .rows,.gp .rows>div{border-color:rgba(201,162,94,.3)}
+.gp .sec.bone,.gp .ctab{background:var(--gold-grad);color:var(--black)}
+.gp .sec.bone .split h2,.gp .sec.bone h2,.gp .sec.bone p,.gp .sec.bone .ticks li,.gp .sec.bone .ticks b,.gp .sec.bone .steps li,.gp .sec.bone .steps b,.gp .ctab h2,.gp .ctab p{color:var(--black)}
+.gp .sec.bone .ticks li::before{background:var(--black);border:0}
+.gp .sec.bone .steps li::before{color:var(--black)}
+.gp .ctab .btn{background:var(--black);color:var(--gold)}
+@media (hover:hover){.gp .ctab .btn:hover{background:#1a1a18}}
+.gp .ctab .btn.ghost{background:transparent;color:var(--black)}
 /* parceiros: uma só família de letra (Cinzel, a do logótipo) em todo o conteúdo da página */
-.pg-agencies main,.pg-agencies main h1,.pg-agencies main h2,.pg-agencies main h3,.pg-agencies main p,.pg-agencies main li,.pg-agencies main dt,.pg-agencies main dd,.pg-agencies main b,.pg-agencies .steps li::before,.pg-agencies .btn,.pg-agencies .crumbs,.pg-agencies .phero .lead,.pg-agencies .rows>div{font-family:var(--display)}
-.pg-agencies main p,.pg-agencies main li,.pg-agencies main dt,.pg-agencies main dd,.pg-agencies .phero .lead{font-weight:400;letter-spacing:.01em;line-height:1.6}
-.pg-agencies main{font-size:clamp(.98rem,.9rem + .2vw,1.08rem)}
-.pg-agencies .rows>div{grid-template-columns:minmax(120px,.6fr) minmax(0,1.4fr)}
-.pg-agencies .rows dd{overflow-wrap:anywhere}
+.gp main,.gp main h1,.gp main h2,.gp main h3,.gp main p,.gp main li,.gp main dt,.gp main dd,.gp main b,.gp .steps li::before,.gp .btn,.gp .crumbs,.gp .phero .lead,.gp .rows>div{font-family:var(--display)}
+.gp main p,.gp main li,.gp main dt,.gp main dd,.gp .phero .lead{font-weight:400;letter-spacing:.01em;line-height:1.6}
+.gp main{font-size:clamp(.98rem,.9rem + .2vw,1.08rem)}
+.gp .rows>div{grid-template-columns:minmax(120px,.6fr) minmax(0,1.4fr)}
+.gp .rows dd{overflow-wrap:anywhere}
 /* parceiros, ecrãs pretos: títulos a dourado, legendas a branco */
-.pg-agencies .phero .lead,.pg-agencies .crumbs,.pg-agencies .crumbs a,.pg-agencies .sec:not(.bone) p,.pg-agencies .sec:not(.bone) .ticks li,.pg-agencies .sec:not(.bone) .steps li,.pg-agencies .sec:not(.bone) .rows dt,.pg-agencies .sec:not(.bone) .rows dd,.pg-agencies .sec:not(.bone) p.muted{color:var(--ink)}
-.pg-agencies .sec:not(.bone) .ticks b,.pg-agencies .sec:not(.bone) .steps b{color:var(--gold)}
-.pg-agencies .crumbs a:hover{color:var(--gold)}
+.gp .phero .lead,.gp .crumbs,.gp .crumbs a,.gp .sec:not(.bone) p,.gp .sec:not(.bone) .ticks li,.gp .sec:not(.bone) .steps li,.gp .sec:not(.bone) .rows dt,.gp .sec:not(.bone) .rows dd,.gp .sec:not(.bone) p.muted{color:var(--ink)}
+.gp .sec:not(.bone) .ticks b,.gp .sec:not(.bone) .steps b{color:var(--gold)}
+.gp .crumbs a:hover{color:var(--gold)}
+
+/* aeroporto: o primeiro ecrã mantém-se como estava */
+.pg-airport .phero h1{color:var(--ink)}
+.pg-airport .phero .lead{color:#d9d6c8}
+.pg-airport .crumbs,.pg-airport .crumbs a{color:var(--muted)}
+.pg-airport .crumbs a:hover{color:var(--ink)}
+.gp .sec.bone .rows dt,.gp .sec.bone .rows dd{color:var(--black)}
+.gp .sec.bone .rows,.gp .sec.bone .rows>div{border-color:rgba(0,0,0,.25)}
+.gp .sec.bone p.muted{color:var(--black)}
+.gp .related a{color:var(--ink);border-color:rgba(201,162,94,.55)}
+@media (hover:hover){.gp .related a:hover{color:var(--gold);border-color:var(--gold)}}

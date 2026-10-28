@@ -134,7 +134,7 @@ PAGES['airport'] = {
      ('We track your flight', 'If the flight lands early or late, your driver adjusts to the real landing time.'),
      ('Meet at arrivals', 'Your driver waits in the arrivals hall of Terminal 1 or 2, holding a sign with your name.'),
      ('Straight to your door', 'Help with luggage and a direct ride, with no shared stops.')]),
-   dict(type='split', bg='bone', h='Journey times from the airport', rows=TIMES, after=['Indicative times without traffic.']),
+   dict(type='split', bg='bone', h='Journey times from the airport', rows=TIMES, after=['Indicative times, which may vary.']),
    dict(type='split', h='Good to know', ticks=[
      'A private vehicle just for your group: no shared shuttles.', 'Child seats on request: tell us the children\'s ages when booking.',
      'Departures too: pick-up at your hotel at the time you choose.', 'Drivers who speak Portuguese, English, Spanish and French.', 'Available 24/7, whatever time you land.', 'Price confirmed in writing before you book.'], related=DESTS),
@@ -147,12 +147,12 @@ PAGES['airport'] = {
   lead='Transfer privado do Aeroporto Humberto Delgado (LIS) para o seu hotel, casa ou qualquer ponto do país. O motorista acompanha o voo e espera nas chegadas com o seu nome.',
   ctas=[('book', 'Reservar transfer'), ('tel', 'Ligar')],
   blocks=[
-   dict(type='split', h='Como funciona', steps=[
+   dict(type='split', h='Como funciona?', steps=[
      ('Reserve', 'Envie-nos o número do voo, o destino e o número de passageiros e malas. Respondemos com a confirmação e o preço.'),
      ('Acompanhamos o voo', 'Se o voo chegar mais cedo ou mais tarde, o motorista ajusta-se à hora real de aterragem.'),
      ('Receção nas chegadas', 'O motorista espera na zona de chegadas do Terminal 1 ou 2, com uma placa com o seu nome.'),
      ('Direto à porta', 'Ajuda com as malas e viagem direta, sem paragens partilhadas.')]),
-   dict(type='split', bg='bone', h='Tempos de viagem a partir do aeroporto', rows=TIMES, after=['Tempos indicativos, sem trânsito.']),
+   dict(type='split', bg='bone', h='Tempos de viagem a partir do aeroporto', rows=TIMES, after=['Tempos indicativos, que podem variar.']),
    dict(type='split', h='Bom saber', ticks=[
      'Veículo privado só para o seu grupo: sem shuttles partilhados.', 'Cadeiras de criança por pedido: indique a idade das crianças ao reservar.',
      'Também para partidas: recolha no hotel à hora que escolher.', 'Motoristas que falam português, inglês, espanhol e francês.', 'Disponível 24/7, a qualquer hora do voo.', 'Preço confirmado por escrito antes de reservar.'], related=DESTS),
@@ -165,12 +165,12 @@ PAGES['airport'] = {
   lead='Traslado privado desde el Aeropuerto Humberto Delgado (LIS) a su hotel, su casa o cualquier punto de Portugal. El chófer sigue el vuelo y le espera en llegadas con su nombre.',
   ctas=[('book', 'Reservar traslado'), ('tel', 'Llamar')],
   blocks=[
-   dict(type='split', h='Cómo funciona', steps=[
+   dict(type='split', h='¿Cómo funciona?', steps=[
      ('Reserve', 'Envíenos el número de vuelo, el destino y el número de pasajeros y maletas. Le respondemos con la confirmación y el precio.'),
      ('Seguimos su vuelo', 'Si el vuelo llega antes o después, el chófer se ajusta a la hora real de aterrizaje.'),
      ('Recepción en llegadas', 'El chófer le espera en la zona de llegadas de la Terminal 1 o 2, con un cartel con su nombre.'),
      ('Directo a su puerta', 'Ayuda con las maletas y viaje directo, sin paradas compartidas.')]),
-   dict(type='split', bg='bone', h='Tiempos de viaje desde el aeropuerto', rows=TIMES, after=['Tiempos orientativos, sin tráfico.']),
+   dict(type='split', bg='bone', h='Tiempos de viaje desde el aeropuerto', rows=TIMES, after=['Tiempos orientativos, que pueden variar.']),
    dict(type='split', h='Conviene saber', ticks=[
      'Vehículo privado solo para su grupo: sin shuttles compartidos.', 'Sillas infantiles bajo petición: indíquenos la edad de los niños al reservar.',
      'También para salidas: recogida en su hotel a la hora que elija.', 'Chóferes que hablan portugués, inglés, español y francés.', 'Disponible 24/7, a cualquier hora del vuelo.', 'Precio confirmado por escrito antes de reservar.'], related=DESTS),
@@ -342,21 +342,21 @@ DL = {  # rótulos comuns às páginas de destino
             h1='Private transfer from Lisbon to {nt}', about='About {nt}', see='Worth seeing', opts='How to go',
             o=['<b>One-way or return transfer</b>, from the airport, your hotel, the cruise port or any address.', '<b>Day trip</b> with the driver waiting and moving you between stops.', '{combo}'],
             facts='The journey', rows=[('From Lisbon airport', '≈ {km} km'), ('Journey time', '≈ {t}'), ('Vehicle', FLEET['en']), ('Pick-up', 'Airport, hotel, cruise port or any address')],
-            note='Indicative times without traffic.', others='Other destinations', book='Book this transfer', call='Call us',
+            note='Indicative times, which may vary.', others='Other destinations', book='Book this transfer', call='Call us',
             cta='Going to {nt}?', ctap='Tell us the date, time and number of passengers. We reply with confirmation and price.'),
  'pt': dict(title='Transfer privado de Lisboa para {nt} · Passeios com motorista · Dark Diamond Luxury',
             desc='Transfer privado de Lisboa ou do aeroporto para {nt}, cerca de {t}. Só ida, ida e volta ou passeio de um dia com motorista à disposição. Preço confirmado antes de reservar.',
             h1='Transfer privado de Lisboa para {nt}', about='Sobre {nt}', see='A não perder', opts='Como ir',
             o=['<b>Transfer só de ida ou ida e volta</b>, a partir do aeroporto, do hotel, do porto de cruzeiros ou de qualquer morada.', '<b>Passeio de um dia</b> com o motorista à espera e a levá-lo entre paragens.', '{combo}'],
             facts='A viagem', rows=[('Desde o aeroporto de Lisboa', '≈ {km} km'), ('Duração', '≈ {t}'), ('Veículo', FLEET['pt']), ('Recolha', 'Aeroporto, hotel, porto de cruzeiros ou qualquer morada')],
-            note='Tempos indicativos, sem trânsito.', others='Outros destinos', book='Reservar este transfer', call='Ligar',
+            note='Tempos indicativos, que podem variar.', others='Outros destinos', book='Reservar este transfer', call='Ligar',
             cta='Vai {ng}?', ctap='Diga-nos a data, a hora e o número de passageiros. Respondemos com a confirmação e o preço.'),
  'es': dict(title='Traslado privado de Lisboa {ng} · Excursiones con chófer · Dark Diamond Luxury',
             desc='Traslado privado desde Lisboa o el aeropuerto {ng}, unos {t}. Solo ida, ida y vuelta o excursión de un día con chófer a disposición. Precio confirmado antes de reservar.',
             h1='Traslado privado de Lisboa {ng}', about='Sobre {nt}', see='Imprescindibles', opts='Cómo ir',
             o=['<b>Traslado solo ida o ida y vuelta</b>, desde el aeropuerto, el hotel, el puerto de cruceros o cualquier dirección.', '<b>Excursión de un día</b> con el chófer esperando y llevándole entre paradas.', '{combo}'],
             facts='El viaje', rows=[('Desde el aeropuerto de Lisboa', '≈ {km} km'), ('Duración', '≈ {t}'), ('Vehículo', FLEET['es']), ('Recogida', 'Aeropuerto, hotel, puerto de cruceros o cualquier dirección')],
-            note='Tiempos orientativos, sin tráfico.', others='Otros destinos', book='Reservar este traslado', call='Llamar',
+            note='Tiempos orientativos, que pueden variar.', others='Otros destinos', book='Reservar este traslado', call='Llamar',
             cta='¿Va {ng}?', ctap='Díganos la fecha, la hora y el número de pasajeros. Le respondemos con la confirmación y el precio.'),
 }
 
