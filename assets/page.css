@@ -173,3 +173,6 @@ footer .word em{background:linear-gradient(120deg,#A27A38,#F3DFA2 45%,#C69F5B 70
 .pg-agencies .ctab .btn{background:var(--black);color:var(--gold)}
 @media (hover:hover){.pg-agencies .ctab .btn:hover{background:#1a1a18}}
 .pg-agencies .ctab .btn.ghost{background:transparent;color:var(--black)}
+/* parceiros: uma só família de letra (Jost) em todo o conteúdo da página */
+.pg-agencies main,.pg-agencies main h1,.pg-agencies main h2,.pg-agencies main h3,.pg-agencies .steps li::before,.pg-agencies .btn{font-family:var(--font)}
+.pg-agencies main h1,.pg-agencies main h2{font-weight:400;letter-spacing:-.01em;text-transform:none}
