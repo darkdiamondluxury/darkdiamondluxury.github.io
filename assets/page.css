@@ -195,4 +195,4 @@ footer .word em{background:linear-gradient(120deg,#A27A38,#F3DFA2 45%,#C69F5B 70
 .gp .related a{color:var(--ink);border-color:rgba(201,162,94,.55)}
 @media (hover:hover){.gp .related a:hover{color:var(--gold);border-color:var(--gold)}}
 /* destinos: foto de dia, mais luminosa */
-[class*="pg-d-"] .phero::after{background:linear-gradient(180deg,rgba(5,5,5,.38) 0%,rgba(5,5,5,.16) 40%,rgba(5,5,5,.86) 100%)}
+[class*="pg-d-"] .phero::after,.pg-cruise .phero::after{background:linear-gradient(180deg,rgba(5,5,5,.38) 0%,rgba(5,5,5,.16) 40%,rgba(5,5,5,.86) 100%)}

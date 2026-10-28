@@ -185,7 +185,7 @@ PAGES['cruise'] = {
  'en': dict(
   title='Lisbon Cruise Port Transfers and Private Shore Excursions · Dark Diamond Luxury',
   desc='Private transfers between the Lisbon cruise terminals, the airport and hotels, plus private shore excursions to Sintra, Cascais and Lisbon, planned around your all-aboard time.',
-  crumb='Lisbon cruise terminal', h1='Lisbon cruise port transfers and shore excursions.', img='bridge',
+  crumb='Lisbon cruise terminal', h1='Lisbon cruise port transfers and shore excursions.', img='cruise',
   lead='From the ship to the airport, your hotel or a private tour, timed around your port call. For passengers, agencies and cruise lines.',
   ctas=[('book', 'Book a port transfer'), ('agencies', 'For agencies and cruise lines')],
   blocks=[
@@ -203,7 +203,7 @@ PAGES['cruise'] = {
  'pt': dict(
   title='Transfers no Terminal de Cruzeiros de Lisboa e excursões privadas · Dark Diamond Luxury',
   desc='Transfers privados entre os terminais de cruzeiros de Lisboa, o aeroporto e os hotéis, e excursões privadas a Sintra, Cascais e Lisboa, planeadas em função da hora de regresso ao navio.',
-  crumb='Terminal de cruzeiros de Lisboa', h1='Transfers no porto de cruzeiros de Lisboa e excursões em terra.', img='bridge',
+  crumb='Terminal de cruzeiros de Lisboa', h1='Transfers no porto de cruzeiros de Lisboa e excursões em terra.', img='cruise',
   lead='Do navio para o aeroporto, para o hotel ou para um tour privado, ao ritmo da escala. Para passageiros, agências e linhas de cruzeiro.',
   ctas=[('book', 'Reservar transfer'), ('agencies', 'Para agências e linhas de cruzeiro')],
   blocks=[
@@ -221,7 +221,7 @@ PAGES['cruise'] = {
  'es': dict(
   title='Traslados en la Terminal de Cruceros de Lisboa y excursiones privadas · Dark Diamond Luxury',
   desc='Traslados privados entre las terminales de cruceros de Lisboa, el aeropuerto y los hoteles, y excursiones privadas a Sintra, Cascais y Lisboa, planificadas según la hora de regreso al barco.',
-  crumb='Terminal de cruceros de Lisboa', h1='Traslados en el puerto de cruceros de Lisboa y excursiones en tierra.', img='bridge',
+  crumb='Terminal de cruceros de Lisboa', h1='Traslados en el puerto de cruceros de Lisboa y excursiones en tierra.', img='cruise',
   lead='Del barco al aeropuerto, al hotel o a un tour privado, al ritmo de la escala. Para pasajeros, agencias y navieras.',
   ctas=[('book', 'Reservar traslado'), ('agencies', 'Para agencias y navieras')],
   blocks=[

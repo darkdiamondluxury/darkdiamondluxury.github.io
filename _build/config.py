@@ -65,6 +65,7 @@ IMG = {
     'van': 'https://images.unsplash.com/photo-1765461734605-34657fa04db2?auto=format&fit=crop&w=2000&q=70',
     'plane': 'https://images.unsplash.com/photo-1773673496557-e55445604766?auto=format&fit=crop&w=2000&q=70',
     'leather': 'https://images.unsplash.com/photo-1580929945040-a16adedf9f6a?auto=format&fit=crop&w=2000&q=70',
+    'cruise': 'https://images.unsplash.com/photo-1599640842225-85d111c60e6b?auto=format&fit=crop&w=2000&q=70',
     'bridge': 'https://images.unsplash.com/photo-1558102400-72da9fdbecae?auto=format&fit=crop&w=2000&q=70',
     'd-sintra': 'https://images.unsplash.com/photo-1697394494123-c6c1323a14f7?auto=format&fit=crop&w=2000&q=70',
     'd-cascais': 'https://images.unsplash.com/photo-1587973878097-ef3aabd5eeaa?auto=format&fit=crop&w=2000&q=70',
