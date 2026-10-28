@@ -8,6 +8,8 @@ Gera o site a partir de:
 Uso:  python3 _build/build.py    (corre a partir da raiz do repositório)
 """
 import html
+import hashlib as _h, os as _o
+CSSV=_h.md5(open(_o.path.join(_o.path.dirname(_o.path.abspath(__file__)),'..','assets','page.css'),'rb').read()).hexdigest()[:8]
 import json
 import os
 import re
@@ -157,7 +159,7 @@ def build_page(page, lang, d):
 <head>
 {head(page, lang, d['title'], d['desc'], ld)}
 <link rel="preload" href="/assets/jost-latin-300-normal.woff2" as="font" type="font/woff2" crossorigin>
-<link rel="stylesheet" href="/assets/page.css">
+<link rel="stylesheet" href="/assets/page.css?v={CSSV}">
 </head>
 <body class="pg-{page}">
 {SVG_DEFS}
@@ -201,11 +203,11 @@ def build_404():
     write('/404.html', '''<!doctype html><html lang="en"><head><meta charset="utf-8"><meta name="viewport" content="width=device-width,initial-scale=1">
 <title>Page not found · Dark Diamond Luxury</title><meta name="robots" content="noindex">
 <script>if(location.pathname.indexOf('/Despacho/app')===0){location.replace('/Despacho/app/');}</script>
-<link rel="stylesheet" href="/assets/page.css"></head><body>
+<link rel="stylesheet" href="/assets/page.css?v=@@V@@"></head><body>
 <section class="phero plain"><div class="in"><h1 class="display">Page not found.</h1>
 <p class="lead">Página não encontrada · Página no encontrada</p>
 <div class="actions"><a class="btn" href="/">Dark Diamond Luxury</a><a class="btn ghost" href="/pt/">Português</a><a class="btn ghost" href="/es/">Español</a></div></div></section>
-</body></html>''')
+</body></html>'''.replace('@@V@@',CSSV))
 
 
 if __name__ == '__main__':
