@@ -131,6 +131,12 @@ footer .cov b{margin-bottom:2px}
 footer .legalline{margin-top:44px;font-size:.85rem;color:var(--muted);max-width:110ch;line-height:1.6}
 footer .credits{margin-top:14px;font-size:.82rem;color:#7f8573;max-width:110ch}
 footer .credits a{text-decoration:underline}
+footer details.credits{margin-top:18px;max-width:110ch;font-size:.82rem;color:#8d9280}
+footer details.credits summary{cursor:pointer;width:max-content;text-decoration:underline;text-underline-offset:.18em;list-style:none}
+footer details.credits summary::-webkit-details-marker{display:none}
+footer details.credits p{margin-top:10px;line-height:1.6}
+footer details.credits a{text-decoration:underline}
+footer p.copy{margin-top:14px;font-size:.82rem;color:#7f8573}
 @media (max-width:860px){footer .foot-top{grid-template-columns:1fr}.totop{justify-self:start}footer .cols{grid-template-columns:1fr}}
 
 footer .word svg{width:.78em;height:.78em;color:var(--gold);margin-right:.14em;vertical-align:-.03em}

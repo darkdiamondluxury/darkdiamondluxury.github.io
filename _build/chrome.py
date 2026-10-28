@@ -12,17 +12,17 @@ L = {
             airport='Transfer aeroporto', cruise='Terminal de cruzeiros', chauffeur='Motorista à disposição', tours='Tours privados', events='Eventos e casamentos', longd='Longa distância', agencies='Agências e parceiros', dests='Destinos',
             privacy='Privacidade', legal='Informação legal', support='Suporte da app', complaints='Livro de Reclamações',
             top='Voltar ao início', book='Reservar', rnaat='Registo RNAAT n.º', nipc='NIPC', brand_of='é uma marca de',
-            credits='Fotografias ilustrativas, Unsplash License:', home='Início', coverage='Cobertura'),
+            credits_btn='Créditos das fotografias', credits='Fotografias ilustrativas, Unsplash License:', home='Início', coverage='Cobertura'),
  'en': dict(nav_label='Main', lang_label='Language', contact='Contact', company='Company', info='Information', services='Services',
             airport='Airport transfer', cruise='Cruise terminal', chauffeur='Chauffeur at disposal', tours='Private tours', events='Events and weddings', longd='Long distance', agencies='Agencies and partners', dests='Destinations',
             privacy='Privacy', legal='Legal information', support='App support', complaints='Complaints Book (Livro de Reclamações)',
             top='Back to top', book='Book', rnaat='RNAAT registration no.', nipc='VAT no. (NIPC)', brand_of='is a brand of',
-            credits='Illustrative photographs, Unsplash License:', home='Home', coverage='Coverage'),
+            credits_btn='Photo credits', credits='Illustrative photographs, Unsplash License:', home='Home', coverage='Coverage'),
  'es': dict(nav_label='Principal', lang_label='Idioma', contact='Contacto', company='Empresa', info='Información', services='Servicios',
             airport='Traslado aeropuerto', cruise='Terminal de cruceros', chauffeur='Chófer a disposición', tours='Tours privados', events='Eventos y bodas', longd='Larga distancia', agencies='Agencias y partners', dests='Destinos',
             privacy='Privacidad', legal='Aviso legal', support='Soporte de la app', complaints='Libro de Reclamaciones (Livro de Reclamações)',
             top='Volver arriba', book='Reservar', rnaat='Registro RNAAT n.º', nipc='NIF (NIPC)', brand_of='es una marca de',
-            credits='Fotografías ilustrativas, Unsplash License:', home='Inicio', coverage='Cobertura'),
+            credits_btn='Créditos de las fotografías', credits='Fotografías ilustrativas, Unsplash License:', home='Inicio', coverage='Cobertura'),
 }
 DEST_NAME = {'d-sintra': 'Sintra', 'd-cascais': 'Cascais', 'd-comporta': 'Comporta', 'd-evora': 'Évora', 'd-fatima': 'Fátima',
              'd-algarve': 'Algarve', 'd-porto': {'pt': 'Porto', 'en': 'Porto', 'es': 'Oporto'}}
@@ -131,7 +131,8 @@ def footer(lang):
     <div><b>{l['info']}</b><a href="{url('agencies', lang)}">{l['agencies']}</a><a href="{url('legal', lang)}">{l['legal']}</a><a href="{url('privacy', lang)}">{l['privacy']}</a><a href="https://www.livroreclamacoes.pt" rel="noopener">{l['complaints']}</a><a href="{url('support', lang)}">{l['support']}</a></div>
   </div>
   <p class="legalline">{BRAND} {l['brand_of']} {LEGAL['name']} · {l['nipc']} {LEGAL['nipc']} · {LEGAL['street']}, {LEGAL['postcode']} {LEGAL['city']} · {l['rnaat']} {LEGAL['rnaat']}</p>
-  <p class="credits"><span>{l['credits']}</span>
+  <details class="credits"><summary>{l['credits_btn']}</summary>
+    <p><span>{l['credits']}</span>
     <a href="https://unsplash.com/photos/jHw55im3a8Q">Marc Najera</a>,
     <a href="https://unsplash.com/photos/JlnS8Zl9RcQ">Dani and Juan</a>,
     <a href="https://unsplash.com/photos/yydI2Op7ILs">Iler Stoe</a>,
@@ -162,8 +163,9 @@ def footer(lang):
     <a href="https://unsplash.com/photos/couple-walks-towards-a-mediterranean-style-building-XL09jDIzg3Y">Fotógrafo Samuel Cruz</a>,
     <a href="https://unsplash.com/photos/a-scenic-view-of-a-valley-with-a-river-running-through-it-n0IVV6m5hfI">Thomas Gabernig</a>,
     <a href="https://unsplash.com/photos/white-cruise-ship-on-sea-during-daytime-xEJoSsDCnR8">Georgy Trofimov</a>,
-    <a href="https://unsplash.com/photos/dark-car-interior-with-starry-headliner-9hD5_2LrU3g">Rana Singh</a>.
-    © <span id="yr">2026</span> {BRAND}.</p>
+    <a href="https://unsplash.com/photos/dark-car-interior-with-starry-headliner-9hD5_2LrU3g">Rana Singh</a>.</p>
+  </details>
+  <p class="copy">© <span id="yr">2026</span> {BRAND}.</p>
 </footer>'''
 
 GOAT = '<script data-goatcounter="https://darkdiamondluxury.goatcounter.com/count" async src="https://gc.zgo.at/count.js"></script>'

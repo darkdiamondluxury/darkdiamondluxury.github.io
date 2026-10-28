@@ -260,6 +260,12 @@ footer .cov{margin-top:18px}
 footer .cov b{margin-bottom:2px}
 footer .credits{margin-top:14px;font-size:.85rem;color:#8d9280;max-width:110ch}
 footer .credits a{text-decoration:underline}
+footer details.credits{margin-top:18px;max-width:110ch;font-size:.82rem;color:#8d9280}
+footer details.credits summary{cursor:pointer;width:max-content;text-decoration:underline;text-underline-offset:.18em;list-style:none}
+footer details.credits summary::-webkit-details-marker{display:none}
+footer details.credits p{margin-top:10px;line-height:1.6}
+footer details.credits a{text-decoration:underline}
+footer p.copy{margin-top:14px;font-size:.82rem;color:#7f8573}
 @media (max-width:860px){footer .foot-top{grid-template-columns:1fr}.totop{justify-self:start}footer .cols{grid-template-columns:1fr}}
 
 .float-cta{position:fixed;z-index:60;right:var(--pad);bottom:calc(18px + env(safe-area-inset-bottom));opacity:0;transform:translateY(16px);pointer-events:none;transition:opacity .3s var(--ease-out),transform .3s var(--ease-out),background .2s}
@@ -351,7 +357,7 @@ footer{padding-bottom:96px}
         <p class="pq" id="pickQ" data-i18n="pick_q">Where do your dreams take you?</p>
         <div class="qrow">
           <label class="qf"><span class="sr" data-i18n="q_to">Destination</span><input id="qTo" data-i18n-ph="q_to_ph" placeholder="City, hotel or address" autocomplete="off"></label>
-          <label class="qf"><span class="sr" data-i18n="q_date">Date</span><input id="qDate" type="date"></label>
+          <label class="qf"><span class="sr" data-i18n="q_date">Date</span><input id="qDate" type="text" inputmode="numeric" autocomplete="off" maxlength="10" data-i18n-ph="date_ph" placeholder="dd/mm/yyyy"></label>
           <label class="qf"><span class="sr" data-i18n="l_phone">Phone / WhatsApp</span><input id="qPhone" type="tel" autocomplete="tel" inputmode="tel" data-i18n-ph="q_phone_ph" placeholder="Phone / WhatsApp"></label>
           <button class="btn" type="submit" data-i18n="q_send">Get a quote</button>
         </div>
@@ -437,7 +443,7 @@ footer{padding-bottom:96px}
         </div>
         <div><label for="fFrom" data-i18n="l_from">Pick-up</label><input id="fFrom" data-i18n-ph="ph_from" placeholder="Lisbon Airport"></div>
         <div><label for="fTo" data-i18n="l_to">Destination</label><input id="fTo" data-i18n-ph="ph_to" placeholder="Hotel, address or city"></div>
-        <div><label for="fDate" data-i18n="l_date">Date</label><input id="fDate" type="date"></div>
+        <div><label for="fDate" data-i18n="l_date">Date</label><input id="fDate" type="text" inputmode="numeric" autocomplete="off" maxlength="10" data-i18n-ph="date_ph" placeholder="dd/mm/yyyy"></div>
         <div><label for="fTime" data-i18n="l_time">Time</label><input id="fTime" type="time"></div>
         <div><label for="fPax" data-i18n="l_pax">Passengers</label><input id="fPax" type="number" min="1" max="20" inputmode="numeric" value="2"></div>
         <div><label for="fFlight" data-i18n="l_flight">Flight (optional)</label><input id="fFlight" placeholder="TP1234" autocapitalize="characters"></div>
@@ -481,7 +487,8 @@ footer{padding-bottom:96px}
     <div><b>Information</b><a href="/agencies/">Agencies and partners</a><a href="/legal/">Legal information</a><a href="/privacy/">Privacy</a><a href="https://www.livroreclamacoes.pt" rel="noopener">Complaints Book (Livro de Reclamações)</a><a href="/support/">App support</a></div>
   </div>
   <p class="legalline">Dark Diamond Luxury is a brand of Artur Danilo, Unipessoal Lda · VAT no. (NIPC) 515565458 · Av. Vergílio Ferreira, Lote 764, 6.º Esq., 1950-339 Lisboa · RNAAT registration no. 682/2022</p>
-  <p class="credits"><span>Illustrative photographs, Unsplash License:</span>
+  <details class="credits"><summary>Photo credits</summary>
+    <p><span>Illustrative photographs, Unsplash License:</span>
     <a href="https://unsplash.com/photos/jHw55im3a8Q">Marc Najera</a>,
     <a href="https://unsplash.com/photos/JlnS8Zl9RcQ">Dani and Juan</a>,
     <a href="https://unsplash.com/photos/yydI2Op7ILs">Iler Stoe</a>,
@@ -512,12 +519,21 @@ footer{padding-bottom:96px}
     <a href="https://unsplash.com/photos/couple-walks-towards-a-mediterranean-style-building-XL09jDIzg3Y">Fotógrafo Samuel Cruz</a>,
     <a href="https://unsplash.com/photos/a-scenic-view-of-a-valley-with-a-river-running-through-it-n0IVV6m5hfI">Thomas Gabernig</a>,
     <a href="https://unsplash.com/photos/white-cruise-ship-on-sea-during-daytime-xEJoSsDCnR8">Georgy Trofimov</a>,
-    <a href="https://unsplash.com/photos/dark-car-interior-with-starry-headliner-9hD5_2LrU3g">Rana Singh</a>.
-    © <span id="yr">2026</span> Dark Diamond Luxury.</p>
+    <a href="https://unsplash.com/photos/dark-car-interior-with-starry-headliner-9hD5_2LrU3g">Rana Singh</a>.</p>
+  </details>
+  <p class="copy">© <span id="yr">2026</span> Dark Diamond Luxury.</p>
 </footer>
 
 <script src="/assets/gsap.min.js"></script>
 <script src="/assets/ScrollTrigger.min.js"></script>
+<script>
+/* datas: escreve-se dd/mm/aaaa em todas as línguas; põe as barras sozinho e envia em aaaa-mm-dd */
+const dateMask=el=>el.addEventListener('input',()=>{const d=el.value.replace(/\D/g,'').slice(0,8);
+  el.value=d.length>4?d.slice(0,2)+'/'+d.slice(2,4)+'/'+d.slice(4):d.length>2?d.slice(0,2)+'/'+d.slice(2):d;});
+['qDate','fDate'].forEach(id=>dateMask(document.getElementById(id)));
+const isoDate=v=>{const m=/^(\d{2})\/(\d{2})\/(\d{4})$/.exec(v||''); if(!m) return ''; const dt=new Date(+m[3],+m[2]-1,+m[1]);
+  return dt.getDate()==+m[1]&&dt.getMonth()==+m[2]-1 ? `${m[3]}-${m[2]}-${m[1]}` : '';};
+</script>
 <script>
 /* ---------- Configuração (definida em _build/config.py) ---------- */
 const WHATSAPP = '351932666254';
@@ -525,7 +541,7 @@ const BK_URL = 'https://ccwzqtdxugutkgdupgxc.supabase.co/rest/v1/rpc/submit_book
 
 /* ---------- Textos (gerados por _build/build.py a partir de _build/home_i18n.py) ---------- */
 const lang = 'en';
-const T = {}; T[lang] = {"nav_dest": "Destinations", "nav_svc": "Services", "nav_fleet": "Fleet", "nav_ag": "Partners", "cta_short": "Book", "h1a": "Your chauffeur,", "h1b": "tailored to you.", "sub": "Transfers, tours, events and chauffeur at disposal in Portugal, Spain and France. Well-kept cars, punctual service and flight tracking.", "cta": "Get a quote", "pick_q": "Where do your dreams take you?", "pick_cta": "Book this route", "q_to": "Destination", "q_to_ph": "City, hotel or address", "q_date": "Date", "q_phone_ph": "Phone / WhatsApp", "q_send": "Get a quote", "q_svc": "Quote", "q_ok": "Request received. We will reply shortly with your quote.", "qmsg": "Hello! I would like a quote.\nDestination: {to}\nDate: {date}\nContact: {phone}", "sth": "Without the fuss.", "stp": "We plan the route, track your flight and keep to the agreed time.", "fa_b": "24/7", "fa_s": "whatever time the flight lands", "fb_b": "4 languages", "fb_s": "Portuguese, English, Spanish and French", "fc_b": "3 countries", "fc_s": "Portugal, Spain and France", "dh": "Where to?", "dp": "Approximate travel time from Lisbon airport. Pick a destination to book.", "onreq": "On request", "dnote": "Indicative times, which may vary. We drive anywhere in Portugal, Spain and France.", "swipe": "Swipe to see more destinations", "go": "Book this destination", "more": "Learn more", "svch": "At your pace.", "svcp": "Choose the service you need.", "v1h": "Airport", "v1p": "We wait for you at arrivals with your name on a sign, and we track your flight. Departures too.", "v2h": "At disposal", "v2p": "A chauffeur and car just for you, by the hour or the day: meetings, shopping or a day without watching the clock.", "v3h": "Private tours", "v3p": "Sintra, Cascais, Fátima, Évora or the Douro, at your pace and stopping where you like.", "v4h": "Events and weddings", "v4p": "Guests welcomed and driven on time, with the coordination handled by us.", "v5h": "Long distance", "v5p": "Porto, the Algarve, Spain and France, door to door.", "v6h": "Cruises", "v6p": "We meet you at the dock and take you to your hotel, the airport or an excursion, always around the ship's schedule.", "vh": "A living room on wheels.", "vp": "The Mercedes-Benz V-Class is the heart of our fleet: room for the group and the luggage, facing seats and a cabin made for talking or resting.", "fl": "For every occasion: S-Class, E-Class, V-Class, Sprinter and a 19-seat minibus.", "f1b": "Up to 19 seats", "f1s": "from S-Class to minibus", "f2b": "Luggage", "f2s": "checked bags included", "bh": "Prefer to add more details?", "bp": "Time, flight, luggage and passengers: the more you tell us, the faster and more accurate our reply. We answer on WhatsApp with confirmation and price.", "l_svc": "Service", "l_to": "Destination", "ph_to": "Hotel, address or city", "l_dir": "Direction", "l_from": "Pick-up", "ph_from": "Lisbon Airport", "l_bags": "Checked bags", "l_cabin": "Carry-on", "l_notes": "Notes (optional)", "ph_notes": "Child seat, a stop on the way, special requests…", "dirs": ["From the airport", "To the airport", "Other route"], "airport": "Lisbon Airport", "l_date": "Date", "l_time": "Time", "l_pax": "Passengers", "l_flight": "Flight (optional)", "l_name": "Name", "l_phone": "Phone / WhatsApp", "l_email": "Email (optional)", "need_phone": "Please add a phone number so we can reply.", "sent_ok": "Request received. We will reply shortly with confirmation and price.", "send": "Get a quote", "hint": "We receive your request and open WhatsApp with the message ready, if you want to talk to us now. Your details are only used to answer your request.", "nowa": "The WhatsApp number is not set on this site yet. Please contact us by phone or email at the bottom of the page.", "pbh": "Want to work with us?", "pbp": "We work with agencies, tour operators and cruise lines across Portugal, Spain and France. See how we work and ask for our terms.", "pbc": "Become a partner", "top": "Back to top", "svcs": ["Airport", "At disposal", "Tour", "Event", "Long distance", "Cruise"], "from": "from the airport", "dest_label": "Destinations"};
+const T = {}; T[lang] = {"nav_dest": "Destinations", "nav_svc": "Services", "nav_fleet": "Fleet", "nav_ag": "Partners", "cta_short": "Book", "h1a": "Your chauffeur,", "h1b": "tailored to you.", "sub": "Transfers, tours, events and chauffeur at disposal in Portugal, Spain and France. Well-kept cars, punctual service and flight tracking.", "cta": "Get a quote", "pick_q": "Where do your dreams take you?", "pick_cta": "Book this route", "date_ph": "dd/mm/yyyy", "q_to": "Destination", "q_to_ph": "City, hotel or address", "q_date": "Date", "q_phone_ph": "Phone / WhatsApp", "q_send": "Get a quote", "q_svc": "Quote", "q_ok": "Request received. We will reply shortly with your quote.", "qmsg": "Hello! I would like a quote.\nDestination: {to}\nDate: {date}\nContact: {phone}", "sth": "Without the fuss.", "stp": "We plan the route, track your flight and keep to the agreed time.", "fa_b": "24/7", "fa_s": "whatever time the flight lands", "fb_b": "4 languages", "fb_s": "Portuguese, English, Spanish and French", "fc_b": "3 countries", "fc_s": "Portugal, Spain and France", "dh": "Where to?", "dp": "Approximate travel time from Lisbon airport. Pick a destination to book.", "onreq": "On request", "dnote": "Indicative times, which may vary. We drive anywhere in Portugal, Spain and France.", "swipe": "Swipe to see more destinations", "go": "Book this destination", "more": "Learn more", "svch": "At your pace.", "svcp": "Choose the service you need.", "v1h": "Airport", "v1p": "We wait for you at arrivals with your name on a sign, and we track your flight. Departures too.", "v2h": "At disposal", "v2p": "A chauffeur and car just for you, by the hour or the day: meetings, shopping or a day without watching the clock.", "v3h": "Private tours", "v3p": "Sintra, Cascais, Fátima, Évora or the Douro, at your pace and stopping where you like.", "v4h": "Events and weddings", "v4p": "Guests welcomed and driven on time, with the coordination handled by us.", "v5h": "Long distance", "v5p": "Porto, the Algarve, Spain and France, door to door.", "v6h": "Cruises", "v6p": "We meet you at the dock and take you to your hotel, the airport or an excursion, always around the ship's schedule.", "vh": "A living room on wheels.", "vp": "The Mercedes-Benz V-Class is the heart of our fleet: room for the group and the luggage, facing seats and a cabin made for talking or resting.", "fl": "For every occasion: S-Class, E-Class, V-Class, Sprinter and a 19-seat minibus.", "f1b": "Up to 19 seats", "f1s": "from S-Class to minibus", "f2b": "Luggage", "f2s": "checked bags included", "bh": "Prefer to add more details?", "bp": "Time, flight, luggage and passengers: the more you tell us, the faster and more accurate our reply. We answer on WhatsApp with confirmation and price.", "l_svc": "Service", "l_to": "Destination", "ph_to": "Hotel, address or city", "l_dir": "Direction", "l_from": "Pick-up", "ph_from": "Lisbon Airport", "l_bags": "Checked bags", "l_cabin": "Carry-on", "l_notes": "Notes (optional)", "ph_notes": "Child seat, a stop on the way, special requests…", "dirs": ["From the airport", "To the airport", "Other route"], "airport": "Lisbon Airport", "l_date": "Date", "l_time": "Time", "l_pax": "Passengers", "l_flight": "Flight (optional)", "l_name": "Name", "l_phone": "Phone / WhatsApp", "l_email": "Email (optional)", "need_phone": "Please add a phone number so we can reply.", "sent_ok": "Request received. We will reply shortly with confirmation and price.", "send": "Get a quote", "hint": "We receive your request and open WhatsApp with the message ready, if you want to talk to us now. Your details are only used to answer your request.", "nowa": "The WhatsApp number is not set on this site yet. Please contact us by phone or email at the bottom of the page.", "pbh": "Want to work with us?", "pbp": "We work with agencies, tour operators and cruise lines across Portugal, Spain and France. See how we work and ask for our terms.", "pbc": "Become a partner", "top": "Back to top", "svcs": ["Airport", "At disposal", "Tour", "Event", "Long distance", "Cruise"], "from": "from the airport", "dest_label": "Destinations"};
 const MSGT = {"tpl": "Hello! I'd like to book.\nService: {svc}\nPick-up: {from}\nDestination: {to}\nDate: {date} {time}\nPassengers: {pax}\nLuggage: {bags} checked, {cabin} carry-on{flight}\nName: {name}{notes}", "flight": "\nFlight: ", "notes": "\nNotes: "};
 T[lang].msg = d => MSGT.tpl.replace(/\{(\w+)\}/g, (_, k) => k==='flight' ? (d.flight ? MSGT.flight + d.flight : '') : k==='notes' ? (d.notes ? MSGT.notes + d.notes : '') : (d[k] ?? ''));
 const PLACES = [["Baixa · Chiado", "20 min"], ["Cascais", "35 min"], ["Sintra", "35 min"], ["Comporta", "1h15"], ["Évora", "1h30"], ["Fátima", "1h30"], ["Algarve", "2h45"], ["Porto", "3h"], ["Madrid", "6h"], ["Seville", "4h"], ["Marbella", "5h30"]];
@@ -618,7 +634,7 @@ document.getElementById('quote').addEventListener('submit', e=>{
   if(!g('qPhone')){ h.textContent=t.need_phone; document.getElementById('qPhone').focus(); return; }
   try{
     fetch(BK_URL,{method:'POST',keepalive:true,headers:{'content-type':'application/json',apikey:BK_KEY,authorization:'Bearer '+BK_KEY},
-      body:JSON.stringify({p:{lang,service:t.q_svc,direction:'',pickup:'',dropoff:g('qTo'),date:g('qDate'),time:'',pax:'',bags:'',cabin:'',flight:'',name:'',phone:g('qPhone'),email:'',notes:'',website:g('qWeb')}})})
+      body:JSON.stringify({p:{lang,service:t.q_svc,direction:'',pickup:'',dropoff:g('qTo'),date:isoDate(g('qDate')),time:'',pax:'',bags:'',cabin:'',flight:'',name:'',phone:g('qPhone'),email:'',notes:'',website:g('qWeb')}})})
       .then(r=>{ if(r.ok){ h.textContent=t.q_ok; } }).catch(()=>{});
   }catch(err){}
   if(window.goatcounter&&goatcounter.count) goatcounter.count({path:'orcamento-pedido',title:'Pedido de orçamento enviado',event:true});
@@ -638,7 +654,7 @@ document.getElementById('form').addEventListener('submit', e=>{
   // 1) guarda o pedido na app do escritório (Pedidos do site). "keepalive" deixa o envio terminar mesmo que a página mude.
   try{
     fetch(BK_URL,{method:'POST',keepalive:true,headers:{'content-type':'application/json',apikey:BK_KEY,authorization:'Bearer '+BK_KEY},
-      body:JSON.stringify({p:{lang,service:t.svcs[svcPick],direction:svcPick===0?t.dirs[dirPick]:'',pickup:g('fFrom'),dropoff:g('fTo'),date:g('fDate'),time:g('fTime'),
+      body:JSON.stringify({p:{lang,service:t.svcs[svcPick],direction:svcPick===0?t.dirs[dirPick]:'',pickup:g('fFrom'),dropoff:g('fTo'),date:isoDate(g('fDate')),time:g('fTime'),
         pax:g('fPax'),bags:g('fBags'),cabin:g('fCabin'),flight:g('fFlight'),name:g('fName'),phone:g('fPhone'),email:g('fEmail'),notes:g('fNotes'),website:g('fWeb')}})})
       .then(r=>{ if(r.ok){ h.textContent=t.sent_ok; h.style.color='var(--black)'; } }).catch(()=>{});
   }catch(err){}
