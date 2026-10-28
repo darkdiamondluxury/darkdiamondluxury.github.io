@@ -179,3 +179,7 @@ footer .word em{background:linear-gradient(120deg,#A27A38,#F3DFA2 45%,#C69F5B 70
 .pg-agencies main{font-size:clamp(.98rem,.9rem + .2vw,1.08rem)}
 .pg-agencies .rows>div{grid-template-columns:minmax(120px,.6fr) minmax(0,1.4fr)}
 .pg-agencies .rows dd{overflow-wrap:anywhere}
+/* parceiros, ecrãs pretos: títulos a dourado, legendas a branco */
+.pg-agencies .phero .lead,.pg-agencies .crumbs,.pg-agencies .crumbs a,.pg-agencies .sec:not(.bone) p,.pg-agencies .sec:not(.bone) .ticks li,.pg-agencies .sec:not(.bone) .steps li,.pg-agencies .sec:not(.bone) .rows dt,.pg-agencies .sec:not(.bone) .rows dd,.pg-agencies .sec:not(.bone) p.muted{color:var(--ink)}
+.pg-agencies .sec:not(.bone) .ticks b,.pg-agencies .sec:not(.bone) .steps b{color:var(--gold)}
+.pg-agencies .crumbs a:hover{color:var(--gold)}
