@@ -66,4 +66,11 @@ IMG = {
     'plane': 'https://images.unsplash.com/photo-1773673496557-e55445604766?auto=format&fit=crop&w=2000&q=70',
     'leather': 'https://images.unsplash.com/photo-1580929945040-a16adedf9f6a?auto=format&fit=crop&w=2000&q=70',
     'bridge': 'https://images.unsplash.com/photo-1558102400-72da9fdbecae?auto=format&fit=crop&w=2000&q=70',
+    'd-sintra': 'https://images.unsplash.com/photo-1697394494123-c6c1323a14f7?auto=format&fit=crop&w=2000&q=70',
+    'd-cascais': 'https://images.unsplash.com/photo-1587973878097-ef3aabd5eeaa?auto=format&fit=crop&w=2000&q=70',
+    'd-comporta': 'https://images.unsplash.com/photo-1672825952732-ecef34882416?auto=format&fit=crop&w=2000&q=70',
+    'd-evora': 'https://images.unsplash.com/photo-1644183521042-377da9d4aea3?auto=format&fit=crop&w=2000&q=70',
+    'd-fatima': 'https://images.pexels.com/photos/30443719/pexels-photo-30443719.jpeg?auto=compress&cs=tinysrgb&w=2000',
+    'd-algarve': 'https://images.pexels.com/photos/33887497/pexels-photo-33887497.jpeg?auto=compress&cs=tinysrgb&w=2000',
+    'd-porto': 'https://images.unsplash.com/photo-1768565540385-5195e32bb44b?auto=format&fit=crop&w=2000&q=70',
 }

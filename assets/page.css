@@ -185,12 +185,14 @@ footer .word em{background:linear-gradient(120deg,#A27A38,#F3DFA2 45%,#C69F5B 70
 .gp .crumbs a:hover{color:var(--gold)}
 
 /* aeroporto: o primeiro ecrã mantém-se como estava */
-.pg-airport .phero h1{color:var(--ink)}
-.pg-airport .phero .lead{color:#d9d6c8}
-.pg-airport .crumbs,.pg-airport .crumbs a{color:var(--muted)}
-.pg-airport .crumbs a:hover{color:var(--ink)}
+.gp:not(.pg-agencies) .phero h1{color:var(--ink)}
+.gp:not(.pg-agencies) .phero .lead{color:#d9d6c8}
+.gp:not(.pg-agencies) .crumbs,.gp:not(.pg-agencies) .crumbs a{color:var(--muted)}
+.gp:not(.pg-agencies) .crumbs a:hover{color:var(--ink)}
 .gp .sec.bone .rows dt,.gp .sec.bone .rows dd{color:var(--black)}
 .gp .sec.bone .rows,.gp .sec.bone .rows>div{border-color:rgba(0,0,0,.25)}
 .gp .sec.bone p.muted{color:var(--black)}
 .gp .related a{color:var(--ink);border-color:rgba(201,162,94,.55)}
 @media (hover:hover){.gp .related a:hover{color:var(--gold);border-color:var(--gold)}}
+/* destinos: foto de dia, mais luminosa */
+[class*="pg-d-"] .phero::after{background:linear-gradient(180deg,rgba(5,5,5,.38) 0%,rgba(5,5,5,.16) 40%,rgba(5,5,5,.86) 100%)}
