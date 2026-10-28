@@ -159,7 +159,7 @@ def build_page(page, lang, d):
 <link rel="preload" href="/assets/jost-latin-300-normal.woff2" as="font" type="font/woff2" crossorigin>
 <link rel="stylesheet" href="/assets/page.css">
 </head>
-<body>
+<body class="pg-{page}">
 {SVG_DEFS}
 {nav(page, lang, links, url('home', lang) + '#reservar')}
 <main>

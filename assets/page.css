@@ -155,3 +155,21 @@ footer .word em{background:linear-gradient(120deg,#A27A38,#F3DFA2 45%,#C69F5B 70
 .brand .dk{color:var(--gold)}.brand .dm{color:var(--silver)}
 @media (max-width:520px){.brand{font-size:.84rem;letter-spacing:.02em;gap:8px}}
 @media (max-width:370px){.brand .lux{display:none}}
+
+/* ---------- página de parceiros: letra dourada nos ecrãs pretos, ecrã dourado metálico, losangos cheios ---------- */
+.pg-agencies{--gold-grad:linear-gradient(120deg,#A27A38 0%,#F3DFA2 30%,#C69F5B 56%,#FBE8AE 82%,#A27A38 100%)}
+.pg-agencies,.pg-agencies .phero .lead,.pg-agencies .crumbs,.pg-agencies .crumbs a,.pg-agencies p.muted,.pg-agencies .sec p,.pg-agencies .rows dt,.pg-agencies .rows dd,.pg-agencies .ticks li,.pg-agencies .steps li{color:var(--gold)}
+.pg-agencies .phero h1,.pg-agencies .split h2,.pg-agencies .steps b,.pg-agencies .ticks b{color:var(--gold)}
+.pg-agencies .crumbs a:hover{color:var(--gold-hi,#F1DBA0)}
+.pg-agencies .phero .lead,.pg-agencies .sec p,.pg-agencies .ticks li,.pg-agencies .steps li,.pg-agencies .rows>div{font-family:var(--font);font-weight:400}
+.pg-agencies .ticks b,.pg-agencies .steps b{font-weight:500}
+.pg-agencies .ticks li::before{background:var(--gold);border:0;width:11px;height:11px}
+.pg-agencies .steps li::before{font-family:var(--display);font-weight:400}
+.pg-agencies .rows,.pg-agencies .rows>div{border-color:rgba(201,162,94,.3)}
+.pg-agencies .sec.bone,.pg-agencies .ctab{background:var(--gold-grad);color:var(--black)}
+.pg-agencies .sec.bone .split h2,.pg-agencies .sec.bone h2,.pg-agencies .sec.bone p,.pg-agencies .sec.bone .ticks li,.pg-agencies .sec.bone .ticks b,.pg-agencies .sec.bone .steps li,.pg-agencies .sec.bone .steps b,.pg-agencies .ctab h2,.pg-agencies .ctab p{color:var(--black)}
+.pg-agencies .sec.bone .ticks li::before{background:var(--black);border:0}
+.pg-agencies .sec.bone .steps li::before{color:var(--black)}
+.pg-agencies .ctab .btn{background:var(--black);color:var(--gold)}
+@media (hover:hover){.pg-agencies .ctab .btn:hover{background:#1a1a18}}
+.pg-agencies .ctab .btn.ghost{background:transparent;color:var(--black)}
