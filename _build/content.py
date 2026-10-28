@@ -15,26 +15,26 @@ PAGES['agencies'] = {
  'en': dict(
   title='Ground transportation partner in Portugal for travel agencies · Dark Diamond Luxury',
   desc='Private transfers, tours and chauffeur services for travel agencies, tour operators, DMCs and cruise lines in Portugal, Spain and France. Registered with Turismo de Portugal, RNAAT 682/2022.',
-  crumb='Agencies and partners', h1='The ground partner for agencies in Portugal.',
+  crumb='Agencies and partners', h1='Your ground partner in Portugal.',
   lead='Private transfers, tours and chauffeured services for travel agencies, tour operators, DMCs and cruise lines. Portugal, Spain and France.',
-  subject='Partnership request / rates', ctas=[('mail', 'Request a rate sheet'), ('tel', 'Call')],
+  subject='Partnership request / rates', ctas=[('mail', 'Request our rates'), ('tel', 'Call us')],
   blocks=[
-   dict(type='split', h='Why agencies choose Dark Diamond Luxury', ticks=[
+   dict(type='split', h='Why agencies work with us', ticks=[
      '<b>Registered with Turismo de Portugal.</b> Licensed tourism activity operator, RNAAT no. 682/2022.',
      '<b>Insured.</b> Civil liability and personal accident insurance in force.',
-     '<b>Flight tracking, meet and greet.</b> The agency\'s client is met at arrivals with a name sign, whatever time the flight lands.',
-     '<b>A direct line, 24/7.</b> Agencies speak to the people who plan and dispatch the service, not a call centre.',
+     '<b>Flight tracking, meet and greet.</b> Your client is met at arrivals with a name sign, whatever time the flight lands.',
+     '<b>A direct line, 24/7.</b> You speak to the people who plan and dispatch the service, not a call centre.',
      '<b>Multilingual drivers.</b> Portuguese, English, Spanish and French.',
      '<b>From one passenger to groups of 19.</b> Mercedes-Benz S-Class, E-Class and V-Class, Sprinter and a 19-seat minibus.',
      '<b>Written confirmation.</b> Every booking is confirmed in writing, and the driver\'s details are sent before the service.']),
-   dict(type='split', bg='bone', h='Where Dark Diamond Luxury operates', p=['Based in Lisbon, with regular services across Portugal and long-distance transfers to Spain and France.'], ticks=[
+   dict(type='split', bg='bone', h='Where we operate', p=['Based in Lisbon, with regular services across Portugal and long-distance transfers to Spain and France.'], ticks=[
      'Lisbon airport (LIS), city hotels and the cruise terminals', 'Sintra, Cascais and the Estoril coast', 'Comporta and the Alentejo coast',
      'Évora and the Alentejo', 'Fátima, Óbidos, Nazaré and Batalha', 'Porto and the Douro valley', 'The Algarve', 'Spain and France, on request']),
    dict(type='split', h='How it works', steps=[
-     ('The agency sends the booking', 'By email or WhatsApp: passenger name, date, flight or pick-up time, number of passengers and luggage.'),
-     ('Dark Diamond Luxury confirms', 'Availability and price are confirmed in writing, quickly and at any hour.'),
-     ('Before the service', 'The agency receives the driver\'s name, phone number and vehicle.'),
-     ('On the day', 'Meet and greet, flight tracking and direct contact with the driver. If anything changes, the agency is told straight away.'),
+     ('Send the booking', 'By email or WhatsApp: passenger name, date, flight or pick-up time, number of passengers and luggage.'),
+     ('We confirm', 'Availability and price confirmed in writing, quickly and at any hour.'),
+     ('Before the service', 'You receive the driver\'s name, phone number and vehicle.'),
+     ('On the day', 'Meet and greet, flight tracking and direct contact with the driver. If anything changes, we tell you straight away.'),
      ('Invoicing', f'Per service or monthly, as agreed. Invoices issued by {LEGAL["name"]}, VAT PT{LEGAL["nipc"]}.')]),
    dict(type='split', bg='alt', h='Services', ticks=[
      'Airport and cruise port transfers', 'Chauffeur at disposal, by the hour or by the day', 'Private tours and day trips',
@@ -43,32 +43,32 @@ PAGES['agencies'] = {
      ('Trading name', 'Dark Diamond Luxury'), ('Legal name', LEGAL['name']), ('VAT number (NIPC)', LEGAL['nipc']),
      ('Registered office', ADDR), ('Tourism registration', f'RNAAT {LEGAL["rnaat"]}'),
      ('Insurance', 'Civil liability · Personal accident'), ('Fleet', FLEET['en']), ('Drivers\' languages', LANGS_SPOKEN['en']), ('Operations', '24 hours, 7 days'), ('Coverage', COVERAGE['en']), ('Contact', f'{EMAIL}<br>{PH}')]),
-   dict(type='cta', h='Working with Dark Diamond Luxury.', p='From the agency\'s usual routes and volumes, Dark Diamond Luxury prepares a rate sheet made to measure.',
-        ctas=[('mail', 'Request a rate sheet'), ('tel', 'Call')]),
+   dict(type='cta', h='Let\'s work together.', p='Send us your usual routes and volumes and we will prepare a rate sheet for your agency.',
+        ctas=[('mail', 'Request our rates'), ('tel', 'Call us')]),
   ]),
  'pt': dict(
   title='Parceiro de transporte em Portugal para agências de viagens · Dark Diamond Luxury',
   desc='Transfers privados, tours e motorista para agências de viagens, operadores turísticos, DMCs e linhas de cruzeiro em Portugal, Espanha e França. Registada no Turismo de Portugal, RNAAT 682/2022.',
-  crumb='Agências e parceiros', h1='O parceiro das agências em Portugal.',
+  crumb='Agências e parceiros', h1='O seu parceiro em terra, em Portugal.',
   lead='Transfers privados, tours e serviços com motorista para agências de viagens, operadores turísticos, DMCs e linhas de cruzeiro. Portugal, Espanha e França.',
   subject='Pedido de parceria / tabela de preços', ctas=[('mail', 'Pedir tabela de preços'), ('tel', 'Ligar')],
   blocks=[
-   dict(type='split', h='Porque as agências escolhem a Dark Diamond Luxury', ticks=[
+   dict(type='split', h='Porque trabalham connosco', ticks=[
      '<b>Registados no Turismo de Portugal.</b> Agente de animação turística, RNAAT n.º 682/2022.',
      '<b>Com seguro.</b> Seguros de responsabilidade civil e de acidentes pessoais em vigor.',
-     '<b>Seguimento de voos e receção com placa.</b> O cliente da agência é recebido nas chegadas com o nome, à hora a que o voo aterrar.',
-     '<b>Contacto direto, 24/7.</b> As agências falam com quem planeia e despacha o serviço, não com um call center.',
+     '<b>Seguimento de voos e receção com placa.</b> O seu cliente é recebido nas chegadas com o nome, à hora a que o voo aterrar.',
+     '<b>Contacto direto, 24/7.</b> Fale com quem planeia e despacha o serviço, não com um call center.',
      '<b>Motoristas que falam a língua do cliente.</b> Português, inglês, espanhol e francês.',
      '<b>De um passageiro a grupos de 19.</b> Mercedes-Benz Classe S, Classe E e Classe V, Sprinter e minibus de 19 lugares.',
      '<b>Confirmação por escrito.</b> Cada reserva é confirmada por escrito e os dados do motorista seguem antes do serviço.']),
-   dict(type='split', bg='bone', h='Onde opera a Dark Diamond Luxury', p=['Sediada em Lisboa, com serviços regulares em todo o país e transfers de longa distância para Espanha e França.'], ticks=[
+   dict(type='split', bg='bone', h='Onde trabalhamos', p=['Com base em Lisboa, serviços regulares em todo o país e transfers de longa distância para Espanha e França.'], ticks=[
      'Aeroporto de Lisboa, hotéis da cidade e terminais de cruzeiros', 'Sintra, Cascais e a linha do Estoril', 'Comporta e o litoral alentejano',
      'Évora e o Alentejo', 'Fátima, Óbidos, Nazaré e Batalha', 'Porto e o vale do Douro', 'Algarve', 'Espanha e França, por pedido']),
    dict(type='split', h='Como funciona', steps=[
-     ('A agência envia a reserva', 'Por email ou WhatsApp: nome do passageiro, data, voo ou hora de recolha, número de passageiros e malas.'),
-     ('A Dark Diamond Luxury confirma', 'Disponibilidade e preço são confirmados por escrito, com rapidez e a qualquer hora.'),
-     ('Antes do serviço', 'A agência recebe o nome e o telefone do motorista e o veículo.'),
-     ('No dia', 'Receção com placa, seguimento do voo e contacto direto com o motorista. Se algo mudar, a agência é avisada de imediato.'),
+     ('Envie a reserva', 'Por email ou WhatsApp: nome do passageiro, data, voo ou hora de recolha, número de passageiros e malas.'),
+     ('Confirmamos', 'Disponibilidade e preço confirmados por escrito, com rapidez e a qualquer hora.'),
+     ('Antes do serviço', 'Receberá o nome e o telefone do motorista e o veículo.'),
+     ('No dia', 'Receção com placa, seguimento do voo e contacto direto com o motorista. Se algo mudar, avisamos de imediato.'),
      ('Faturação', f'Por serviço ou mensal, conforme acordado. Faturas emitidas por {LEGAL["name"]}, NIPC {LEGAL["nipc"]}.')]),
    dict(type='split', bg='alt', h='Serviços', ticks=[
      'Transfers de aeroporto e de porto de cruzeiros', 'Motorista à disposição, à hora ou ao dia', 'Tours privados e passeios de um dia',
@@ -77,32 +77,32 @@ PAGES['agencies'] = {
      ('Nome comercial', 'Dark Diamond Luxury'), ('Firma', LEGAL['name']), ('NIPC', LEGAL['nipc']),
      ('Sede', ADDR), ('Registo de turismo', f'RNAAT {LEGAL["rnaat"]}'),
      ('Seguros', 'Responsabilidade civil · Acidentes pessoais'), ('Frota', FLEET['pt']), ('Línguas dos motoristas', LANGS_SPOKEN['pt']), ('Operação', '24 horas, 7 dias'), ('Cobertura', COVERAGE['pt']), ('Contacto', f'{EMAIL}<br>{PH}')]),
-   dict(type='cta', h='Trabalhar com a Dark Diamond Luxury.', p='A partir das rotas e volumes habituais da agência, a Dark Diamond Luxury prepara uma tabela de preços à medida.',
+   dict(type='cta', h='Vamos trabalhar juntos.', p='Envie-nos as rotas e volumes habituais e preparamos uma tabela de preços para a sua agência.',
         ctas=[('mail', 'Pedir tabela de preços'), ('tel', 'Ligar')]),
   ]),
  'es': dict(
   title='Partner de transporte en Portugal para agencias de viajes · Dark Diamond Luxury',
   desc='Traslados privados, tours y chófer para agencias de viajes, turoperadores, DMCs y navieras en Portugal, España y Francia. Registrada en Turismo de Portugal, RNAAT 682/2022.',
-  crumb='Agencias y partners', h1='El partner de las agencias en Portugal.',
+  crumb='Agencias y partners', h1='Su partner en tierra, en Portugal.',
   lead='Traslados privados, tours y servicios con chófer para agencias de viajes, turoperadores, DMCs y navieras. Portugal, España y Francia.',
   subject='Solicitud de colaboración / tarifas', ctas=[('mail', 'Solicitar tarifas'), ('tel', 'Llamar')],
   blocks=[
-   dict(type='split', h='Por qué las agencias eligen Dark Diamond Luxury', ticks=[
+   dict(type='split', h='Por qué trabajan con nosotros', ticks=[
      '<b>Registrados en Turismo de Portugal.</b> Agente de animación turística, RNAAT n.º 682/2022.',
      '<b>Asegurados.</b> Seguros de responsabilidad civil y de accidentes personales en vigor.',
-     '<b>Seguimiento de vuelos y recepción con cartel.</b> El cliente de la agencia es recibido en llegadas con su nombre, a la hora a la que aterrice el vuelo.',
-     '<b>Contacto directo, 24/7.</b> Las agencias hablan con quien planifica y asigna el servicio, no con un call center.',
+     '<b>Seguimiento de vuelos y recepción con cartel.</b> Su cliente es recibido en llegadas con su nombre, a la hora a la que aterrice el vuelo.',
+     '<b>Contacto directo, 24/7.</b> Hable con quien planifica y asigna el servicio, no con un call center.',
      '<b>Chóferes que hablan el idioma del cliente.</b> Portugués, inglés, español y francés.',
      '<b>De un pasajero a grupos de 19.</b> Mercedes-Benz Clase S, Clase E y Clase V, Sprinter y minibús de 19 plazas.',
      '<b>Confirmación por escrito.</b> Cada reserva se confirma por escrito y los datos del chófer se envían antes del servicio.']),
-   dict(type='split', bg='bone', h='Dónde opera Dark Diamond Luxury', p=['Con sede en Lisboa, servicios regulares en todo Portugal y traslados de larga distancia a España y Francia.'], ticks=[
+   dict(type='split', bg='bone', h='Dónde trabajamos', p=['Con base en Lisboa, servicios regulares en todo Portugal y traslados de larga distancia a España y Francia.'], ticks=[
      'Aeropuerto de Lisboa, hoteles de la ciudad y terminales de cruceros', 'Sintra, Cascais y la costa de Estoril', 'Comporta y la costa del Alentejo',
      'Évora y el Alentejo', 'Fátima, Óbidos, Nazaré y Batalha', 'Oporto y el valle del Duero', 'El Algarve', 'España y Francia, bajo petición']),
    dict(type='split', h='Cómo funciona', steps=[
-     ('La agencia envía la reserva', 'Por email o WhatsApp: nombre del pasajero, fecha, vuelo u hora de recogida, número de pasajeros y maletas.'),
-     ('Dark Diamond Luxury confirma', 'Disponibilidad y precio se confirman por escrito, con rapidez y a cualquier hora.'),
-     ('Antes del servicio', 'La agencia recibe el nombre y el teléfono del chófer y el vehículo.'),
-     ('El día del servicio', 'Recepción con cartel, seguimiento del vuelo y contacto directo con el chófer. Si algo cambia, se avisa a la agencia de inmediato.'),
+     ('Envíe la reserva', 'Por email o WhatsApp: nombre del pasajero, fecha, vuelo u hora de recogida, número de pasajeros y maletas.'),
+     ('Confirmamos', 'Disponibilidad y precio confirmados por escrito, con rapidez y a cualquier hora.'),
+     ('Antes del servicio', 'Recibirá el nombre y el teléfono del chófer y el vehículo.'),
+     ('El día del servicio', 'Recepción con cartel, seguimiento del vuelo y contacto directo con el chófer. Si algo cambia, le avisamos de inmediato.'),
      ('Facturación', f'Por servicio o mensual, según lo acordado. Facturas emitidas por {LEGAL["name"]}, NIF PT{LEGAL["nipc"]}.')]),
    dict(type='split', bg='alt', h='Servicios', ticks=[
      'Traslados de aeropuerto y de puerto de cruceros', 'Chófer a disposición, por horas o por días', 'Tours privados y excursiones de un día',
@@ -111,7 +111,7 @@ PAGES['agencies'] = {
      ('Nombre comercial', 'Dark Diamond Luxury'), ('Razón social', LEGAL['name']), ('NIF (NIPC)', LEGAL['nipc']),
      ('Domicilio social', ADDR), ('Registro de turismo', f'RNAAT {LEGAL["rnaat"]}'),
      ('Seguros', 'Responsabilidad civil · Accidentes personales'), ('Flota', FLEET['es']), ('Idiomas de los chóferes', LANGS_SPOKEN['es']), ('Operación', '24 horas, 7 días'), ('Cobertura', COVERAGE['es']), ('Contacto', f'{EMAIL}<br>{PH}')]),
-   dict(type='cta', h='Trabajar con Dark Diamond Luxury.', p='A partir de las rutas y volúmenes habituales de la agencia, Dark Diamond Luxury prepara una tabla de tarifas a medida.',
+   dict(type='cta', h='Trabajemos juntos.', p='Envíenos sus rutas y volúmenes habituales y preparamos una tabla de tarifas para su agencia.',
         ctas=[('mail', 'Solicitar tarifas'), ('tel', 'Llamar')]),
   ]),
 }
@@ -127,7 +127,7 @@ PAGES['airport'] = {
   desc='Private transfer from Lisbon Airport (LIS) to your hotel or anywhere in Portugal. Flight tracking, meet and greet at arrivals with your name, price confirmed before you book.',
   crumb='Lisbon airport transfer', h1='Lisbon airport transfers, met by name.', img='plane',
   lead='Private transfer from Lisbon Humberto Delgado Airport (LIS) to your hotel, home or anywhere in Portugal. Your driver tracks the flight and waits at arrivals with your name.',
-  ctas=[('book', 'Book airport transfer'), ('tel', 'Call')],
+  ctas=[('book', 'Book airport transfer'), ('tel', 'Call us')],
   blocks=[
    dict(type='split', h='How it works', steps=[
      ('Book', 'Send us your flight number, destination and number of passengers and bags. We reply with confirmation and price.'),
@@ -138,7 +138,7 @@ PAGES['airport'] = {
    dict(type='split', h='Good to know', ticks=[
      'A private vehicle just for your group: no shared shuttles.', 'Child seats on request: tell us the children\'s ages when booking.',
      'Departures too: pick-up at your hotel at the time you choose.', 'Drivers who speak Portuguese, English, Spanish and French.', 'Available 24/7, whatever time you land.', 'Price confirmed in writing before you book.'], related=DESTS),
-   dict(type='cta', h='Landing soon?', p='Send us your flight and destination. We reply with confirmation and price.', ctas=[('book', 'Book airport transfer'), ('tel', 'Call')]),
+   dict(type='cta', h='Landing soon?', p='Send us your flight and destination. We reply with confirmation and price.', ctas=[('book', 'Book airport transfer'), ('tel', 'Call us')]),
   ]),
  'pt': dict(
   title='Transfer do Aeroporto de Lisboa · Receção com placa · Dark Diamond Luxury',
@@ -198,7 +198,7 @@ PAGES['cruise'] = {
      'Some ships use the Alcântara or Rocha Conde de Óbidos terminals, further west. Tell us the ship\'s name and we will meet you at the right place.']),
    dict(type='split', h='Back on board on time', p=[
      'On shore excursions we plan the day backwards from the all-aboard time, with a margin for traffic. You keep the driver\'s number and the driver keeps yours.']),
-   dict(type='cta', h='Docking in Lisbon?', p='Tell us the ship, the date and what you would like to do. We reply with a plan and a price.', ctas=[('book', 'Book a port transfer'), ('tel', 'Call')]),
+   dict(type='cta', h='Docking in Lisbon?', p='Tell us the ship, the date and what you would like to do. We reply with a plan and a price.', ctas=[('book', 'Book a port transfer'), ('tel', 'Call us')]),
   ]),
  'pt': dict(
   title='Transfers no Terminal de Cruzeiros de Lisboa e excursões privadas · Dark Diamond Luxury',
