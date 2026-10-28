@@ -132,7 +132,7 @@ def footer(lang):
   </div>
   <p class="legalline">{BRAND} {l['brand_of']} {LEGAL['name']} · {l['nipc']} {LEGAL['nipc']} · {LEGAL['street']}, {LEGAL['postcode']} {LEGAL['city']} · {l['rnaat']} {LEGAL['rnaat']}</p>
   <p class="credits"><span>{l['credits']}</span>
-    <a href="https://unsplash.com/photos/PNW4oeltJGo">William G</a>,
+    <a href="https://unsplash.com/photos/jHw55im3a8Q">Marc Najera</a>,
     <a href="https://unsplash.com/photos/yydI2Op7ILs">Iler Stoe</a>,
     <a href="https://unsplash.com/photos/oe4QHK9EwS8">Luis Quintero</a>,
     <a href="https://unsplash.com/photos/gOLCAOuc7iA">Svetlana Gumerova</a>,

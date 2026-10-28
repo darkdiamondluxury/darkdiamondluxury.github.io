@@ -319,7 +319,7 @@ footer .word em{background:linear-gradient(120deg,#A27A38,#F3DFA2 45%,#C69F5B 70
 .place{font-size:clamp(1.9rem,.6rem + 6.2vw,2.4rem)}
 .sel{gap:14px}
 .sel .tm b{font-size:1.9rem}
-.swipe{display:none!important}
+
 .dlinks{font-size:.95rem}
 .dest .note,.services .note{font-size:.92rem}
 .vclass .txt{padding-top:34svh}
@@ -385,7 +385,6 @@ footer{padding-bottom:96px}
     <div class="head">
       <h2 class="display" id="dest-h" data-i18n="dh">Where to?</h2>
       <p data-i18n="dp">Approximate travel time from Lisbon airport. Pick a destination to book.</p>
-      <div class="arrows"><button type="button" id="prevD" aria-label="←">←</button><button type="button" id="nextD" aria-label="→">→</button></div>
     </div>
     <div class="track" id="track" role="listbox" aria-label="Destinos"></div>
     <div class="sel"><p class="tm" id="selTm" aria-live="polite"></p><button type="button" class="btn" id="selGo"></button></div>
@@ -400,7 +399,6 @@ footer{padding-bottom:96px}
     <div class="head">
       <h2 class="display" id="svc-h" data-i18n="svch">At your pace.</h2>
       <p data-i18n="svcp">Choose the service you need.</p>
-      <div class="arrows"><button type="button" id="prevS" aria-label="←">←</button><button type="button" id="nextS" aria-label="→">→</button></div>
     </div>
     <div class="track" id="svcTrack" role="listbox" aria-label="Serviços"></div>
     <div class="svcsel">
@@ -487,7 +485,7 @@ footer{padding-bottom:96px}
   </div>
   <p class="legalline">Dark Diamond Luxury is a brand of Artur Danilo, Unipessoal Lda · VAT no. (NIPC) 515565458 · Av. Vergílio Ferreira, Lote 764, 6.º Esq., 1950-339 Lisboa · RNAAT registration no. 682/2022</p>
   <p class="credits"><span>Illustrative photographs, Unsplash License:</span>
-    <a href="https://unsplash.com/photos/PNW4oeltJGo">William G</a>,
+    <a href="https://unsplash.com/photos/jHw55im3a8Q">Marc Najera</a>,
     <a href="https://unsplash.com/photos/yydI2Op7ILs">Iler Stoe</a>,
     <a href="https://unsplash.com/photos/oe4QHK9EwS8">Luis Quintero</a>,
     <a href="https://unsplash.com/photos/gOLCAOuc7iA">Svetlana Gumerova</a>,
@@ -538,7 +536,7 @@ let svcPick = 0, dirPick = 0, pickI = 1, destI = 0, lockUntil = 0;
 const U = id => id.startsWith('http') ? id : `https://images.unsplash.com/photo-${id}?auto=format&fit=crop&w=2000&q=70`;
 /* uma fotografia por destino (mesma ordem de PLACES);  */
 const DIMG = ['1585208798174-6cedd86e019a','1587973878097-ef3aabd5eeaa','1697394494123-c6c1323a14f7','1672825952732-ecef34882416','1644183521042-377da9d4aea3','https://images.pexels.com/photos/30443719/pexels-photo-30443719.jpeg?auto=compress&cs=tinysrgb&w=2000','https://images.pexels.com/photos/33887497/pexels-photo-33887497.jpeg?auto=compress&cs=tinysrgb&w=2000','1768565540385-5195e32bb44b','1539037116277-4db20889f2d4','1661442196003-f2f6eb54bd94','https://images.pexels.com/photos/28428861/pexels-photo-28428861.jpeg?auto=compress&cs=tinysrgb&w=2000'].map(U);
-const SVCI = ['1761371717824-4b3cb948ca9a','1765459856355-6e086cfe27f1','1697394494123-c6c1323a14f7','1768777277442-daa05eba8b89','1724185022490-cf80fbc82888','1599640842225-85d111c60e6b'].map(U);
+const SVCI = ['1562584674-b0e112e53fd7','1765459856355-6e086cfe27f1','1697394494123-c6c1323a14f7','1768777277442-daa05eba8b89','1724185022490-cf80fbc82888','1599640842225-85d111c60e6b'].map(U);
 const SVCMORE = ['/lisbon-airport-transfer/',null,null,null,null,'/lisbon-cruise-port-transfer/'];
 let svcI = 0;
 function setSvc(i,center){
@@ -548,7 +546,6 @@ function setSvc(i,center){
   document.getElementById('svcDesc').textContent = t['v'+(i+1)+'p'];
   document.getElementById('svcGo').textContent = t.cta_short;
   const m=document.getElementById('svcMore'); m.textContent=t.more; if(SVCMORE[i]){ m.href=SVCMORE[i]; m.style.display=''; } else m.style.display='none';
-  document.getElementById('prevS').disabled = i===0; document.getElementById('nextS').disabled = i===SVCI.length-1;
   if(center){ lockUntil=Date.now()+800; const b=tr.children[i]; tr.scrollTo({left:b.offsetLeft+b.offsetWidth/2-tr.clientWidth/2}); }
 }
 function setDest(i,center){
@@ -557,7 +554,6 @@ function setDest(i,center){
   document.querySelectorAll('#destBg img').forEach(im=>im.classList.toggle('on',+im.dataset.i===i));
   document.getElementById('selTm').innerHTML = m?`<b>≈ ${m}</b> ${t.from}`:`<b>${t.onreq}</b>`;
   document.getElementById('selGo').textContent = t.go;
-  document.getElementById('prevD').disabled = i===0; document.getElementById('nextD').disabled = i===PLACES.length-1;
   if(center){ lockUntil=Date.now()+800; const b=tr.children[i]; tr.scrollTo({left:b.offsetLeft+b.offsetWidth/2-tr.clientWidth/2}); }
 }
 
@@ -669,8 +665,7 @@ function bindSel(tr,pv,nx,get,set,n){
     [...tr.children].forEach((b,k)=>{ const x=Math.abs(b.offsetLeft+b.offsetWidth/2-c); if(x<d){d=x;best=k;} });
     if(best!==get()) set(best,false); };
   tr.addEventListener('scroll',()=>{ if(!raf) raf=requestAnimationFrame(near); },{passive:true});
-  pv.addEventListener('click',()=>set(Math.max(0,get()-1),true));
-  nx.addEventListener('click',()=>set(Math.min(n-1,get()+1),true));
+  
   tr.addEventListener('click',e=>{ const b=e.target.closest('.place'); if(b) set(+b.dataset.i,true); });
   let down=false,sx=0,sl=0,moved=false;
   tr.addEventListener('pointerdown',e=>{ if(e.pointerType!=='mouse') return; down=true;moved=false;sx=e.clientX;sl=tr.scrollLeft; });
@@ -678,8 +673,8 @@ function bindSel(tr,pv,nx,get,set,n){
   addEventListener('pointerup',()=>{ if(!down) return; down=false; tr.classList.remove('drag'); if(moved) set(get(),true); });
   tr.addEventListener('click',e=>{ if(moved){ e.stopPropagation(); e.preventDefault(); moved=false; } },true);
 }
-bindSel(document.getElementById('track'),document.getElementById('prevD'),document.getElementById('nextD'),()=>destI,setDest,PLACES.length);
-bindSel(document.getElementById('svcTrack'),document.getElementById('prevS'),document.getElementById('nextS'),()=>svcI,setSvc,6);
+bindSel(document.getElementById('track'),null,null,()=>destI,setDest,PLACES.length);
+bindSel(document.getElementById('svcTrack'),null,null,()=>svcI,setSvc,6);
 document.getElementById('svcGo').addEventListener('click',()=>{
   svcPick=svcI; document.querySelectorAll('#svcChips button').forEach((x,k)=>x.setAttribute('aria-pressed', k===svcI));
   jump(document.getElementById('reservar'));
