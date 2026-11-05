@@ -201,6 +201,18 @@ def build_sitemap():
           f'User-agent: *\nDisallow: /Despacho/\nDisallow: /_build/\n\nSitemap: {SITE}/sitemap.xml\n')
 
 
+def build_cname():
+    """Domínio próprio: o GitHub Pages lê o ficheiro CNAME na raiz.
+    Enquanto SITE for o endereço *.github.io, não pode existir CNAME (o site deixava de abrir)."""
+    import os
+    from urllib.parse import urlparse
+    host = urlparse(SITE).hostname or ''
+    path = os.path.join(ROOT, 'CNAME')
+    if host.endswith('github.io'):
+        if os.path.exists(path): os.remove(path)
+    else:
+        with open(path, 'w', encoding='utf-8') as f: f.write(host + '\n')
+
 def build_404():
     """Página 404 de todo o domínio. Endereços da app interna (/Despacho/app/...) voltam à entrada da app,
     porque a app trata da navegação sozinha; o resto vê uma página simples com ligações."""
@@ -222,4 +234,5 @@ if __name__ == '__main__':
     build_redirects()
     build_404()
     build_sitemap()
+    build_cname()
     print(f'{len(written)} ficheiros gerados')
