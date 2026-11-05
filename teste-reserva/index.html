@@ -11,7 +11,7 @@
 @font-face{font-family:"Cinzel";src:url(/assets/cinzel-latin-400-normal.woff2) format("woff2");font-weight:400;font-display:swap}
 @font-face{font-family:"Cinzel";src:url(/assets/cinzel-latin-500-normal.woff2) format("woff2");font-weight:500;font-display:swap}
 :root{
-  --bg:#050505; --bg-2:#0c0c0b; --bg-3:#171614;
+  --bg:#050505; --bg-2:#0c0c0b; --bg-3:#171614; --bg-4:#211f1b;
   --gold:#C9A25E; --gold-hi:#F1DBA0; --ink:#EEEADF; --muted:#B5AFA0; --black:#000;
   --font:"Cinzel","Trajan Pro",Georgia,serif;
   --ease:cubic-bezier(.23,1,.32,1);
@@ -22,82 +22,124 @@
 html{-webkit-text-size-adjust:100%}
 body{background:var(--bg);color:var(--ink);font-family:var(--font);font-size:1rem;line-height:1.5;letter-spacing:.012em;-webkit-font-smoothing:antialiased;min-height:100svh;display:flex;flex-direction:column}
 ::selection{background:var(--gold);color:var(--black)}
-:focus-visible{outline:2px solid var(--gold);outline-offset:3px;border-radius:4px}
-button,input,textarea{font:inherit;color:inherit}
-button{cursor:pointer}
+:focus-visible{outline:2px solid var(--gold);outline-offset:3px;border-radius:6px}
+button,input,textarea,select{font:inherit;color:inherit}
+button{cursor:pointer;-webkit-tap-highlight-color:transparent}
+[hidden]{display:none!important}
 
 .top{display:flex;align-items:center;gap:10px;padding:18px var(--pad)}
 .top img{width:34px;height:34px;border-radius:50%}
 .top b{font-weight:400;font-size:1.05rem}
 .top b span{color:var(--gold)}
 
-main{flex:1;display:flex;justify-content:center;padding:clamp(18px,5svh,56px) var(--pad) 40px}
-.flow{width:100%;max-width:560px}
+main{flex:1;display:flex;justify-content:center;padding:clamp(14px,4svh,48px) var(--pad) 32px}
+.flow{width:100%;max-width:580px;min-width:0}
 
-/* progresso: linha dourada em 5 segmentos */
-.prog{display:grid;grid-template-columns:repeat(5,1fr);gap:6px;margin-bottom:14px}
+/* progresso */
+.prog{display:grid;grid-template-columns:repeat(6,1fr);gap:6px;margin-bottom:12px}
 .prog i{display:block;height:3px;border-radius:3px;background:rgba(238,234,223,.14);overflow:hidden;position:relative}
 .prog i::after{content:"";position:absolute;inset:0;background:linear-gradient(90deg,var(--gold),var(--gold-hi));transform:scaleX(0);transform-origin:left;transition:transform .7s var(--ease)}
-.prog i.done::after,.prog i.on::after{transform:scaleX(1)}
-.prog i.on::after{opacity:.55}
-.step-of{font-size:.82rem;color:var(--muted);margin-bottom:26px}
+.prog i.done::after{transform:scaleX(1)}
+.prog i.on::after{transform:scaleX(.5)}
+.step-of{font-size:.8rem;color:var(--muted);margin-bottom:22px}
 
 /* passos */
-.stage{position:relative}
 .step{display:none}
-.step.on{display:block;animation:in .55s var(--ease) both}
+.step.on{display:block;animation:in .5s var(--ease) both}
 .step.on.back{animation-name:inBack}
-@keyframes in{from{opacity:0;transform:translateX(28px)}to{opacity:1;transform:none}}
-@keyframes inBack{from{opacity:0;transform:translateX(-28px)}to{opacity:1;transform:none}}
-h1{font-weight:400;font-size:clamp(1.75rem,1.2rem + 2.6vw,2.6rem);line-height:1.08;letter-spacing:-.01em;text-wrap:balance}
-.lead{margin-top:10px;color:var(--muted);font-size:.95rem;max-width:44ch}
+@keyframes in{from{opacity:0;transform:translateX(26px)}to{opacity:1;transform:none}}
+@keyframes inBack{from{opacity:0;transform:translateX(-26px)}to{opacity:1;transform:none}}
+h1{font-weight:400;font-size:clamp(1.7rem,1.2rem + 2.4vw,2.5rem);line-height:1.08;letter-spacing:-.01em;text-wrap:balance}
+.lead{margin-top:8px;color:var(--muted);font-size:.93rem;max-width:46ch}
+.fields{margin-top:22px;display:grid;grid-template-columns:minmax(0,1fr);gap:14px}
+.fields>*{min-width:0}
+.group-t{font-size:.8rem;color:var(--muted);margin:2px 0 8px 4px}
 
-.fields{margin-top:26px;display:grid;gap:14px}
-.two{display:grid;grid-template-columns:1fr 1fr;gap:12px}
-label.f{display:block}
-label.f span{display:block;font-size:.82rem;color:var(--muted);margin:0 0 6px 4px}
-input,textarea{width:100%;min-height:54px;border:0;border-radius:16px;background:var(--bg-3);padding:14px 18px;font-size:1rem;color:var(--ink);outline:none;transition:box-shadow .25s}
-textarea{min-height:96px;resize:vertical}
+/* cartões de serviço */
+.cards{display:grid;grid-template-columns:1fr 1fr;gap:10px}
+.card{text-align:left;border:0;border-radius:18px;background:var(--bg-3);padding:16px 14px 15px;min-height:96px;display:flex;flex-direction:column;justify-content:space-between;gap:8px;transition:background .25s,transform .15s var(--ease),box-shadow .25s}
+.card b{font-weight:400;font-size:1.02rem;line-height:1.15}
+.card small{font-size:.76rem;line-height:1.35;color:var(--muted)}
+.card:active{transform:scale(.97)}
+.card[aria-pressed="true"]{background:var(--gold);color:var(--black)}
+.card[aria-pressed="true"] small{color:rgba(0,0,0,.7)}
+@media (hover:hover){.card:hover{box-shadow:inset 0 0 0 1.5px rgba(201,162,94,.55)}}
+
+/* segmento (chegada / partida) */
+.seg{display:grid;grid-template-columns:1fr 1fr;background:var(--bg-3);border-radius:99px;padding:4px;gap:4px}
+.seg button{border:0;border-radius:99px;min-height:46px;background:none;font-size:.92rem;transition:background .25s,color .25s}
+.seg button[aria-pressed="true"]{background:var(--gold);color:var(--black)}
+
+/* lista de destinos */
+.list{display:grid;gap:8px}
+.row-b{display:flex;align-items:center;justify-content:space-between;gap:12px;width:100%;border:0;border-radius:16px;background:var(--bg-3);padding:0 18px;min-height:58px;font-size:1rem;text-align:left;transition:background .2s,transform .15s var(--ease)}
+.row-b em{font-style:normal;font-size:.82rem;color:var(--gold-hi);white-space:nowrap}
+.row-b:active{transform:scale(.98)}
+.row-b[aria-pressed="true"]{background:var(--gold);color:var(--black)}
+.row-b[aria-pressed="true"] em{color:var(--black)}
+.row-b.more{background:none;color:var(--gold);box-shadow:inset 0 0 0 1.5px rgba(201,162,94,.5);justify-content:center}
+.or{display:flex;gap:10px}
+.or input{flex:1}
+.or .go{flex:0 0 auto;width:54px;border:0;border-radius:16px;background:var(--gold);color:var(--black);font-size:1.2rem}
+
+input,textarea,select{width:100%;min-height:54px;border:0;border-radius:16px;background:var(--bg-3);padding:14px 18px;font-size:1rem;color:var(--ink);outline:none;transition:box-shadow .25s}
+textarea{min-height:92px;resize:vertical}
 input::placeholder,textarea::placeholder{color:#8f897c}
-input:focus,textarea:focus{box-shadow:inset 0 0 0 1.5px var(--gold)}
-input[aria-invalid="true"]{box-shadow:inset 0 0 0 1.5px #d9826b}
+input:focus,textarea:focus,select:focus{box-shadow:inset 0 0 0 1.5px var(--gold)}
+[aria-invalid="true"]{box-shadow:inset 0 0 0 1.5px #d9826b!important}
+label.f span{display:block;font-size:.8rem;color:var(--muted);margin:0 0 6px 4px}
 
-.chips{display:flex;flex-wrap:wrap;gap:8px}
-.chips button{min-height:44px;display:inline-flex;align-items:center;border:0;border-radius:99px;padding:9px 16px;background:var(--bg-3);font-size:.92rem;transition:background .2s,color .2s}
-.chips button[aria-pressed="true"]{background:var(--gold);color:var(--black)}
-.chips button.more{background:none;color:var(--gold);box-shadow:inset 0 0 0 1.5px rgba(201,162,94,.6)}
-.group-t{font-size:.82rem;color:var(--muted);margin:4px 0 8px 4px}
+/* dias e horas em fita deslizante */
+.strip{display:flex;gap:8px;overflow-x:auto;scroll-snap-type:x proximity;scrollbar-width:none;margin:0 calc(-1*var(--pad));padding:2px var(--pad) 6px;touch-action:pan-x;-webkit-overflow-scrolling:touch}
+.strip::-webkit-scrollbar{display:none}
+.pill{flex:0 0 auto;scroll-snap-align:start;border:0;border-radius:16px;background:var(--bg-3);min-width:72px;min-height:64px;padding:8px 14px;display:flex;flex-direction:column;align-items:center;justify-content:center;gap:1px;transition:background .2s,color .2s,transform .15s var(--ease)}
+.pill b{font-weight:400;font-size:1rem;line-height:1.1}
+.pill small{font-size:.72rem;color:var(--muted)}
+.pill:active{transform:scale(.95)}
+.pill[aria-pressed="true"]{background:var(--gold);color:var(--black)}
+.pill[aria-pressed="true"] small{color:rgba(0,0,0,.7)}
+.pill:disabled{opacity:.28;cursor:default}
+.pill.more{background:none;box-shadow:inset 0 0 0 1.5px rgba(201,162,94,.5);color:var(--gold)}
+.strip.h .pill{min-width:58px;min-height:52px}
+.mins{display:grid;grid-template-columns:repeat(4,1fr);gap:8px}
+.mins .pill{min-width:0;min-height:52px}
+.pickedtime{font-size:.92rem;color:var(--gold-hi);min-height:1.4em;margin-left:4px}
+.vh{position:absolute;opacity:0;pointer-events:none;width:1px;height:1px}
 
-/* contadores − + */
+/* contadores */
 .count{display:flex;align-items:center;justify-content:space-between;background:var(--bg-3);border-radius:16px;padding:8px 8px 8px 18px;min-height:62px}
 .count .lbl{font-size:.95rem}
-.count .lbl small{display:block;color:var(--muted);font-size:.78rem}
+.count .lbl small{display:block;color:var(--muted);font-size:.76rem}
 .count .ctl{display:flex;align-items:center;gap:6px}
-.count button{width:44px;height:44px;border:0;border-radius:50%;background:#24221e;font-size:1.3rem;line-height:1;transition:background .2s}
-.count button:disabled{opacity:.35;cursor:default}
+.count button{width:44px;height:44px;border:0;border-radius:50%;background:var(--bg-4);font-size:1.3rem;line-height:1}
+.count button:disabled{opacity:.3;cursor:default}
 .count output{min-width:2.2ch;text-align:center;font-size:1.15rem;font-variant-numeric:tabular-nums;color:var(--gold-hi)}
 
-.extra{background:none;border:0;color:var(--gold);text-decoration:underline;text-underline-offset:.2em;font-size:.92rem;min-height:44px;justify-self:start;padding:0 4px}
+/* telefone com indicativo */
+.tel{display:flex;gap:8px}
+.tel select{flex:0 0 auto;width:auto;min-width:112px;padding:0 34px 0 16px;appearance:none;-webkit-appearance:none;background:var(--bg-3) url("data:image/svg+xml,%3Csvg xmlns='http://www.w3.org/2000/svg' width='12' height='8' viewBox='0 0 12 8'%3E%3Cpath d='M1 1l5 5 5-5' fill='none' stroke='%23C9A25E' stroke-width='1.6'/%3E%3C/svg%3E") no-repeat right 14px center}
+.tel input{flex:1;min-width:0}
+.extra{background:none;border:0;color:var(--gold);text-decoration:underline;text-underline-offset:.2em;font-size:.9rem;min-height:44px;justify-self:start;padding:0 4px}
 
 /* resumo */
-.sum{margin-top:24px;background:var(--bg-2);border-radius:20px;padding:6px 18px}
-.sum .row{display:flex;justify-content:space-between;align-items:center;gap:14px;padding:13px 0}
+.sum{margin-top:22px;background:var(--bg-2);border-radius:20px;padding:4px 18px}
+.sum .row{display:flex;justify-content:space-between;align-items:center;gap:14px;padding:12px 0}
 .sum .row+.row{border-top:1px solid rgba(238,234,223,.08)}
-.sum dt{font-size:.8rem;color:var(--muted)}
-.sum dd{font-size:.98rem;margin-top:2px}
-.sum .ed{background:none;border:0;color:var(--gold);font-size:.85rem;text-decoration:underline;text-underline-offset:.2em;min-height:44px;padding:0 4px;flex:0 0 auto}
+.sum dt{font-size:.78rem;color:var(--muted)}
+.sum dd{font-size:.97rem;margin-top:2px}
+.sum .ed{background:none;border:0;color:var(--gold);font-size:.84rem;text-decoration:underline;text-underline-offset:.2em;min-height:44px;padding:0 4px;flex:0 0 auto}
 
 /* ações */
-.act{margin-top:28px;display:flex;align-items:center;gap:12px 22px;flex-wrap:wrap}
-.btn{min-height:54px;border:0;border-radius:99px;padding:14px 34px;background:var(--gold);color:var(--black);font-size:1rem;letter-spacing:.02em;transition:transform .15s var(--ease),background .2s}
+.act{margin-top:26px;display:flex;align-items:center;gap:12px 22px;flex-wrap:wrap}
+.btn{min-height:54px;border:0;border-radius:99px;padding:14px 34px;background:var(--gold);color:var(--black);font-size:1rem;letter-spacing:.02em;transition:transform .15s var(--ease),opacity .2s}
 .btn:active{transform:scale(.97)}
 .btn:disabled{opacity:.65;cursor:progress}
 .ghost{background:none;border:0;color:var(--ink);opacity:.8;min-height:44px;padding:0 6px;font-size:.92rem}
-@media (max-width:640px){ #act{position:sticky;bottom:0;z-index:10;margin-top:18px;padding:16px 0 calc(12px + env(safe-area-inset-bottom));background:linear-gradient(180deg,rgba(5,5,5,0),var(--bg) 28%)} }
 .err{min-height:1.4em;margin-top:12px;font-size:.88rem;color:#e7a08c}
+@media (max-width:640px){ #act{position:sticky;bottom:0;z-index:10;margin-top:14px;padding:16px 0 calc(12px + env(safe-area-inset-bottom));background:linear-gradient(180deg,rgba(5,5,5,0),var(--bg) 28%)} }
 
-/* nota de incentivo entre passos */
-.note{position:fixed;left:50%;top:calc(14px + env(safe-area-inset-top));transform:translate(-50%,-18px);z-index:20;opacity:0;pointer-events:none;background:#14130f;color:var(--ink);border-radius:99px;padding:11px 20px 11px 14px;font-size:.9rem;display:flex;align-items:center;gap:10px;box-shadow:0 10px 30px rgba(0,0,0,.5);transition:opacity .35s var(--ease),transform .5s var(--ease);width:max-content;max-width:calc(100% - 32px);border-radius:18px;line-height:1.35}
+/* nota de incentivo */
+.note{position:fixed;left:50%;top:calc(14px + env(safe-area-inset-top));transform:translate(-50%,-18px);z-index:20;opacity:0;pointer-events:none;background:#14130f;color:var(--ink);padding:11px 20px 11px 14px;font-size:.88rem;display:flex;align-items:center;gap:10px;box-shadow:0 10px 30px rgba(0,0,0,.5);transition:opacity .35s var(--ease),transform .5s var(--ease);width:max-content;max-width:calc(100% - 32px);border-radius:18px;line-height:1.35}
 .note.on{opacity:1;transform:translate(-50%,0)}
 .note svg{flex:0 0 auto;width:20px;height:20px;color:var(--gold)}
 
@@ -106,12 +148,9 @@ input[aria-invalid="true"]{box-shadow:inset 0 0 0 1.5px #d9826b}
 .done-ic circle{stroke-dasharray:226;stroke-dashoffset:226;animation:draw .9s var(--ease) .1s forwards}
 .done-ic path{stroke-dasharray:48;stroke-dashoffset:48;animation:draw .5s var(--ease) .75s forwards}
 @keyframes draw{to{stroke-dashoffset:0}}
-.next{margin-top:22px;display:grid;gap:10px}
-.next p{color:var(--muted);font-size:.92rem}
+.next{margin-top:20px;color:var(--muted);font-size:.9rem}
 
-.testbar{text-align:center;font-size:.78rem;color:var(--muted);padding:14px var(--pad) calc(14px + env(safe-area-inset-bottom));background:var(--bg-2)}
-
-[hidden]{display:none!important}
+.testbar{text-align:center;font-size:.76rem;color:var(--muted);padding:14px var(--pad) calc(14px + env(safe-area-inset-bottom));background:var(--bg-2)}
 .sr{position:absolute;width:1px;height:1px;overflow:hidden;clip:rect(0 0 0 0);white-space:nowrap}
 
 @media (prefers-reduced-motion:reduce){
@@ -119,7 +158,7 @@ input[aria-invalid="true"]{box-shadow:inset 0 0 0 1.5px #d9826b}
   .prog i::after,.note{transition:none}
   .done-ic circle,.done-ic path{animation:none;stroke-dashoffset:0}
 }
-@media (max-width:420px){ .two{grid-template-columns:1fr} }
+@media (min-width:560px){ .cards{grid-template-columns:repeat(3,1fr)} }
 </style>
 </head>
 <body>
@@ -128,90 +167,107 @@ input[aria-invalid="true"]{box-shadow:inset 0 0 0 1.5px #d9826b}
 
 <main>
 <form class="flow" id="flow" novalidate>
-  <div class="prog" aria-hidden="true"><i></i><i></i><i></i><i></i><i></i></div>
-  <p class="step-of" id="stepOf" aria-live="polite">Passo 1 de 5</p>
+  <div class="prog" aria-hidden="true"><i></i><i></i><i></i><i></i><i></i><i></i></div>
+  <p class="step-of" id="stepOf" aria-live="polite">Passo 1 de 6</p>
 
-  <div class="stage">
-    <!-- 1. Para onde -->
-    <section class="step on" data-step="1" aria-labelledby="h-1">
-      <h1 id="h-1">Para onde o levam os seus sonhos?</h1>
-      <p class="lead">Diga-nos o destino e o tipo de serviço. O resto vem a seguir.</p>
-      <div class="fields">
-        <label class="f"><span>Destino</span><input id="to" placeholder="Cidade, hotel ou morada" autocomplete="off"></label>
-        <div class="chips" id="placeChips" role="group" aria-label="Destinos sugeridos"></div>
-        <div>
-          <p class="group-t" id="svcT">Serviço</p>
-          <div class="chips" id="svcChips" role="group" aria-labelledby="svcT"></div>
+  <!-- 1. Serviço -->
+  <section class="step" data-step="1" aria-labelledby="h-1">
+    <h1 id="h-1">Como podemos ajudar?</h1>
+    <p class="lead">Escolha o serviço. Um toque e seguimos.</p>
+    <div class="fields"><div class="cards" id="svcCards" role="group" aria-labelledby="h-1"></div></div>
+  </section>
+
+  <!-- 2. Destino -->
+  <section class="step" data-step="2" aria-labelledby="h-2">
+    <h1 id="h-2">Para onde vamos?</h1>
+    <p class="lead" id="lead2">Toque num destino ou escreva o hotel ou a morada.</p>
+    <div class="fields">
+      <div class="seg" id="dirSeg" role="group" aria-label="Sentido"></div>
+      <div class="list" id="placeList" role="group" aria-labelledby="h-2"></div>
+      <div class="or">
+        <label class="sr" for="to">Outro destino</label>
+        <input id="to" placeholder="Outro destino: hotel ou morada" autocomplete="off" enterkeyhint="next">
+        <button type="button" class="go" id="toGo" aria-label="Continuar com este destino">→</button>
+      </div>
+    </div>
+  </section>
+
+  <!-- 3. Quando -->
+  <section class="step" data-step="3" aria-labelledby="h-3">
+    <h1 id="h-3">Quando?</h1>
+    <p class="lead" id="lead3">Toque no dia e na hora da recolha.</p>
+    <div class="fields">
+      <div>
+        <p class="group-t" id="dayT">Dia</p>
+        <div class="strip" id="days" role="group" aria-labelledby="dayT"></div>
+        <input type="date" id="otherDate" class="vh" tabindex="-1" aria-hidden="true">
+      </div>
+      <div>
+        <p class="group-t" id="hourT">Hora</p>
+        <div class="strip h" id="hours" role="group" aria-labelledby="hourT"></div>
+      </div>
+      <div id="minBox" hidden>
+        <p class="group-t" id="minT">Minutos</p>
+        <div class="mins" id="mins" role="group" aria-labelledby="minT"></div>
+      </div>
+      <p class="pickedtime" id="picked" aria-live="polite"></p>
+    </div>
+  </section>
+
+  <!-- 4. Quantos -->
+  <section class="step" data-step="4" aria-labelledby="h-4">
+    <h1 id="h-4">Quantos viajam?</h1>
+    <p class="lead">Assim escolhemos a viatura certa para o grupo e para as malas.</p>
+    <div class="fields">
+      <div class="count" data-k="pax" data-min="1" data-max="19"><p class="lbl">Passageiros</p><div class="ctl"><button type="button" data-d="-1" aria-label="Menos passageiros">−</button><output>1</output><button type="button" data-d="1" aria-label="Mais passageiros">+</button></div></div>
+      <div class="count" data-k="bags" data-min="0" data-max="30"><p class="lbl">Malas de porão<small>as grandes</small></p><div class="ctl"><button type="button" data-d="-1" aria-label="Menos malas de porão">−</button><output>0</output><button type="button" data-d="1" aria-label="Mais malas de porão">+</button></div></div>
+      <div class="count" data-k="cabin" data-min="0" data-max="30"><p class="lbl">Bagagem de mão<small>mochilas e malas pequenas</small></p><div class="ctl"><button type="button" data-d="-1" aria-label="Menos bagagem de mão">−</button><output>0</output><button type="button" data-d="1" aria-label="Mais bagagem de mão">+</button></div></div>
+    </div>
+  </section>
+
+  <!-- 5. Contacto -->
+  <section class="step" data-step="5" aria-labelledby="h-5">
+    <h1 id="h-5">Como o contactamos?</h1>
+    <p class="lead">Respondemos no WhatsApp com a confirmação e o preço.</p>
+    <div class="fields">
+      <label class="f"><span>Nome</span><input id="name" autocomplete="name" placeholder="O seu nome" enterkeyhint="next"></label>
+      <div>
+        <label class="f" for="phone"><span>Telefone / WhatsApp</span></label>
+        <div class="tel">
+          <label class="sr" for="cc">Indicativo do país</label>
+          <select id="cc" autocomplete="tel-country-code"></select>
+          <input id="phone" type="tel" inputmode="tel" autocomplete="tel-national" placeholder="912 345 678" enterkeyhint="next">
         </div>
       </div>
-    </section>
-
-    <!-- 2. Quando -->
-    <section class="step" data-step="2" aria-labelledby="h-2">
-      <h1 id="h-2">Quando?</h1>
-      <p class="lead" id="lead2">Escolha o dia e a hora da recolha.</p>
-      <div class="fields">
-        <div class="two">
-          <label class="f"><span>Data</span><input id="date" inputmode="numeric" maxlength="10" placeholder="dd/mm/aaaa" autocomplete="off"></label>
-          <label class="f"><span>Hora</span><input id="time" type="time"></label>
-        </div>
-        <div id="airportBox">
-          <p class="group-t" id="dirT">Sentido</p>
-          <div class="chips" id="dirChips" role="group" aria-labelledby="dirT"></div>
-          <label class="f" style="margin-top:14px"><span>Voo (opcional)</span><input id="flight" placeholder="Ex.: TP1351" autocomplete="off"></label>
-        </div>
+      <label class="f" id="flightBox"><span>Número do voo (opcional): com ele acompanhamos atrasos</span><input id="flight" placeholder="Ex.: TP1351" autocomplete="off" autocapitalize="characters"></label>
+      <button type="button" class="extra" id="moreBtn" aria-expanded="false">Adicionar email ou notas</button>
+      <div id="moreBox" hidden class="fields" style="margin-top:0">
+        <label class="f"><span>Email (opcional)</span><input id="email" type="email" autocomplete="email" placeholder="nome@exemplo.com"></label>
+        <label class="f"><span>Notas (opcional)</span><textarea id="notes" placeholder="Cadeira de criança, paragem pelo caminho, pedidos especiais…"></textarea></label>
       </div>
-    </section>
+    </div>
+  </section>
 
-    <!-- 3. Quantos -->
-    <section class="step" data-step="3" aria-labelledby="h-3">
-      <h1 id="h-3">Quantos viajam?</h1>
-      <p class="lead">Assim escolhemos a viatura certa para o grupo e para as malas.</p>
-      <div class="fields">
-        <div class="count" data-k="pax" data-min="1" data-max="19"><p class="lbl">Passageiros</p><div class="ctl"><button type="button" data-d="-1" aria-label="Menos passageiros">−</button><output>1</output><button type="button" data-d="1" aria-label="Mais passageiros">+</button></div></div>
-        <div class="count" data-k="bags" data-min="0" data-max="30"><p class="lbl">Malas de porão<small>as grandes</small></p><div class="ctl"><button type="button" data-d="-1" aria-label="Menos malas de porão">−</button><output>0</output><button type="button" data-d="1" aria-label="Mais malas de porão">+</button></div></div>
-        <div class="count" data-k="cabin" data-min="0" data-max="30"><p class="lbl">Bagagem de mão<small>mochilas e malas pequenas</small></p><div class="ctl"><button type="button" data-d="-1" aria-label="Menos bagagem de mão">−</button><output>0</output><button type="button" data-d="1" aria-label="Mais bagagem de mão">+</button></div></div>
-      </div>
-    </section>
+  <!-- 6. Resumo -->
+  <section class="step" data-step="6" aria-labelledby="h-6">
+    <h1 id="h-6">Está tudo certo?</h1>
+    <p class="lead">Confirme o pedido. Pode alterar qualquer ponto antes de enviar.</p>
+    <dl class="sum" id="sum"></dl>
+  </section>
 
-    <!-- 4. Contacto -->
-    <section class="step" data-step="4" aria-labelledby="h-4">
-      <h1 id="h-4">Como o contactamos?</h1>
-      <p class="lead">Respondemos no WhatsApp com a confirmação e o preço.</p>
-      <div class="fields">
-        <label class="f"><span>Nome</span><input id="name" autocomplete="name" placeholder="O seu nome"></label>
-        <label class="f"><span>Telefone / WhatsApp</span><input id="phone" type="tel" inputmode="tel" autocomplete="tel" placeholder="+351 …"></label>
-        <button type="button" class="extra" id="moreBtn" aria-expanded="false">Adicionar email ou notas</button>
-        <div id="moreBox" hidden class="fields" style="margin-top:0">
-          <label class="f"><span>Email (opcional)</span><input id="email" type="email" autocomplete="email" placeholder="nome@exemplo.com"></label>
-          <label class="f"><span>Notas (opcional)</span><textarea id="notes" placeholder="Cadeira de criança, paragem pelo caminho, pedidos especiais…"></textarea></label>
-        </div>
-      </div>
-    </section>
-
-    <!-- 5. Resumo -->
-    <section class="step" data-step="5" aria-labelledby="h-5">
-      <h1 id="h-5">Está tudo certo?</h1>
-      <p class="lead">Confirme o pedido. Pode alterar qualquer ponto antes de enviar.</p>
-      <dl class="sum" id="sum"></dl>
-    </section>
-
-    <!-- fim -->
-    <section class="step" data-step="6" aria-labelledby="h-6" tabindex="-1">
-      <svg class="done-ic" viewBox="0 0 76 76" fill="none" stroke="currentColor" stroke-width="2" aria-hidden="true"><circle cx="38" cy="38" r="36"/><path d="M24 39l10 10 19-21" stroke-linecap="round" stroke-linejoin="round"/></svg>
-      <h1 id="h-6">Pedido recebido.</h1>
-      <p class="lead" id="doneLead">Obrigado. Respondemos em breve no WhatsApp com a confirmação e o preço.</p>
-      <div class="next">
-        <p>Na versão final, o WhatsApp abre aqui com a mensagem pronta, como hoje.</p>
-      </div>
-      <div class="act"><button type="button" class="btn" id="again">Fazer outro pedido</button></div>
-    </section>
-  </div>
+  <!-- fim -->
+  <section class="step" data-step="7" aria-labelledby="h-7" tabindex="-1">
+    <svg class="done-ic" viewBox="0 0 76 76" fill="none" stroke="currentColor" stroke-width="2" aria-hidden="true"><circle cx="38" cy="38" r="36"/><path d="M24 39l10 10 19-21" stroke-linecap="round" stroke-linejoin="round"/></svg>
+    <h1 id="h-7">Pedido recebido.</h1>
+    <p class="lead" id="doneLead">Obrigado. Respondemos em breve no WhatsApp com a confirmação e o preço.</p>
+    <p class="next">Na versão final, o WhatsApp abre aqui com a mensagem pronta, como hoje.</p>
+    <div class="act"><button type="button" class="btn" id="again">Fazer outro pedido</button></div>
+  </section>
 
   <p class="err" id="err" role="alert"></p>
   <div class="act" id="act">
     <button type="submit" class="btn" id="next">Continuar</button>
-    <button type="button" class="ghost" id="back" hidden>Voltar</button>
+    <button type="button" class="ghost" id="back">Voltar</button>
   </div>
 </form>
 </main>
@@ -221,38 +277,114 @@ input[aria-invalid="true"]{box-shadow:inset 0 0 0 1.5px #d9826b}
 <p class="testbar">Versão de teste. Nada é enviado à app nem ao WhatsApp.</p>
 
 <script>
+const SVCS=[
+  ['Aeroporto','Chegadas e partidas, com o voo acompanhado'],
+  ['À disposição','Motorista e carro à hora ou ao dia'],
+  ['Tour privado','Sintra, Cascais, Fátima, Douro, ao seu ritmo'],
+  ['Evento ou casamento','Convidados recebidos e levados a horas'],
+  ['Longa distância','Porto, Algarve, Espanha e França'],
+  ['Cruzeiro','Do cais ao hotel, ao aeroporto ou a um passeio']
+];
 const PLACES=[['Baixa · Chiado','20 min'],['Cascais','35 min'],['Sintra','35 min'],['Comporta','1h15'],['Évora','1h30'],['Fátima','1h30'],['Algarve','2h45'],['Porto','3h'],['Madrid','6h'],['Sevilha','4h'],['Marbella','5h30']];
-const SVCS=['Aeroporto','À disposição','Tour','Evento','Longa distância','Cruzeiro'];
-const DIRS=['Do aeroporto','Para o aeroporto','Outro trajeto'];
-const KEY='ddl-reserva-teste';
+const CC=[['PT','+351'],['ES','+34'],['FR','+33'],['GB','+44'],['US','+1'],['BR','+55'],['DE','+49'],['IT','+39'],['NL','+31'],['BE','+32'],['CH','+41'],['IE','+353'],['LU','+352'],['AT','+43'],['PL','+48'],['SE','+46'],['NO','+47'],['DK','+45'],['AO','+244'],['MZ','+258'],['CV','+238'],['AE','+971'],['SA','+966'],['IL','+972'],['CN','+86'],['JP','+81'],['IN','+91'],['AU','+61'],['ZA','+27'],['MX','+52'],['AR','+54']];
+const KEY='ddl-reserva-teste-v2';
 const $=id=>document.getElementById(id);
+const pad=n=>String(n).padStart(2,'0');
+const today=()=>{ const d=new Date(); d.setHours(0,0,0,0); return d; };
+const iso=d=>`${d.getFullYear()}-${pad(d.getMonth()+1)}-${pad(d.getDate())}`;
 
-const st={step:1,to:'',svc:0,date:'',time:'',dir:0,flight:'',pax:1,bags:0,cabin:0,name:'',phone:'',email:'',notes:'',all:false};
-try{ Object.assign(st, JSON.parse(localStorage.getItem(KEY)||'{}')); }catch(e){}
-if(st.step>5) st.step=1;
-const save=()=>{ try{ localStorage.setItem(KEY, JSON.stringify(st)); }catch(e){} };
-
-/* datas dd/mm/aaaa */
-$('date').addEventListener('input',e=>{ const d=e.target.value.replace(/\D/g,'').slice(0,8); e.target.value=[d.slice(0,2),d.slice(2,4),d.slice(4)].filter(Boolean).join('/'); });
-const isoDate=v=>{ const m=/^(\d{2})\/(\d{2})\/(\d{4})$/.exec(v||''); if(!m) return ''; const dt=new Date(+m[3],+m[2]-1,+m[1]);
-  return dt.getFullYear()==+m[3]&&dt.getMonth()==+m[2]-1&&dt.getDate()==+m[1] ? `${m[3]}-${m[2]}-${m[1]}` : ''; };
-const longDate=v=>{ const i=isoDate(v); if(!i) return v; return new Date(i+'T12:00').toLocaleDateString('pt-PT',{weekday:'long',day:'numeric',month:'long'}); };
-
-/* chips */
-function renderPlaces(){
-  const list=st.all?PLACES:PLACES.slice(0,6), cur=$('to').value.trim().toLowerCase();
-  $('placeChips').innerHTML=list.map(([n])=>`<button type="button" data-p="${n}" aria-pressed="${n.toLowerCase()===cur}">${n}</button>`).join('')
-    +(st.all?'':'<button type="button" class="more" data-more="1">Mais destinos →</button>');
+/* sugestão de indicativo pela língua do telemóvel */
+function guessCC(){
+  const l=(navigator.language||'pt-PT').toLowerCase();
+  const map={'pt-br':'+55','en-us':'+1','en-gb':'+44','en-ie':'+353','fr-ch':'+41','de-ch':'+41','de-at':'+43','fr-be':'+32','nl-be':'+32'};
+  if(map[l]) return map[l];
+  const base={pt:'+351',es:'+34',fr:'+33',en:'+44',de:'+49',it:'+39',nl:'+31',sv:'+46',nb:'+47',da:'+45',pl:'+48',ja:'+81',zh:'+86',ar:'+971',he:'+972'}[l.slice(0,2)];
+  return base||'+351';
 }
-$('placeChips').addEventListener('click',e=>{ const b=e.target.closest('button'); if(!b) return;
-  if(b.dataset.more){ st.all=true; renderPlaces(); return; }
-  $('to').value=b.dataset.p; st.to=b.dataset.p; clearErr(); renderPlaces(); save(); });
-$('to').addEventListener('input',()=>{ st.to=$('to').value; $('to').removeAttribute('aria-invalid'); clearErr(); renderPlaces(); save(); });
-function renderChips(id,arr,k){ $(id).innerHTML=arr.map((n,i)=>`<button type="button" data-i="${i}" aria-pressed="${i===st[k]}">${n}</button>`).join(''); }
-$('svcChips').addEventListener('click',e=>{ const b=e.target.closest('button'); if(!b) return; st.svc=+b.dataset.i; renderChips('svcChips',SVCS,'svc'); save(); });
-$('dirChips').addEventListener('click',e=>{ const b=e.target.closest('button'); if(!b) return; st.dir=+b.dataset.i; renderChips('dirChips',DIRS,'dir'); save(); });
 
-/* contadores */
+const st={step:1,svc:-1,dir:0,to:'',all:false,date:'',hour:-1,min:-1,pax:1,bags:0,cabin:0,name:'',cc:guessCC(),phone:'',flight:'',email:'',notes:''};
+try{ Object.assign(st, JSON.parse(localStorage.getItem(KEY)||'{}')); }catch(e){}
+if(st.step>6) st.step=1;
+if(st.date && st.date<iso(today())){ st.date=''; st.hour=-1; st.min=-1; }
+const save=()=>{ try{ localStorage.setItem(KEY, JSON.stringify(st)); }catch(e){} };
+const air=()=>st.svc===0;
+const placeTime=()=>{ const p=PLACES.find(([n])=>n.toLowerCase()===st.to.trim().toLowerCase()); return p?p[1]:''; };
+const esc=s=>String(s).replace(/[&<>"]/g,c=>({'&':'&amp;','<':'&lt;','>':'&gt;','"':'&quot;'}[c]));
+
+/* nota de incentivo */
+let noteT=0;
+function note(tx){ $('noteTx').textContent=tx; const n=$('note'); n.classList.add('on'); clearTimeout(noteT); noteT=setTimeout(()=>n.classList.remove('on'),2600); }
+const err=t=>{ $('err').textContent=t; };
+const clearErr=()=>err('');
+
+/* 1. serviço: um toque e avança */
+function renderSvc(){ $('svcCards').innerHTML=SVCS.map(([t,s],i)=>`<button type="button" class="card" data-i="${i}" aria-pressed="${i===st.svc}"><b>${t}</b><small>${s}</small></button>`).join(''); }
+$('svcCards').addEventListener('click',e=>{ const b=e.target.closest('.card'); if(!b) return;
+  st.svc=+b.dataset.i; save(); renderSvc(); setTimeout(()=>advance(),180); });
+
+/* 2. destino: sentido (aeroporto), lista com tempos, ou escrever */
+function renderDest(){
+  $('dirSeg').hidden=!air();
+  $('dirSeg').innerHTML=['Chego a Lisboa','Parto de Lisboa'].map((t,i)=>`<button type="button" data-i="${i}" aria-pressed="${i===st.dir}">${t}</button>`).join('');
+  $('h-2').textContent= air() ? (st.dir===0?'Para onde o levamos?':'De onde o recolhemos?') : (st.svc===1?'Onde começamos?':'Para onde vamos?');
+  $('lead2').textContent= air() ? (st.dir===0?'Esperamos por si nas chegadas. Toque no destino ou escreva o hotel.':'Levamo-lo ao aeroporto. Toque no local de recolha ou escreva a morada.') : 'Toque num destino ou escreva o hotel ou a morada.';
+  const list=st.all?PLACES:PLACES.slice(0,6), cur=st.to.trim().toLowerCase();
+  const sub=air()?'do aeroporto':'de Lisboa';
+  $('placeList').innerHTML=list.map(([n,t])=>`<button type="button" class="row-b" data-p="${n}" aria-pressed="${n.toLowerCase()===cur}"><span>${n}</span><em>${t} ${sub}</em></button>`).join('')
+    +(st.all?'':'<button type="button" class="row-b more" data-more="1">Mais destinos</button>');
+  $('to').value = PLACES.some(([n])=>n.toLowerCase()===cur) ? '' : st.to;
+}
+$('dirSeg').addEventListener('click',e=>{ const b=e.target.closest('button'); if(!b) return; st.dir=+b.dataset.i; save(); renderDest(); });
+$('placeList').addEventListener('click',e=>{ const b=e.target.closest('button'); if(!b) return;
+  if(b.dataset.more){ st.all=true; save(); renderDest(); return; }
+  st.to=b.dataset.p; save(); renderDest(); clearErr(); setTimeout(()=>advance(),200); });
+$('to').addEventListener('input',()=>{ st.to=$('to').value; $('to').removeAttribute('aria-invalid'); clearErr(); save();
+  document.querySelectorAll('#placeList .row-b').forEach(b=>b.setAttribute('aria-pressed','false')); });
+$('to').addEventListener('keydown',e=>{ if(e.key==='Enter'){ e.preventDefault(); advance(); } });
+$('toGo').addEventListener('click',()=>advance());
+
+/* 3. quando: dias em fita, horas em fita, minutos */
+function renderDays(){
+  const t0=today(); let h='';
+  for(let k=0;k<14;k++){
+    const d=new Date(t0); d.setDate(t0.getDate()+k); const v=iso(d);
+    const top=k===0?'Hoje':k===1?'Amanhã':d.toLocaleDateString('pt-PT',{weekday:'short'}).replace('.','');
+    const bot=d.toLocaleDateString('pt-PT',{day:'numeric',month:'short'}).replace('.','');
+    h+=`<button type="button" class="pill" data-d="${v}" aria-pressed="${v===st.date}"><b>${top}</b><small>${bot}</small></button>`;
+  }
+  const inList=st.date && st.date<=iso(new Date(t0.getTime()+13*864e5));
+  const other=st.date && !inList ? new Date(st.date+'T12:00').toLocaleDateString('pt-PT',{day:'numeric',month:'short'}).replace('.','') : '';
+  h+=`<button type="button" class="pill more" data-other="1" aria-pressed="${!!other}"><b>${other||'Outra'}</b><small>${other?'alterar':'data'}</small></button>`;
+  $('days').innerHTML=h;
+  $('otherDate').min=iso(t0);
+}
+function renderHours(){
+  const isToday=st.date===iso(today()), now=new Date();
+  let h='';
+  for(let x=0;x<24;x++){ const past=isToday && x<now.getHours(); h+=`<button type="button" class="pill" data-h="${x}" aria-pressed="${x===st.hour}" ${past?'disabled':''}><b>${pad(x)}h</b></button>`; }
+  $('hours').innerHTML=h;
+  $('minBox').hidden=st.hour<0;
+  $('mins').innerHTML=[0,15,30,45].map(m=>{ const past=isToday && st.hour===now.getHours() && m<=now.getMinutes(); return `<button type="button" class="pill" data-m="${m}" aria-pressed="${m===st.min}" ${past?'disabled':''}><b>:${pad(m)}</b></button>`; }).join('');
+  $('h-3').textContent= air()&&st.dir===0 ? 'Quando aterra?' : 'Quando?';
+  $('lead3').textContent= air()&&st.dir===0 ? 'Toque no dia e na hora prevista de aterragem. Se o voo atrasar, esperamos.' : 'Toque no dia e na hora da recolha.';
+  $('hourT').textContent= air()&&st.dir===0 ? 'Hora de aterragem' : 'Hora';
+  $('picked').textContent = st.date && st.hour>=0 && st.min>=0 ? longWhen() : '';
+}
+function scrollHours(){ const s=$('hours'); const target=st.hour>=0?st.hour:Math.max(8,new Date().getHours()); const b=s.querySelector(`[data-h="${target}"]`); if(b) s.scrollLeft=b.offsetLeft-s.offsetLeft-16; }
+const longWhen=()=>{ const d=new Date(st.date+'T12:00'); const t0=today(); const diff=Math.round((d-t0)/864e5);
+  const day=diff===0?'Hoje':diff===1?'Amanhã':d.toLocaleDateString('pt-PT',{weekday:'long',day:'numeric',month:'long'});
+  return `${day.charAt(0).toUpperCase()+day.slice(1)}, às ${pad(st.hour)}:${pad(st.min)}`; };
+$('days').addEventListener('click',e=>{ const b=e.target.closest('button'); if(!b) return;
+  if(b.dataset.other){ const i=$('otherDate'); i.value=st.date||''; try{ i.showPicker(); }catch(_){ i.classList.remove('vh'); i.focus(); } return; }
+  st.date=b.dataset.d; if(st.date===iso(today())){ const n=new Date(); if(st.hour>=0 && (st.hour<n.getHours())){ st.hour=-1; st.min=-1; } }
+  clearErr(); save(); renderDays(); renderHours(); });
+$('otherDate').addEventListener('change',e=>{ if(!e.target.value) return; st.date=e.target.value; e.target.classList.add('vh'); clearErr(); save(); renderDays(); renderHours(); });
+$('hours').addEventListener('click',e=>{ const b=e.target.closest('button'); if(!b||b.disabled) return; st.hour=+b.dataset.h; st.min=-1; clearErr(); save(); renderHours();
+  $('minBox').scrollIntoView({block:'nearest',behavior:'smooth'}); });
+$('mins').addEventListener('click',e=>{ const b=e.target.closest('button'); if(!b||b.disabled) return; st.min=+b.dataset.m; save(); renderHours();
+  if(st.date) setTimeout(()=>advance(),450); });
+
+/* 4. contadores */
 const paints=[];
 document.querySelectorAll('.count').forEach(c=>{
   const k=c.dataset.k, min=+c.dataset.min, max=+c.dataset.max, out=c.querySelector('output'), [m,p]=c.querySelectorAll('button');
@@ -261,82 +393,92 @@ document.querySelectorAll('.count').forEach(c=>{
   paint(); paints.push(paint);
 });
 
-/* campos simples */
-['date','time','flight','name','phone','email','notes'].forEach(id=>{ $(id).value=st[id]||''; $(id).addEventListener('input',()=>{ st[id]=$(id).value; $(id).removeAttribute('aria-invalid'); clearErr(); save(); }); });
-$('to').value=st.to||'';
-$('moreBtn').addEventListener('click',()=>{ const box=$('moreBox'), open=box.hidden; box.hidden=!open; $('moreBtn').setAttribute('aria-expanded',open); if(open) $('email').focus(); });
-
-/* nota de incentivo */
-let noteT=0;
-function note(tx){ $('noteTx').textContent=tx; const n=$('note'); n.classList.add('on'); clearTimeout(noteT); noteT=setTimeout(()=>n.classList.remove('on'),2600); }
-const placeTime=()=>{ const p=PLACES.find(([n])=>n.toLowerCase()===st.to.trim().toLowerCase()); return p?p[1]:''; };
-
-/* validação por passo */
-const err=t=>{ $('err').textContent=t; };
-const clearErr=()=>err('');
-function valid(s){
-  if(s===1 && !st.to.trim()){ err('Indique o destino para continuar.'); $('to').setAttribute('aria-invalid','true'); $('to').focus(); return false; }
-  if(s===2){
-    if(!isoDate(st.date)){ err('Indique a data no formato dd/mm/aaaa.'); $('date').setAttribute('aria-invalid','true'); $('date').focus(); return false; }
-    const d=new Date(isoDate(st.date)+'T23:59'); if(d<new Date()){ err('Essa data já passou. Escolha outra.'); $('date').setAttribute('aria-invalid','true'); $('date').focus(); return false; }
+/* 5. contacto: indicativo + número */
+$('cc').innerHTML=CC.map(([c,n])=>`<option value="${n}">${c} ${n}</option>`).join('');
+if(!CC.some(([,n])=>n===st.cc)) st.cc='+351';
+$('cc').value=st.cc;
+$('cc').addEventListener('change',()=>{ st.cc=$('cc').value; save(); $('phone').focus(); });
+$('phone').addEventListener('input',()=>{
+  let v=$('phone').value.trim().replace(/^00/,'+');
+  if(v.startsWith('+')){ // a pessoa escreveu o indicativo: escolhe-o sozinho
+    const digits=v.replace(/[^\d]/g,''); const hit=[...CC].sort((a,b)=>b[1].length-a[1].length).find(([,n])=>digits.startsWith(n.slice(1)));
+    if(hit){ st.cc=hit[1]; $('cc').value=hit[1]; v=v.replace(/^\+\s*/,'').slice(hit[1].length-1).trim(); $('phone').value=v; }
   }
-  if(s===4 && !st.phone.trim()){ err('Indique um telefone para lhe respondermos.'); $('phone').setAttribute('aria-invalid','true'); $('phone').focus(); return false; }
+  if(/^\s/.test($('phone').value)) $('phone').value=$('phone').value.replace(/^\s+/,'');
+  st.phone=$('phone').value; $('phone').removeAttribute('aria-invalid'); clearErr(); save();
+});
+['name','flight','email','notes'].forEach(id=>{ $(id).value=st[id]||''; $(id).addEventListener('input',()=>{ st[id]=$(id).value; save(); }); });
+$('phone').value=st.phone||'';
+$('moreBtn').addEventListener('click',()=>{ const box=$('moreBox'), open=box.hidden; box.hidden=!open; $('moreBtn').setAttribute('aria-expanded',open); if(open) $('email').focus(); });
+[['name','phone']].forEach(([a,b])=>$(a).addEventListener('keydown',e=>{ if(e.key==='Enter'){ e.preventDefault(); $(b).focus(); } }));
+
+/* validação */
+function valid(s){
+  if(s===1 && st.svc<0){ err('Escolha um serviço para continuar.'); return false; }
+  if(s===2 && !st.to.trim()){ err('Toque num destino ou escreva a morada.'); $('to').setAttribute('aria-invalid','true'); $('to').focus(); return false; }
+  if(s===3){
+    if(!st.date){ err('Escolha o dia.'); return false; }
+    if(st.hour<0){ err('Escolha a hora.'); return false; }
+    if(st.min<0){ err('Escolha os minutos.'); return false; }
+  }
+  if(s===5){ const d=st.phone.replace(/\D/g,''); if(d.length<6){ err('Indique o número de telefone para lhe respondermos.'); $('phone').setAttribute('aria-invalid','true'); $('phone').focus(); return false; } }
   return true;
 }
 const NOTES={
-  1:()=>{ const t=placeTime(); return t?`Boa escolha. ${st.to} fica a cerca de ${t} do aeroporto.`:'Destino registado.'; },
-  2:()=>'Data registada. Já vai a meio.',
-  3:()=>'Já está quase.',
-  4:()=>'Último passo: confirmar.'
+  1:()=>`${SVCS[st.svc][0]}. Ótima escolha.`,
+  2:()=>{ const t=placeTime(); return t?`${st.to} fica a cerca de ${t}${air()?' do aeroporto':''}.`:'Destino registado.'; },
+  3:()=>'Data registada. Já vai a meio.',
+  4:()=>'Já está quase.',
+  5:()=>'Último passo: confirmar.'
 };
 
 /* resumo */
+const fmtPhone=()=>{ const d=st.phone.replace(/\D/g,''); return st.cc==='+351'&&d.length===9 ? `+351 ${d.replace(/(\d{3})(?=\d)/g,'$1 ')}` : `${st.cc} ${st.phone.trim()}`; };
 function renderSum(){
-  const air=st.svc===0;
   const rows=[
-    ['Destino',st.to,1],['Serviço',SVCS[st.svc]+(air?' · '+DIRS[st.dir]:''),1],
-    ['Quando',longDate(st.date)+(st.time?' · '+st.time:''),2],
-    ...(air&&st.flight?[['Voo',st.flight,2]]:[]),
-    ['Passageiros e malas',`${st.pax} ${st.pax===1?'passageiro':'passageiros'} · ${st.bags} de porão · ${st.cabin} de mão`,3],
-    ['Contacto',[st.name,st.phone].filter(Boolean).join(' · '),4],
-    ...(st.email?[['Email',st.email,4]]:[]),
-    ...(st.notes?[['Notas',st.notes,4]]:[])
+    ['Serviço',SVCS[st.svc][0]+(air()?(st.dir===0?' · chegada':' · partida'):''),1],
+    [air()&&st.dir===1?'Recolha':'Destino',st.to,2],
+    [air()&&st.dir===0?'Aterragem':'Quando',longWhen(),3],
+    ['Passageiros e malas',`${st.pax} ${st.pax===1?'passageiro':'passageiros'} · ${st.bags} de porão · ${st.cabin} de mão`,4],
+    ['Contacto',[st.name,fmtPhone()].filter(Boolean).join(' · '),5],
+    ...(air()&&st.flight?[['Voo',st.flight.toUpperCase(),5]]:[]),
+    ...(st.email?[['Email',st.email,5]]:[]),
+    ...(st.notes?[['Notas',st.notes,5]]:[])
   ];
   $('sum').innerHTML=rows.map(([k,v,s])=>`<div class="row"><div><dt>${k}</dt><dd>${esc(v)}</dd></div><button type="button" class="ed" data-go="${s}" aria-label="Alterar ${k.toLowerCase()}">Alterar</button></div>`).join('');
 }
-const esc=s=>String(s).replace(/[&<>"]/g,c=>({'&':'&amp;','<':'&lt;','>':'&gt;','"':'&quot;'}[c]));
 $('sum').addEventListener('click',e=>{ const b=e.target.closest('[data-go]'); if(b) go(+b.dataset.go,true); });
 
 /* navegação */
 function go(n,back){
   st.step=n; save(); clearErr();
   document.querySelectorAll('.step').forEach(s=>{ const on=+s.dataset.step===n; s.classList.toggle('on',on); s.classList.toggle('back',on&&!!back); });
-  document.querySelectorAll('.prog i').forEach((i,k)=>{ i.classList.toggle('done',k<n-1||n===6); i.classList.toggle('on',k===n-1&&n<6); });
-  $('stepOf').textContent=n<6?`Passo ${n} de 5`:'Concluído';
-  $('act').hidden=n===6; $('back').hidden=n===1;
-  $('next').textContent=n===5?'Confirmar pedido':'Continuar';
-  $('airportBox').hidden=st.svc!==0;
-  $('lead2').textContent=st.svc===0?'Escolha o dia e a hora. Acompanhamos o voo, por isso atrasos não são problema.':'Escolha o dia e a hora da recolha.';
-  if(n===5) renderSum();
-  if(n===1){ renderPlaces(); renderChips('svcChips',SVCS,'svc'); }
-  if(n===2) renderChips('dirChips',DIRS,'dir');
+  document.querySelectorAll('.prog i').forEach((i,k)=>{ i.classList.toggle('done',k<n-1||n===7); i.classList.toggle('on',k===n-1&&n<7); });
+  $('stepOf').textContent=n<7?`Passo ${n} de 6`:'Concluído';
+  $('act').hidden=n===7; $('back').hidden=n===1;
+  $('next').hidden= n===1 || n===2;          // nos passos de um toque, o toque avança
+  $('next').textContent=n===6?'Confirmar pedido':'Continuar';
+  if(n===1) renderSvc();
+  if(n===2) renderDest();
+  if(n===3){ renderDays(); renderHours(); requestAnimationFrame(scrollHours); }
+  if(n===5) $('flightBox').hidden=!(air()&&st.dir===0);
+  if(n===6) renderSum();
   const sec=document.querySelector(`.step[data-step="${n}"]`);
-  const first=sec.querySelector('input:not([type=hidden])');
-  if(n===6) sec.focus(); else if(first && !matchMedia('(pointer:coarse)').matches) first.focus({preventScroll:true});
+  if(n===7) sec.focus();
+  else if(n===5 && !matchMedia('(pointer:coarse)').matches) $('name').focus({preventScroll:true});
   window.scrollTo({top:0,behavior:'instant'});
 }
-$('flow').addEventListener('submit',e=>{
-  e.preventDefault();
+function advance(){
   const n=st.step;
   if(!valid(n)) return;
-  if(n<5){ note(NOTES[n]()); go(n+1); return; }
-  // passo 5: na versão final envia para a app (Supabase) e abre o WhatsApp
-  const b=$('next'); b.disabled=true; b.textContent='A enviar…';
-  setTimeout(()=>{ b.disabled=false; $('doneLead').textContent=`Obrigado${st.name?', '+st.name.split(' ')[0]:''}. Respondemos em breve no WhatsApp com a confirmação e o preço.`; go(6); },900);
-});
+  if(n<6){ note(NOTES[n]()); go(n+1); return; }
+  const b=$('next'); b.disabled=true; b.textContent='A enviar…';   // versão final: envia para a app e abre o WhatsApp
+  setTimeout(()=>{ b.disabled=false; $('doneLead').textContent=`Obrigado${st.name?', '+st.name.trim().split(' ')[0]:''}. Respondemos em breve no WhatsApp com a confirmação e o preço.`; go(7); },900);
+}
+$('flow').addEventListener('submit',e=>{ e.preventDefault(); advance(); });
 $('back').addEventListener('click',()=>go(Math.max(1,st.step-1),true));
-$('again').addEventListener('click',()=>{ const keep={name:st.name,phone:st.phone,email:st.email}; Object.assign(st,{to:'',svc:0,date:'',time:'',dir:0,flight:'',pax:1,bags:0,cabin:0,notes:'',all:false},keep);
-  ['to','date','time','flight','notes'].forEach(id=>$(id).value=''); paints.forEach(f=>f()); go(1,true); });
+$('again').addEventListener('click',()=>{ Object.assign(st,{svc:-1,dir:0,to:'',all:false,date:'',hour:-1,min:-1,pax:1,bags:0,cabin:0,flight:'',notes:''});
+  ['flight','notes'].forEach(id=>$(id).value=''); paints.forEach(f=>f()); go(1,true); });
 
 go(st.step);
 </script>
