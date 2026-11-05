@@ -104,6 +104,11 @@ label.f span{display:block;font-size:.8rem;color:var(--muted);margin:0 0 6px 4px
 .mins{display:grid;grid-template-columns:repeat(4,1fr);gap:8px}
 .mins .pill{min-width:0;min-height:52px}
 .pickedtime{font-size:.92rem;color:var(--gold-hi);min-height:1.4em;margin-left:4px}
+.tags{display:flex;flex-wrap:wrap;gap:8px}
+.tags button{min-height:44px;border:0;border-radius:99px;padding:9px 16px;background:var(--bg-3);font-size:.9rem;display:inline-flex;align-items:center;gap:8px;transition:background .2s,color .2s}
+.tags button::before{content:"+";color:var(--gold);font-size:1.05rem;line-height:1}
+.tags button[aria-pressed="true"]{background:var(--gold);color:var(--black)}
+.tags button[aria-pressed="true"]::before{content:"✓";color:var(--black);font-size:.9rem}
 .vh{position:absolute;opacity:0;pointer-events:none;width:1px;height:1px}
 
 /* contadores */
@@ -222,6 +227,10 @@ label.f span{display:block;font-size:.8rem;color:var(--muted);margin:0 0 6px 4px
       <div class="count" data-k="pax" data-min="1" data-max="19"><p class="lbl">Passageiros</p><div class="ctl"><button type="button" data-d="-1" aria-label="Menos passageiros">−</button><output>1</output><button type="button" data-d="1" aria-label="Mais passageiros">+</button></div></div>
       <div class="count" data-k="bags" data-min="0" data-max="30"><p class="lbl">Malas de porão<small>as grandes</small></p><div class="ctl"><button type="button" data-d="-1" aria-label="Menos malas de porão">−</button><output>0</output><button type="button" data-d="1" aria-label="Mais malas de porão">+</button></div></div>
       <div class="count" data-k="cabin" data-min="0" data-max="30"><p class="lbl">Bagagem de mão<small>mochilas e malas pequenas</small></p><div class="ctl"><button type="button" data-d="-1" aria-label="Menos bagagem de mão">−</button><output>0</output><button type="button" data-d="1" aria-label="Mais bagagem de mão">+</button></div></div>
+      <div>
+        <p class="group-t" id="exT">Precisa de algo mais? (opcional)</p>
+        <div class="tags" id="extras" role="group" aria-labelledby="exT"></div>
+      </div>
     </div>
   </section>
 
@@ -240,10 +249,10 @@ label.f span{display:block;font-size:.8rem;color:var(--muted);margin:0 0 6px 4px
         </div>
       </div>
       <label class="f" id="flightBox"><span>Número do voo (opcional): com ele acompanhamos atrasos</span><input id="flight" placeholder="Ex.: TP1351" autocomplete="off" autocapitalize="characters"></label>
-      <button type="button" class="extra" id="moreBtn" aria-expanded="false">Adicionar email ou notas</button>
+      <button type="button" class="extra" id="moreBtn" aria-expanded="false">Adicionar email ou outro pedido</button>
       <div id="moreBox" hidden class="fields" style="margin-top:0">
         <label class="f"><span>Email (opcional)</span><input id="email" type="email" autocomplete="email" placeholder="nome@exemplo.com"></label>
-        <label class="f"><span>Notas (opcional)</span><textarea id="notes" placeholder="Cadeira de criança, paragem pelo caminho, pedidos especiais…"></textarea></label>
+        <label class="f"><span>Outro pedido (opcional)</span><textarea id="notes" placeholder="Algo que não esteja nas opções"></textarea></label>
       </div>
     </div>
   </section>
@@ -287,6 +296,7 @@ const SVCS=[
 ];
 const PLACES=[['Baixa · Chiado','20 min'],['Cascais','35 min'],['Sintra','35 min'],['Comporta','1h15'],['Évora','1h30'],['Fátima','1h30'],['Algarve','2h45'],['Porto','3h'],['Madrid','6h'],['Sevilha','4h'],['Marbella','5h30']];
 const CC=[['PT','+351'],['ES','+34'],['FR','+33'],['GB','+44'],['US','+1'],['BR','+55'],['DE','+49'],['IT','+39'],['NL','+31'],['BE','+32'],['CH','+41'],['IE','+353'],['LU','+352'],['AT','+43'],['PL','+48'],['SE','+46'],['NO','+47'],['DK','+45'],['AO','+244'],['MZ','+258'],['CV','+238'],['AE','+971'],['SA','+966'],['IL','+972'],['CN','+86'],['JP','+81'],['IN','+91'],['AU','+61'],['ZA','+27'],['MX','+52'],['AR','+54']];
+const EXTRAS=['Cadeira de criança','Assento elevatório','Paragem pelo caminho','Saco de golfe','Ski ou bicicleta','Carrinho de bebé','Cadeira de rodas','Animal de estimação','Água e carregadores'];
 const KEY='ddl-reserva-teste-v2';
 const $=id=>document.getElementById(id);
 const pad=n=>String(n).padStart(2,'0');
@@ -302,7 +312,7 @@ function guessCC(){
   return base||'+351';
 }
 
-const st={step:1,svc:-1,dir:0,to:'',all:false,date:'',hour:-1,min:-1,pax:1,bags:0,cabin:0,name:'',cc:guessCC(),phone:'',flight:'',email:'',notes:''};
+const st={step:1,svc:-1,dir:0,to:'',all:false,date:'',hour:-1,min:-1,pax:1,bags:0,cabin:0,extras:[],name:'',cc:guessCC(),phone:'',flight:'',email:'',notes:''};
 try{ Object.assign(st, JSON.parse(localStorage.getItem(KEY)||'{}')); }catch(e){}
 if(st.step>6) st.step=1;
 if(st.date && st.date<iso(today())){ st.date=''; st.hour=-1; st.min=-1; }
@@ -393,6 +403,10 @@ document.querySelectorAll('.count').forEach(c=>{
   paint(); paints.push(paint);
 });
 
+function renderExtras(){ $('extras').innerHTML=EXTRAS.map(x=>`<button type="button" data-x="${x}" aria-pressed="${st.extras.includes(x)}">${x}</button>`).join(''); }
+$('extras').addEventListener('click',e=>{ const b=e.target.closest('button'); if(!b) return; const x=b.dataset.x;
+  st.extras=st.extras.includes(x)?st.extras.filter(y=>y!==x):[...st.extras,x]; save(); renderExtras(); });
+
 /* 5. contacto: indicativo + número */
 $('cc').innerHTML=CC.map(([c,n])=>`<option value="${n}">${c} ${n}</option>`).join('');
 if(!CC.some(([,n])=>n===st.cc)) st.cc='+351';
@@ -440,10 +454,11 @@ function renderSum(){
     [air()&&st.dir===1?'Recolha':'Destino',st.to,2],
     [air()&&st.dir===0?'Aterragem':'Quando',longWhen(),3],
     ['Passageiros e malas',`${st.pax} ${st.pax===1?'passageiro':'passageiros'} · ${st.bags} de porão · ${st.cabin} de mão`,4],
+    ...(st.extras.length?[['Extras',st.extras.join(' · '),4]]:[]),
     ['Contacto',[st.name,fmtPhone()].filter(Boolean).join(' · '),5],
     ...(air()&&st.flight?[['Voo',st.flight.toUpperCase(),5]]:[]),
     ...(st.email?[['Email',st.email,5]]:[]),
-    ...(st.notes?[['Notas',st.notes,5]]:[])
+    ...(st.notes?[['Outro pedido',st.notes,5]]:[])
   ];
   $('sum').innerHTML=rows.map(([k,v,s])=>`<div class="row"><div><dt>${k}</dt><dd>${esc(v)}</dd></div><button type="button" class="ed" data-go="${s}" aria-label="Alterar ${k.toLowerCase()}">Alterar</button></div>`).join('');
 }
@@ -461,6 +476,7 @@ function go(n,back){
   if(n===1) renderSvc();
   if(n===2) renderDest();
   if(n===3){ renderDays(); renderHours(); requestAnimationFrame(scrollHours); }
+  if(n===4) renderExtras();
   if(n===5) $('flightBox').hidden=!(air()&&st.dir===0);
   if(n===6) renderSum();
   const sec=document.querySelector(`.step[data-step="${n}"]`);
@@ -477,7 +493,7 @@ function advance(){
 }
 $('flow').addEventListener('submit',e=>{ e.preventDefault(); advance(); });
 $('back').addEventListener('click',()=>go(Math.max(1,st.step-1),true));
-$('again').addEventListener('click',()=>{ Object.assign(st,{svc:-1,dir:0,to:'',all:false,date:'',hour:-1,min:-1,pax:1,bags:0,cabin:0,flight:'',notes:''});
+$('again').addEventListener('click',()=>{ Object.assign(st,{svc:-1,dir:0,to:'',all:false,date:'',hour:-1,min:-1,pax:1,bags:0,cabin:0,extras:[],flight:'',notes:''});
   ['flight','notes'].forEach(id=>$(id).value=''); paints.forEach(f=>f()); go(1,true); });
 
 go(st.step);
