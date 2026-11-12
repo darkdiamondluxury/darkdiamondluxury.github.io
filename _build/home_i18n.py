@@ -22,7 +22,7 @@ T = {
   vh='Uma sala de estar sobre rodas.', vp='A Mercedes-Benz Classe V é o centro da nossa frota: espaço para o grupo e para as malas, bancos frente a frente e um interior pensado para relaxar.',
 
   f1b='Até 19 lugares', f1s='da Classe S ao minibus', f2b='Bagagem', f2s='malas de porão incluídas',
-  bh='Prefere dar mais detalhes?', bp='Hora, voo, bagagem e passageiros: quanto mais nos disser, mais rápida e certa é a resposta. Respondemos no WhatsApp com a confirmação e o preço.',
+  bh='Reserve em poucos toques.', bp='Seis passos rápidos, quase sem escrever. Respondemos no WhatsApp com a confirmação e o preço.',
   l_svc='Serviço', l_to='Destino', ph_to='Hotel, morada ou cidade', l_dir='Sentido', l_from='Recolha', ph_from='Aeroporto de Lisboa',
   l_bags='Malas de porão', l_cabin='Bagagem de mão', l_notes='Notas (opcional)', ph_notes='Cadeira de criança, paragem pelo caminho, pedidos especiais…',
   dirs=['Do aeroporto', 'Para o aeroporto', 'Outro trajeto'], airport='Aeroporto de Lisboa',
@@ -54,7 +54,7 @@ T = {
   vh='A living room on wheels.', vp='The Mercedes-Benz V-Class is the heart of our fleet: room for the group and the luggage, facing seats and a cabin made for relaxing.',
 
   f1b='Up to 19 seats', f1s='from S-Class to minibus', f2b='Luggage', f2s='checked bags included',
-  bh='Prefer to add more details?', bp='Time, flight, luggage and passengers: the more you tell us, the faster and more accurate our reply. We answer on WhatsApp with confirmation and price.',
+  bh='Book in a few taps.', bp='Six quick steps, with almost no typing. We reply on WhatsApp with the confirmation and the price.',
   l_svc='Service', l_to='Destination', ph_to='Hotel, address or city', l_dir='Direction', l_from='Pick-up', ph_from='Lisbon Airport',
   l_bags='Checked bags', l_cabin='Carry-on', l_notes='Notes (optional)', ph_notes='Child seat, a stop on the way, special requests…',
   dirs=['From the airport', 'To the airport', 'Other route'], airport='Lisbon Airport',
@@ -86,7 +86,7 @@ T = {
   vh='Un salón sobre ruedas.', vp='La Mercedes-Benz Clase V es el centro de nuestra flota: espacio para el grupo y las maletas, asientos enfrentados y un interior pensado para relajarse.',
 
   f1b='Hasta 19 plazas', f1s='del Clase S al minibús', f2b='Equipaje', f2s='maletas facturadas incluidas',
-  bh='¿Prefiere dar más detalles?', bp='Hora, vuelo, equipaje y pasajeros: cuantos más datos, más rápida y precisa es la respuesta. Respondemos por WhatsApp con la confirmación y el precio.',
+  bh='Reserve en pocos toques.', bp='Seis pasos rápidos, casi sin escribir. Le respondemos por WhatsApp con la confirmación y el precio.',
   l_svc='Servicio', l_to='Destino', ph_to='Hotel, dirección o ciudad', l_dir='Sentido', l_from='Recogida', ph_from='Aeropuerto de Lisboa',
   l_bags='Maletas facturadas', l_cabin='Equipaje de mano', l_notes='Notas (opcional)', ph_notes='Silla infantil, una parada en el camino, peticiones especiales…',
   dirs=['Desde el aeropuerto', 'Al aeropuerto', 'Otro trayecto'], airport='Aeropuerto de Lisboa',
