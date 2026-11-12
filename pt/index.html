@@ -412,6 +412,13 @@ footer{padding-bottom:96px}
 .sp-count button{width:44px;height:44px;border:0;border-radius:50%;background:var(--black);color:var(--gold-hi);font-size:1.3rem;line-height:1;cursor:pointer}
 .sp-count button:disabled{opacity:.3;cursor:default}
 .sp-count output{min-width:2.2ch;text-align:center;font-size:1.15rem;font-variant-numeric:tabular-nums}
+.sp-cars{display:grid;grid-template-columns:1fr 1fr;gap:8px}
+.sp-car{text-align:left;border:0;border-radius:14px;background:rgba(10,9,8,.1);color:var(--black);padding:12px 14px;min-height:64px;display:flex;flex-direction:column;justify-content:center;gap:2px;cursor:pointer;transition:background .2s,color .2s,transform .15s var(--ease-out)}
+.sp-car b{font-weight:400;font-size:.98rem}
+.sp-car small{font-size:.74rem;color:rgba(10,9,8,.68)}
+.sp-car[aria-pressed="true"]{background:var(--black);color:var(--gold-hi)}
+.sp-car[aria-pressed="true"] small{color:rgba(241,219,160,.78)}
+.sp-car:disabled{opacity:.35;cursor:default}
 .sp-tags{display:flex;flex-wrap:wrap;gap:8px}
 .sp-tags button{min-height:44px;border:0;border-radius:99px;padding:9px 15px;background:rgba(10,9,8,.1);color:var(--black);font-size:.9rem;cursor:pointer;display:inline-flex;align-items:center;gap:7px;transition:background .2s,color .2s}
 .sp-tags button::before{content:"+";font-size:1.05rem;line-height:1}
@@ -693,11 +700,12 @@ const SP_TXT = {
   h3:'Quando?',h3arr:'Quando aterra?',l3:'Toque no dia e na hora da recolha.',l3arr:'Toque no dia e na hora prevista de aterragem. Se o voo atrasar, esperamos.',
   day:'Dia',hour:'Hora',hourArr:'Hora de aterragem',min:'Minutos',today:'Hoje',tomorrow:'Amanhã',otherDay:'Outra',otherDaySub:'data',change:'alterar',at:'às',
   h4:'Quantos viajam?',l4:'Assim escolhemos a viatura certa para o grupo e para as malas.',pax:'Passageiros',bags:'Malas de porão',bagsSub:'as grandes',cabin:'Bagagem de mão',cabinSub:'mochilas e malas pequenas',
+  carT:'Viatura',carAuto:'Sugerida para o seu grupo',cars:[['E','Classe E','Executivo, até 3 passageiros'],['S','Classe S','Topo de gama, até 3 passageiros'],['V','Classe V','Até 7 passageiros e malas'],['M','Sprinter / minibus','Grupos até 19 passageiros']],
   extrasT:'Precisa de algo mais? (opcional)',extras:['Cadeira de criança','Assento elevatório','Paragem pelo caminho','Saco de golfe','Ski ou bicicleta','Carrinho de bebé','Cadeira de rodas','Animal de estimação','Água e carregadores'],
   h5:'Como o contactamos?',l5:'Respondemos no WhatsApp com a confirmação e o preço.',name:'Nome',namePh:'O seu nome',phone:'Telefone / WhatsApp',cc:'Indicativo do país',
   flight:'Número do voo (opcional): com ele acompanhamos atrasos',moreBtn:'Adicionar email ou outro pedido',email:'Email (opcional)',notes:'Outro pedido (opcional)',notesPh:'Algo que não esteja nas opções',
   h6:'Está tudo certo?',l6:'Confirme o pedido. Pode alterar qualquer ponto antes de enviar.',edit:'Alterar',
-  r:{svc:'Serviço',dest:'Destino',pick:'Recolha',start:'Início',when:'Quando',land:'Aterragem',pax:'Passageiros e malas',extras:'Extras',contact:'Contacto',flight:'Voo',email:'Email',notes:'Outro pedido'},
+  r:{car:'Viatura',svc:'Serviço',dest:'Destino',pick:'Recolha',start:'Início',when:'Quando',land:'Aterragem',pax:'Passageiros e malas',extras:'Extras',contact:'Contacto',flight:'Voo',email:'Email',notes:'Outro pedido'},
   arrS:'chegada',depS:'partida',paxN:n=>n===1?'1 passageiro':n+' passageiros',bagsN:(b,c)=>`${b} de porão · ${c} de mão`,
   n1:'{svc}. Ótima escolha.',n2a:'{to} fica a cerca de {t} do aeroporto.',n2b:'Destino registado.',n3:'Data registada. Já vai a meio.',n4:'Já está quase.',n5:'Último passo: confirmar.',
   eSvc:'Escolha um serviço para continuar.',eTo:'Toque num destino ou escreva a morada.',eDay:'Escolha o dia.',eHour:'Escolha a hora.',eMin:'Escolha os minutos.',ePhone:'Indique o número de telefone para lhe respondermos.',
@@ -712,11 +720,12 @@ const SP_TXT = {
   h3:'When?',h3arr:'When do you land?',l3:'Tap the day and the pick-up time.',l3arr:'Tap the day and the scheduled landing time. If your flight is late, we wait.',
   day:'Day',hour:'Time',hourArr:'Landing time',min:'Minutes',today:'Today',tomorrow:'Tomorrow',otherDay:'Other',otherDaySub:'date',change:'change',at:'at',
   h4:'How many are travelling?',l4:'So we choose the right car for the group and the luggage.',pax:'Passengers',bags:'Checked bags',bagsSub:'the large ones',cabin:'Hand luggage',cabinSub:'backpacks and small cases',
+  carT:'Vehicle',carAuto:'Suggested for your group',cars:[['E','E-Class','Executive, up to 3 passengers'],['S','S-Class','Flagship, up to 3 passengers'],['V','V-Class','Up to 7 passengers and luggage'],['M','Sprinter / minibus','Groups of up to 19']],
   extrasT:'Anything else? (optional)',extras:['Child seat','Booster seat','Stop on the way','Golf bag','Ski or bike','Pushchair','Wheelchair','Pet','Water and chargers'],
   h5:'How do we reach you?',l5:'We reply on WhatsApp with the confirmation and the price.',name:'Name',namePh:'Your name',phone:'Phone / WhatsApp',cc:'Country code',
   flight:'Flight number (optional): it lets us track delays',moreBtn:'Add email or another request',email:'Email (optional)',notes:'Other request (optional)',notesPh:'Anything not in the options',
   h6:'Is everything right?',l6:'Confirm your request. You can change anything before sending.',edit:'Change',
-  r:{svc:'Service',dest:'Destination',pick:'Pick-up',start:'Start',when:'When',land:'Landing',pax:'Passengers and luggage',extras:'Extras',contact:'Contact',flight:'Flight',email:'Email',notes:'Other request'},
+  r:{car:'Vehicle',svc:'Service',dest:'Destination',pick:'Pick-up',start:'Start',when:'When',land:'Landing',pax:'Passengers and luggage',extras:'Extras',contact:'Contact',flight:'Flight',email:'Email',notes:'Other request'},
   arrS:'arrival',depS:'departure',paxN:n=>n===1?'1 passenger':n+' passengers',bagsN:(b,c)=>`${b} checked · ${c} hand`,
   n1:'{svc}. Great choice.',n2a:'{to} is about {t} from the airport.',n2b:'Destination saved.',n3:'Date saved. Halfway there.',n4:'Almost done.',n5:'Last step: confirm.',
   eSvc:'Choose a service to continue.',eTo:'Tap a destination or type the address.',eDay:'Choose the day.',eHour:'Choose the time.',eMin:'Choose the minutes.',ePhone:'Please add a phone number so we can reply.',
@@ -731,11 +740,12 @@ const SP_TXT = {
   h3:'¿Cuándo?',h3arr:'¿Cuándo aterriza?',l3:'Toque el día y la hora de recogida.',l3arr:'Toque el día y la hora prevista de aterrizaje. Si el vuelo se retrasa, esperamos.',
   day:'Día',hour:'Hora',hourArr:'Hora de aterrizaje',min:'Minutos',today:'Hoy',tomorrow:'Mañana',otherDay:'Otra',otherDaySub:'fecha',change:'cambiar',at:'a las',
   h4:'¿Cuántos viajan?',l4:'Así elegimos el vehículo adecuado para el grupo y el equipaje.',pax:'Pasajeros',bags:'Maletas facturadas',bagsSub:'las grandes',cabin:'Equipaje de mano',cabinSub:'mochilas y maletas pequeñas',
+  carT:'Vehículo',carAuto:'Sugerido para su grupo',cars:[['E','Clase E','Ejecutivo, hasta 3 pasajeros'],['S','Clase S','Gama alta, hasta 3 pasajeros'],['V','Clase V','Hasta 7 pasajeros y equipaje'],['M','Sprinter / minibús','Grupos de hasta 19']],
   extrasT:'¿Necesita algo más? (opcional)',extras:['Silla infantil','Elevador','Parada en el camino','Bolsa de golf','Esquí o bicicleta','Cochecito','Silla de ruedas','Mascota','Agua y cargadores'],
   h5:'¿Cómo le contactamos?',l5:'Respondemos por WhatsApp con la confirmación y el precio.',name:'Nombre',namePh:'Su nombre',phone:'Teléfono / WhatsApp',cc:'Prefijo del país',
   flight:'Número de vuelo (opcional): así seguimos los retrasos',moreBtn:'Añadir email u otra petición',email:'Email (opcional)',notes:'Otra petición (opcional)',notesPh:'Algo que no esté en las opciones',
   h6:'¿Está todo bien?',l6:'Confirme la solicitud. Puede cambiar cualquier punto antes de enviar.',edit:'Cambiar',
-  r:{svc:'Servicio',dest:'Destino',pick:'Recogida',start:'Inicio',when:'Cuándo',land:'Aterrizaje',pax:'Pasajeros y equipaje',extras:'Extras',contact:'Contacto',flight:'Vuelo',email:'Email',notes:'Otra petición'},
+  r:{car:'Vehículo',svc:'Servicio',dest:'Destino',pick:'Recogida',start:'Inicio',when:'Cuándo',land:'Aterrizaje',pax:'Pasajeros y equipaje',extras:'Extras',contact:'Contacto',flight:'Vuelo',email:'Email',notes:'Otra petición'},
   arrS:'llegada',depS:'salida',paxN:n=>n===1?'1 pasajero':n+' pasajeros',bagsN:(b,c)=>`${b} facturadas · ${c} de mano`,
   n1:'{svc}. Excelente elección.',n2a:'{to} está a unos {t} del aeropuerto.',n2b:'Destino guardado.',n3:'Fecha guardada. Ya va por la mitad.',n4:'Ya casi está.',n5:'Último paso: confirmar.',
   eSvc:'Elija un servicio para continuar.',eTo:'Toque un destino o escriba la dirección.',eDay:'Elija el día.',eHour:'Elija la hora.',eMin:'Elija los minutos.',ePhone:'Indique un teléfono para responderle.',
@@ -757,7 +767,7 @@ function guessCC(){
   return base || (lang==='es'?'+34':lang==='pt'?'+351':'+44');
 }
 const SPKEY='ddl-reserva-v1';
-const sp={step:1,svc:-1,dir:0,to:'',all:false,date:'',hour:-1,min:-1,pax:1,bags:0,cabin:0,extras:[],name:'',cc:guessCC(),phone:'',flight:'',email:'',notes:''};
+const sp={step:1,svc:-1,dir:0,to:'',all:false,date:'',hour:-1,min:-1,pax:1,bags:0,cabin:0,car:'',carAuto:true,extras:[],name:'',cc:guessCC(),phone:'',flight:'',email:'',notes:''};
 try{ const s=JSON.parse(localStorage.getItem(SPKEY)||'null'); if(s && s.lang===lang) Object.assign(sp,s); }catch(e){}
 if(sp.step>6) sp.step=1;
 if(sp.date && sp.date<isoOf(today0())){ sp.date=''; sp.hour=-1; sp.min=-1; }
@@ -785,6 +795,7 @@ sp$('form').innerHTML = `
   </section>
   <section class="sp-step" data-s="4"><h3 class="sp-h" id="spH4"></h3><p class="sp-l" id="spL4"></p>
     <div class="sp-counts" id="spCounts"></div>
+    <p class="sp-gt" id="spCarT"></p><div class="sp-cars" id="spCars" role="group" aria-labelledby="spCarT"></div>
     <p class="sp-gt" id="spExT"></p><div class="sp-tags" id="spExtras" role="group" aria-labelledby="spExT"></div>
   </section>
   <section class="sp-step" data-s="5"><h3 class="sp-h" id="spH5"></h3><p class="sp-l" id="spL5"></p>
@@ -810,7 +821,7 @@ sp$('form').innerHTML = `
   <div class="sp-act" id="spAct"><button type="submit" class="btn" id="spNext"></button><button type="button" class="sp-back" id="spBack"></button></div>`;
 
 /* textos fixos */
-[['spH1','h1'],['spL1','l1'],['spDayT','day'],['spMinT','min'],['spH4','h4'],['spL4','l4'],['spExT','extrasT'],['spH5','h5'],['spL5','l5'],['spNameL','name'],['spPhoneL','phone'],['spCCL','cc'],['spFlightL','flight'],['spMoreBtn','moreBtn'],['spEmailL','email'],['spNotesL','notes'],['spH6','h6'],['spL6','l6'],['spH7','h7'],['spWa','wa'],['spAgain','again'],['spBack','back']].forEach(([id,k])=>{ sp$(id).textContent=ST[k]; });
+[['spCarT','carT'],['spH1','h1'],['spL1','l1'],['spDayT','day'],['spMinT','min'],['spH4','h4'],['spL4','l4'],['spExT','extrasT'],['spH5','h5'],['spL5','l5'],['spNameL','name'],['spPhoneL','phone'],['spCCL','cc'],['spFlightL','flight'],['spMoreBtn','moreBtn'],['spEmailL','email'],['spNotesL','notes'],['spH6','h6'],['spL6','l6'],['spH7','h7'],['spWa','wa'],['spAgain','again'],['spBack','back']].forEach(([id,k])=>{ sp$(id).textContent=ST[k]; });
 sp$('spTo').placeholder=ST.otherPh; sp$('spToGo').setAttribute('aria-label',ST.goAria); document.querySelector('label[for="spTo"]').textContent=ST.otherPh;
 sp$('spName').placeholder=ST.namePh; sp$('spNotes').placeholder=ST.notesPh;
 sp$('spCC').innerHTML=CCS.map(([c,n])=>`<option value="${n}">${c} ${n}</option>`).join('');
@@ -875,12 +886,22 @@ sp$('spOtherDate').addEventListener('change',e=>{ if(!e.target.value) return; sp
 sp$('spHours').addEventListener('click',e=>{ const b=e.target.closest('button'); if(!b||b.disabled) return; sp.hour=+b.dataset.h; sp.min=-1; spErr(''); spSave(); spRenderHours(); sp$('spMinBox').scrollIntoView({block:'nearest',behavior:'smooth'}); });
 sp$('spMins').addEventListener('click',e=>{ const b=e.target.closest('button'); if(!b||b.disabled) return; sp.min=+b.dataset.m; spSave(); spRenderHours(); if(sp.date) setTimeout(spAdvance,450); });
 
-/* 4. quantos e extras */
+/* 4. quantos, viatura e extras */
+const CAP={E:{p:3,b:3},S:{p:3,b:3},V:{p:7,b:7},M:{p:19,b:30}};
+const fits=c=>sp.pax<=CAP[c].p && sp.bags<=CAP[c].b;
+const carSuggest=()=>fits('E')?'E':fits('V')?'V':'M';
+function spRenderCars(){
+  if(sp.carAuto || !sp.car || !fits(sp.car)){ sp.car=carSuggest(); sp.carAuto=true; }
+  const sug=carSuggest();
+  sp$('spCars').innerHTML=ST.cars.map(([id,n,d])=>`<button type="button" class="sp-car" data-c="${id}" aria-pressed="${id===sp.car}" ${fits(id)?'':'disabled'}><b>${escH(n)}</b><small>${escH(id===sug&&sp.carAuto?ST.carAuto:d)}</small></button>`).join('');
+}
+sp$('spCars').addEventListener('click',e=>{ const b=e.target.closest('button'); if(!b||b.disabled) return; sp.car=b.dataset.c; sp.carAuto=false; spSave(); spRenderCars(); });
+const carName=()=>{ const c=ST.cars.find(x=>x[0]===sp.car); return c?c[1]:''; };
 const spPaints=[];
 document.querySelectorAll('.sp-count').forEach(c=>{
   const k=c.dataset.k, mn=+c.dataset.min, mx=+c.dataset.max, out=c.querySelector('output'), [m,p]=c.querySelectorAll('button');
   const paint=()=>{ out.textContent=sp[k]; m.disabled=sp[k]<=mn; p.disabled=sp[k]>=mx; };
-  c.addEventListener('click',e=>{ const b=e.target.closest('button'); if(!b) return; sp[k]=Math.min(mx,Math.max(mn,sp[k]+(+b.dataset.d))); paint(); spSave(); });
+  c.addEventListener('click',e=>{ const b=e.target.closest('button'); if(!b) return; sp[k]=Math.min(mx,Math.max(mn,sp[k]+(+b.dataset.d))); paint(); spRenderCars(); spSave(); });
   paint(); spPaints.push(paint);
 });
 function spRenderExtras(){ sp$('spExtras').innerHTML=ST.extras.map(x=>`<button type="button" data-x="${escH(x)}" aria-pressed="${sp.extras.includes(x)}">${escH(x)}</button>`).join(''); }
@@ -912,6 +933,7 @@ function spRenderSum(){
     [spPlaceLabel(), sp.to,2],
     [isAir()&&sp.dir===0?ST.r.land:ST.r.when, spWhen(),3],
     [ST.r.pax, `${ST.paxN(sp.pax)} · ${ST.bagsN(sp.bags,sp.cabin)}`,4],
+    [ST.r.car, carName(),4],
     ...(sp.extras.length?[[ST.r.extras, sp.extras.join(' · '),4]]:[]),
     [ST.r.contact, [sp.name.trim(),spPhoneFmt()].filter(Boolean).join(' · '),5],
     ...(isAir()&&sp.dir===0&&sp.flight?[[ST.r.flight, sp.flight.toUpperCase(),5]]:[]),
@@ -945,7 +967,7 @@ function spGo(n,back){
   if(n===1) spRenderSvc();
   if(n===2) spRenderDest();
   if(n===3){ spRenderDays(); spRenderHours(); requestAnimationFrame(spScrollHours); }
-  if(n===4){ spRenderExtras(); spPaints.forEach(f=>f()); }
+  if(n===4){ spRenderExtras(); spPaints.forEach(f=>f()); spRenderCars(); }
   if(n===5) sp$('spFlightBox').hidden=!(isAir()&&sp.dir===0);
   if(n===6) spRenderSum();
   if(n===7) document.querySelector('.sp-step[data-s="7"]').focus({preventScroll:true});
@@ -966,7 +988,7 @@ function spSend(){
   const pickup = arr ? t.airport : (dep || sp.svc===1) ? sp.to.trim() : '';
   const dropoff= arr ? sp.to.trim() : dep ? t.airport : (sp.svc===1 ? '' : sp.to.trim());
   const [y,m,d]=sp.date.split('-'), dmy=`${d}/${m}/${y}`, time=`${pad2(sp.hour)}:${pad2(sp.min)}`;
-  const phone=spPhoneFmt(), notes=[sp.extras.join(', '), sp.notes.trim()].filter(Boolean).join(' · ');
+  const phone=spPhoneFmt(), notes=[carName()?ST.r.car+': '+carName():'', sp.extras.join(', '), sp.notes.trim()].filter(Boolean).join(' · ');
   const flight=arr?sp.flight.trim().toUpperCase():'';
   setBusy(b,true,t.sending); sp$('spSendErr').textContent='';
   try{
@@ -986,7 +1008,7 @@ function spSend(){
 }
 sp$('form').addEventListener('submit',e=>{ e.preventDefault(); spAdvance(); });
 sp$('spBack').addEventListener('click',()=>{ spGo(Math.max(1,sp.step-1),true); spScrollToForm(); });
-sp$('spAgain').addEventListener('click',()=>{ Object.assign(sp,{svc:-1,dir:0,to:'',all:false,date:'',hour:-1,min:-1,pax:1,bags:0,cabin:0,extras:[],flight:'',notes:''});
+sp$('spAgain').addEventListener('click',()=>{ Object.assign(sp,{svc:-1,dir:0,to:'',all:false,date:'',hour:-1,min:-1,pax:1,bags:0,cabin:0,car:'',carAuto:true,extras:[],flight:'',notes:''});
   ['spFlight','spNotes'].forEach(id=>sp$(id).value=''); spGo(1,true); });
 
 /* entradas a partir do resto da página */
