@@ -1,6 +1,7 @@
 # Peças comuns a todas as páginas: <head>, navegação, troca de língua e rodapé.
 import html
 import json
+import re
 
 from config import (BRAND, COVERAGE, DESTS, EMAIL, INSTAGRAM, LANG_NAME, LANGS, LEGAL, LOCALE, PHONES, SITE, SLUGS,
                     WHATSAPP, WHATSAPP_ALL)
@@ -69,7 +70,7 @@ def head(page, lang, title, desc, extra_ld=None):
 def org_ld(lang):
     """Dados estruturados para o Google (quem somos, onde, contactos)."""
     return {
-        '@context': 'https://schema.org', '@type': 'LocalBusiness', 'name': BRAND, 'legalName': LEGAL['name'],
+        '@context': 'https://schema.org', '@type': 'LocalBusiness', '@id': SITE + '/#org', 'name': BRAND, 'legalName': LEGAL['name'],
         'url': SITE + '/', 'image': SITE + '/assets/og.png', 'logo': SITE + '/assets/icon-512.png',
         'telephone': PHONES[0], 'email': EMAIL, 'vatID': 'PT' + LEGAL['nipc'],
         'address': {'@type': 'PostalAddress', 'streetAddress': LEGAL['street'], 'postalCode': LEGAL['postcode'],
@@ -79,6 +80,24 @@ def org_ld(lang):
                         'en': 'Private transfers, tours and chauffeur services in Lisbon, Portugal, Spain and France.',
                         'es': 'Traslados privados, tours y chófer a disposición en Lisboa, Portugal, España y Francia.'}[lang],
     }
+
+
+SERVICE_PAGES = ('airport', 'cruise', 'chauffeur', 'tours', 'events', 'longdistance')
+
+
+def page_ld(page, lang, d, crumb_name, home_url, page_url):
+    """Migalhas + serviço, para o Google perceber a página."""
+    graph = [{'@type': 'BreadcrumbList', 'itemListElement': [
+        {'@type': 'ListItem', 'position': 1, 'name': BRAND, 'item': SITE + home_url},
+        {'@type': 'ListItem', 'position': 2, 'name': crumb_name, 'item': SITE + page_url}]}]
+    if page == 'agencies':
+        org = org_ld(lang); org.pop('@context'); graph.append(org)
+    if page in SERVICE_PAGES or page.startswith('d-'):
+        graph.append({'@type': 'Service', 'name': ' '.join(re.sub('<[^>]+>', ' ', d['h1']).split()).rstrip('.'), 'description': d['desc'], 'url': SITE + page_url,
+                      'serviceType': 'Chauffeur service', 'inLanguage': lang,
+                      'provider': {'@type': 'LocalBusiness', '@id': SITE + '/#org', 'name': BRAND, 'telephone': PHONES[0], 'url': SITE + '/'},
+                      'areaServed': [{'@type': 'Country', 'name': n} for n in ('Portugal', 'Spain', 'France')]})
+    return {'@context': 'https://schema.org', '@graph': graph}
 
 
 def lang_switch(page, lang):

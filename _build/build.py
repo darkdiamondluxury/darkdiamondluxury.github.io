@@ -19,7 +19,7 @@ HERE = os.path.dirname(os.path.abspath(__file__))
 ROOT = os.path.dirname(HERE)
 sys.path.insert(0, HERE)
 
-from chrome import GOAT, L, SVG_DEFS, dest_name, footer, head, nav, org_ld, tel, url  # noqa: E402
+from chrome import GOAT, L, SVG_DEFS, dest_name, footer, head, nav, org_ld, page_ld, tel, url  # noqa: E402
 from config import BOOKINGS_KEY, BOOKINGS_URL, DESTS, EMAIL, IMG, LANGS, PHONES, REDIRECTS, SITE, SLUGS, WHATSAPP  # noqa: E402
 import content  # noqa: E402
 from home_i18n import MSG, MSG_FLIGHT, MSG_NOTES, PLACES, T  # noqa: E402
@@ -157,7 +157,7 @@ def build_page(page, lang, d):
     links = (f'<a href="{h}#destinos">{t["nav_dest"]}</a><a href="{h}#servicos">{t["nav_svc"]}</a>'
              f'<a href="{h}#frota">{t["nav_fleet"]}</a>'
              f'<a href="{url("agencies", lang)}"{" aria-current=" + chr(34) + "page" + chr(34) if page == "agencies" else ""}>{t["nav_ag"]}</a>')
-    ld = org_ld(lang) if page in ('agencies',) else None
+    ld = page_ld(page, lang, d, ' '.join(re.sub('<[^>]+>', ' ', d.get('crumb', d['h1'])).split()), url('home', lang), url(page, lang))
     doc = f'''<!doctype html>
 <html lang="{lang}">
 <head>
