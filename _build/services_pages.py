@@ -238,7 +238,7 @@ PAGES_NEW['longdistance'] = {
   blocks=[
    dict(type='split', h='Usual routes', ticks=[
      'Lisbon to Porto and the Douro valley', 'Lisbon to the Algarve', 'Lisbon to Madrid', 'Lisbon to Seville', 'Lisbon to Marbella',
-     'France, on request'], related=['d-porto', 'd-algarve', 'd-madrid', 'd-sevilla', 'd-marbella']),
+     'France, on request'], related=['d-porto', 'd-douro', 'd-algarve', 'd-madrid', 'd-sevilla', 'd-marbella']),
    dict(type='split', bg='bone', h='How it works', steps=[
      ('Send the route', 'Origin, destination, date, time, number of passengers and luggage.'),
      ('Written confirmation', 'Price and times are confirmed in writing before you book.'),
@@ -258,7 +258,7 @@ PAGES_NEW['longdistance'] = {
   blocks=[
    dict(type='split', h='Rotas habituais', ticks=[
      'Lisboa – Porto e vale do Douro', 'Lisboa – Algarve', 'Lisboa – Madrid', 'Lisboa – Sevilha', 'Lisboa – Marbella',
-     'França, por pedido'], related=['d-porto', 'd-algarve', 'd-madrid', 'd-sevilla', 'd-marbella']),
+     'França, por pedido'], related=['d-porto', 'd-douro', 'd-algarve', 'd-madrid', 'd-sevilla', 'd-marbella']),
    dict(type='split', bg='bone', h='Como funciona?', steps=[
      ('Envie o trajeto', 'Origem, destino, data, hora, número de passageiros e malas.'),
      ('Confirmação por escrito', 'Preço e horários são confirmados por escrito antes de reservar.'),
@@ -278,7 +278,7 @@ PAGES_NEW['longdistance'] = {
   blocks=[
    dict(type='split', h='Rutas habituales', ticks=[
      'Lisboa – Oporto y valle del Duero', 'Lisboa – Algarve', 'Lisboa – Madrid', 'Lisboa – Sevilla', 'Lisboa – Marbella',
-     'Francia, bajo petición'], related=['d-porto', 'd-algarve', 'd-madrid', 'd-sevilla', 'd-marbella']),
+     'Francia, bajo petición'], related=['d-porto', 'd-douro', 'd-algarve', 'd-madrid', 'd-sevilla', 'd-marbella']),
    dict(type='split', bg='bone', h='¿Cómo funciona?', steps=[
      ('Envíe el trayecto', 'Origen, destino, fecha, hora, número de pasajeros y maletas.'),
      ('Confirmación por escrito', 'Precio y horarios se confirman por escrito antes de reservar.'),

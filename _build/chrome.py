@@ -29,7 +29,9 @@ L = {
 }
 DEST_NAME = {'d-sintra': 'Sintra', 'd-cascais': 'Cascais', 'd-comporta': 'Comporta', 'd-evora': 'Évora', 'd-fatima': 'Fátima',
              'd-algarve': 'Algarve', 'd-porto': {'pt': 'Porto', 'en': 'Porto', 'es': 'Oporto'},
-             'd-madrid': 'Madrid', 'd-sevilla': {'pt': 'Sevilha', 'en': 'Seville', 'es': 'Sevilla'}, 'd-marbella': 'Marbella'}
+             'd-madrid': 'Madrid', 'd-sevilla': {'pt': 'Sevilha', 'en': 'Seville', 'es': 'Sevilla'}, 'd-marbella': 'Marbella',
+             'd-arrabida': 'Arrábida', 'd-obidos': {'pt': 'Óbidos e Nazaré', 'en': 'Óbidos and Nazaré', 'es': 'Óbidos y Nazaré'},
+             'd-douro': {'pt': 'Vale do Douro', 'en': 'Douro Valley', 'es': 'Valle del Duero'}}
 
 
 def dest_name(k, lang):
@@ -177,6 +179,8 @@ def footer(lang):
     <a href="https://unsplash.com/photos/interior-view-of-a-cars-steering-wheel-and-dashboard-Oqq4isWzHsU">William G</a>,
     <a href="https://unsplash.com/photos/couple-walks-towards-a-mediterranean-style-building-XL09jDIzg3Y">Fotógrafo Samuel Cruz</a>,
     <a href="https://unsplash.com/photos/a-scenic-view-of-a-valley-with-a-river-running-through-it-n0IVV6m5hfI">Thomas Gabernig</a>,
+    <a href="https://unsplash.com/photos/a-historic-castle-stands-above-a-charming-town--fSVBga4c6k">João Rodrigues</a>,
+    <a href="https://unsplash.com/photos/green-trees-near-body-of-water-during-daytime-Rl26Fyw6BtY">Francisco Barrento</a>,
     <a href="https://unsplash.com/photos/white-cruise-ship-on-sea-during-daytime-xEJoSsDCnR8">Georgy Trofimov</a>.
   </details>
   <p class="copy">© <span id="yr">2026</span> {BRAND}.</p>

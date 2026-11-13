@@ -111,6 +111,7 @@ MSG_NOTES = {'pt': '\nNotas: ', 'en': '\nNotes: ', 'es': '\nNotas: '}
 
 # Destinos do carrossel: (nome, tempo, página de destino ou None)
 PLACES = [('Baixa · Chiado', '20 min', None), ('Cascais', '35 min', 'd-cascais'), ('Sintra', '35 min', 'd-sintra'),
+          ('Arrábida', '45 min', 'd-arrabida'), ({'pt': 'Óbidos e Nazaré', 'en': 'Óbidos and Nazaré', 'es': 'Óbidos y Nazaré'}, '1h', 'd-obidos'),
           ('Comporta', '1h15', 'd-comporta'), ('Évora', '1h30', 'd-evora'), ('Fátima', '1h30', 'd-fatima'),
-          ('Algarve', '2h45', 'd-algarve'), ('Porto', '3h', 'd-porto'),
+          ('Algarve', '2h45', 'd-algarve'), ('Porto', '3h', 'd-porto'), ({'pt': 'Vale do Douro', 'en': 'Douro Valley', 'es': 'Valle del Duero'}, '3h30', 'd-douro'),
           ('Madrid', '6h', 'd-madrid'), ({'pt': 'Sevilha', 'en': 'Seville', 'es': 'Sevilla'}, '4h', 'd-sevilla'), ('Marbella', '5h30', 'd-marbella')]

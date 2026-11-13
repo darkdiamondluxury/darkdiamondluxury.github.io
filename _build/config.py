@@ -58,12 +58,15 @@ SLUGS = {
     'd-madrid':   {'en': '/lisbon-to-madrid/', 'pt': '/pt/lisboa-madrid/', 'es': '/es/lisboa-madrid/'},
     'd-sevilla':  {'en': '/lisbon-to-seville/', 'pt': '/pt/lisboa-sevilha/', 'es': '/es/lisboa-sevilla/'},
     'd-marbella': {'en': '/lisbon-to-marbella/', 'pt': '/pt/lisboa-marbella/', 'es': '/es/lisboa-marbella/'},
+    'd-arrabida': {'en': '/lisbon-to-arrabida/', 'pt': '/pt/lisboa-arrabida/', 'es': '/es/lisboa-arrabida/'},
+    'd-obidos':   {'en': '/lisbon-to-obidos-and-nazare/', 'pt': '/pt/lisboa-obidos-nazare/', 'es': '/es/lisboa-obidos-nazare/'},
+    'd-douro':    {'en': '/lisbon-to-douro-valley/', 'pt': '/pt/lisboa-vale-do-douro/', 'es': '/es/lisboa-valle-del-duero/'},
     'privacy':  {'en': '/privacy/', 'pt': '/pt/privacidade/', 'es': '/es/privacidad/'},
     'terms':    {'en': '/terms/', 'pt': '/pt/termos/', 'es': '/es/terminos/'},
     'legal':    {'en': '/legal/', 'pt': '/pt/informacao-legal/', 'es': '/es/aviso-legal/'},
     'support':  {'en': '/support/', 'pt': '/pt/suporte/', 'es': '/es/soporte/'},
 }
-DESTS = ['d-sintra', 'd-cascais', 'd-comporta', 'd-evora', 'd-fatima', 'd-algarve', 'd-porto', 'd-madrid', 'd-sevilla', 'd-marbella']
+DESTS = ['d-sintra', 'd-cascais', 'd-arrabida', 'd-obidos', 'd-comporta', 'd-evora', 'd-fatima', 'd-algarve', 'd-porto', 'd-douro', 'd-madrid', 'd-sevilla', 'd-marbella']
 
 # Endereços antigos que passam a reencaminhar.
 REDIRECTS = {'/privacidade.html': SLUGS['privacy']['pt'], '/suporte.html': SLUGS['support']['pt']}
@@ -87,6 +90,9 @@ IMG = {
     'd-madrid': 'https://images.unsplash.com/photo-1539037116277-4db20889f2d4?auto=format&fit=crop&w=2000&q=70',
     'd-sevilla': 'https://images.unsplash.com/photo-1661442196003-f2f6eb54bd94?auto=format&fit=crop&w=2000&q=70',
     'd-marbella': 'https://images.pexels.com/photos/28428861/pexels-photo-28428861.jpeg?auto=compress&cs=tinysrgb&w=2000',
+    'd-arrabida': 'https://images.unsplash.com/photo-1590562221499-25e4d77051f8?auto=format&fit=crop&w=2000&q=70',
+    'd-obidos': 'https://images.unsplash.com/photo-1742122208689-6f1f093a8e54?auto=format&fit=crop&w=2000&q=70',
+    'd-douro': 'https://images.unsplash.com/photo-1724185022490-cf80fbc82888?auto=format&fit=crop&w=2000&q=70',
 }
 
 
