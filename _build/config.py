@@ -87,3 +87,14 @@ IMG = {
     'd-sevilla': 'https://images.unsplash.com/photo-1661442196003-f2f6eb54bd94?auto=format&fit=crop&w=2000&q=70',
     'd-marbella': 'https://images.pexels.com/photos/28428861/pexels-photo-28428861.jpeg?auto=compress&cs=tinysrgb&w=2000',
 }
+
+
+# ---------------------------------------------------------------------------------
+# ORÇAMENTO INSTANTÂNEO (B8). Vazio = desligado: o site não mostra preço nenhum.
+# Quando houver tabela do Bruno, preencher assim (euros, IVA incluído, por trajeto):
+#   PRICES = {'Cascais': {'E': 60, 'S': 90, 'V': 80, 'M': 150}, 'Porto': {...}}
+# A chave é o nome do destino tal como está em PLACES (home_i18n.py), em português.
+# Viaturas: E = Classe E, S = Classe S, V = Classe V, M = Sprinter/minibus.
+# Vale para Aeroporto (chegada ou partida) e Longa distância, quando o cliente toca num destino da lista.
+PRICES = {}
+PRICE_MODE = 'desde'   # 'desde' mostra "desde 60 €"; 'fixo' mostra "60 €"

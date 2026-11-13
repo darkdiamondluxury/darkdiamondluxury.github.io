@@ -693,6 +693,12 @@ const SP_TXT = {
   loc:'es-ES'}
 };
 const ST = SP_TXT[lang] || SP_TXT.en;
+/* orçamento instantâneo: só aparece quando config.PRICES tem o destino e a viatura */
+const PRICES = {{PRICES_JSON}}, PMODE = '{{PRICE_MODE}}';
+const PR_T = ({pt:['Preço','desde','Preço indicado no site','confirmado por escrito'],en:['Price','from','Price shown on the site','confirmed in writing'],es:['Precio','desde','Precio indicado en la web','confirmado por escrito']})[lang];
+function spPrice(){ if(sp.svc!==0&&sp.svc!==4) return ''; const p=PRICES[sp.to.trim()]; const v=p&&p[sp.car]; if(!v) return '';
+  const f=new Intl.NumberFormat(lang==='en'?'en-GB':lang==='es'?'es-ES':'pt-PT',{style:'currency',currency:'EUR',maximumFractionDigits:0}).format(v);
+  return PMODE==='desde'?PR_T[1]+' '+f:f; }
 const CCS=[['PT','+351'],['ES','+34'],['FR','+33'],['GB','+44'],['US','+1'],['BR','+55'],['DE','+49'],['IT','+39'],['NL','+31'],['BE','+32'],['CH','+41'],['IE','+353'],['LU','+352'],['AT','+43'],['PL','+48'],['SE','+46'],['NO','+47'],['DK','+45'],['AO','+244'],['MZ','+258'],['CV','+238'],['AE','+971'],['SA','+966'],['IL','+972'],['CN','+86'],['JP','+81'],['IN','+91'],['AU','+61'],['ZA','+27'],['MX','+52'],['AR','+54'],['CA','+1']];
 const sp$=id=>document.getElementById(id);
 const pad2=n=>String(n).padStart(2,'0');
@@ -874,6 +880,7 @@ function spRenderSum(){
     [isAir()&&sp.dir===0?ST.r.land:ST.r.when, spWhen(),3],
     [ST.r.pax, `${ST.paxN(sp.pax)} · ${ST.bagsN(sp.bags,sp.cabin)}`,4],
     [ST.r.car, carName(),4],
+    ...(spPrice()?[[PR_T[0], spPrice()+' · '+PR_T[3],4]]:[]),
     ...(sp.extras.length?[[ST.r.extras, sp.extras.join(' · '),4]]:[]),
     [ST.r.contact, [sp.name.trim(),spPhoneFmt()].filter(Boolean).join(' · '),5],
     ...(isAir()&&sp.dir===0&&sp.flight?[[ST.r.flight, sp.flight.toUpperCase(),5]]:[]),
@@ -928,7 +935,7 @@ function spSend(){
   const pickup = arr ? t.airport : (dep || sp.svc===1) ? sp.to.trim() : '';
   const dropoff= arr ? sp.to.trim() : dep ? t.airport : (sp.svc===1 ? '' : sp.to.trim());
   const [y,m,d]=sp.date.split('-'), dmy=`${d}/${m}/${y}`, time=`${pad2(sp.hour)}:${pad2(sp.min)}`;
-  const phone=spPhoneFmt(), notes=[carName()?ST.r.car+': '+carName():'', sp.extras.join(', '), sp.notes.trim()].filter(Boolean).join(' · ');
+  const phone=spPhoneFmt(), notes=[carName()?ST.r.car+': '+carName():'', spPrice()?PR_T[2]+': '+spPrice():'', sp.extras.join(', '), sp.notes.trim()].filter(Boolean).join(' · ');
   const flight=arr?sp.flight.trim().toUpperCase():'';
   setBusy(b,true,t.sending); sp$('spSendErr').textContent='';
   try{

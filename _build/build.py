@@ -20,7 +20,7 @@ ROOT = os.path.dirname(HERE)
 sys.path.insert(0, HERE)
 
 from chrome import GOAT, L, SVG_DEFS, dest_name, footer, head, nav, org_ld, page_ld, tel, url  # noqa: E402
-from config import BOOKINGS_KEY, BOOKINGS_URL, DESTS, EMAIL, IMG, LANGS, PHONES, REDIRECTS, SITE, SLUGS, WHATSAPP  # noqa: E402
+from config import BOOKINGS_KEY, BOOKINGS_URL, DESTS, EMAIL, IMG, LANGS, PHONES, PRICE_MODE, PRICES, REDIRECTS, SITE, SLUGS, WHATSAPP  # noqa: E402
 import content  # noqa: E402
 from faq import FAQ, FAQ_H  # noqa: E402
 from partner import partner_html  # noqa: E402
@@ -60,6 +60,9 @@ def build_home(lang):
         '{{MSG_JSON}}': json.dumps({'tpl': MSG[lang], 'flight': MSG_FLIGHT[lang], 'notes': MSG_NOTES[lang]}, ensure_ascii=False),
         '{{PLACES_JSON}}': json.dumps([[n[lang] if isinstance(n, dict) else n, m] for n, m, _ in PLACES], ensure_ascii=False),
         '{{DLINKS}}': dlinks,
+        '{{PRICES_JSON}}': json.dumps({(n[lang] if isinstance(n, dict) else n): PRICES[n['pt'] if isinstance(n, dict) else n]
+                                       for n, _, _ in PLACES if (n['pt'] if isinstance(n, dict) else n) in PRICES}, ensure_ascii=False),
+        '{{PRICE_MODE}}': PRICE_MODE,
         '{{AIRPORT_URL}}': url('airport', lang),
         '{{CRUISE_URL}}': url('cruise', lang),
         '{{CHAUFFEUR_URL}}': url('chauffeur', lang),
