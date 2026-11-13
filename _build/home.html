@@ -349,6 +349,7 @@ footer{padding-bottom:96px}
 .sp-step.on.back{animation-name:spInBack}
 @keyframes spIn{from{opacity:0;transform:translateX(24px)}to{opacity:1;transform:none}}
 @keyframes spInBack{from{opacity:0;transform:translateX(-24px)}to{opacity:1;transform:none}}
+.sp-h:focus{outline:none}
 .sp-h{font-family:var(--display);font-weight:400;font-size:clamp(1.45rem,1.1rem + 1.4vw,2rem);line-height:1.12;color:var(--black);margin:0;text-wrap:balance}
 .sp-l{margin:8px 0 0;font-size:.95rem;color:rgba(10,9,8,.72);max-width:46ch}
 .sp-gt{margin:18px 0 8px 2px;font-size:.84rem;color:rgba(10,9,8,.7)}
@@ -730,25 +731,25 @@ sp$('form').innerHTML = `
   <div class="sp-prog" aria-hidden="true">${'<i></i>'.repeat(6)}</div>
   <p class="sp-of" id="spOf" aria-live="polite"></p>
   <p class="sp-note" id="spNote" role="status" aria-live="polite"></p>
-  <section class="sp-step" data-s="1"><h3 class="sp-h" id="spH1"></h3><p class="sp-l" id="spL1"></p><div class="sp-cards" id="spSvc" role="group" aria-labelledby="spH1"></div></section>
-  <section class="sp-step" data-s="2"><h3 class="sp-h" id="spH2"></h3><p class="sp-l" id="spL2"></p>
+  <section class="sp-step" data-s="1"><h3 class="sp-h" id="spH1" tabindex="-1"></h3><p class="sp-l" id="spL1"></p><div class="sp-cards" id="spSvc" role="group" aria-labelledby="spH1"></div></section>
+  <section class="sp-step" data-s="2"><h3 class="sp-h" id="spH2" tabindex="-1"></h3><p class="sp-l" id="spL2"></p>
     <div class="sp-seg" id="spDir" role="group"></div>
     <div class="sp-list" id="spPlaces" role="group" aria-labelledby="spH2"></div>
     <div class="sp-or"><label class="sr" for="spTo"></label><input id="spTo" autocomplete="off" enterkeyhint="next"><button type="button" class="sp-go" id="spToGo">→</button></div>
   </section>
-  <section class="sp-step" data-s="3"><h3 class="sp-h" id="spH3"></h3><p class="sp-l" id="spL3"></p>
+  <section class="sp-step" data-s="3"><h3 class="sp-h" id="spH3" tabindex="-1"></h3><p class="sp-l" id="spL3"></p>
     <p class="sp-gt" id="spDayT"></p><div class="sp-strip" id="spDays" role="group" aria-labelledby="spDayT"></div>
     <input type="date" id="spOtherDate" class="sp-vh" tabindex="-1" aria-hidden="true">
     <p class="sp-gt" id="spHourT"></p><div class="sp-strip" id="spHours" role="group" aria-labelledby="spHourT"></div>
     <div id="spMinBox" hidden><p class="sp-gt" id="spMinT"></p><div class="sp-mins" id="spMins" role="group" aria-labelledby="spMinT"></div></div>
     <p class="sp-picked" id="spPicked" aria-live="polite"></p>
   </section>
-  <section class="sp-step" data-s="4"><h3 class="sp-h" id="spH4"></h3><p class="sp-l" id="spL4"></p>
+  <section class="sp-step" data-s="4"><h3 class="sp-h" id="spH4" tabindex="-1"></h3><p class="sp-l" id="spL4"></p>
     <div class="sp-counts" id="spCounts"></div>
     <p class="sp-gt" id="spCarT"></p><div class="sp-cars" id="spCars" role="group" aria-labelledby="spCarT"></div>
     <p class="sp-gt" id="spExT"></p><div class="sp-tags" id="spExtras" role="group" aria-labelledby="spExT"></div>
   </section>
-  <section class="sp-step" data-s="5"><h3 class="sp-h" id="spH5"></h3><p class="sp-l" id="spL5"></p>
+  <section class="sp-step" data-s="5"><h3 class="sp-h" id="spH5" tabindex="-1"></h3><p class="sp-l" id="spL5"></p>
     <div class="sp-fields">
       <div><label for="spName" id="spNameL"></label><input id="spName" autocomplete="name" enterkeyhint="next"></div>
       <div><label for="spPhone" id="spPhoneL"></label><div class="sp-tel"><label class="sr" for="spCC" id="spCCL"></label><select id="spCC" autocomplete="tel-country-code"></select><input id="spPhone" type="tel" inputmode="tel" autocomplete="tel-national" enterkeyhint="done"></div></div>
@@ -761,10 +762,10 @@ sp$('form').innerHTML = `
       <div style="position:absolute;left:-9999px" aria-hidden="true"><label for="fWeb">Website</label><input id="fWeb" tabindex="-1" autocomplete="off"></div>
     </div>
   </section>
-  <section class="sp-step" data-s="6"><h3 class="sp-h" id="spH6"></h3><p class="sp-l" id="spL6"></p><dl class="sp-sum" id="spSum"></dl></section>
+  <section class="sp-step" data-s="6"><h3 class="sp-h" id="spH6" tabindex="-1"></h3><p class="sp-l" id="spL6"></p><dl class="sp-sum" id="spSum"></dl></section>
   <section class="sp-step" data-s="7" tabindex="-1">
     <svg class="sp-done" viewBox="0 0 76 76" fill="none" stroke="currentColor" stroke-width="2" aria-hidden="true"><circle cx="38" cy="38" r="36"/><path d="M24 39l10 10 19-21" stroke-linecap="round" stroke-linejoin="round"/></svg>
-    <h3 class="sp-h" id="spH7"></h3><p class="sp-l" id="spL7"></p><p class="sp-l" id="spWa"></p><p class="sp-err" id="spSendErr"></p>
+    <h3 class="sp-h" id="spH7"></h3><p class="sp-l" id="spL7"></p><p class="sp-l" id="spWa"></p><p class="sp-err" id="spSendErr" role="alert"></p>
     <div class="sp-act"><button type="button" class="btn" id="spAgain"></button></div>
   </section>
   <p class="sp-err" id="spErr" role="alert"></p>
@@ -786,6 +787,7 @@ sp$('spSvc').addEventListener('click',e=>{ const b=e.target.closest('.sp-card');
 /* 2. destino */
 function spRenderDest(){
   sp$('spDir').hidden=!isAir();
+  sp$('spDir').setAttribute('aria-label',ST.arr+' / '+ST.dep);
   sp$('spDir').innerHTML=[ST.arr,ST.dep].map((t,i)=>`<button type="button" data-i="${i}" aria-pressed="${i===sp.dir}">${t}</button>`).join('');
   sp$('spH2').textContent= isAir() ? (sp.dir===0?ST.h2arr:ST.h2dep) : (sp.svc===1?ST.h2disp:ST.h2);
   sp$('spL2').textContent= isAir() ? (sp.dir===0?ST.l2arr:ST.l2dep) : ST.l2;
@@ -893,7 +895,7 @@ function spRenderSum(){
   ];
   sp$('spSum').innerHTML=rows.map(([k,v,s])=>`<div><div><dt>${escH(k)}</dt><dd>${escH(v)}</dd></div><button type="button" data-go="${s}">${ST.edit}</button></div>`).join('');
 }
-sp$('spSum').addEventListener('click',e=>{ const b=e.target.closest('[data-go]'); if(b) spGo(+b.dataset.go,true); });
+sp$('spSum').addEventListener('click',e=>{ const b=e.target.closest('[data-go]'); if(b){ spGo(+b.dataset.go,true); spFocusH(+b.dataset.go); } });
 
 /* navegação */
 let spNoteT=0;
@@ -924,10 +926,11 @@ function spGo(n,back){
   if(n===7) document.querySelector('.sp-step[data-s="7"]').focus({preventScroll:true});
 }
 sp$('spTo').addEventListener('input',()=>{ if(sp.step===2) sp$('spNext').hidden=!sp.to.trim(); });
+function spFocusH(n){ const h=sp$('spH'+n); if(h) h.focus({preventScroll:true}); }
 function spAdvance(){
   const n=sp.step; if(!spValid(n)) return;
   if(window.goatcounter&&goatcounter.count) goatcounter.count({path:'reserva-passo-'+n,title:'Reserva: passo '+n+' concluído',event:true});
-  if(n<6){ spNote(spNotes[n]()); spGo(n+1); spScrollToForm(); return; }
+  if(n<6){ spNote(spNotes[n]()); spGo(n+1); spScrollToForm(); spFocusH(n+1); return; }
   spSend();
 }
 function spScrollToForm(){ const f=sp$('form'), top=f.getBoundingClientRect().top; if(top<70||top>innerHeight*.5) scrollTo({top:scrollY+top-90,behavior:'instant'}); }
@@ -958,7 +961,7 @@ function spSend(){
   try{ localStorage.removeItem(SPKEY); }catch(e){}
 }
 sp$('form').addEventListener('submit',e=>{ e.preventDefault(); spAdvance(); });
-sp$('spBack').addEventListener('click',()=>{ spGo(Math.max(1,sp.step-1),true); spScrollToForm(); });
+sp$('spBack').addEventListener('click',()=>{ spGo(Math.max(1,sp.step-1),true); spScrollToForm(); spFocusH(sp.step); });
 sp$('spAgain').addEventListener('click',()=>{ Object.assign(sp,{svc:-1,dir:0,to:'',all:false,date:'',hour:-1,min:-1,pax:1,bags:0,cabin:0,car:'',carAuto:true,extras:[],flight:'',notes:''});
   ['spFlight','spNotes'].forEach(id=>sp$(id).value=''); spGo(1,true); });
 
