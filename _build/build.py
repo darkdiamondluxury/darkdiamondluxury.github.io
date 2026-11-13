@@ -201,7 +201,7 @@ def build_page(page, lang, d):
     doc = f'''<!doctype html>
 <html lang="{lang}">
 <head>
-{head(page, lang, d['title'], d['desc'], ld)}
+{head(page, lang, d['title'], d['desc'], ld, _sized(IMG[img], 1200, 630) if img and IMG[img].startswith('http') else None)}
 <link rel="preload" href="/assets/cinzel-latin-400-normal.woff2" as="font" type="font/woff2" crossorigin>
 <link rel="stylesheet" href="/assets/page.css?v={CSSV}">
 </head>

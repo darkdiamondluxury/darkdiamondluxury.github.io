@@ -41,7 +41,7 @@ def url(page, lang):
     return SLUGS[page][lang]
 
 
-def head(page, lang, title, desc, extra_ld=None):
+def head(page, lang, title, desc, extra_ld=None, og_image=None):
     """<meta>, canonical, hreflang (versões noutras línguas) e Open Graph."""
     alts = ''.join(f'<link rel="alternate" hreflang="{l}" href="{SITE}{url(page, l)}">' for l in LANGS)
     alts += f'<link rel="alternate" hreflang="x-default" href="{SITE}{url(page, LANGS[0])}">'
@@ -63,7 +63,7 @@ def head(page, lang, title, desc, extra_ld=None):
 <meta property="og:title" content="{E(title)}">
 <meta property="og:description" content="{E(desc)}">
 <meta property="og:url" content="{SITE}{url(page, lang)}">
-<meta property="og:image" content="{SITE}/assets/og.png">
+<meta property="og:image" content="{E(og_image) if og_image else SITE + "/assets/og.png"}">
 <meta property="og:image:width" content="1200"><meta property="og:image:height" content="630">
 <meta property="og:locale" content="{LOCALE[lang]}">
 <meta name="twitter:card" content="summary_large_image">
