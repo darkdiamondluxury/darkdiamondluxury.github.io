@@ -78,6 +78,7 @@ button,input,select,textarea{font:inherit;color:inherit}
 .hero{position:relative;min-height:100svh;display:flex;align-items:flex-end;padding:130px var(--pad) clamp(36px,6vh,72px);overflow:hidden;isolation:isolate}
 .hero{background:var(--green)}
 .hero .bg{position:absolute;inset:0;z-index:-2;background:var(--green-2);-webkit-mask-image:linear-gradient(180deg,#000 0,#000 calc(100% - var(--fd)),transparent 100%);mask-image:linear-gradient(180deg,#000 0,#000 calc(100% - var(--fd)),transparent 100%)}
+.bg picture,.pic picture{display:contents}
 .hero .bg img{width:100%;height:100%;object-fit:cover;object-position:60% 50%}
 .hero::after{content:"";position:absolute;inset:0;z-index:-1;background:linear-gradient(180deg,rgba(0,0,0,.38) 0%,rgba(0,0,0,.08) 35%,rgba(0,0,0,.32) 100%)}
 .hero h1,.hero p.sub,.hero .pq{text-shadow:0 1px 18px rgba(0,0,0,.5)}
@@ -469,7 +470,7 @@ footer{padding-bottom:96px}
 <main id="top">
   <!-- HERO -->
   <section class="hero" aria-labelledby="h1">
-    <div class="bg"><img id="heroImg" onerror="this.style.display='none'" src="https://images.unsplash.com/photo-1765461734605-34657fa04db2?auto=format&fit=crop&w=2200&q=70" alt="" fetchpriority="high"></div>
+    <div class="bg"><picture><source media="(orientation:portrait)" srcset="https://images.unsplash.com/photo-1765461734605-34657fa04db2?auto=format&fit=crop&w=600&q=70&h=1300&crop=focalpoint&fp-x=0.6&fp-y=.5 600w, https://images.unsplash.com/photo-1765461734605-34657fa04db2?auto=format&fit=crop&w=900&q=70&h=1950&crop=focalpoint&fp-x=0.6&fp-y=.5 900w" sizes="100vw"><img src="https://images.unsplash.com/photo-1765461734605-34657fa04db2?auto=format&fit=crop&w=1600&q=70" srcset="https://images.unsplash.com/photo-1765461734605-34657fa04db2?auto=format&fit=crop&w=800&q=70 800w, https://images.unsplash.com/photo-1765461734605-34657fa04db2?auto=format&fit=crop&w=1200&q=70 1200w, https://images.unsplash.com/photo-1765461734605-34657fa04db2?auto=format&fit=crop&w=1600&q=70 1600w, https://images.unsplash.com/photo-1765461734605-34657fa04db2?auto=format&fit=crop&w=2200&q=70 2200w" sizes="100vw" id="heroImg" alt="" fetchpriority="high" onerror="this.style.display='none'"></picture></div>
     <div class="hero-in">
       <h1 class="display" id="h1"><span class="line"><span data-i18n="h1a">Su chófer,</span></span> <span class="line"><span data-i18n="h1b">a su medida.</span></span></h1>
       <p class="sub" data-i18n="sub">Traslados, tours, eventos y chófer a disposición en Portugal, España y Francia.</p>
@@ -487,7 +488,7 @@ footer{padding-bottom:96px}
 
   <!-- SEM CERIMÓNIA -->
   <section class="stmt" aria-labelledby="st-h">
-    <div class="pic"><img src="https://images.unsplash.com/photo-1503944251010-cbf290919d9d?auto=format&fit=crop&w=1600&q=70" alt="" loading="lazy" onerror="this.style.display='none'"></div>
+    <div class="pic"><picture><source media="(orientation:portrait)" srcset="https://images.unsplash.com/photo-1503944251010-cbf290919d9d?auto=format&fit=crop&w=600&q=70&h=1300 600w, https://images.unsplash.com/photo-1503944251010-cbf290919d9d?auto=format&fit=crop&w=900&q=70&h=1950 900w" sizes="100vw"><img src="https://images.unsplash.com/photo-1503944251010-cbf290919d9d?auto=format&fit=crop&w=1600&q=70" srcset="https://images.unsplash.com/photo-1503944251010-cbf290919d9d?auto=format&fit=crop&w=800&q=70 800w, https://images.unsplash.com/photo-1503944251010-cbf290919d9d?auto=format&fit=crop&w=1200&q=70 1200w, https://images.unsplash.com/photo-1503944251010-cbf290919d9d?auto=format&fit=crop&w=1600&q=70 1600w, https://images.unsplash.com/photo-1503944251010-cbf290919d9d?auto=format&fit=crop&w=2200&q=70 2200w" sizes="100vw" alt="" loading="lazy" onerror="this.style.display='none'"></picture></div>
     <div class="txt">
       <h2 class="display" id="st-h" data-i18n="sth">Sin complicaciones.</h2>
       <p class="lead" data-i18n="stp">Planificamos el trayecto, seguimos su vuelo y cumplimos la hora acordada.</p>
@@ -527,7 +528,7 @@ footer{padding-bottom:96px}
 
   <!-- FROTA -->
   <section class="vclass" id="frota" aria-labelledby="v-h">
-    <div class="img"><img src="https://images.unsplash.com/photo-1580929945040-a16adedf9f6a?auto=format&fit=crop&w=2000&q=70" alt="" loading="lazy" onerror="this.style.display='none'"></div>
+    <div class="img"><picture><source media="(orientation:portrait)" srcset="https://images.unsplash.com/photo-1580929945040-a16adedf9f6a?auto=format&fit=crop&w=600&q=70&h=1300 600w, https://images.unsplash.com/photo-1580929945040-a16adedf9f6a?auto=format&fit=crop&w=900&q=70&h=1950 900w" sizes="100vw"><img src="https://images.unsplash.com/photo-1580929945040-a16adedf9f6a?auto=format&fit=crop&w=1600&q=70" srcset="https://images.unsplash.com/photo-1580929945040-a16adedf9f6a?auto=format&fit=crop&w=800&q=70 800w, https://images.unsplash.com/photo-1580929945040-a16adedf9f6a?auto=format&fit=crop&w=1200&q=70 1200w, https://images.unsplash.com/photo-1580929945040-a16adedf9f6a?auto=format&fit=crop&w=1600&q=70 1600w, https://images.unsplash.com/photo-1580929945040-a16adedf9f6a?auto=format&fit=crop&w=2200&q=70 2200w" sizes="100vw" alt="" loading="lazy" onerror="this.style.display='none'"></picture></div>
     <div class="txt">
       <h2 class="display" id="v-h" data-i18n="vh">Un salón sobre ruedas.</h2>
       <p data-i18n="vp">La Mercedes-Benz Clase V es el centro de nuestra flota: espacio para el grupo y las maletas, asientos enfrentados y un interior pensado para relajarse.</p>
@@ -622,14 +623,17 @@ T[lang].msg = d => MSGT.tpl.replace(/\{(\w+)\}/g, (_, k) => k==='flight' ? (d.fl
 const PLACES = [["Baixa · Chiado", "20 min"], ["Cascais", "35 min"], ["Sintra", "35 min"], ["Comporta", "1h15"], ["Évora", "1h30"], ["Fátima", "1h30"], ["Algarve", "2h45"], ["Porto", "3h"], ["Madrid", "6h"], ["Sevilla", "4h"], ["Marbella", "5h30"]];
 
 let svcPick = 0, dirPick = 0, pickI = 1, destI = 0, lockUntil = 0;
-const U = id => id.startsWith('http') ? id : `https://images.unsplash.com/photo-${id}?auto=format&fit=crop&w=2000&q=70`;
+/* fotografias de fundo no tamanho e na proporção do ecrã (telemóvel ao alto = foto vertical) */
+const IMGS = (()=>{ const d=Math.min(devicePixelRatio||1,1.5), r=x=>Math.min(2400,Math.ceil(x*d*1.1/100)*100); return {w:r(innerWidth),h:r(innerHeight)}; })();
+const U = id => { const u = id.startsWith('http') ? id : `https://images.unsplash.com/photo-${id}?auto=format&fit=crop&w=2000&q=68`;
+  return u.replace(/([?&])w=\d+/, `$1w=${IMGS.w}`) + `&h=${IMGS.h}` + (u.includes('pexels.com') ? '&fit=crop' : ''); };
 /* uma fotografia por destino (mesma ordem de PLACES);  */
 const DIMG = ['1585208798174-6cedd86e019a','1587973878097-ef3aabd5eeaa','1697394494123-c6c1323a14f7','1672825952732-ecef34882416','1644183521042-377da9d4aea3','https://images.pexels.com/photos/30443719/pexels-photo-30443719.jpeg?auto=compress&cs=tinysrgb&w=2000','https://images.pexels.com/photos/33887497/pexels-photo-33887497.jpeg?auto=compress&cs=tinysrgb&w=2000','1768565540385-5195e32bb44b','1539037116277-4db20889f2d4','1661442196003-f2f6eb54bd94','https://images.pexels.com/photos/28428861/pexels-photo-28428861.jpeg?auto=compress&cs=tinysrgb&w=2000'].map(U);
 const SVCI = ['1562584674-b0e112e53fd7','1765459856355-6e086cfe27f1','1697394494123-c6c1323a14f7','1768777277442-daa05eba8b89','1724185022490-cf80fbc82888','1599640842225-85d111c60e6b'].map(U);
 const SVCMORE = ['/es/traslado-aeropuerto-lisboa/','/es/chofer-a-disposicion-lisboa/','/es/tours-privados-portugal/','/es/eventos-bodas-transporte/','/es/traslados-larga-distancia/','/es/traslado-terminal-cruceros-lisboa/'];
 let svcI = 0;
 /* pré-carregar todas as fotografias dos carrosséis em segundo plano, para o movimento sair fluido desde o primeiro slide */
-function preloadSel(){ [...DIMG,...SVCI].forEach(u=>{ const x=new Image(); x.decoding='async'; x.src=u; }); }
+function preloadSel(){ const c=navigator.connection; if(c&&(c.saveData||/2g/.test(c.effectiveType||''))) return; [...DIMG,...SVCI].forEach(u=>{ const x=new Image(); x.decoding='async'; x.src=u; }); }
 (window.requestIdleCallback||(f=>setTimeout(f,400)))(preloadSel);
 function setSvc(i,center){
   svcI=i; const t=T[lang], tr=document.getElementById('svcTrack');

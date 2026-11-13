@@ -61,6 +61,9 @@ def build_home(lang):
         '{{MSG_JSON}}': json.dumps({'tpl': MSG[lang], 'flight': MSG_FLIGHT[lang], 'notes': MSG_NOTES[lang]}, ensure_ascii=False),
         '{{PLACES_JSON}}': json.dumps([[n[lang] if isinstance(n, dict) else n, m] for n, m, _ in PLACES], ensure_ascii=False),
         '{{DLINKS}}': dlinks,
+        '{{HERO_PIC}}': pic('https://images.unsplash.com/photo-1765461734605-34657fa04db2?auto=format&fit=crop&w=2200&q=70', 'id="heroImg" alt="" fetchpriority="high" onerror="this.style.display=\'none\'"', fp=.6),
+        '{{PIC_STMT}}': pic('https://images.unsplash.com/photo-1503944251010-cbf290919d9d?auto=format&fit=crop&w=1600&q=70', 'alt="" loading="lazy" onerror="this.style.display=\'none\'"'),
+        '{{PIC_LEATHER}}': pic('https://images.unsplash.com/photo-1580929945040-a16adedf9f6a?auto=format&fit=crop&w=2000&q=70', 'alt="" loading="lazy" onerror="this.style.display=\'none\'"'),
         '{{PRICES_JSON}}': json.dumps({(n[lang] if isinstance(n, dict) else n): PRICES[n['pt'] if isinstance(n, dict) else n]
                                        for n, _, _ in PLACES if (n['pt'] if isinstance(n, dict) else n) in PRICES}, ensure_ascii=False),
         '{{PRICE_MODE}}': PRICE_MODE,
@@ -98,6 +101,25 @@ addEventListener('scroll',solid,{passive:true}); solid();
 document.getElementById('toTop').addEventListener('click',()=>scrollTo({top:0,behavior:'instant'}));
 document.getElementById('yr').textContent=new Date().getFullYear();
 </script>'''
+
+
+def _sized(u, w, h=None):
+    """Mesmo ficheiro do Unsplash/Pexels noutro tamanho (h = recorte com essa proporção)."""
+    u = re.sub(r'([?&])w=\d+', rf'\g<1>w={w}', u)
+    if h:
+        u += f'&h={h}' + ('&fit=crop' if 'pexels.com' in u else '')
+    return u
+
+
+def pic(u, attrs='', fp=None):
+    """<picture> responsivo: foto vertical no telemóvel ao alto, larguras certas no resto. Imagens locais ficam como estão."""
+    if 'unsplash.com' not in u and 'pexels.com' not in u:
+        return f'<img src="{u}" {attrs}>'
+    focal = f'&crop=focalpoint&fp-x={fp}&fp-y=.5' if fp and 'unsplash.com' in u else ''
+    port = ', '.join(f'{_sized(u, w, h)}{focal} {w}w' for w, h in ((600, 1300), (900, 1950)))
+    land = ', '.join(f'{_sized(u, w)} {w}w' for w in (800, 1200, 1600, 2200))
+    return (f'<picture><source media="(orientation:portrait)" srcset="{port}" sizes="100vw">'
+            f'<img src="{_sized(u, 1600)}" srcset="{land}" sizes="100vw" {attrs}></picture>')
 
 
 def cta_buttons(lang, ctas, ctx):
@@ -154,7 +176,7 @@ def block_html(b, lang, ctx):
 def build_page(page, lang, d):
     l = L[lang]
     img = d.get('img')
-    bg = f'<div class="bg"><img src="{IMG[img]}" alt="" fetchpriority="high" onerror="this.style.display=\'none\'"></div>' if img else ''
+    bg = f'<div class="bg">{pic(IMG[img], chr(97)+"lt=\"\" fetchpriority=\"high\" onerror=\"this.style.display=\'none\'\"")}</div>' if img else ''
     crumbs = f'<p class="crumbs"><a href="{url("home", lang)}">{l["home"]}</a> / {E(d.get("crumb", d["h1"]))}</p>'
     ctx = {'to': d.get('to'), 'subject': d.get('subject')}
     hero = (f'<section class="phero{"" if img else " plain"}">{bg}<div class="in">{crumbs}'

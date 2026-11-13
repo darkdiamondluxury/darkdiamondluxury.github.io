@@ -45,6 +45,7 @@ a{color:inherit;text-underline-offset:.18em;text-decoration-thickness:.07em}
 /* topo da página */
 .phero{position:relative;min-height:78svh;display:grid;align-items:end;padding:130px var(--pad) clamp(44px,8vh,90px);isolation:isolate;overflow:hidden}
 .phero .bg{position:absolute;inset:0;z-index:-2;background:var(--green-2)}
+.phero .bg picture{display:contents}
 .phero .bg img{width:100%;height:100%;object-fit:cover}
 .phero::after{content:"";position:absolute;inset:0;z-index:-1;background:linear-gradient(180deg,rgba(5,5,5,.55) 0%,rgba(5,5,5,.35) 40%,rgba(5,5,5,.92) 100%)}
 .phero.plain{min-height:62svh}
