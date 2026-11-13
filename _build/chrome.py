@@ -86,7 +86,7 @@ def org_ld(lang):
 SERVICE_PAGES = ('airport', 'cruise', 'chauffeur', 'tours', 'events', 'longdistance')
 
 
-def page_ld(page, lang, d, crumb_name, home_url, page_url):
+def page_ld(page, lang, d, crumb_name, home_url, page_url, faq=None):
     """Migalhas + serviço, para o Google perceber a página."""
     graph = [{'@type': 'BreadcrumbList', 'itemListElement': [
         {'@type': 'ListItem', 'position': 1, 'name': BRAND, 'item': SITE + home_url},
@@ -98,6 +98,9 @@ def page_ld(page, lang, d, crumb_name, home_url, page_url):
                       'serviceType': 'Chauffeur service', 'inLanguage': lang,
                       'provider': {'@type': 'LocalBusiness', '@id': SITE + '/#org', 'name': BRAND, 'telephone': PHONES[0], 'url': SITE + '/'},
                       'areaServed': [{'@type': 'Country', 'name': n} for n in ('Portugal', 'Spain', 'France')]})
+    if faq:
+        graph.append({'@type': 'FAQPage', 'mainEntity': [
+            {'@type': 'Question', 'name': q, 'acceptedAnswer': {'@type': 'Answer', 'text': a}} for q, a in faq]})
     return {'@context': 'https://schema.org', '@graph': graph}
 
 

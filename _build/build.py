@@ -22,6 +22,7 @@ sys.path.insert(0, HERE)
 from chrome import GOAT, L, SVG_DEFS, dest_name, footer, head, nav, org_ld, page_ld, tel, url  # noqa: E402
 from config import BOOKINGS_KEY, BOOKINGS_URL, DESTS, EMAIL, IMG, LANGS, PHONES, REDIRECTS, SITE, SLUGS, WHATSAPP  # noqa: E402
 import content  # noqa: E402
+from faq import FAQ, FAQ_H  # noqa: E402
 from home_i18n import MSG, MSG_FLIGHT, MSG_NOTES, PLACES, T  # noqa: E402
 
 E = html.escape
@@ -137,6 +138,9 @@ def block_html(b, lang, ctx):
     if k == 'cta':
         return (f'<section class="ctab"><div class="wrap"><div><h2 class="display">{b["h"]}</h2>'
                 f'{"<p>" + b["p"] + "</p>" if b.get("p") else ""}</div>{cta_buttons(lang, b["ctas"], {**ctx, "on_gold": True})}</div></section>')
+    if k == 'faq':
+        items = ''.join(f'<details><summary>{q}</summary><p>{a}</p></details>' for q, a in b['items'])
+        return f'<section class="sec{cls}"><div class="wrap split"><h2 class="display">{b["h"]}</h2><div class="body faq">{items}</div></div></section>'
     if k == 'prose':
         return f'<section class="sec"><div class="wrap prose">{b["html"]}</div></section>'
     raise ValueError(k)
@@ -151,13 +155,18 @@ def build_page(page, lang, d):
     hero = (f'<section class="phero{"" if img else " plain"}">{bg}<div class="in">{crumbs}'
             f'<h1 class="display">{d["h1"]}</h1><p class="lead">{d["lead"]}</p>'
             f'{cta_buttons(lang, d.get("ctas", []), ctx) if d.get("ctas") else ""}</div></section>')
-    blocks = ''.join(block_html(b, lang, ctx) for b in d.get('blocks', []))
+    bl = list(d.get('blocks', []))
+    faq = FAQ.get(page, {}).get(lang)
+    if faq:
+        at = len(bl) - 1 if bl and bl[-1]['type'] == 'cta' else len(bl)
+        bl.insert(at, dict(type='faq', h=FAQ_H[lang], items=faq))
+    blocks = ''.join(block_html(b, lang, ctx) for b in bl)
     t = T[lang]
     h = url('home', lang)
     links = (f'<a href="{h}#destinos">{t["nav_dest"]}</a><a href="{h}#servicos">{t["nav_svc"]}</a>'
              f'<a href="{h}#frota">{t["nav_fleet"]}</a>'
              f'<a href="{url("agencies", lang)}"{" aria-current=" + chr(34) + "page" + chr(34) if page == "agencies" else ""}>{t["nav_ag"]}</a>')
-    ld = page_ld(page, lang, d, ' '.join(re.sub('<[^>]+>', ' ', d.get('crumb', d['h1'])).split()), url('home', lang), url(page, lang))
+    ld = page_ld(page, lang, d, ' '.join(re.sub('<[^>]+>', ' ', d.get('crumb', d['h1'])).split()), url('home', lang), url(page, lang), faq)
     doc = f'''<!doctype html>
 <html lang="{lang}">
 <head>
