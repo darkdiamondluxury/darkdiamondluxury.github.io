@@ -23,6 +23,7 @@ from chrome import GOAT, L, SVG_DEFS, dest_name, footer, head, nav, org_ld, page
 from config import BOOKINGS_KEY, BOOKINGS_URL, DESTS, EMAIL, IMG, LANGS, PHONES, REDIRECTS, SITE, SLUGS, WHATSAPP  # noqa: E402
 import content  # noqa: E402
 from faq import FAQ, FAQ_H  # noqa: E402
+from partner import partner_html  # noqa: E402
 from home_i18n import MSG, MSG_FLIGHT, MSG_NOTES, PLACES, T  # noqa: E402
 
 E = html.escape
@@ -154,13 +155,17 @@ def build_page(page, lang, d):
     ctx = {'to': d.get('to'), 'subject': d.get('subject')}
     hero = (f'<section class="phero{"" if img else " plain"}">{bg}<div class="in">{crumbs}'
             f'<h1 class="display">{d["h1"]}</h1><p class="lead">{d["lead"]}</p>'
-            f'{cta_buttons(lang, d.get("ctas", []), ctx) if d.get("ctas") else ""}</div></section>')
+            f'{cta_buttons(lang, [("#parceria", c[1]) if page == "agencies" and c[0] == "mail" else c for c in d.get("ctas", [])], ctx) if d.get("ctas") else ""}</div></section>')
     bl = list(d.get('blocks', []))
     faq = FAQ.get(page, {}).get(lang)
     if faq:
         at = len(bl) - 1 if bl and bl[-1]['type'] == 'cta' else len(bl)
         bl.insert(at, dict(type='faq', h=FAQ_H[lang], items=faq))
-    blocks = ''.join(block_html(b, lang, ctx) for b in bl)
+    tail = ''
+    if page == 'agencies' and bl and bl[-1]['type'] == 'cta':
+        bl.pop()  # o pedido de parceria substitui o bloco final
+        tail = partner_html(lang, WHATSAPP, EMAIL, E)
+    blocks = ''.join(block_html(b, lang, ctx) for b in bl) + tail
     t = T[lang]
     h = url('home', lang)
     links = (f'<a href="{h}#destinos">{t["nav_dest"]}</a><a href="{h}#servicos">{t["nav_svc"]}</a>'

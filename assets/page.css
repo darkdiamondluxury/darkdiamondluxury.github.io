@@ -209,3 +209,24 @@ footer .word em{background:linear-gradient(120deg,#A27A38,#F3DFA2 45%,#C69F5B 70
 .faq details[open] summary::after{transform:rotate(-135deg) translate(-2px,-2px)}
 .faq details p{margin:0 0 20px;max-width:62ch}
 .faq summary:focus-visible{outline:2px solid var(--gold);outline-offset:2px}
+/* pedido de parceria (agências) */
+.ctab .pf-wrap{grid-template-columns:minmax(0,1fr) minmax(0,1.35fr);align-items:start;gap:clamp(28px,5vw,72px)}
+@media (max-width:860px){.ctab .pf-wrap{grid-template-columns:minmax(0,1fr)}}
+.pf{display:grid;gap:0;min-width:0}
+.pf-q{margin:22px 0 10px!important;font-size:.88rem!important;color:rgba(10,9,8,.72)!important}
+.pf-q:first-child{margin-top:0!important}
+.pf-chips{display:flex;flex-wrap:wrap;gap:8px}
+.pf-chips button{min-height:44px;border:0;border-radius:99px;padding:9px 16px;background:rgba(10,9,8,.1);color:var(--black);font:inherit;font-size:.92rem;cursor:pointer;transition:background .2s,color .2s,transform .15s}
+.pf-chips button:active{transform:scale(.97)}
+@media (hover:hover){.pf-chips button:hover{background:rgba(10,9,8,.18)}.pf-chips button[aria-pressed="true"]:hover{background:var(--black)}}
+.pf-chips button[aria-pressed="true"]{background:var(--black);color:var(--gold-hi,#F1DBA0)}
+.pf-chips.multi button::before{content:"+";margin-right:6px}
+.pf-chips.multi button[aria-pressed="true"]::before{content:"✓"}
+.pf-fields{margin-top:24px;display:grid;grid-template-columns:repeat(2,minmax(0,1fr));gap:12px}
+.pf-fields .wide{grid-column:1/-1}
+@media (max-width:520px){.pf-fields{grid-template-columns:minmax(0,1fr)}}
+.pf-fields label{display:grid;gap:6px;font-size:.84rem;color:rgba(10,9,8,.72)}
+.pf-fields input{width:100%;min-width:0;min-height:52px;border:0;border-radius:12px;background:var(--black);color:#eeeadf;padding:0 16px;font:inherit;font-size:1rem}
+.pf-fields input:focus-visible,.pf-chips button:focus-visible{outline:2px solid var(--black);outline-offset:2px}
+.pf-err{min-height:1.3em;margin:12px 0 0!important;font-size:.9rem;color:#5c1b0b!important}
+.pf .actions{margin-top:8px!important;display:flex;flex-wrap:wrap;gap:10px}
