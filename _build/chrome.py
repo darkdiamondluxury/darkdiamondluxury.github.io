@@ -21,6 +21,11 @@ L = {
             privacy='Privacy', legal='Legal information', support='App support', complaints='Complaints Book (Livro de Reclamações)',
             top='Back to top', book='Book', rnaat='RNAAT registration no.', nipc='VAT no. (NIPC)', brand_of='is a brand of',
             terms='Terms and conditions', credits_btn='Photo credits', credits='Illustrative photographs, Unsplash License:', home='Home', coverage='Coverage'),
+ 'fr': dict(nav_label='Principal', lang_label='Langue', contact='Contact', company='Entreprise', info='Informations', services='Services',
+            airport='Transfert aéroport', cruise='Terminal de croisières', chauffeur='Chauffeur à disposition', tours='Tours privés', events='Événements et mariages', longd='Longue distance', agencies='Agences et partenaires', dests='Destinations',
+            privacy='Confidentialité', legal='Mentions légales', support="Assistance de l'app", complaints='Livre de réclamations (Livro de Reclamações)',
+            top='Retour en haut', book='Réserver', rnaat='Enregistrement RNAAT nº', nipc='NIF (NIPC)', brand_of='est une marque de',
+            terms='Conditions générales', credits_btn='Crédits des photographies', credits='Photographies illustratives, Unsplash License :', home='Accueil', coverage='Zone couverte'),
  'es': dict(nav_label='Principal', lang_label='Idioma', contact='Contacto', company='Empresa', info='Información', services='Servicios',
             airport='Traslado aeropuerto', cruise='Terminal de cruceros', chauffeur='Chófer a disposición', tours='Tours privados', events='Eventos y bodas', longd='Larga distancia', agencies='Agencias y partners', dests='Destinos',
             privacy='Privacidad', legal='Aviso legal', support='Soporte de la app', complaints='Libro de Reclamaciones (Livro de Reclamações)',
@@ -28,10 +33,10 @@ L = {
             terms='Términos y condiciones', credits_btn='Créditos de las fotografías', credits='Fotografías ilustrativas, Unsplash License:', home='Inicio', coverage='Cobertura'),
 }
 DEST_NAME = {'d-sintra': 'Sintra', 'd-cascais': 'Cascais', 'd-comporta': 'Comporta', 'd-evora': 'Évora', 'd-fatima': 'Fátima',
-             'd-algarve': 'Algarve', 'd-porto': {'pt': 'Porto', 'en': 'Porto', 'es': 'Oporto'},
-             'd-madrid': 'Madrid', 'd-sevilla': {'pt': 'Sevilha', 'en': 'Seville', 'es': 'Sevilla'}, 'd-marbella': 'Marbella',
-             'd-arrabida': 'Arrábida', 'd-obidos': {'pt': 'Óbidos e Nazaré', 'en': 'Óbidos and Nazaré', 'es': 'Óbidos y Nazaré'},
-             'd-douro': {'pt': 'Vale do Douro', 'en': 'Douro Valley', 'es': 'Valle del Duero'}}
+             'd-algarve': 'Algarve', 'd-porto': {'pt': 'Porto', 'en': 'Porto', 'es': 'Oporto', 'fr': 'Porto'},
+             'd-madrid': 'Madrid', 'd-sevilla': {'pt': 'Sevilha', 'en': 'Seville', 'es': 'Sevilla', 'fr': 'Séville'}, 'd-marbella': 'Marbella',
+             'd-arrabida': 'Arrábida', 'd-obidos': {'pt': 'Óbidos e Nazaré', 'en': 'Óbidos and Nazaré', 'es': 'Óbidos y Nazaré', 'fr': 'Óbidos et Nazaré'},
+             'd-douro': {'pt': 'Vale do Douro', 'en': 'Douro Valley', 'es': 'Valle del Duero', 'fr': 'Vallée du Douro'}}
 
 
 def dest_name(k, lang):
@@ -84,7 +89,8 @@ def org_ld(lang):
         'areaServed': [{'@type': 'Country', 'name': n} for n in ('Portugal', 'Spain', 'France')],
         'description': {'pt': 'Transfers privados, tours e motorista à disposição em Lisboa, Portugal, Espanha e França.',
                         'en': 'Private transfers, tours and chauffeur services in Lisbon, Portugal, Spain and France.',
-                        'es': 'Traslados privados, tours y chófer a disposición en Lisboa, Portugal, España y Francia.'}[lang],
+                        'es': 'Traslados privados, tours y chófer a disposición en Lisboa, Portugal, España y Francia.',
+                        'fr': 'Transferts privés, tours et chauffeur à disposition à Lisbonne, au Portugal, en Espagne et en France.'}[lang],
     }
 
 
@@ -114,7 +120,7 @@ def lang_switch(page, lang):
     cur = ' aria-current="true"'
     items = ''.join(
         f'<a href="{url(page, x)}" hreflang="{x}" lang="{x}"{cur if x == lang else ""}>{LANG_NAME[x]}</a>'
-        for x in ['pt', 'en', 'es'])
+        for x in ['pt', 'en', 'es', 'fr'])
     return f'<nav class="lang" aria-label="{l["lang_label"]}">{items}</nav>'
 
 

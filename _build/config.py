@@ -6,12 +6,12 @@ BRAND = 'Dark Diamond Luxury'
 
 LEGAL = {
     'name': 'Artur Danilo, Unipessoal Lda',     # mudança de nome em curso: atualizar quando estiver registada
-    'type': {'pt': 'Sociedade unipessoal por quotas', 'en': 'Single-member private limited company', 'es': 'Sociedad unipersonal de responsabilidad limitada'},
+    'type': {'pt': 'Sociedade unipessoal por quotas', 'en': 'Single-member private limited company', 'es': 'Sociedad unipersonal de responsabilidad limitada', 'fr': 'Société unipersonnelle à responsabilité limitée'},
     'nipc': '515565458',
     'street': 'Av. Vergílio Ferreira, Lote 764, 6.º Esq.',
     'postcode': '1950-339',
     'city': 'Lisboa',
-    'registry': {'pt': 'Conservatória do Registo Comercial de Lisboa', 'en': 'Lisbon Commercial Registry Office', 'es': 'Registro Mercantil de Lisboa'},
+    'registry': {'pt': 'Conservatória do Registo Comercial de Lisboa', 'en': 'Lisbon Commercial Registry Office', 'es': 'Registro Mercantil de Lisboa', 'fr': 'Registre du commerce de Lisbonne'},
     'capital': '20.000 €',
     'rnaat': '682/2022',
 }
@@ -27,16 +27,17 @@ BOOKINGS_KEY = 'eyJhbGciOiJIUzI1NiIsInR5cCI6IkpXVCJ9.eyJpc3MiOiJzdXBhYmFzZSIsInJ
 WHATSAPP_ALL = ['351932666254', '351960033622']   # ambos têm WhatsApp
 INSTAGRAM = ''         # ex.: 'https://instagram.com/darkdiamondluxury'
 
-FLEET = {'pt': 'Mercedes-Benz Classe S, Classe E, Classe V, Sprinter e minibus de 19 lugares',
+FLEET = {'fr': 'Mercedes-Benz Classe S, Classe E, Classe V, Sprinter et minibus de 19 places',
+         'pt': 'Mercedes-Benz Classe S, Classe E, Classe V, Sprinter e minibus de 19 lugares',
          'en': 'Mercedes-Benz S-Class, E-Class, V-Class, Sprinter and a 19-seat minibus',
          'es': 'Mercedes-Benz Clase S, Clase E, Clase V, Sprinter y minibús de 19 plazas'}
-LANGS_SPOKEN = {'pt': 'Português, inglês, espanhol e francês', 'en': 'Portuguese, English, Spanish and French', 'es': 'Portugués, inglés, español y francés'}
+LANGS_SPOKEN = {'pt': 'Português, inglês, espanhol e francês', 'en': 'Portuguese, English, Spanish and French', 'es': 'Portugués, inglés, español y francés', 'fr': 'Portugais, anglais, espagnol et français'}
 
-COVERAGE = {'pt': 'Portugal, Espanha e França', 'en': 'Portugal, Spain and France', 'es': 'Portugal, España y Francia'}
+COVERAGE = {'pt': 'Portugal, Espanha e França', 'en': 'Portugal, Spain and France', 'es': 'Portugal, España y Francia', 'fr': 'Portugal, Espagne et France'}
 
-LANGS = ['en', 'pt', 'es']      # a primeira é a da raiz do site (/)
-LANG_NAME = {'en': 'EN', 'pt': 'PT', 'es': 'ES'}
-LOCALE = {'en': 'en_GB', 'pt': 'pt_PT', 'es': 'es_ES'}
+LANGS = ['en', 'pt', 'es', 'fr']      # a primeira é a da raiz do site (/)
+LANG_NAME = {'en': 'EN', 'pt': 'PT', 'es': 'ES', 'fr': 'FR'}
+LOCALE = {'en': 'en_GB', 'pt': 'pt_PT', 'es': 'es_ES', 'fr': 'fr_FR'}
 
 # Endereço de cada página em cada língua.
 SLUGS = {
@@ -66,6 +67,24 @@ SLUGS = {
     'legal':    {'en': '/legal/', 'pt': '/pt/informacao-legal/', 'es': '/es/aviso-legal/'},
     'support':  {'en': '/support/', 'pt': '/pt/suporte/', 'es': '/es/soporte/'},
 }
+
+# URLs da versão francesa (acrescentadas aos SLUGS acima)
+_FR = {
+    'home': '/fr/', 'agencies': '/fr/agences/', 'airport': '/fr/transfert-aeroport-lisbonne/',
+    'cruise': '/fr/transfert-port-croisieres-lisbonne/', 'chauffeur': '/fr/chauffeur-a-disposition-lisbonne/',
+    'tours': '/fr/tours-prives-portugal/', 'events': '/fr/evenements-mariages-transport/',
+    'longdistance': '/fr/transferts-longue-distance/',
+    'd-sintra': '/fr/lisbonne-sintra/', 'd-cascais': '/fr/lisbonne-cascais/', 'd-comporta': '/fr/lisbonne-comporta/',
+    'd-evora': '/fr/lisbonne-evora/', 'd-fatima': '/fr/lisbonne-fatima/', 'd-algarve': '/fr/lisbonne-algarve/',
+    'd-porto': '/fr/lisbonne-porto/', 'd-madrid': '/fr/lisbonne-madrid/', 'd-sevilla': '/fr/lisbonne-seville/',
+    'd-marbella': '/fr/lisbonne-marbella/', 'd-arrabida': '/fr/lisbonne-arrabida/',
+    'd-obidos': '/fr/lisbonne-obidos-nazare/', 'd-douro': '/fr/lisbonne-vallee-du-douro/',
+    'privacy': '/fr/confidentialite/', 'terms': '/fr/conditions/', 'legal': '/fr/mentions-legales/',
+    'support': '/fr/assistance-app/',
+}
+for _k, _v in _FR.items():
+    SLUGS[_k]['fr'] = _v
+
 DESTS = ['d-sintra', 'd-cascais', 'd-arrabida', 'd-obidos', 'd-comporta', 'd-evora', 'd-fatima', 'd-algarve', 'd-porto', 'd-douro', 'd-madrid', 'd-sevilla', 'd-marbella']
 
 # Endereços antigos que passam a reencaminhar.

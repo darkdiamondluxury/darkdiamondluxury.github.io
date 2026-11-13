@@ -1,17 +1,19 @@
 # Perguntas frequentes por página. Só factos que o site já afirma.
 # Quando o Bruno responder à lista Decisões (espera grátis, cancelamento, preço das cadeiras…), acrescentar aqui.
 
-FAQ_H = {'pt': 'Perguntas frequentes', 'en': 'Frequently asked questions', 'es': 'Preguntas frecuentes'}
+FAQ_H = {'pt': 'Perguntas frequentes', 'en': 'Frequently asked questions', 'es': 'Preguntas frecuentes', 'fr': 'Questions fréquentes'}
 
 _PRICE = {
     'pt': ('Quanto custa?', 'Depende do trajeto, da viatura e da hora. Envie o pedido pelo site e respondemos no WhatsApp com o preço, confirmado por escrito antes de reservar.'),
     'en': ('How much does it cost?', 'It depends on the route, the vehicle and the time. Send your request through the site and we reply on WhatsApp with the price, confirmed in writing before you book.'),
     'es': ('¿Cuánto cuesta?', 'Depende del trayecto, del vehículo y de la hora. Envíe su solicitud desde la web y le respondemos por WhatsApp con el precio, confirmado por escrito antes de reservar.'),
+    'fr': ('Combien ça coûte ?', "Cela dépend du trajet, du véhicule et de l'heure. Envoyez votre demande depuis le site : nous répondons sur WhatsApp avec le prix, confirmé par écrit avant de réserver."),
 }
 _LANGS = {
     'pt': ('Os motoristas falam inglês?', 'Sim. Os nossos motoristas falam português, inglês, espanhol e francês.'),
     'en': ('Do the drivers speak English?', 'Yes. Our drivers speak Portuguese, English, Spanish and French.'),
     'es': ('¿Los chóferes hablan español?', 'Sí. Nuestros chóferes hablan portugués, inglés, español y francés.'),
+    'fr': ('Les chauffeurs parlent-ils français ?', 'Oui. Nos chauffeurs parlent français, anglais, espagnol et portugais.'),
 }
 
 FAQ = {
@@ -40,6 +42,14 @@ FAQ = {
             ('¿En qué horario trabajan?', 'A cualquier hora, las 24 horas, todos los días, para llegadas y salidas.'),
             _LANGS['es'],
         ],
+        'fr': [
+            ("Comment trouver mon chauffeur à l'aéroport ?", 'Votre chauffeur vous attend aux arrivées avec votre nom. Vous recevez son contact avant le trajet.'),
+            ('Et si mon vol a du retard ?', "Nous suivons votre vol : le chauffeur s'adapte à l'heure réelle d'atterrissage. Inutile de nous prévenir."),
+            _PRICE['fr'],
+            ('Avez-vous des sièges enfants ?', "Oui, sur demande. Indiquez l'âge des enfants en réservant."),
+            ('Quels sont vos horaires ?', "À toute heure, 24 h/24, tous les jours, pour les arrivées comme pour les départs."),
+            _LANGS['fr'],
+        ],
     },
     'longdistance': {
         'pt': [
@@ -62,6 +72,13 @@ FAQ = {
             ('¿Qué vehículo conviene a un grupo?', 'Hasta 3 pasajeros, Clase E o Clase S. Hasta 7, Clase V. Para grupos mayores, Sprinter o minibús de 19 plazas. El formulario sugiere el vehículo según el número de personas y maletas.'),
             _PRICE['es'],
             _LANGS['es'],
+        ],
+        'fr': [
+            ('Allez-vous en Espagne et en France ?', 'Oui. Nous assurons Lisbonne–Madrid, Lisbonne–Séville et Lisbonne–Marbella, et la France sur demande.'),
+            ("Peut-on s'arrêter en chemin ?", 'Oui. Dites-nous où vous voulez vous arrêter en réservant : pour un repas, une visite ou simplement une pause.'),
+            ('Quel véhicule pour un groupe ?', "Jusqu'à 3 passagers, Classe E ou Classe S. Jusqu'à 7, Classe V. Pour les groupes plus grands, Sprinter ou minibus de 19 places. Le formulaire suggère le véhicule selon le nombre de personnes et de valises."),
+            _PRICE['fr'],
+            _LANGS['fr'],
         ],
     },
 }

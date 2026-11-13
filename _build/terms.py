@@ -6,7 +6,7 @@ from config import EMAIL, LEGAL
 
 TERMS = {
     'live': False,
-    'updated': {'pt': 'novembro de 2026', 'en': 'November 2026', 'es': 'noviembre de 2026'},
+    'updated': {'pt': 'novembro de 2026', 'en': 'November 2026', 'es': 'noviembre de 2026', 'fr': 'novembre 2026'},
     'change_free_h': None,      # alterações sem custo até X h antes (proposta 24)
     'vat_included': None,       # True / False (proposta True)
     'night': None,              # False = não há; ou dict(start='00:00', end='06:00', pct=20)
@@ -119,6 +119,45 @@ def terms_html(lang):
 <p>Guardamos los objetos encontrados en los vehículos durante {_v("lost_days")} días. La devolución puede tener coste de envío o desplazamiento.</p>
 <h2>Seguros, datos y reclamaciones</h2>
 <p>Vehículos y pasajeros están cubiertos por seguros de responsabilidad civil y de accidentes personales. Los datos personales se tratan según la <a href="/es/privacidad/">política de privacidad</a>. Puede reclamar en el <a href="https://www.livroreclamacoes.pt" rel="noopener">Libro de Reclamaciones Electrónico</a> o acudir al <a href="https://www.centroarbitragemlisboa.pt" rel="noopener">Centro de Arbitraje de Conflictos de Consumo de Lisboa</a>. Se aplica la ley portuguesa. Contacto: <a href="mailto:{EMAIL}">{EMAIL}</a>.</p>'''
+    if lang == 'fr':
+        pay = {'full': 'Le paiement intégral se fait à la réservation.', 'deposit': f'À la réservation, un acompte de {_v("deposit_pct")} % du prix est demandé ; le solde à la fin du service.',
+               'after': "Le paiement se fait à la fin du service ; vous pouvez aussi payer à l'avance.", None: '<mark>[à confirmer]</mark>'}[t['payment']]
+        nightp = ('<mark>[à confirmer]</mark>' if night is None else '' if night is False else
+                  f"<p>Les services entre {night['start']} et {night['end']} comportent un supplément de {night['pct']} %.</p>")
+        pets = {'carrier': "Les animaux sont acceptés en caisse de transport, s'ils sont indiqués à la réservation.", 'request': "Les animaux sont acceptés sur demande, s'ils sont indiqués à la réservation.",
+                'no': "Nous ne transportons pas d'animaux, à l'exception des chiens d'assistance.", None: '<mark>[à confirmer]</mark>'}[t['pets']]
+        alc = {'no': "La consommation d'alcool à bord n'est pas autorisée.", 'moderate': 'Alcool à bord avec modération uniquement.',
+               'events': 'Alcool à bord uniquement pour les services événementiels, avec modération.', None: '<mark>[à confirmer]</mark>'}[t['alcohol']]
+        seat = 'sans frais' if t['child_seat_eur'] == 0 else _v('child_seat_eur', lambda x: f'à {x} € pièce')
+        return f"""<p>Dernière mise à jour : {t["updated"]["fr"]}. Ces conditions s'appliquent aux services de Dark Diamond Luxury, nom commercial de {co}.</p>
+<h2>Réservation et confirmation</h2>
+<p>Une demande faite par le site, WhatsApp, téléphone ou email n'est réservée qu'après notre confirmation écrite, avec le prix. Vérifiez que la date, l'heure, le vol, les adresses, les passagers et les bagages sont corrects. Modifications sans frais jusqu'à {_v("change_free_h")} h avant, selon disponibilité.</p>
+<h2>Prix</h2>
+<p>Le prix confirmé comprend le véhicule, le chauffeur, le carburant, les péages, le parking à l'aéroport et le temps d'attente indiqué ci-dessous{", TVA comprise" if t["vat_included"] else "" if t["vat_included"] is False else " <mark>[TVA : à confirmer]</mark>"}. Il ne comprend pas l'attente supplémentaire, les arrêts non prévus, les détours demandés en cours de route ni les heures supplémentaires des services à disposition.</p>
+{nightp}
+<h2>Paiement</h2>
+<p>{pay} Nous acceptons la carte, MB WAY et le virement{", et les espèces" if t["cash"] else "" if t["cash"] is False else " <mark>[espèces : à confirmer]</mark>"}. Les entreprises et partenaires peuvent être facturés mensuellement, selon accord.</p>
+<h2>Temps d'attente</h2>
+<ul><li>Arrivées à l'aéroport : {_v("wait_air")} minutes sans frais, à compter de l'heure réelle d'atterrissage. Nous suivons votre vol : un retard ne vous coûte rien.</li>
+<li>Autres prises en charge : {_v("wait_other")} minutes sans frais.</li>
+<li>Attente supplémentaire : {_v("wait_extra_eur")} € par tranche de 15 minutes.</li></ul>
+<p>Si le passager ne se présente pas et ne répond pas après le temps d'attente, le service compte comme une non-présentation.</p>
+<h2>Annulation</h2>
+<ul><li>Jusqu'à {_v("cancel_free_h")} h avant : sans frais, remboursement intégral.</li>
+<li>Entre {_v("cancel_free_h")} h et {_v("cancel_half_h")} h avant : 50 % du prix.</li>
+<li>Moins de {_v("cancel_half_h")} h avant, ou non-présentation : 100 % du prix.</li>
+<li>Chauffeur à disposition, événements, mariages et longue distance : sans frais jusqu'à {_v("cancel_long_h")} h avant.</li></ul>
+<p>Les remboursements se font par le moyen de paiement d'origine, sous {_v("refund_days")} jours. Si nous annulons, nous remboursons intégralement ou envoyons un véhicule équivalent, à votre choix.</p>
+<h2>Passagers, bagages et enfants</h2>
+<p>Le nombre de passagers et de valises indiqué détermine le véhicule. Si plus de personnes ou de valises que prévu ne tiennent pas en sécurité, un autre véhicule peut être nécessaire, avec un coût supplémentaire. Les sièges enfants et rehausseurs sont obligatoires par la loi et fournis {seat}, s'ils sont demandés à la réservation. Les bagages spéciaux (golf, ski, vélos, poussettes) doivent être signalés à la réservation. {pets}</p>
+<h2>Conduite à bord</h2>
+<p>Interdiction de fumer, cigarettes électroniques comprises. {alc} Les dégâts ou le nettoyage extraordinaire causés par les passagers sont facturés : {_v("cleaning_eur")} € de nettoyage, ou le coût réel de la réparation. Le chauffeur peut refuser ou interrompre le service si la sécurité est en jeu.</p>
+<h2>Retards et force majeure</h2>
+<p>Nous ne sommes pas responsables des retards dus à un trafic anormal, des accidents, la météo, des grèves, des routes fermées ou d'autres causes hors de notre contrôle. Prévoyez une marge suffisante pour les vols et les trains.</p>
+<h2>Objets oubliés</h2>
+<p>Les objets trouvés dans nos véhicules sont conservés {_v("lost_days")} jours. Leur restitution peut entraîner des frais d'envoi ou de déplacement.</p>
+<h2>Assurances, données et réclamations</h2>
+<p>Véhicules et passagers sont couverts par des assurances de responsabilité civile et d'accidents personnels. Les données personnelles sont traitées selon la <a href="/fr/confidentialite/">politique de confidentialité</a>. Vous pouvez déposer une réclamation sur le <a href="https://www.livroreclamacoes.pt" rel="noopener">Livre de réclamations électronique</a> ou saisir le <a href="https://www.centroarbitragemlisboa.pt" rel="noopener">Centre d'arbitrage des conflits de consommation de Lisbonne</a>. Le droit portugais s'applique. Contact : <a href="mailto:{EMAIL}">{EMAIL}</a>.</p>"""
     pay = {'full': 'Full payment is made when you book.', 'deposit': f'A deposit of {_v("deposit_pct")}% is paid when you book; the balance at the end of the service.',
            'after': 'Payment is made at the end of the service; you can also pay in advance.', None: '<mark>[to confirm]</mark>'}[t['payment']]
     nightp = ('<mark>[to confirm]</mark>' if night is None else '' if night is False else

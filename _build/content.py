@@ -321,7 +321,7 @@ D = {
           about=['El Algarve se extiende por la costa sur de Portugal, de Sagres a la frontera con España. Zonas centrales como Albufeira y Vilamoura están a unas 2h45 del aeropuerto de Lisboa.',
                  'Un traslado privado suele ser más sencillo que un vuelo de conexión o un coche de alquiler, sobre todo para familias y grupos con maletas. Podemos parar por el camino.'],
           see=['Albufeira', 'Vilamoura', 'Lagos y Ponta da Piedade', 'Faro'], combo='Pare en Comporta o en Évora por el camino.')),
- 'd-porto': dict(name={'en': 'Porto', 'pt': 'Porto', 'es': 'Oporto'}, km=310, time='3h', img='d-porto',
+ 'd-porto': dict(name={'en': 'Porto', 'pt': 'Porto', 'es': 'Oporto', 'fr': 'Porto'}, km=310, time='3h', img='d-porto',
   en=dict(lead='Lisbon to Porto door to door, with stops wherever you like. A comfortable alternative to the train for families and groups.',
           about=['Porto\'s riverside Ribeira district is a UNESCO World Heritage Site, and the port wine cellars sit across the river in Vila Nova de Gaia. Upriver, the Douro valley is one of the world\'s oldest wine regions.',
                  'The drive takes about three hours. Many travellers break the journey in Coimbra, Aveiro or Fátima.'],
@@ -347,7 +347,7 @@ D = {
           about=['Madrid es la capital de España. Los museos del Prado, Reina Sofía y Thyssen se suceden en el Paseo del Prado, que junto al Parque del Retiro es Patrimonio Mundial de la UNESCO.',
                  'El viaje dura unas seis horas. La carretera pasa por Elvas, Badajoz y Mérida, cuyo teatro romano es de los mejor conservados de España, así que puede parar por el camino.'],
           see=['Museo del Prado', 'Palacio Real', 'Parque del Retiro', 'Gran Vía'], combo='Pare en Elvas, Mérida o Trujillo por el camino.')),
- 'd-sevilla': dict(name={'en': 'Seville', 'pt': 'Sevilha', 'es': 'Sevilla'}, km=460, time='4h', img='d-sevilla',
+ 'd-sevilla': dict(name={'en': 'Seville', 'pt': 'Sevilha', 'es': 'Sevilla', 'fr': 'Séville'}, km=460, time='4h', img='d-sevilla',
   en=dict(lead='Lisbon to Seville door to door, through the Algarve and across the Guadiana. A private alternative to a connecting flight.',
           about=['Seville\'s Cathedral, the Alcázar and the Archivo de Indias form a UNESCO World Heritage Site in the heart of the old town. Across the river, Triana is known for its ceramics and flamenco.',
                  'The drive takes about four hours and crosses into Spain over the Guadiana river, so the Algarve makes an easy stop on the way.'],
@@ -386,7 +386,7 @@ D = {
           about=['El parque natural de la Arrábida cae directamente al mar entre Setúbal y Sesimbra, con algunas de las aguas más claras cerca de Lisboa, en Portinho da Arrábida y la playa de Galapinhos.',
                  'En Azeitão, bodegas históricas abren para catas de moscatel y vino de la región, y Setúbal es conocida por sus restaurantes de pescado y el choco frito. Con chófer, nadie tiene que perderse la cata.'],
           see=['Portinho da Arrábida y Galapinhos', 'Bodegas de Azeitão', 'Setúbal y sus restaurantes de pescado', 'Sesimbra'], combo='Combínelo con Comporta, al otro lado del Sado.')),
- 'd-obidos': dict(name={'pt': 'Óbidos e Nazaré', 'en': 'Óbidos and Nazaré', 'es': 'Óbidos y Nazaré'}, km=85, time='1h', img='d-obidos',
+ 'd-obidos': dict(name={'pt': 'Óbidos e Nazaré', 'en': 'Óbidos and Nazaré', 'es': 'Óbidos y Nazaré', 'fr': 'Óbidos et Nazaré'}, km=85, time='1h', img='d-obidos',
   en=dict(lead='The walled town and the giant waves, one hour north of Lisbon. Two of Portugal\'s most photographed places in one day.',
           about=['Óbidos is a medieval walled town of whitewashed houses, climbing roses and the castle at the top; the local ginjinha cherry liqueur is served in a chocolate cup.',
                  'Half an hour further, Nazaré is a fishing town below the Sítio clifftop, where in winter surfers ride some of the biggest waves on the planet at Praia do Norte.'],
@@ -399,7 +399,7 @@ D = {
           about=['Óbidos es una villa medieval de casas encaladas, rosales trepadores y castillo en lo alto; la ginjinha local se bebe en un vasito de chocolate.',
                  'Media hora más allá, Nazaré es un pueblo de pescadores a los pies del Sítio, donde en invierno se surfean en Praia do Norte algunas de las olas más grandes del planeta.'],
           see=['Las murallas y el centro de Óbidos', 'Ginjinha en vasito de chocolate', 'El mirador del Sítio, en Nazaré', 'Praia do Norte y las olas gigantes'], combo='Combínelo con los monasterios de Batalha o Alcobaça, o con Fátima.')),
- 'd-douro': dict(name={'pt': 'Vale do Douro', 'en': 'Douro Valley', 'es': 'Valle del Duero'}, km=380, time='3h30', img='d-douro',
+ 'd-douro': dict(name={'pt': 'Vale do Douro', 'en': 'Douro Valley', 'es': 'Valle del Duero', 'fr': 'Vallée du Douro'}, km=380, time='3h30', img='d-douro',
   en=dict(lead='Terraced vineyards along the river, with a driver so the whole group can taste. A long day trip or part of a longer route.',
           about=['The Alto Douro wine region is a UNESCO World Heritage Site: terraced vineyards carved into the hillsides along the river, with historic quintas open for tastings of port and Douro wines.',
                  'Pinhão, with its tiled railway station, and Peso da Régua are the heart of the valley; the viewpoints above the river are among the finest in Portugal. With a driver, nobody misses the tastings.'],
@@ -457,7 +457,7 @@ def dest_page(key, lang):
     # Formas com artigo: "para o Porto", "to the Algarve", "al Algarve"…
     art = ART.get(key, {}).get(lang, {})
     nt = art.get('nt', n)
-    ng = art.get('ng', {'pt': f'a {n}', 'es': f'a {n}', 'en': f'to {n}'}[lang])
+    ng = art.get('ng', {'pt': f'a {n}', 'es': f'a {n}', 'en': f'to {n}', 'fr': f'à {n}'}[lang])
     f = lambda s: s.format(n=n, nt=nt, ng=ng, t=d['time'], km=d['km'], combo=c['combo'])  # noqa: E731
     return dict(
         title=f(l['title']), desc=f(l['desc']), crumb=n, h1=f(l['h1']), lead=c['lead'], img=d['img'], to=n,
@@ -606,3 +606,313 @@ PAGES['terms'] = {
  'pt': dict(title='Termos e condições · Dark Diamond Luxury', desc='Reserva, pagamento, tempo de espera, cancelamento e conduta a bordo nos serviços da Dark Diamond Luxury.', crumb='Termos e condições', h1='Termos e condições', lead='As regras de cada reserva, em palavras simples.', blocks=[dict(type='prose', html=terms_html('pt'))]),
  'es': dict(title='Términos y condiciones · Dark Diamond Luxury', desc='Reserva, pago, tiempo de espera, cancelación y conducta a bordo en los servicios de Dark Diamond Luxury.', crumb='Términos y condiciones', h1='Términos y condiciones', lead='Las reglas de cada reserva, en palabras sencillas.', blocks=[dict(type='prose', html=terms_html('es'))]),
 }
+
+
+# =====================================================================================
+# FRANCÊS (4.ª língua): rótulos, destinos e páginas
+# =====================================================================================
+DL['fr'] = dict(
+    title='Transfert privé de Lisbonne {ng} · Dark Diamond Luxury',
+    desc="Transfert privé depuis Lisbonne ou l'aéroport {ng}, environ {t}. Aller simple, aller-retour ou excursion d'une journée avec chauffeur. Prix confirmé avant de réserver.",
+    h1='Transfert privé de Lisbonne {ng}', about='Découvrir {nt}', see='À ne pas manquer', opts='Comment y aller',
+    o=["<b>Transfert aller simple ou aller-retour</b>, depuis l'aéroport, votre hôtel, le port de croisières ou toute adresse.", "<b>Excursion d'une journée</b> avec le chauffeur qui vous attend et vous conduit d'étape en étape.", '{combo}'],
+    facts='Le trajet', rows=[("Depuis l'aéroport de Lisbonne", '≈ {km} km'), ('Durée', '≈ {t}'), ('Véhicule', FLEET['fr']), ('Prise en charge', 'Aéroport, hôtel, port de croisières ou toute adresse')],
+    note='Temps indicatifs, pouvant varier.', others='Autres destinations', book='Réserver ce transfert', call='Appeler',
+    cta='Vous allez {ng} ?', ctap="Indiquez-nous la date, l'heure et le nombre de passagers. Nous répondons avec la confirmation et le prix.")
+
+ART.setdefault('d-algarve', {})['fr'] = {'nt': "l'Algarve", 'ng': 'en Algarve'}
+ART.setdefault('d-arrabida', {})['fr'] = {'nt': "l'Arrábida", 'ng': "à l'Arrábida"}
+ART.setdefault('d-douro', {})['fr'] = {'nt': 'la vallée du Douro', 'ng': 'dans la vallée du Douro'}
+ART.setdefault('d-obidos', {})['fr'] = {'ng': 'à Óbidos et Nazaré'}
+
+D['d-sintra']['fr'] = dict(
+    lead="Des palais dans la montagne, à moins d'une heure de l'aéroport. Rejoignez directement votre hôtel à Sintra ou passez-y la journée avec votre chauffeur.",
+    about=["Le paysage culturel de Sintra est classé au patrimoine mondial de l'UNESCO : le palais de Pena, la Quinta da Regaleira, le château des Maures et Monserrate parsèment les collines boisées au-dessus de la ville.",
+           'Le centre historique a des rues étroites et très fréquentées. Votre chauffeur vous dépose au plus près de chaque entrée et vous reprend où vous le souhaitez.'],
+    see=['Palais de Pena', 'Quinta da Regaleira', 'Château des Maures', 'Palais de Monserrate'], combo='À combiner avec le cap de Roca et Cascais au retour.')
+D['d-cascais']['fr'] = dict(
+    lead="La ville balnéaire à l'ouest de Lisbonne, sur la côte d'Estoril. Un transfert direct vers votre hôtel ou une journée tranquille au bord de la mer.",
+    about=["De village de pêcheurs, Cascais est devenue une station balnéaire, avec une marina, des plages et un centre ancien qui se parcourt à pied. La route le long de la côte d'Estoril est l'une des plus belles de la région de Lisbonne.",
+           "Depuis Cascais, la Boca do Inferno et le cap de Roca, le point le plus occidental de l'Europe continentale, sont tout proches."],
+    see=['Vieille ville et marina de Cascais', 'Boca do Inferno', 'Cap de Roca', 'Estoril et son casino'], combo="À combiner avec Sintra pour une journée complète à l'ouest de Lisbonne.")
+D['d-arrabida']['fr'] = dict(
+    lead="La serra da Arrábida et ses plages, à 45 minutes de Lisbonne. Une journée de mer ou un après-midi de vin à Azeitão.",
+    about=["Le parc naturel de l'Arrábida plonge droit dans la mer entre Setúbal et Sesimbra, avec certaines des eaux les plus claires des environs de Lisbonne, à Portinho da Arrábida et à la plage de Galapinhos.",
+           "À Azeitão, des caves historiques ouvrent leurs portes pour des dégustations de moscatel et de vins de la région, et Setúbal est connue pour ses restaurants de poisson. Avec un chauffeur, personne ne manque la dégustation."],
+    see=['Portinho da Arrábida et Galapinhos', "Caves d'Azeitão", 'Setúbal et ses restaurants de poisson', 'Sesimbra'], combo="À combiner avec Comporta, de l'autre côté du Sado.")
+D['d-obidos']['fr'] = dict(
+    lead='La cité fortifiée et les vagues géantes, à une heure de Lisbonne. Deux des lieux les plus photographiés du Portugal en une seule journée.',
+    about=["Óbidos est une cité médiévale de maisons blanchies à la chaux, de rosiers grimpants et d'un château qui la domine ; la ginjinha locale se boit dans un petit verre en chocolat.",
+           "Une demi-heure plus loin, Nazaré est un village de pêcheurs au pied du promontoire du Sítio, où l'hiver les surfeurs affrontent à Praia do Norte certaines des plus grandes vagues de la planète."],
+    see=["Les remparts et le centre d'Óbidos", 'La ginjinha en verre de chocolat', 'Le belvédère du Sítio, à Nazaré', 'Praia do Norte et les vagues géantes'], combo="À combiner avec les monastères de Batalha ou d'Alcobaça, ou avec Fátima.")
+D['d-comporta']['fr'] = dict(
+    lead="Rizières, pinèdes et longues plages désertes sur la côte de l'Alentejo. Porte à porte depuis l'aéroport ou depuis Lisbonne.",
+    about=["Comporta est un coin paisible du littoral de l'Alentejo au sud de Setúbal, connu pour ses plages, ses rizières, ses petits villages et ses hôtels design.",
+           'Nous vous conduisons porte à porte, avec de la place pour les affaires de plage, et revenons vous chercher le jour de votre choix.'],
+    see=['Plages de Comporta et de Carvalhal', 'Rizières et cigognes', 'Péninsule de Tróia', 'Alcácer do Sal'], combo="À combiner avec un arrêt à Setúbal ou dans l'Arrábida.")
+D['d-evora']['fr'] = dict(
+    lead="Une ville fortifiée au cœur de l'Alentejo. Une excursion d'une journée avec chauffeur, ou un transfert vers votre hôtel ou votre domaine viticole.",
+    about=["Le centre historique d'Évora est classé au patrimoine mondial de l'UNESCO : un temple romain, une cathédrale gothique et la chapelle des Os à l'intérieur des remparts.",
+           "Tout autour, c'est le pays du vin. Votre chauffeur vous emmène dans les domaines pour des dégustations, pour que personne du groupe n'ait à conduire."],
+    see=['Temple romain', "Cathédrale d'Évora", 'Chapelle des Os', "Domaines viticoles de l'Alentejo"], combo='À combiner avec Monsaraz ou Arraiolos.')
+D['d-fatima']['fr'] = dict(
+    lead="Le sanctuaire de Fátima, l'un des lieux de pèlerinage les plus visités d'Europe. Excursion d'une journée ou transfert, à votre rythme.",
+    about=['Le sanctuaire de Notre-Dame de Fátima accueille des pèlerins du monde entier, surtout autour du 13 de chaque mois, de mai à octobre.',
+           'La route vers le nord passe par quelques-unes des villes les plus connues du centre du Portugal : la journée peut inclure Batalha, Nazaré ou Óbidos.'],
+    see=['Sanctuaire de Fátima', 'Monastère de Batalha', 'Nazaré', 'Óbidos'], combo='À combiner avec Batalha, Nazaré et Óbidos le même jour.')
+D['d-algarve']['fr'] = dict(
+    lead='De Lisbonne aux plages du sud, porte à porte. Sans voiture de location et sans vol de correspondance.',
+    about=["L'Algarve s'étend le long de la côte sud du Portugal, de Sagres à la frontière espagnole. Les stations centrales comme Albufeira et Vilamoura sont à environ 2h45 de l'aéroport de Lisbonne.",
+           "Un transfert privé est souvent plus simple qu'une correspondance ou une voiture de location, surtout pour les familles et les groupes chargés. Nous pouvons nous arrêter en chemin."],
+    see=['Albufeira', 'Vilamoura', 'Lagos et Ponta da Piedade', 'Faro'], combo='Arrêt possible à Comporta ou à Évora en descendant.')
+D['d-porto']['fr'] = dict(
+    lead='De Lisbonne à Porto porte à porte, avec des arrêts où vous voulez. Une alternative confortable au train pour les familles et les groupes.',
+    about=["La Ribeira de Porto est classée au patrimoine mondial de l'UNESCO, et les caves de porto se trouvent juste en face, à Vila Nova de Gaia. En amont, le Douro est l'une des plus anciennes régions viticoles du monde.",
+           'Le trajet dure environ trois heures. Beaucoup de voyageurs font étape à Coimbra, Aveiro ou Fátima.'],
+    see=['La Ribeira et les quais du Douro', 'Les caves de porto à Gaia', 'La vallée du Douro', 'Coimbra et Aveiro en chemin'], combo='Arrêt possible à Coimbra, Aveiro ou Fátima en chemin.')
+D['d-douro']['fr'] = dict(
+    lead="Des vignes en terrasses le long du fleuve, avec un chauffeur pour que tout le groupe puisse déguster. Une longue journée, ou l'étape d'un itinéraire plus vaste.",
+    about=["Le Haut-Douro viticole est classé au patrimoine mondial de l'UNESCO : des vignes en terrasses taillées dans les versants le long du fleuve, et des quintas historiques ouvertes pour des dégustations de porto et de vins du Douro.",
+           'Pinhão, avec sa gare aux azulejos, et Peso da Régua sont le cœur de la vallée ; les belvédères au-dessus du fleuve comptent parmi les plus beaux du Portugal. Avec un chauffeur, personne ne manque les dégustations.'],
+    see=['Quintas et dégustations', 'Pinhão et sa gare aux azulejos', 'Les belvédères sur le fleuve', 'Peso da Régua et Lamego'], combo='À combiner avec Porto, à une heure et demie de la vallée.')
+D['d-madrid']['fr'] = dict(
+    lead="De Lisbonne à Madrid porte à porte, par l'Alentejo et l'Estrémadure. Sans enregistrement, sans limite de bagages, avec des arrêts où vous voulez.",
+    about=["Madrid est la capitale de l'Espagne. Les musées du Prado, Reina Sofía et Thyssen bordent le Paseo del Prado, classé avec le parc du Retiro au patrimoine mondial de l'UNESCO.",
+           "Le trajet dure environ six heures. La route passe par Elvas, Badajoz et Mérida, dont le théâtre romain est l'un des mieux conservés d'Espagne : l'occasion d'une étape."],
+    see=['Musée du Prado', 'Palais royal', 'Parc du Retiro', 'Gran Vía'], combo='Arrêt possible à Elvas, Mérida ou Trujillo en chemin.')
+D['d-sevilla']['fr'] = dict(
+    lead="De Lisbonne à Séville porte à porte, par l'Algarve et le pont du Guadiana. Une alternative privée au vol de correspondance.",
+    about=["La cathédrale, l'Alcázar et les Archives des Indes de Séville forment un ensemble classé au patrimoine mondial de l'UNESCO, au cœur de la vieille ville. De l'autre côté du fleuve, Triana est connue pour sa céramique et son flamenco.",
+           "Le trajet dure environ quatre heures et entre en Espagne par le Guadiana : l'Algarve est une étape toute trouvée."],
+    see=['Cathédrale et Giralda', 'Real Alcázar', 'Plaza de España', 'Triana'], combo='Arrêt possible en Algarve ou à Évora en chemin.')
+D['d-marbella']['fr'] = dict(
+    lead='De Lisbonne à la Costa del Sol porte à porte. Une voiture, un chauffeur, et vos bagages avec vous tout du long.',
+    about=['Marbella se trouve sur la Costa del Sol, entre Málaga et Gibraltar, avec une vieille ville blanchie autour de la Plaza de los Naranjos et la marina de Puerto Banús.',
+           "Le trajet dure environ cinq heures et demie, en passant par Séville, étape toute naturelle. Ronda, dans la montagne au-dessus de la côte, est à une heure vers l'intérieur."],
+    see=['Vieille ville et Plaza de los Naranjos', 'Puerto Banús', 'La Milla de Oro', 'Ronda'], combo='Arrêt possible à Séville en chemin.')
+
+for _k in DESTS:
+    PAGES[_k]['fr'] = dest_page(_k, 'fr')
+
+PAGES['airport']['fr'] = dict(
+  title='Transfert aéroport de Lisbonne · Dark Diamond Luxury',
+  desc="Transfert privé depuis l'aéroport de Lisbonne vers votre hôtel ou tout point du pays. Suivi du vol, accueil avec votre nom, prix confirmé avant de réserver.",
+  crumb='Transfert aéroport de Lisbonne', h1="Transferts de l'aéroport de Lisbonne, accueilli par votre nom.", img='plane',
+  lead="Transfert privé depuis l'aéroport Humberto Delgado (LIS) vers votre hôtel, votre domicile ou tout point du pays. Le chauffeur suit votre vol et vous attend aux arrivées avec votre nom.",
+  ctas=[('book', 'Réserver un transfert'), ('tel', 'Appeler')],
+  blocks=[
+   dict(type='split', h='Comment ça marche ?', steps=[
+     ['Réservez', 'Envoyez-nous le numéro de vol, la destination et le nombre de passagers et de valises. Nous répondons avec la confirmation et le prix.'],
+     ['Nous suivons le vol', "Si le vol arrive en avance ou en retard, le chauffeur s'adapte à l'heure réelle d'atterrissage."],
+     ['Accueil aux arrivées', 'Le chauffeur vous attend dans la zone des arrivées du Terminal 1 ou 2, avec une pancarte à votre nom.'],
+     ['Directement à destination', 'Aide avec les bagages et trajet direct, sans arrêts partagés.']]),
+   dict(type='split', bg='bone', h="Temps de trajet depuis l'aéroport", rows=[
+     ['Baixa · Chiado', '20 min'], ['Belém', '25 min'], ['Parque das Nações', '10 min'], ['Cascais', '35 min'], ['Sintra', '35 min'],
+     ['Comporta', '1h15'], ['Évora', '1h30'], ['Fátima', '1h30'], ['Algarve', '2h45'], ['Porto', '3h']],
+     after=['Temps indicatifs, pouvant varier.']),
+   dict(type='split', h='Bon à savoir', ticks=[
+     'Véhicule privé rien que pour votre groupe : pas de navettes partagées.',
+     "Sièges enfants sur demande : indiquez l'âge des enfants en réservant.",
+     "Aussi pour les départs : prise en charge à l'hôtel à l'heure de votre choix.",
+     'Des chauffeurs qui parlent français, anglais, espagnol et portugais.',
+     'Disponible 24/7, à toute heure du vol.',
+     'Prix confirmé par écrit avant de réserver.'], related=list(DESTS)),
+   dict(type='cta', h='Vous atterrissez bientôt ?', p='Envoyez-nous le vol et la destination. Nous répondons avec la confirmation et le prix.', ctas=[('book', 'Réserver un transfert'), ('tel', 'Appeler')]),
+  ])
+
+PAGES['cruise']['fr'] = dict(
+  title='Transferts au terminal de croisières de Lisbonne · Dark Diamond Luxury',
+  desc="Transferts privés entre les terminaux de croisières de Lisbonne, l'aéroport et les hôtels, et excursions à Sintra, Cascais et Lisbonne, réglées sur l'heure de retour à bord.",
+  crumb='Terminal de croisières de Lisbonne', h1='Transferts au port de croisières de Lisbonne et excursions à terre.', img='cruise',
+  lead="Du navire à l'aéroport, à l'hôtel ou en tour privé, au rythme de l'escale. Pour les passagers, les agences et les compagnies de croisière.",
+  ctas=[('book', 'Réserver un transfert'), ('agencies', 'Pour les agences et compagnies')],
+  blocks=[
+   dict(type='split', h='Ce que nous faisons au port', ticks=[
+     "<b>Port et aéroport.</b> Transferts le jour de l'embarquement et du débarquement.",
+     '<b>Port et hôtel.</b> Pour les séjours avant ou après la croisière.',
+     "<b>Excursions privées à terre.</b> Lisbonne, Sintra, Cascais ou Fátima, avec un chauffeur qui planifie le retour selon l'heure d'embarquement.",
+     '<b>Groupes.</b> Classe V, Sprinter et minibus de 19 places, avec de la place pour les bagages.']),
+   dict(type='split', bg='bone', h='Les terminaux de croisières de Lisbonne', p=[
+     "La plupart des navires accostent au Terminal de croisières de Lisbonne, près de Santa Apolónia et de l'Alfama, proche du centre et à une vingtaine de minutes de l'aéroport.",
+     "Certains navires utilisent les terminaux d'Alcântara ou de Rocha Conde de Óbidos, plus à l'ouest. Donnez-nous le nom du navire et nous attendrons au bon endroit."]),
+   dict(type='split', h="De retour à bord à l'heure", p=[
+     "Pour les excursions à terre, nous planifions la journée à partir de l'heure de retour à bord, avec de la marge pour la circulation. Vous aurez le numéro du chauffeur et lui le vôtre."]),
+   dict(type='cta', h='Escale à Lisbonne ?', p='Indiquez-nous le navire, la date et vos envies. Nous répondons avec un plan et un prix.', ctas=[('book', 'Réserver un transfert'), ('tel', 'Appeler')]),
+  ])
+
+PAGES['agencies']['fr'] = dict(
+  title='Partenaire de transport pour agences au Portugal · Dark Diamond Luxury',
+  desc='Transferts privés, tours et chauffeur pour agences, tour-opérateurs, DMC et compagnies de croisière au Portugal, en Espagne et en France. RNAAT 682/2022.',
+  crumb='Agences et partenaires', h1='Votre partenaire au sol, au Portugal.',
+  lead='Transferts privés, tours et services avec chauffeur pour agences de voyages, tour-opérateurs, DMC et compagnies de croisière. Portugal, Espagne et France.',
+  subject='Demande de partenariat / tarifs', ctas=[('mail', 'Demander nos tarifs'), ('tel', 'Appeler')],
+  blocks=[
+   dict(type='split', h='Pourquoi travailler avec nous', ticks=[
+     "<b>Enregistrés auprès de Turismo de Portugal.</b> Agent d'animation touristique, RNAAT nº 682/2022.",
+     "<b>Assurés.</b> Assurances de responsabilité civile et d'accidents personnels en vigueur.",
+     "<b>Suivi des vols et accueil avec pancarte.</b> Votre client est accueilli aux arrivées avec son nom, à l'heure réelle d'atterrissage.",
+     "<b>Contact direct, 24/7.</b> Vous parlez à la personne qui planifie et dispatche le service, pas à un centre d'appels.",
+     '<b>Des chauffeurs qui parlent la langue du client.</b> Portugais, anglais, espagnol et français.',
+     "<b>D'un passager aux groupes de 19.</b> Mercedes-Benz Classe S, Classe E et Classe V, Sprinter et minibus de 19 places.",
+     '<b>Confirmation par écrit.</b> Chaque réservation est confirmée par écrit et les coordonnées du chauffeur sont envoyées avant le service.']),
+   dict(type='split', bg='bone', h='Où nous travaillons', p=[
+     "Basés à Lisbonne, des services réguliers dans tout le pays et des transferts longue distance vers l'Espagne et la France."], ticks=[
+     'Aéroport de Lisbonne, hôtels de la ville et terminaux de croisières', "Sintra, Cascais et la côte d'Estoril",
+     "Comporta et le littoral de l'Alentejo", "Évora et l'Alentejo", 'Fátima, Óbidos, Nazaré et Batalha',
+     'Porto et la vallée du Douro', 'Algarve', 'Espagne et France, sur demande']),
+   dict(type='split', h='Comment ça marche', steps=[
+     ['Envoyez la réservation', 'Par email ou WhatsApp : nom du passager, date, vol ou heure de prise en charge, nombre de passagers et de valises.'],
+     ['Nous confirmons', 'Disponibilité et prix confirmés par écrit, rapidement et à toute heure.'],
+     ['Avant le service', 'Vous recevez le nom et le téléphone du chauffeur, ainsi que le véhicule.'],
+     ['Le jour même', 'Accueil avec pancarte, suivi du vol et contact direct avec le chauffeur. Si quelque chose change, nous prévenons aussitôt.'],
+     ['Facturation', 'Au service ou mensuelle, selon accord. Factures émises par Artur Danilo, Unipessoal Lda, NIPC 515565458.']]),
+   dict(type='split', bg='alt', h='Services', ticks=[
+     'Transferts aéroport et port de croisières', "Chauffeur à disposition, à l'heure ou à la journée",
+     "Tours privés et excursions d'une journée", 'Événements, mariages et groupes',
+     "Longue distance au Portugal et vers l'Espagne et la France"]),
+   dict(type='split', h="Données de l'entreprise", rows=[
+     ['Nom commercial', 'Dark Diamond Luxury'], ['Raison sociale', LEGAL['name']], ['NIPC', LEGAL['nipc']],
+     ['Siège', ADDR], ['Registre du tourisme', f"RNAAT {LEGAL['rnaat']}"],
+     ['Assurances', 'Responsabilité civile · Accidents personnels'], ['Flotte', FLEET['fr']],
+     ['Langues des chauffeurs', 'Portugais, anglais, espagnol et français'], ['Fonctionnement', '24 h/24, 7 j/7'],
+     ['Zone couverte', 'Portugal, Espagne et France'], ['Contact', f'{EMAIL}<br>{PH}']]),
+   dict(type='cta', h='Travaillons ensemble.', p='Envoyez-nous vos routes et volumes habituels : nous préparons une grille tarifaire pour votre agence.', ctas=[('mail', 'Demander nos tarifs'), ('tel', 'Appeler')]),
+  ])
+
+PAGES['legal']['fr'] = dict(
+  title='Mentions légales · Dark Diamond Luxury', desc=f'Identification de {LEGAL["name"]} (Dark Diamond Luxury), réclamations et résolution des litiges.',
+  crumb='Mentions légales', h1='Mentions légales', lead=f'Dark Diamond Luxury · {LEGAL["name"]}',
+  blocks=[dict(type='prose', html=f"""<h2>Identification de l'entreprise</h2>
+<p><b>Dark Diamond Luxury</b> est le nom commercial de <b>{LEGAL["name"]}</b>, société unipersonnelle à responsabilité limitée de droit portugais, dont le siège est situé {ADDR}, Portugal, immatriculée au registre du commerce sous le numéro unique d'immatriculation et d'identification fiscale {LEGAL["nipc"]}, au capital social de {LEGAL["capital"]}.</p>
+<p>Agent d'animation touristique enregistré auprès de Turismo de Portugal, RNAAT nº {LEGAL["rnaat"]}. Assurances de responsabilité civile et d'accidents personnels en vigueur.</p>
+<h2>Contact</h2>
+<p>Email : <a href="mailto:{EMAIL}">{EMAIL}</a><br>Téléphone : {PH}</p>
+<h2>Livre de réclamations</h2>
+<p>Vous pouvez déposer une réclamation sur le <a href="https://www.livroreclamacoes.pt" rel="noopener">Livre de réclamations électronique (Livro de Reclamações)</a>.</p>
+<h2>Résolution alternative des litiges</h2>
+<p>En cas de litige de consommation, le consommateur peut s'adresser au Centre d'arbitrage des conflits de consommation de Lisbonne (<a href="https://www.centroarbitragemlisboa.pt" rel="noopener">www.centroarbitragemlisboa.pt</a>).</p>
+<h2>Photographies</h2>
+<p>Les photographies de ce site sont illustratives et utilisées dans le cadre de la licence Unsplash. Les auteurs sont crédités en bas de page.</p>""")])
+
+PRIV['fr'] = f"""<p>Dernière mise à jour : octobre 2026.</p>
+<h2>Qui est responsable de vos données</h2>
+<p>{LEGAL["name"]} (Dark Diamond Luxury), NIPC {LEGAL["nipc"]}, {ADDR}. Contact : <a href="mailto:{EMAIL}">{EMAIL}</a>.</p>
+<h2>Ce site</h2>
+<ul><li>N'utilise pas de cookies.</li>
+<li>Quand vous envoyez le formulaire de réservation, nous enregistrons la demande (service, trajet, date, heure, vol, passagers, bagages, nom, téléphone, email et notes) dans notre système de gestion des services (Supabase), uniquement pour vous répondre et organiser le service. Sans réservation, la demande est supprimée.</li>
+<li>Le formulaire ouvre aussi WhatsApp avec le message prêt. Ce que vous y envoyez est traité par WhatsApp (Meta) et par nous.</li>
+<li>Nous comptons les visites de façon anonyme avec GoatCounter, sans cookies et sans identifier les visiteurs.</li></ul>
+<h2>Quand vous réservez un service</h2>
+<p>Nous traitons le nom, le contact, les données du vol, les adresses de prise en charge et de destination, le nombre de passagers et vos notes, pour assurer le service (exécution du contrat) et respecter nos obligations fiscales et comptables. Les données nécessaires sont partagées avec le chauffeur qui effectue le service. Si la réservation vient d'une agence ou d'un partenaire, nous recevons ces données de leur part.</p>
+<p>Nous conservons les données tant qu'elles sont nécessaires au service, puis pendant la durée exigée par la loi à des fins fiscales.</p>
+<h2>App interne Despacho</h2>
+<p>L'équipe et les chauffeurs utilisent une app interne pour organiser les services. La position des chauffeurs n'est enregistrée que lorsqu'ils mettent à jour l'état d'un service, et seule la direction peut la voir. Les agences et partenaires n'y ont jamais accès.</p>
+<h2>Vos droits</h2>
+<p>Vous pouvez demander l'accès, la rectification, l'effacement, la limitation ou la portabilité de vos données, ou vous opposer à leur traitement, via <a href="mailto:{EMAIL}">{EMAIL}</a>. Vous pouvez aussi déposer plainte auprès de la Comissão Nacional de Proteção de Dados (<a href="https://www.cnpd.pt" rel="noopener">www.cnpd.pt</a>).</p>"""
+PAGES['privacy']['fr'] = dict(
+  title='Politique de confidentialité · Dark Diamond Luxury', desc='Comment Dark Diamond Luxury traite les données personnelles sur ce site, dans les réservations et dans son app interne.',
+  crumb='Confidentialité', h1='Politique de confidentialité', lead='Ce que nous collectons, pourquoi, et vos droits.',
+  blocks=[dict(type='prose', html=PRIV['fr'])])
+
+PAGES['support']['fr'] = dict(
+  title="Assistance de l'app Despacho · Dark Diamond Luxury",
+  desc="Despacho est l'application interne de l'équipe et des chauffeurs de Dark Diamond Luxury.",
+  crumb="Assistance de l'app", h1="Assistance de l'app Despacho", lead="Despacho est l'application interne de l'équipe et des chauffeurs de Dark Diamond Luxury.",
+  blocks=[dict(type='prose', html=f"<h2>Besoin d'aide ?</h2><p>Pour tout problème d'accès, de mot de passe ou de fonctionnement de l'app, contactez-nous :</p><p>Email : <a href=\"mailto:{EMAIL}\">{EMAIL}</a><br>Téléphone : {PH}</p><p>L'accès à l'app est créé par la direction. Si vous êtes chauffeur et n'avez pas encore d'accès, parlez-en au bureau.</p>")])
+
+PAGES['terms']['fr'] = dict(
+  title='Conditions générales · Dark Diamond Luxury',
+  desc="Réservation, paiement, temps d'attente, annulation et conduite à bord pour les services Dark Diamond Luxury.",
+  crumb='Conditions générales', h1='Conditions générales', lead='Les règles de chaque réservation, en mots simples.',
+  blocks=[dict(type='prose', html=terms_html('fr'))])
+
+
+PAGES['chauffeur']['fr'] = dict(
+  title='Chauffeur à disposition à Lisbonne et au Portugal · Dark Diamond Luxury',
+  desc="Chauffeur et voiture privés à votre disposition à Lisbonne et dans tout le pays, à l'heure ou à la journée. Réunions, shopping, tours et soirées.",
+  crumb='Chauffeur à disposition', h1="Un chauffeur à votre disposition, à l'heure ou à la journée.", img='van',
+  lead='Un chauffeur et une voiture rien que pour vous : réunions, shopping ou une journée sans regarder la montre.',
+  ctas=[('book', 'Réserver un chauffeur'), ('tel', 'Appeler')],
+  blocks=[
+   dict(type='split', h='Comment ça marche ?', steps=[
+     ['Choisissez le jour et les heures', 'Date, heure de début, durée prévue et point de départ.'],
+     ['Confirmation par écrit', 'Disponibilité et prix confirmés par écrit avant le service.'],
+     ['Le chauffeur reste avec vous', 'Le même chauffeur et la même voiture pendant tout le service, qui vous attend où vous le souhaitez.'],
+     ['Itinéraire flexible', 'Des arrêts et des changements tout au long de la journée, sans complications.']]),
+   dict(type='split', bg='bone', h='À quoi ça sert', ticks=[
+     "Réunions d'affaires et trajets entre bureaux", 'Shopping et journées en ville', 'Plusieurs visites en une seule journée',
+     "Dîners et événements, avec retour à l'heure", 'Cadres, délégations et invités']),
+   dict(type='split', h='Bon à savoir', ticks=[
+     'Véhicule privé rien que pour vous et votre groupe.', 'Mercedes-Benz Classe S, Classe E et Classe V, Sprinter et minibus de 19 places.',
+     'Des chauffeurs qui parlent français, anglais, espagnol et portugais.', 'Disponible 24/7.', 'Prix confirmé par écrit avant de réserver.']),
+   dict(type='cta', h="Besoin d'un chauffeur ?", p='Indiquez la date, les heures et le point de départ. Nous répondons avec la confirmation et le prix.', ctas=[('book', 'Réserver un chauffeur'), ('tel', 'Appeler')]),
+  ])
+
+PAGES['tours']['fr'] = dict(
+  title='Tours privés au Portugal avec chauffeur · Dark Diamond Luxury',
+  desc="Excursions privées d'une journée au départ de Lisbonne : Sintra, Cascais, Fátima, Évora, le Douro et plus encore, avec un chauffeur rien que pour vous et des arrêts où vous voulez.",
+  crumb='Tours privés', h1='Tours privés au Portugal, à votre rythme.', img='d-sintra',
+  lead='Sintra, Cascais, Fátima, Évora ou le Douro, avec un chauffeur rien que pour vous et des arrêts où vous voulez.',
+  ctas=[('book', 'Réserver un tour'), ('tel', 'Appeler')],
+  blocks=[
+   dict(type='split', h='Comment ça marche ?', steps=[
+     ['Choisissez la destination', 'Choisissez un lieu de la liste ou demandez une suggestion.'],
+     ['Confirmation par écrit', 'Horaires et prix confirmés par écrit.'],
+     ["Prise en charge à l'hôtel", "Le chauffeur vient vous chercher à l'heure et au lieu convenus."],
+     ['Des arrêts à votre mesure', 'Le temps passé à chaque étape dépend de vous, et la journée est planifiée en conséquence.']]),
+   dict(type='split', bg='bone', h='Tours les plus demandés', ticks=[
+     'Sintra et le cap de Roca', "Cascais et la côte d'Estoril", 'Fátima, Nazaré et Óbidos', "Évora et l'Alentejo",
+     'La vallée du Douro', "Comporta et le littoral de l'Alentejo", "L'Algarve"]),
+   dict(type='split', h='Bon à savoir', ticks=[
+     'Véhicule privé rien que pour votre groupe : pas de tours partagés.', "D'un passager aux groupes de 19.",
+     "Sièges enfants sur demande : indiquez l'âge des enfants en réservant.",
+     'Des chauffeurs qui parlent français, anglais, espagnol et portugais.', 'Prix confirmé par écrit avant de réserver.'], related=list(DESTS)),
+   dict(type='cta', h='Vous préparez une excursion ?', p='Dites-nous où vous aimeriez aller et quand. Nous répondons avec un plan et un prix.', ctas=[('book', 'Réserver un tour'), ('tel', 'Appeler')]),
+  ])
+
+PAGES['events']['fr'] = dict(
+  title='Transport pour événements et mariages au Portugal · Dark Diamond Luxury',
+  desc="Transport avec chauffeur pour grands événements, événements d'entreprise comme le Web Summit, sport professionnel, golf et mariages au Portugal.",
+  crumb='Événements et mariages', h1="Événements et mariages, un transport à l'heure.", img='events',
+  lead="Des invités accueillis et conduits à l'heure, avec la coordination assurée par nous.",
+  subject='Transport pour événement / mariage', ctas=[('mail', 'Demander une proposition'), ('tel', 'Appeler')],
+  blocks=[
+   dict(type='split', h='Les événements que nous accompagnons', ticks=[
+     '<b>Grands événements.</b> Conférences et salons internationaux, comme le Web Summit.',
+     "<b>Événements d'entreprise.</b> Réunions, conventions, lancements et voyages incentive.",
+     "<b>Sport professionnel.</b> Équipes, organisations et invités lors d'événements sportifs professionnels.",
+     '<b>Golf.</b> Tournois et voyages de golf, avec de la place pour les sacs.',
+     '<b>Mariages.</b> Mariés et invités, de la cérémonie au lieu de réception et retour.']),
+   dict(type='split', bg='bone', h='Notre façon de travailler', ticks=[
+     "Un seul contact pour toute l'opération.", "Des horaires définis avec l'organisation.",
+     'Des véhicules pour groupes : Classe V, Sprinter et minibus de 19 places.',
+     "Autant de véhicules que le nombre d'invités l'exige.",
+     'Des chauffeurs qui parlent français, anglais, espagnol et portugais.']),
+   dict(type='split', h='Comment ça marche ?', steps=[
+     ["Envoyez les données de l'événement", "Dates, lieux et nombre d'invités prévu."],
+     ['Proposition et prix', 'Envoyés par écrit, avec les véhicules et les horaires.'],
+     ["Planification avec l'organisation", "Prises en charge, trajets et horaires définis à l'avance."],
+     ['Le jour même', 'Coordination directe avec les chauffeurs, pour traiter tout changement immédiatement.']]),
+   dict(type='cta', h='Vous préparez un événement ?', p="Envoyez les dates, les lieux et le nombre d'invités. Nous répondons avec une proposition.", ctas=[('mail', 'Demander une proposition'), ('tel', 'Appeler')]),
+  ])
+
+PAGES['longdistance']['fr'] = dict(
+  title='Transferts longue distance · Dark Diamond Luxury',
+  desc="Transferts privés porte à porte de Lisbonne vers Porto, l'Algarve, Madrid, Séville, Marbella et la France, en véhicule privé avec chauffeur professionnel.",
+  crumb='Longue distance', h1='Transferts longue distance, porte à porte.', img='longdist',
+  lead='Porto, Algarve, Espagne et France, porte à porte, en véhicule privé.',
+  ctas=[('book', 'Réserver un transfert'), ('tel', 'Appeler')],
+  blocks=[
+   dict(type='split', h='Routes habituelles', ticks=[
+     'Lisbonne – Porto et vallée du Douro', 'Lisbonne – Algarve', 'Lisbonne – Madrid', 'Lisbonne – Séville',
+     'Lisbonne – Marbella', 'France, sur demande'], related=['d-porto', 'd-douro', 'd-algarve', 'd-madrid', 'd-sevilla', 'd-marbella']),
+   dict(type='split', bg='bone', h='Comment ça marche ?', steps=[
+     ['Envoyez le trajet', 'Origine, destination, date, heure, nombre de passagers et de valises.'],
+     ['Confirmation par écrit', 'Prix et horaires confirmés par écrit avant de réserver.'],
+     ['Voyage porte à porte', "Véhicule privé, de l'adresse de prise en charge à la destination finale."],
+     ['Arrêts convenus', "Des pauses en chemin, convenues à l'avance avec le chauffeur."]]),
+   dict(type='split', h='Bon à savoir', ticks=[
+     'Véhicule privé rien que pour vous et votre groupe.', 'Mercedes-Benz Classe S, Classe E et Classe V, Sprinter et minibus de 19 places.',
+     'Des chauffeurs qui parlent français, anglais, espagnol et portugais.', 'Disponible 24/7.', 'Prix confirmé par écrit avant de réserver.']),
+   dict(type='cta', h='Un long voyage en vue ?', p='Indiquez le trajet, la date et le nombre de passagers. Nous répondons avec la confirmation et le prix.', ctas=[('book', 'Réserver un transfert'), ('tel', 'Appeler')]),
+  ])

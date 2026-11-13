@@ -37,7 +37,7 @@ button,input,select,textarea{font:inherit;color:inherit}
 .brand{white-space:nowrap;display:flex;align-items:center;gap:10px;text-decoration:none;font-family:var(--display);font-size:1.28rem;font-weight:400;letter-spacing:.01em}
 .brand .lux{color:var(--gold)}
 .brand svg{width:22px;height:22px;color:var(--gold)}
-@media (max-width:520px){.brand{font-size:1.08rem;gap:8px}.brand svg{width:19px;height:19px}.lang a{padding:5px 9px}}
+@media (max-width:560px){.nav{gap:12px}.brand{font-size:.98rem;gap:7px}.brand svg{width:18px;height:18px}.lang a{padding:5px 7px;font-size:.78rem}}
 .nav .links{display:flex;gap:26px;margin-left:auto}
 .nav .links a{text-decoration:none;color:var(--ink);opacity:.8;font-size:.95rem;transition:opacity .2s}
 .nav .links a:hover{opacity:1}
@@ -275,7 +275,7 @@ footer .word .dm{background:linear-gradient(120deg,#8a8a8a,#fff 45%,#c4c3c2 70%,
 footer .word em{background:linear-gradient(120deg,#A27A38,#F3DFA2 45%,#C69F5B 70%,#FBE8AE);-webkit-background-clip:text;background-clip:text;color:transparent}
 .brand .dk{color:var(--gold)}
 .brand .dm{color:var(--silver)}
-@media (max-width:520px){.brand{font-size:.84rem;letter-spacing:.02em;gap:8px}}
+@media (max-width:520px){.brand{font-size:.84rem;letter-spacing:.02em;gap:8px;flex-shrink:0}.lang{padding:2px}.lang a{padding:4px 6px;font-size:.72rem}}
 @media (max-width:370px){.brand .lux{display:none}}
 
 /* ---------- telemóvel ---------- */
@@ -695,12 +695,32 @@ const SP_TXT = {
   n1:'{svc}. Excelente elección.',n2a:'{to} está a unos {t} del aeropuerto.',n2b:'Destino guardado.',n3:'Fecha guardada. Ya va por la mitad.',n4:'Ya casi está.',n5:'Último paso: confirmar.',
   eSvc:'Elija un servicio para continuar.',eTo:'Toque un destino o escriba la dirección.',eDay:'Elija el día.',eHour:'Elija la hora.',eMin:'Elija los minutos.',ePhone:'Indique un teléfono para responderle.',
   h7:'Solicitud enviada.',l7:'Gracias{n}. Le responderemos en breve por WhatsApp con la confirmación y el precio.',again:'Hacer otra solicitud',wa:'Si WhatsApp no se abrió, escríbanos al +351 932 666 254.',
-  loc:'es-ES'}
+  loc:'es-ES'},
+ fr:{of:'Étape {n} sur 6',done:'Terminé',cont:'Continuer',confirm:'Confirmer la demande',back:'Retour',
+  h1:'Comment pouvons-nous vous aider ?',l1:'Choisissez le service. Un geste et on avance.',
+  sub:["Arrivées et départs, avec suivi du vol","Chauffeur et voiture à l'heure ou à la journée","Sintra, Cascais, Fátima, le Douro, à votre rythme","Invités accueillis et conduits à l'heure",'Porto, Algarve, Espagne et France',"Du quai à l'hôtel, à l'aéroport ou en excursion"],
+  arr:"J'arrive à Lisbonne",dep:'Je pars de Lisbonne',h2arr:'Où vous emmenons-nous ?',h2dep:'Où vous prenons-nous ?',h2disp:'Où commençons-nous ?',h2:'Où allons-nous ?',
+  l2arr:'Nous vous attendons aux arrivées. Touchez une destination ou écrivez votre hôtel.',l2dep:"Nous vous conduisons à l'aéroport. Touchez le lieu de prise en charge ou écrivez l'adresse.",l2:"Touchez une destination ou écrivez l'hôtel ou l'adresse.",
+  fromAir:"de l'aéroport",fromLx:'de Lisbonne',more:'Plus de destinations',otherPh:'Autre : hôtel ou adresse',goAria:'Continuer avec cette destination',
+  h3:'Quand ?',h3arr:'Quand atterrissez-vous ?',l3:"Touchez le jour et l'heure de prise en charge.",l3arr:"Touchez le jour et l'heure d'atterrissage prévue. Si le vol a du retard, nous attendons.",
+  day:'Jour',hour:'Heure',hourArr:"Heure d'atterrissage",min:'Minutes',today:"Aujourd'hui",tomorrow:'Demain',otherDay:'Autre',otherDaySub:'date',change:'changer',at:'à',
+  h4:'Combien de voyageurs ?',l4:'Pour choisir le bon véhicule pour le groupe et les bagages.',pax:'Passagers',bags:'Valises en soute',bagsSub:'les grandes',cabin:'Bagages à main',cabinSub:'sacs à dos et petites valises',
+  carT:'Véhicule',carAuto:'Suggéré pour votre groupe',cars:[['E','Classe E',"Exécutif, jusqu'à 3 passagers"],['S','Classe S',"Haut de gamme, jusqu'à 3 passagers"],['V','Classe V',"Jusqu'à 7 passagers et bagages"],['M','Sprinter / minibus',"Groupes jusqu'à 19"]],
+  extrasT:"Besoin d'autre chose ? (facultatif)",extras:['Siège enfant','Rehausseur','Arrêt en chemin','Sac de golf','Ski ou vélo','Poussette','Fauteuil roulant','Animal de compagnie','Eau et chargeurs'],
+  h5:'Comment vous joindre ?',l5:'Nous répondons sur WhatsApp avec la confirmation et le prix.',name:'Nom',namePh:'Votre nom',phone:'Téléphone / WhatsApp',cc:'Indicatif du pays',
+  flight:'Numéro de vol (facultatif) : il nous permet de suivre les retards',moreBtn:'Ajouter un email ou une autre demande',email:'Email (facultatif)',notes:'Autre demande (facultatif)',notesPh:'Ce qui ne figure pas dans les options',
+  h6:'Tout est bon ?',l6:"Confirmez votre demande. Vous pouvez tout modifier avant l'envoi.",edit:'Modifier',
+  r:{car:'Véhicule',svc:'Service',dest:'Destination',pick:'Prise en charge',start:'Départ',when:'Quand',land:'Atterrissage',pax:'Passagers et bagages',extras:'Extras',contact:'Contact',flight:'Vol',email:'Email',notes:'Autre demande'},
+  arrS:'arrivée',depS:'départ',paxN:n=>n===1?'1 passager':n+' passagers',bagsN:(b,c)=>`${b} en soute · ${c} à main`,
+  n1:'{svc}. Excellent choix.',n2a:"{to} est à environ {t} de l'aéroport.",n2b:'Destination enregistrée.',n3:'Date enregistrée. Vous êtes à mi-chemin.',n4:'Presque fini.',n5:'Dernière étape : confirmer.',
+  eSvc:'Choisissez un service pour continuer.',eTo:"Touchez une destination ou écrivez l'adresse.",eDay:'Choisissez le jour.',eHour:"Choisissez l'heure.",eMin:'Choisissez les minutes.',ePhone:'Indiquez un numéro de téléphone pour que nous puissions vous répondre.',
+  h7:'Demande envoyée.',l7:'Merci{n}. Nous répondons rapidement sur WhatsApp avec la confirmation et le prix.',again:'Faire une autre demande',wa:"Si WhatsApp ne s'est pas ouvert, écrivez-nous au +351 932 666 254.",
+  loc:'fr-FR'}
 };
 const ST = SP_TXT[lang] || SP_TXT.en;
 /* orçamento instantâneo: só aparece quando config.PRICES tem o destino e a viatura */
 const PRICES = {{PRICES_JSON}}, PMODE = '{{PRICE_MODE}}';
-const PR_T = ({pt:['Preço','desde','Preço indicado no site','confirmado por escrito'],en:['Price','from','Price shown on the site','confirmed in writing'],es:['Precio','desde','Precio indicado en la web','confirmado por escrito']})[lang];
+const PR_T = ({pt:['Preço','desde','Preço indicado no site','confirmado por escrito'],en:['Price','from','Price shown on the site','confirmed in writing'],es:['Precio','desde','Precio indicado en la web','confirmado por escrito'],fr:['Prix','à partir de','Prix indiqué sur le site','confirmé par écrit']})[lang];
 function spPrice(){ if(sp.svc!==0&&sp.svc!==4) return ''; const p=PRICES[sp.to.trim()]; const v=p&&p[sp.car]; if(!v) return '';
   const f=new Intl.NumberFormat(lang==='en'?'en-GB':lang==='es'?'es-ES':'pt-PT',{style:'currency',currency:'EUR',maximumFractionDigits:0}).format(v);
   return PMODE==='desde'?PR_T[1]+' '+f:f; }

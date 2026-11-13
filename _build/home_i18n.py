@@ -98,6 +98,41 @@ T = {
   svcs=['Aeropuerto', 'A disposición', 'Tour', 'Evento', 'Larga distancia', 'Crucero'], **{'from': 'desde el aeropuerto'},
   dest_label='Destinos',
  ),
+ 'fr': dict(
+  title='Dark Diamond Luxury · Transferts privés et chauffeur à Lisbonne',
+  desc='Votre chauffeur, à votre mesure. Transferts privés, tours, événements et chauffeur à disposition au départ de Lisbonne. Portugal, Espagne et France.',
+  nav_dest='Destinations', nav_svc='Services', nav_fleet='Flotte', nav_ag='Partenaires', cta_short='Réserver',
+  h1a='Votre chauffeur,', h1b='à votre mesure.', sub='Transferts, tours, événements et chauffeur à disposition au Portugal, en Espagne et en France.',
+  cta='Demander un devis', pick_q='Où vos rêves vous emmènent-ils ?', pick_cta='Réserver ce trajet',
+  more_dest='Plus de destinations', sending='Envoi…', date_err='Date non valide. Écrivez jj/mm/aaaa.', send_err="Impossible d'envoyer pour le moment. Vous pouvez nous écrire sur WhatsApp.", date_ph='jj/mm/aaaa', q_to='Destination', q_to_ph='Ville, hôtel ou adresse', q_date='Date', q_phone_ph='Téléphone / WhatsApp',
+  q_send='Demander un devis', q_svc='Devis', q_ok='Demande reçue. Nous répondons rapidement avec le devis.',
+  qmsg='Bonjour ! Je souhaite un devis.\nDestination : {to}\nDate : {date}\nContact : {phone}',
+  sth='Sans complications.', stp="Nous planifions le trajet, suivons votre vol et respectons l'heure convenue.",
+  fa_b='24/7', fa_s='à toute heure du vol', fb_b='4 langues', fb_s='portugais, anglais, espagnol et français', fc_b='3 pays', fc_s='Portugal, Espagne et France',
+  dh='Où allons-nous ?', dp="Temps de trajet approximatif depuis l'aéroport de Lisbonne. Choisissez une destination pour réserver.",
+  onreq='Sur demande', dnote='Temps indicatifs, pouvant varier. Nous vous conduisons partout au Portugal, en Espagne et en France.', swipe='Faites défiler pour voir plus de destinations', go='Réserver cette destination', more='En savoir plus',
+  svch='À votre rythme.', svcp="Choisissez le service qu'il vous faut.", v1h='Aéroport', v1p='Nous suivons votre vol et vous attendons aux arrivées. Nous vous accompagnons aussi aux départs.',
+  v2h='À disposition', v2p="Un chauffeur et une voiture rien que pour vous, à l'heure ou à la journée : réunions, shopping ou une journée sans regarder la montre.",
+  v3h='Tours privés', v3p='Sintra, Cascais, Fátima, Évora ou le Douro, à votre rythme, avec des arrêts où vous voulez.',
+  v4h='Événements et mariages', v4p="Des invités accueillis et conduits à l'heure, avec la coordination assurée par nous.",
+  v5h='Longue distance', v5p='Porto, Algarve, Espagne et France, porte à porte.',
+  v6h='Croisières', v6p="Nous vous accueillons sur le quai et vous conduisons à l'hôtel, à l'aéroport ou en excursion, toujours selon l'horaire du navire.",
+  vh='Un salon sur roues.', vp='La Mercedes-Benz Classe V est le cœur de notre flotte : de la place pour le groupe et les bagages, des sièges face à face et un intérieur fait pour se détendre.',
+
+  f1b="Jusqu'à 19 places", f1s='de la Classe S au minibus', f2b='Bagages', f2s='valises en soute comprises',
+  bh='Réservez en quelques gestes.', bp='Six étapes rapides, presque sans écrire. Nous répondons sur WhatsApp avec la confirmation et le prix.',
+  l_svc='Service', l_to='Destination', ph_to='Hôtel, adresse ou ville', l_dir='Sens', l_from='Prise en charge', ph_from='Aéroport de Lisbonne',
+  l_bags='Valises en soute', l_cabin='Bagages à main', l_notes='Notes (facultatif)', ph_notes='Siège enfant, un arrêt en chemin, demandes particulières…',
+  dirs=["De l'aéroport", "Vers l'aéroport", 'Autre trajet'], airport='Aéroport de Lisbonne',
+  l_date='Date', l_time='Heure', l_pax='Passagers', l_flight='Vol (facultatif)', l_name='Nom', l_phone='Téléphone / WhatsApp', l_email='Email (facultatif)', need_phone='Indiquez un numéro de téléphone pour que nous puissions vous répondre.', sent_ok='Demande reçue. Nous répondons rapidement avec la confirmation et le prix.',
+  send='Demander un devis', hint="Nous recevons votre demande et ouvrons WhatsApp avec le message prêt, si vous voulez nous parler tout de suite. Vos données ne servent qu'à répondre à votre demande.",
+  nowa="Le numéro WhatsApp n'est pas encore configuré sur ce site. Contactez-nous par téléphone ou par email en bas de page.",
+  pbh='Envie de travailler avec nous ?', pbp='Nous travaillons avec des agences, des tour-opérateurs et des compagnies de croisière au Portugal, en Espagne et en France. Découvrez notre façon de travailler et demandez nos conditions.', pbc='Devenir partenaire',
+  top='Retour en haut',
+  svcs=['Aéroport', 'À disposition', 'Tour', 'Événement', 'Longue distance', 'Croisière'], **{'from': "depuis l'aéroport"},
+  dest_label='Destinations',
+ ),
+
 }
 
 # Mensagem do WhatsApp (o JavaScript recebe isto como modelo e substitui os {campos}).
@@ -105,13 +140,14 @@ MSG = {
  'pt': 'Olá! Gostaria de reservar.\nServiço: {svc}\nRecolha: {from}\nDestino: {to}\nData: {date} {time}\nPassageiros: {pax}\nMalas: {bags} de porão, {cabin} de mão{flight}\nNome: {name}{notes}',
  'en': "Hello! I'd like to book.\nService: {svc}\nPick-up: {from}\nDestination: {to}\nDate: {date} {time}\nPassengers: {pax}\nLuggage: {bags} checked, {cabin} carry-on{flight}\nName: {name}{notes}",
  'es': 'Hola, me gustaría reservar.\nServicio: {svc}\nRecogida: {from}\nDestino: {to}\nFecha: {date} {time}\nPasajeros: {pax}\nEquipaje: {bags} facturadas, {cabin} de mano{flight}\nNombre: {name}{notes}',
+ 'fr': 'Bonjour ! Je souhaite réserver.\nService : {svc}\nPrise en charge : {from}\nDestination : {to}\nDate : {date} {time}\nPassagers : {pax}\nBagages : {bags} en soute, {cabin} à main{flight}\nNom : {name}{notes}',
 }
-MSG_FLIGHT = {'pt': '\nVoo: ', 'en': '\nFlight: ', 'es': '\nVuelo: '}
-MSG_NOTES = {'pt': '\nNotas: ', 'en': '\nNotes: ', 'es': '\nNotas: '}
+MSG_FLIGHT = {'pt': '\nVoo: ', 'en': '\nFlight: ', 'es': '\nVuelo: ', 'fr': '\nVol : '}
+MSG_NOTES = {'pt': '\nNotas: ', 'en': '\nNotes: ', 'es': '\nNotas: ', 'fr': '\nNotes : '}
 
 # Destinos do carrossel: (nome, tempo, página de destino ou None)
 PLACES = [('Baixa · Chiado', '20 min', None), ('Cascais', '35 min', 'd-cascais'), ('Sintra', '35 min', 'd-sintra'),
-          ('Arrábida', '45 min', 'd-arrabida'), ({'pt': 'Óbidos e Nazaré', 'en': 'Óbidos and Nazaré', 'es': 'Óbidos y Nazaré'}, '1h', 'd-obidos'),
+          ('Arrábida', '45 min', 'd-arrabida'), ({'pt': 'Óbidos e Nazaré', 'en': 'Óbidos and Nazaré', 'es': 'Óbidos y Nazaré', 'fr': 'Óbidos et Nazaré'}, '1h', 'd-obidos'),
           ('Comporta', '1h15', 'd-comporta'), ('Évora', '1h30', 'd-evora'), ('Fátima', '1h30', 'd-fatima'),
-          ('Algarve', '2h45', 'd-algarve'), ('Porto', '3h', 'd-porto'), ({'pt': 'Vale do Douro', 'en': 'Douro Valley', 'es': 'Valle del Duero'}, '3h30', 'd-douro'),
-          ('Madrid', '6h', 'd-madrid'), ({'pt': 'Sevilha', 'en': 'Seville', 'es': 'Sevilla'}, '4h', 'd-sevilla'), ('Marbella', '5h30', 'd-marbella')]
+          ('Algarve', '2h45', 'd-algarve'), ('Porto', '3h', 'd-porto'), ({'pt': 'Vale do Douro', 'en': 'Douro Valley', 'es': 'Valle del Duero', 'fr': 'Vallée du Douro'}, '3h30', 'd-douro'),
+          ('Madrid', '6h', 'd-madrid'), ({'pt': 'Sevilha', 'en': 'Seville', 'es': 'Sevilla', 'fr': 'Séville'}, '4h', 'd-sevilla'), ('Marbella', '5h30', 'd-marbella')]

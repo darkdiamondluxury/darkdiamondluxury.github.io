@@ -34,7 +34,18 @@ ES = {
     'err': 'Elija el tipo de negocio y escriba su nombre.',
     'msg_h': 'Solicitud de colaboración', 'l_type': 'Tipo', 'l_vol': 'Volumen mensual', 'l_svc': 'Servicios', 'l_name': 'Nombre', 'l_company': 'Empresa', 'l_contact': 'Contacto',
 }
-T = {'pt': PT, 'en': EN, 'es': ES}
+FR = {
+    'h': 'Travaillons ensemble.',
+    'p': "Dites-nous qui vous êtes et ce qu'il vous faut. Nous répondons avec une grille tarifaire pour votre activité.",
+    'type_q': 'Votre activité', 'types': ['Agence de voyages', 'Tour-opérateur ou DMC', 'Hôtel ou location', 'Compagnie de croisières', 'Entreprise', 'Société de transport ou chauffeur', 'Autre'],
+    'vol_q': 'Services par mois, environ', 'vols': ["Jusqu'à 10", '10 à 50', 'Plus de 50', 'Je ne sais pas encore'],
+    'svc_q': 'Ce qui vous intéresse', 'svcs': ['Aéroport', 'Croisières', 'Chauffeur à disposition', 'Tours', 'Événements', 'Longue distance'],
+    'name': 'Votre nom', 'company': 'Entreprise', 'contact': 'Email ou téléphone',
+    'send': 'Envoyer sur WhatsApp', 'mail': "Je préfère l'email",
+    'err': "Choisissez votre type d'activité et écrivez votre nom.",
+    'msg_h': 'Demande de partenariat', 'l_type': 'Type', 'l_vol': 'Volume mensuel', 'l_svc': 'Services', 'l_name': 'Nom', 'l_company': 'Entreprise', 'l_contact': 'Contact',
+}
+T = {'pt': PT, 'en': EN, 'es': ES, 'fr': FR}
 
 
 def partner_html(lang, whatsapp, email, esc):
