@@ -6,6 +6,7 @@
 <title>Dark Diamond Luxury · Private transfers and chauffeur in Lisbon</title>
 <meta name="description" content="Your chauffeur, tailored to you. Private transfers, tours, events and chauffeur at disposal from Lisbon. Portugal, Spain and France.">
 <meta name="theme-color" content="#050505">
+<link rel="preconnect" href="https://images.unsplash.com">
 <link rel="canonical" href="https://darkdiamondluxury.github.io/">
 <link rel="alternate" hreflang="en" href="https://darkdiamondluxury.github.io/"><link rel="alternate" hreflang="pt" href="https://darkdiamondluxury.github.io/pt/"><link rel="alternate" hreflang="es" href="https://darkdiamondluxury.github.io/es/"><link rel="alternate" hreflang="x-default" href="https://darkdiamondluxury.github.io/">
 <link rel="icon" href="/assets/favicon-32.png" sizes="32x32" type="image/png">
@@ -601,8 +602,8 @@ footer{padding-bottom:96px}
   <p class="copy">© <span id="yr">2026</span> Dark Diamond Luxury.</p>
 </footer>
 
-<script src="/assets/gsap.min.js"></script>
-<script src="/assets/ScrollTrigger.min.js"></script>
+<script src="/assets/gsap.min.js" defer></script>
+<script src="/assets/ScrollTrigger.min.js" defer></script>
 <script>
 /* datas: escreve-se dd/mm/aaaa em todas as línguas; põe as barras sozinho e envia em aaaa-mm-dd */
 const dateMask=el=>el.addEventListener('input',()=>{const d=el.value.replace(/\D/g,'').slice(0,8);
@@ -1099,7 +1100,8 @@ addEventListener('scroll',()=>nav.classList.toggle('solid', scrollY>innerHeight*
 
 /* ---------- Movimento ---------- */
 const reduce = matchMedia('(prefers-reduced-motion: reduce)').matches;
-if(window.gsap && !reduce){
+/* o GSAP carrega em "defer" (não atrasa o primeiro ecrã); a animação arranca logo que ele chega */
+addEventListener('DOMContentLoaded',()=>{ if(!window.gsap || reduce) return;
   gsap.registerPlugin(ScrollTrigger);
   ScrollTrigger.config({ignoreMobileResize:true});
   const E='expo.out';
@@ -1120,7 +1122,7 @@ if(window.gsap && !reduce){
 
   gsap.fromTo('.vclass .img img',{scale:1.12},{scale:1,ease:'none',scrollTrigger:{trigger:'.vclass',start:'top bottom',end:'bottom bottom',scrub:true}});
   addEventListener('load',()=>ScrollTrigger.refresh());
-}
+});
 </script>
 <script data-goatcounter="https://darkdiamondluxury.goatcounter.com/count" async src="https://gc.zgo.at/count.js"></script>
 </body>
