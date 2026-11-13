@@ -115,5 +115,14 @@ document.getElementById('toTop').addEventListener('click',()=>scrollTo({top:0,be
 document.getElementById('yr').textContent=new Date().getFullYear();
 </script>
 <script data-goatcounter="https://darkdiamondluxury.goatcounter.com/count" async src="https://gc.zgo.at/count.js"></script>
+<script>
+/* Medição de comportamento (GoatCounter, sem cookies). Cada evento leva a página de onde veio. */
+window.gcEv=function(p,t){try{if(window.goatcounter&&goatcounter.count)goatcounter.count({path:p,title:t||location.pathname,event:true})}catch(e){}};
+document.addEventListener('click',function(e){var a=e.target.closest&&e.target.closest('a');if(!a)return;var h=a.getAttribute('href')||'',ev=null;
+ if(h.indexOf('tel:')===0)ev='contacto-telefone';else if(h.indexOf('wa.me')>-1)ev='contacto-whatsapp';else if(h.indexOf('mailto:')===0)ev='contacto-email';
+ else if(a.closest('.lang'))ev='lingua-'+(a.getAttribute('hreflang')||'');else if(h.indexOf('#reservar')>-1)ev='botao-reservar';
+ if(ev)gcEv(ev,location.pathname)},true);
+document.addEventListener('toggle',function(e){var d=e.target;if(d.matches&&d.matches('.faq details')&&d.open){var q=d.querySelector('summary');gcEv('faq/'+(q?q.textContent.trim():''),location.pathname)}},true);
+</script>
 </body>
 </html>

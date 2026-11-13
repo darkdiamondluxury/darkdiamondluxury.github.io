@@ -443,6 +443,8 @@ footer{padding-bottom:96px}
 .form .sp-act .btn{margin-top:0}
 .sp-back{background:none;border:0;color:var(--black);opacity:.75;min-height:44px;padding:0 6px;font-size:.95rem;cursor:pointer}
 .sp-err{min-height:1.3em;margin:12px 0 0;font-size:.9rem;color:#5c1b0b}
+.sp-fb{margin-top:18px}
+.sp-fb .sp-tags button::before{content:none}
 .sp-done{width:72px;height:72px;margin-bottom:18px;color:var(--black)}
 .sp-done circle{stroke-dasharray:226;stroke-dashoffset:226;animation:spDraw .9s var(--ease-out) .1s forwards}
 .sp-done path{stroke-dasharray:48;stroke-dashoffset:48;animation:spDraw .5s var(--ease-out) .75s forwards}
@@ -849,6 +851,7 @@ sp$('form').innerHTML = `
   <section class="sp-step" data-s="7" tabindex="-1">
     <svg class="sp-done" viewBox="0 0 76 76" fill="none" stroke="currentColor" stroke-width="2" aria-hidden="true"><circle cx="38" cy="38" r="36"/><path d="M24 39l10 10 19-21" stroke-linecap="round" stroke-linejoin="round"/></svg>
     <h3 class="sp-h" id="spH7"></h3><p class="sp-l" id="spL7"></p><p class="sp-l" id="spWa"></p><p class="sp-err" id="spSendErr" role="alert"></p>
+    <div class="sp-fb" id="spFb"><p class="sp-l" id="spFbQ"></p><div class="sp-tags" role="group" aria-labelledby="spFbQ"><button type="button" data-fb="facil" id="spFbA"></button><button type="button" data-fb="dificil" id="spFbB"></button></div></div>
     <div class="sp-act"><button type="button" class="btn" id="spAgain"></button></div>
   </section>
   <p class="sp-err" id="spErr" role="alert"></p>
@@ -983,7 +986,7 @@ sp$('spSum').addEventListener('click',e=>{ const b=e.target.closest('[data-go]')
 /* navegação */
 let spNoteT=0;
 function spNote(tx){ const n=sp$('spNote'); n.textContent=tx; n.classList.remove('on'); void n.offsetWidth; n.classList.add('on'); clearTimeout(spNoteT); spNoteT=setTimeout(()=>n.classList.remove('on'),3200); }
-function spErr(t){ sp$('spErr').textContent=t; }
+function spErr(t){ sp$('spErr').textContent=t; if(t&&window.gcEv) gcEv('reserva-erro-passo-'+sp.step,location.pathname); }
 function spValid(s){
   if(s===1 && sp.svc<0){ spErr(ST.eSvc); return false; }
   if(s===2 && !sp.to.trim()){ spErr(ST.eTo); sp$('spTo').setAttribute('aria-invalid','true'); sp$('spTo').focus(); return false; }
@@ -1039,6 +1042,7 @@ function spSend(){
       .finally(()=>setBusy(b,false,ST.confirm));
   }catch(err){ setBusy(b,false,ST.confirm); }
   }
+  if(live&&window.gcEv){ gcEv('reserva-servico/'+t.svcs[sp.svc]); const pl=PLACES.find(x=>x[0]===sp.to.trim()); gcEv('reserva-destino/'+(pl?pl[0]:'outro')); }
   if(live&&window.goatcounter&&goatcounter.count) goatcounter.count({path:'reserva-pedido',title:'Pedido de reserva enviado',event:true});
   if(WHATSAPP){ const msg=t.msg({svc:t.svcs[sp.svc],from:pickup||'—',to:dropoff||'—',date:dmy,time,pax:String(sp.pax),bags:String(sp.bags),cabin:String(sp.cabin),flight,name:sp.name.trim()||'—',notes});
     window.open(`https://wa.me/${WHATSAPP}?text=${encodeURIComponent(msg)}`,'_blank','noopener'); }
@@ -1049,6 +1053,10 @@ function spSend(){
 }
 sp$('form').addEventListener('submit',e=>{ e.preventDefault(); spAdvance(); });
 sp$('spBack').addEventListener('click',()=>{ spGo(Math.max(1,sp.step-1),true); spScrollToForm(); spFocusH(sp.step); });
+/* feedback: um toque, sem escrever */
+const FB=({pt:['Foi fácil fazer o pedido?','Sim, fácil','Podia ser mais fácil','Obrigado pela opinião.'],en:['Was it easy to book?','Yes, easy','Could be easier','Thanks for the feedback.'],es:['¿Fue fácil hacer la solicitud?','Sí, fácil','Podría ser más fácil','Gracias por su opinión.'],fr:['Était-ce facile de réserver ?','Oui, facile','Ça pourrait être plus simple','Merci pour votre avis.']})[lang];
+sp$('spFbQ').textContent=FB[0]; sp$('spFbA').textContent=FB[1]; sp$('spFbB').textContent=FB[2];
+sp$('spFb').addEventListener('click',e=>{ const b=e.target.closest('[data-fb]'); if(!b) return; if(window.gcEv) gcEv('reserva-feedback-'+b.dataset.fb,location.pathname); sp$('spFb').innerHTML='<p class="sp-l">'+FB[3]+'</p>'; });
 sp$('spAgain').addEventListener('click',()=>{ Object.assign(sp,{svc:-1,dir:0,to:'',all:false,date:'',hour:-1,min:-1,pax:1,bags:0,cabin:0,car:'',carAuto:true,extras:[],flight:'',notes:''});
   ['spFlight','spNotes'].forEach(id=>sp$(id).value=''); spGo(1,true); });
 
@@ -1123,6 +1131,10 @@ document.querySelectorAll('[data-svc]').forEach(a=>a.addEventListener('click',()
   sp.svc=+a.dataset.svc; spSave(); spGo(sp.to.trim()?3:2);
 }));
 
+/* até onde se desce na página inicial: cada secção conta uma vez por visita */
+if('IntersectionObserver' in window){ const seen={}; const io=new IntersectionObserver(es=>es.forEach(en=>{ if(en.isIntersecting&&!seen[en.target.id]){ seen[en.target.id]=1; if(window.gcEv) gcEv('home-viu-'+en.target.id,location.pathname); io.unobserve(en.target); } }),{threshold:.35});
+  ['destinos','servicos','frota','reservar'].forEach(id=>{ const el=document.getElementById(id); if(el) io.observe(el); }); }
+
 /* nav fica sólida depois do topo */
 const nav=document.getElementById('nav');
 addEventListener('scroll',()=>nav.classList.toggle('solid', scrollY>innerHeight*.6),{passive:true});
@@ -1154,5 +1166,14 @@ addEventListener('DOMContentLoaded',()=>{ if(!window.gsap || reduce) return;
 });
 </script>
 <script data-goatcounter="https://darkdiamondluxury.goatcounter.com/count" async src="https://gc.zgo.at/count.js"></script>
+<script>
+/* Medição de comportamento (GoatCounter, sem cookies). Cada evento leva a página de onde veio. */
+window.gcEv=function(p,t){try{if(window.goatcounter&&goatcounter.count)goatcounter.count({path:p,title:t||location.pathname,event:true})}catch(e){}};
+document.addEventListener('click',function(e){var a=e.target.closest&&e.target.closest('a');if(!a)return;var h=a.getAttribute('href')||'',ev=null;
+ if(h.indexOf('tel:')===0)ev='contacto-telefone';else if(h.indexOf('wa.me')>-1)ev='contacto-whatsapp';else if(h.indexOf('mailto:')===0)ev='contacto-email';
+ else if(a.closest('.lang'))ev='lingua-'+(a.getAttribute('hreflang')||'');else if(h.indexOf('#reservar')>-1)ev='botao-reservar';
+ if(ev)gcEv(ev,location.pathname)},true);
+document.addEventListener('toggle',function(e){var d=e.target;if(d.matches&&d.matches('.faq details')&&d.open){var q=d.querySelector('summary');gcEv('faq/'+(q?q.textContent.trim():''),location.pathname)}},true);
+</script>
 </body>
 </html>
