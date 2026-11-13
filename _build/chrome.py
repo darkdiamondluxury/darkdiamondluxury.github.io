@@ -26,7 +26,8 @@ L = {
             credits_btn='Créditos de las fotografías', credits='Fotografías ilustrativas, Unsplash License:', home='Inicio', coverage='Cobertura'),
 }
 DEST_NAME = {'d-sintra': 'Sintra', 'd-cascais': 'Cascais', 'd-comporta': 'Comporta', 'd-evora': 'Évora', 'd-fatima': 'Fátima',
-             'd-algarve': 'Algarve', 'd-porto': {'pt': 'Porto', 'en': 'Porto', 'es': 'Oporto'}}
+             'd-algarve': 'Algarve', 'd-porto': {'pt': 'Porto', 'en': 'Porto', 'es': 'Oporto'},
+             'd-madrid': 'Madrid', 'd-sevilla': {'pt': 'Sevilha', 'en': 'Seville', 'es': 'Sevilla'}, 'd-marbella': 'Marbella'}
 
 
 def dest_name(k, lang):

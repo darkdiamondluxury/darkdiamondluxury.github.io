@@ -55,11 +55,14 @@ SLUGS = {
     'd-fatima':   {'en': '/lisbon-to-fatima/', 'pt': '/pt/lisboa-fatima/', 'es': '/es/lisboa-fatima/'},
     'd-algarve':  {'en': '/lisbon-to-algarve/', 'pt': '/pt/lisboa-algarve/', 'es': '/es/lisboa-algarve/'},
     'd-porto':    {'en': '/lisbon-to-porto/', 'pt': '/pt/lisboa-porto/', 'es': '/es/lisboa-oporto/'},
+    'd-madrid':   {'en': '/lisbon-to-madrid/', 'pt': '/pt/lisboa-madrid/', 'es': '/es/lisboa-madrid/'},
+    'd-sevilla':  {'en': '/lisbon-to-seville/', 'pt': '/pt/lisboa-sevilha/', 'es': '/es/lisboa-sevilla/'},
+    'd-marbella': {'en': '/lisbon-to-marbella/', 'pt': '/pt/lisboa-marbella/', 'es': '/es/lisboa-marbella/'},
     'privacy':  {'en': '/privacy/', 'pt': '/pt/privacidade/', 'es': '/es/privacidad/'},
     'legal':    {'en': '/legal/', 'pt': '/pt/informacao-legal/', 'es': '/es/aviso-legal/'},
     'support':  {'en': '/support/', 'pt': '/pt/suporte/', 'es': '/es/soporte/'},
 }
-DESTS = ['d-sintra', 'd-cascais', 'd-comporta', 'd-evora', 'd-fatima', 'd-algarve', 'd-porto']
+DESTS = ['d-sintra', 'd-cascais', 'd-comporta', 'd-evora', 'd-fatima', 'd-algarve', 'd-porto', 'd-madrid', 'd-sevilla', 'd-marbella']
 
 # Endereços antigos que passam a reencaminhar.
 REDIRECTS = {'/privacidade.html': SLUGS['privacy']['pt'], '/suporte.html': SLUGS['support']['pt']}
@@ -80,4 +83,7 @@ IMG = {
     'd-fatima': 'https://images.pexels.com/photos/30443719/pexels-photo-30443719.jpeg?auto=compress&cs=tinysrgb&w=2000',
     'd-algarve': 'https://images.pexels.com/photos/33887497/pexels-photo-33887497.jpeg?auto=compress&cs=tinysrgb&w=2000',
     'd-porto': 'https://images.unsplash.com/photo-1768565540385-5195e32bb44b?auto=format&fit=crop&w=2000&q=70',
+    'd-madrid': 'https://images.unsplash.com/photo-1539037116277-4db20889f2d4?auto=format&fit=crop&w=2000&q=70',
+    'd-sevilla': 'https://images.unsplash.com/photo-1661442196003-f2f6eb54bd94?auto=format&fit=crop&w=2000&q=70',
+    'd-marbella': 'https://images.pexels.com/photos/28428861/pexels-photo-28428861.jpeg?auto=compress&cs=tinysrgb&w=2000',
 }
