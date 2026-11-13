@@ -4,7 +4,7 @@ import json
 PT = {
     'h': 'Vamos trabalhar juntos.',
     'p': 'Diga-nos quem é e o que precisa. Respondemos com uma tabela de preços para o seu negócio.',
-    'type_q': 'O seu negócio', 'types': ['Agência de viagens', 'Operador ou DMC', 'Hotel ou alojamento', 'Linha de cruzeiros', 'Empresa', 'Outro'],
+    'type_q': 'O seu negócio', 'types': ['Agência de viagens', 'Operador ou DMC', 'Hotel ou alojamento', 'Linha de cruzeiros', 'Empresa', 'Empresa de transportes ou motorista', 'Outro'],
     'vol_q': 'Serviços por mês, mais ou menos', 'vols': ['Até 10', '10 a 50', 'Mais de 50', 'Ainda não sei'],
     'svc_q': 'O que lhe interessa', 'svcs': ['Aeroporto', 'Cruzeiros', 'Motorista à disposição', 'Tours', 'Eventos', 'Longa distância'],
     'name': 'O seu nome', 'company': 'Empresa', 'contact': 'Email ou telefone',
@@ -15,7 +15,7 @@ PT = {
 EN = {
     'h': 'Let\'s work together.',
     'p': 'Tell us who you are and what you need. We reply with a rate sheet for your business.',
-    'type_q': 'Your business', 'types': ['Travel agency', 'Tour operator or DMC', 'Hotel or rental', 'Cruise line', 'Company', 'Other'],
+    'type_q': 'Your business', 'types': ['Travel agency', 'Tour operator or DMC', 'Hotel or rental', 'Cruise line', 'Company', 'Transport company or driver', 'Other'],
     'vol_q': 'Services per month, roughly', 'vols': ['Up to 10', '10 to 50', 'More than 50', 'Not sure yet'],
     'svc_q': 'What you need', 'svcs': ['Airport', 'Cruises', 'Chauffeur at disposal', 'Tours', 'Events', 'Long distance'],
     'name': 'Your name', 'company': 'Company', 'contact': 'Email or phone',
@@ -26,7 +26,7 @@ EN = {
 ES = {
     'h': 'Trabajemos juntos.',
     'p': 'Díganos quién es y qué necesita. Le respondemos con una tabla de tarifas para su negocio.',
-    'type_q': 'Su negocio', 'types': ['Agencia de viajes', 'Operador o DMC', 'Hotel o alojamiento', 'Naviera', 'Empresa', 'Otro'],
+    'type_q': 'Su negocio', 'types': ['Agencia de viajes', 'Operador o DMC', 'Hotel o alojamiento', 'Naviera', 'Empresa', 'Empresa de transporte o chófer', 'Otro'],
     'vol_q': 'Servicios al mes, más o menos', 'vols': ['Hasta 10', '10 a 50', 'Más de 50', 'Aún no lo sé'],
     'svc_q': 'Qué le interesa', 'svcs': ['Aeropuerto', 'Cruceros', 'Chófer a disposición', 'Tours', 'Eventos', 'Larga distancia'],
     'name': 'Su nombre', 'company': 'Empresa', 'contact': 'Email o teléfono',
