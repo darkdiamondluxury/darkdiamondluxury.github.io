@@ -5,6 +5,8 @@ import re
 
 from config import (BRAND, COVERAGE, DESTS, EMAIL, INSTAGRAM, LANG_NAME, LANGS, LEGAL, LOCALE, PHONES, SITE, SLUGS,
                     WHATSAPP, WHATSAPP_ALL)
+from terms import TERMS as _TERMS  # noqa: E402
+TERMS_LIVE = _TERMS['live']
 
 E = html.escape
 
@@ -13,17 +15,17 @@ L = {
             airport='Transfer aeroporto', cruise='Terminal de cruzeiros', chauffeur='Motorista à disposição', tours='Tours privados', events='Eventos e casamentos', longd='Longa distância', agencies='Agências e parceiros', dests='Destinos',
             privacy='Privacidade', legal='Informação legal', support='Suporte da app', complaints='Livro de Reclamações',
             top='Voltar ao início', book='Reservar', rnaat='Registo RNAAT n.º', nipc='NIPC', brand_of='é uma marca de',
-            credits_btn='Créditos das fotografias', credits='Fotografias ilustrativas, Unsplash License:', home='Início', coverage='Cobertura'),
+            terms='Termos e condições', credits_btn='Créditos das fotografias', credits='Fotografias ilustrativas, Unsplash License:', home='Início', coverage='Cobertura'),
  'en': dict(nav_label='Main', lang_label='Language', contact='Contact', company='Company', info='Information', services='Services',
             airport='Airport transfer', cruise='Cruise terminal', chauffeur='Chauffeur at disposal', tours='Private tours', events='Events and weddings', longd='Long distance', agencies='Agencies and partners', dests='Destinations',
             privacy='Privacy', legal='Legal information', support='App support', complaints='Complaints Book (Livro de Reclamações)',
             top='Back to top', book='Book', rnaat='RNAAT registration no.', nipc='VAT no. (NIPC)', brand_of='is a brand of',
-            credits_btn='Photo credits', credits='Illustrative photographs, Unsplash License:', home='Home', coverage='Coverage'),
+            terms='Terms and conditions', credits_btn='Photo credits', credits='Illustrative photographs, Unsplash License:', home='Home', coverage='Coverage'),
  'es': dict(nav_label='Principal', lang_label='Idioma', contact='Contacto', company='Empresa', info='Información', services='Servicios',
             airport='Traslado aeropuerto', cruise='Terminal de cruceros', chauffeur='Chófer a disposición', tours='Tours privados', events='Eventos y bodas', longd='Larga distancia', agencies='Agencias y partners', dests='Destinos',
             privacy='Privacidad', legal='Aviso legal', support='Soporte de la app', complaints='Libro de Reclamaciones (Livro de Reclamações)',
             top='Volver arriba', book='Reservar', rnaat='Registro RNAAT n.º', nipc='NIF (NIPC)', brand_of='es una marca de',
-            credits_btn='Créditos de las fotografías', credits='Fotografías ilustrativas, Unsplash License:', home='Inicio', coverage='Cobertura'),
+            terms='Términos y condiciones', credits_btn='Créditos de las fotografías', credits='Fotografías ilustrativas, Unsplash License:', home='Inicio', coverage='Cobertura'),
 }
 DEST_NAME = {'d-sintra': 'Sintra', 'd-cascais': 'Cascais', 'd-comporta': 'Comporta', 'd-evora': 'Évora', 'd-fatima': 'Fátima',
              'd-algarve': 'Algarve', 'd-porto': {'pt': 'Porto', 'en': 'Porto', 'es': 'Oporto'},
@@ -151,7 +153,7 @@ def footer(lang):
       <p class="cov"><b>{l['coverage']}</b>{COVERAGE[lang]}</p></div>
     <div><b>{l['services']}</b><a href="{url('airport', lang)}">{l['airport']}</a><a href="{url('chauffeur', lang)}">{l['chauffeur']}</a><a href="{url('tours', lang)}">{l['tours']}</a><a href="{url('events', lang)}">{l['events']}</a><a href="{url('longdistance', lang)}">{l['longd']}</a><a href="{url('cruise', lang)}">{l['cruise']}</a>
       <b class="sub">{l['dests']}</b><span class="inline">{dests}</span></div>
-    <div><b>{l['info']}</b><a href="{url('agencies', lang)}">{l['agencies']}</a><a href="{url('legal', lang)}">{l['legal']}</a><a href="{url('privacy', lang)}">{l['privacy']}</a><a href="https://www.livroreclamacoes.pt" rel="noopener">{l['complaints']}</a><a href="{url('support', lang)}">{l['support']}</a></div>
+    <div><b>{l['info']}</b><a href="{url('agencies', lang)}">{l['agencies']}</a><a href="{url('legal', lang)}">{l['legal']}</a>{f'<a href="{url("terms", lang)}">{l["terms"]}</a>' if TERMS_LIVE else ''}<a href="{url('privacy', lang)}">{l['privacy']}</a><a href="https://www.livroreclamacoes.pt" rel="noopener">{l['complaints']}</a><a href="{url('support', lang)}">{l['support']}</a></div>
   </div>
   <p class="legalline">{BRAND} {l['brand_of']} {LEGAL['name']} · {l['nipc']} {LEGAL['nipc']} · {LEGAL['street']}, {LEGAL['postcode']} {LEGAL['city']} · {l['rnaat']} {LEGAL['rnaat']}</p>
   <details class="credits"><summary>{l['credits_btn']}</summary>

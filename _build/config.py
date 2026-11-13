@@ -59,6 +59,7 @@ SLUGS = {
     'd-sevilla':  {'en': '/lisbon-to-seville/', 'pt': '/pt/lisboa-sevilha/', 'es': '/es/lisboa-sevilla/'},
     'd-marbella': {'en': '/lisbon-to-marbella/', 'pt': '/pt/lisboa-marbella/', 'es': '/es/lisboa-marbella/'},
     'privacy':  {'en': '/privacy/', 'pt': '/pt/privacidade/', 'es': '/es/privacidad/'},
+    'terms':    {'en': '/terms/', 'pt': '/pt/termos/', 'es': '/es/terminos/'},
     'legal':    {'en': '/legal/', 'pt': '/pt/informacao-legal/', 'es': '/es/aviso-legal/'},
     'support':  {'en': '/support/', 'pt': '/pt/suporte/', 'es': '/es/soporte/'},
 }

@@ -24,6 +24,7 @@ from config import BOOKINGS_KEY, BOOKINGS_URL, DESTS, EMAIL, IMG, LANGS, PHONES,
 import content  # noqa: E402
 from faq import FAQ, FAQ_H  # noqa: E402
 from partner import partner_html  # noqa: E402
+from terms import TERMS, missing as terms_missing  # noqa: E402
 from home_i18n import MSG, MSG_FLIGHT, MSG_NOTES, PLACES, T  # noqa: E402
 
 E = html.escape
@@ -195,6 +196,10 @@ def build_page(page, lang, d):
 </body>
 </html>
 '''
+    if page == 'terms' and TERMS['live'] and terms_missing():
+        raise SystemExit(f'Termos: faltam decisões antes de publicar: {terms_missing()}')
+    if page == 'terms' and not TERMS['live']:
+        doc = doc.replace('<meta charset="utf-8">', '<meta charset="utf-8">\n<meta name="robots" content="noindex,nofollow">', 1)
     write(url(page, lang), doc)
 
 
@@ -208,9 +213,11 @@ def build_redirects():
 def build_sitemap():
     rows = []
     for page in SLUGS:
+        if page == 'terms' and not TERMS['live']:
+            continue
         for lang in LANGS:
             alts = ''.join(f'<xhtml:link rel="alternate" hreflang="{l}" href="{SITE}{url(page, l)}"/>' for l in LANGS)
-            pri = '1.0' if page == 'home' else '0.4' if page in ('privacy', 'legal', 'support') else '0.8'
+            pri = '1.0' if page == 'home' else '0.4' if page in ('privacy', 'legal', 'support', 'terms') else '0.8'
             rows.append(f'  <url><loc>{SITE}{url(page, lang)}</loc>{alts}<priority>{pri}</priority></url>')
     write('/sitemap.xml', '<?xml version="1.0" encoding="UTF-8"?>\n<urlset xmlns="http://www.sitemaps.org/schemas/sitemap/0.9" '
           'xmlns:xhtml="http://www.w3.org/1999/xhtml">\n' + '\n'.join(rows) + '\n</urlset>\n')

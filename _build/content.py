@@ -551,3 +551,14 @@ PAGES['support'] = {l: dict(title=f'{v[0]} · Dark Diamond Luxury', desc=v[1], c
 
 from services_pages import PAGES_NEW  # noqa: E402
 PAGES.update(PAGES_NEW)
+
+
+# =====================================================================================
+# TERMOS E CONDIÇÕES (valores em terms.py; escondida enquanto TERMS['live'] for False)
+# =====================================================================================
+from terms import terms_html  # noqa: E402
+PAGES['terms'] = {
+ 'en': dict(title='Terms and conditions · Dark Diamond Luxury', desc='Booking, payment, waiting time, cancellation and conduct on board for Dark Diamond Luxury services.', crumb='Terms and conditions', h1='Terms and conditions', lead='The rules for every booking, in plain words.', blocks=[dict(type='prose', html=terms_html('en'))]),
+ 'pt': dict(title='Termos e condições · Dark Diamond Luxury', desc='Reserva, pagamento, tempo de espera, cancelamento e conduta a bordo nos serviços da Dark Diamond Luxury.', crumb='Termos e condições', h1='Termos e condições', lead='As regras de cada reserva, em palavras simples.', blocks=[dict(type='prose', html=terms_html('pt'))]),
+ 'es': dict(title='Términos y condiciones · Dark Diamond Luxury', desc='Reserva, pago, tiempo de espera, cancelación y conducta a bordo en los servicios de Dark Diamond Luxury.', crumb='Términos y condiciones', h1='Términos y condiciones', lead='Las reglas de cada reserva, en palabras sencillas.', blocks=[dict(type='prose', html=terms_html('es'))]),
+}
