@@ -267,8 +267,8 @@ def build_404():
 <script>if(location.pathname.indexOf('/Despacho/app')===0){location.replace('/Despacho/app/');}</script>
 <link rel="stylesheet" href="/assets/page.css?v=@@V@@"></head><body>
 <section class="phero plain"><div class="in"><h1 class="display">Page not found.</h1>
-<p class="lead">Página não encontrada · Página no encontrada</p>
-<div class="actions"><a class="btn" href="/">Dark Diamond Luxury</a><a class="btn ghost" href="/pt/">Português</a><a class="btn ghost" href="/es/">Español</a></div></div></section>
+<p class="lead">Página não encontrada · Página no encontrada · Page non trouvée</p>
+<div class="actions"><a class="btn" href="/">Dark Diamond Luxury</a><a class="btn ghost" href="/pt/">Português</a><a class="btn ghost" href="/es/">Español</a><a class="btn ghost" href="/fr/">Français</a></div></div></section>
 </body></html>'''.replace('@@V@@',CSSV))
 
 

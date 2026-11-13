@@ -964,6 +964,9 @@ function spSend(){
   const [y,m,d]=sp.date.split('-'), dmy=`${d}/${m}/${y}`, time=`${pad2(sp.hour)}:${pad2(sp.min)}`;
   const phone=spPhoneFmt(), notes=[carName()?ST.r.car+': '+carName():'', spPrice()?PR_T[2]+': '+spPrice():'', sp.extras.join(', '), sp.notes.trim()].filter(Boolean).join(' · ');
   const flight=arr?sp.flight.trim().toUpperCase():'';
+  /* em testes locais nada é enviado para o sistema: só o site ao vivo envia */
+  const live=!/^(localhost|127\.)/.test(location.hostname);
+  if(live){
   setBusy(b,true,t.sending); sp$('spSendErr').textContent='';
   try{
     fetch(BK_URL,{method:'POST',keepalive:true,headers:{'content-type':'application/json',apikey:BK_KEY,authorization:'Bearer '+BK_KEY},
@@ -972,7 +975,8 @@ function spSend(){
       .then(r=>{ if(!r.ok) sp$('spSendErr').textContent=t.send_err; }).catch(()=>{ sp$('spSendErr').textContent=t.send_err; })
       .finally(()=>setBusy(b,false,ST.confirm));
   }catch(err){ setBusy(b,false,ST.confirm); }
-  if(window.goatcounter&&goatcounter.count) goatcounter.count({path:'reserva-pedido',title:'Pedido de reserva enviado',event:true});
+  }
+  if(live&&window.goatcounter&&goatcounter.count) goatcounter.count({path:'reserva-pedido',title:'Pedido de reserva enviado',event:true});
   if(WHATSAPP){ const msg=t.msg({svc:t.svcs[sp.svc],from:pickup||'—',to:dropoff||'—',date:dmy,time,pax:String(sp.pax),bags:String(sp.bags),cabin:String(sp.cabin),flight,name:sp.name.trim()||'—',notes});
     window.open(`https://wa.me/${WHATSAPP}?text=${encodeURIComponent(msg)}`,'_blank','noopener'); }
   const first=sp.name.trim().split(' ')[0];
