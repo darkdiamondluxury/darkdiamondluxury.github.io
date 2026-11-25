@@ -11,22 +11,22 @@ TERMS_LIVE = _TERMS['live']
 E = html.escape
 
 L = {
- 'pt': dict(nav_label='Principal', lang_label='Língua', contact='Contacto', company='Empresa', info='Informação', services='Serviços',
+ 'pt': dict(nav_label='Principal', menu='Menu', lang_label='Língua', contact='Contacto', company='Empresa', info='Informação', services='Serviços',
             airport='Transfer aeroporto', cruise='Terminal de cruzeiros', chauffeur='Motorista à disposição', tours='Tours privados', events='Eventos e casamentos', longd='Longa distância', prices='Preços', agencies='Agências e parceiros', dests='Destinos',
             privacy='Privacidade', legal='Informação legal', support='Suporte da app', complaints='Livro de Reclamações',
             top='Voltar ao início', book='Reservar', rnaat='Registo RNAAT n.º', nipc='NIPC', brand_of='é uma marca de',
             terms='Termos e condições', credits_btn='Créditos das fotografias', credits='Fotografias ilustrativas, Unsplash License:', home='Início', coverage='Cobertura'),
- 'en': dict(nav_label='Main', lang_label='Language', contact='Contact', company='Company', info='Information', services='Services',
+ 'en': dict(nav_label='Main', menu='Menu', lang_label='Language', contact='Contact', company='Company', info='Information', services='Services',
             airport='Airport transfer', cruise='Cruise terminal', chauffeur='Chauffeur at disposal', tours='Private tours', events='Events and weddings', longd='Long distance', prices='Prices', agencies='Agencies and partners', dests='Destinations',
             privacy='Privacy', legal='Legal information', support='App support', complaints='Complaints Book (Livro de Reclamações)',
             top='Back to top', book='Book', rnaat='RNAAT registration no.', nipc='VAT no. (NIPC)', brand_of='is a brand of',
             terms='Terms and conditions', credits_btn='Photo credits', credits='Illustrative photographs, Unsplash License:', home='Home', coverage='Coverage'),
- 'fr': dict(nav_label='Principal', lang_label='Langue', contact='Contact', company='Entreprise', info='Informations', services='Services',
+ 'fr': dict(nav_label='Principal', menu='Menu', lang_label='Langue', contact='Contact', company='Entreprise', info='Informations', services='Services',
             airport='Transfert aéroport', cruise='Terminal de croisières', chauffeur='Chauffeur à disposition', tours='Tours privés', events='Événements et mariages', longd='Longue distance', prices='Tarifs', agencies='Agences et partenaires', dests='Destinations',
             privacy='Confidentialité', legal='Mentions légales', support="Assistance de l'app", complaints='Livre de réclamations (Livro de Reclamações)',
             top='Retour en haut', book='Réserver', rnaat='Enregistrement RNAAT nº', nipc='NIF (NIPC)', brand_of='est une marque de',
             terms='Conditions générales', credits_btn='Crédits des photographies', credits='Photographies illustratives, Unsplash License :', home='Accueil', coverage='Zone couverte'),
- 'es': dict(nav_label='Principal', lang_label='Idioma', contact='Contacto', company='Empresa', info='Información', services='Servicios',
+ 'es': dict(nav_label='Principal', menu='Menú', lang_label='Idioma', contact='Contacto', company='Empresa', info='Información', services='Servicios',
             airport='Traslado aeropuerto', cruise='Terminal de cruceros', chauffeur='Chófer a disposición', tours='Tours privados', events='Eventos y bodas', longd='Larga distancia', prices='Precios', agencies='Agencias y partners', dests='Destinos',
             privacy='Privacidad', legal='Aviso legal', support='Soporte de la app', complaints='Libro de Reclamaciones (Livro de Reclamações)',
             top='Volver arriba', book='Reservar', rnaat='Registro RNAAT n.º', nipc='NIF (NIPC)', brand_of='es una marca de',
@@ -130,6 +130,7 @@ def nav(page, lang, links_html, cta_href):
   <a class="brand" href="{url('home', lang)}" aria-label="{BRAND}"><img src="/assets/logo-96.webp" alt="" width="40" height="40"><span class="dk">Dark</span> <span class="dm">Diamond</span> <span class="lux">Luxury</span></a>
   <nav class="links" aria-label="{l['nav_label']}">{links_html}</nav>
   {lang_switch(page, lang)}
+  <details class="menu" onclick="if(event.target.closest('a'))this.removeAttribute('open')"><summary aria-label="{l['menu']}"><svg viewBox="0 0 24 24" width="22" height="22" aria-hidden="true"><path d="M4 7h16M4 12h16M4 17h16" stroke="currentColor" stroke-width="1.6" stroke-linecap="round"/></svg></summary><nav aria-label="{l['menu']}">{links_html}<a class="mbook" href="{cta_href}">{l['book']}</a></nav></details>
   <a class="btn" href="{cta_href}">{l['book']}</a>
 </header>'''
 

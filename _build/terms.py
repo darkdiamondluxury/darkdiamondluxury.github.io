@@ -6,25 +6,26 @@ from config import EMAIL, LEGAL
 from prices_page import EXTRAS_H, extras_items
 
 TERMS = {
-    'live': False,
+    'live': True,
     'updated': {'pt': 'novembro de 2026', 'en': 'November 2026', 'es': 'noviembre de 2026', 'fr': 'novembre 2026'},
-    'change_free_h': None,      # alterações sem custo até X h antes (proposta 24)
+    'change_free_h': 24,        # alterações sem custo até 24 h antes (25/11)
     'vat_included': True,       # preços com IVA incluído (tabela de 25/11/2026)
     'night': 'extras',          # suplemento noturno e restantes extras: secção Extras (prices.py, 25/11/2026)
     'payment': 'full',          # pagamento total na reserva (reunião de 22/11/2026)
     'deposit_pct': None,        # só se payment = 'deposit' (proposta 30)
-    'cash': None,               # True / False: aceitam numerário?
+    'cash': False,              # sem numerário (25/11)
     'wait_air': 120,            # min grátis no aeroporto, a contar da aterragem (Bruno, 22/11)
     'wait_other': 30,           # min grátis nas outras recolhas (Bruno, 22/11)
     'wait_extra_eur': 'extras', # por viatura, na secção Extras (prices.py)
     'cancel_free_h': 24,        # cancelamento grátis até 24 h antes (Bruno, 22/11)
     'cancel_half_h': 3,         # 50 % entre 24 h e 3 h antes (Bruno, 22/11)
-    'cancel_long_h': None,      # à disposição, eventos e longa distância: grátis até X h (proposta 48)
-    'refund_days': None,        # reembolso em até X dias (proposta 14)
+    'cancel_long_h': 48,        # longa distância, eventos e à disposição (reunião de 22/11)
+    'refund_days': 5,           # dias úteis (25/11)
+    'fee_pct': 3,               # custos bancários e de processamento, não reembolsáveis (25/11)
     'child_seat_eur': 0,        # grátis, pedidas na reserva (25/11)
-    'pets': None,               # 'carrier' (em transportadora) · 'request' (a pedido) · 'no'
-    'alcohol': None,            # 'no' · 'moderate' · 'events'
-    'cleaning_eur': None,       # taxa de limpeza extraordinária em €
+    'pets': 'request_carrier',  # a pedido, em transportadora; cães de assistência sempre (25/11)
+    'alcohol': 'no',            # proibido em todos os serviços (25/11)
+    'cleaning_eur': 'cost',     # ao custo real, com comprovativo (25/11)
     'lost_days': 30,            # dias que se guardam objetos esquecidos
 }
 
@@ -48,9 +49,9 @@ def terms_html(lang):
                'after': 'O pagamento é feito no fim do serviço; pode também pagar antecipadamente.', None: '<mark>[a confirmar]</mark>'}[t['payment']]
         nightp = ('<mark>[a confirmar: suplemento noturno]</mark>' if night is None else '' if night in (False, 'extras') else
                   f'<p>Serviços entre as {night["start"]} e as {night["end"]} têm um suplemento de {night["pct"]} %.</p>')
-        pets = {'carrier': 'Animais de estimação são aceites em transportadora, se indicados na reserva.', 'request': 'Animais de estimação são aceites a pedido, se indicados na reserva.',
+        pets = {'request_carrier': 'Animais de estimação são aceites a pedido, em transportadora, se indicados na reserva. Cães de assistência são sempre aceites.', 'carrier': 'Animais de estimação são aceites em transportadora, se indicados na reserva.', 'request': 'Animais de estimação são aceites a pedido, se indicados na reserva.',
                 'no': 'Não transportamos animais de estimação, exceto cães de assistência.', None: '<mark>[a confirmar: animais]</mark>'}[t['pets']]
-        alc = {'no': 'Não é permitido consumir bebidas alcoólicas a bordo.', 'moderate': 'Bebidas alcoólicas a bordo só com moderação.',
+        alc = {'no': 'Não é permitido consumir bebidas alcoólicas a bordo, em nenhum serviço.', 'moderate': 'Bebidas alcoólicas a bordo só com moderação.',
                'events': 'Bebidas alcoólicas a bordo só em serviços de eventos e com moderação.', None: '<mark>[a confirmar: álcool]</mark>'}[t['alcohol']]
         seat = 'sem custo' if t['child_seat_eur'] == 0 else _v('child_seat_eur', lambda x: f'por {x} € cada')
         return f'''<p>Última atualização: {t["updated"]["pt"]}. Estes termos aplicam-se aos serviços da Dark Diamond Luxury, nome comercial de {co}.</p>
@@ -67,15 +68,13 @@ def terms_html(lang):
 <li>Espera extra: por viatura, conforme os extras acima.</li></ul>
 <p>Se o passageiro não aparecer nem responder depois do tempo de espera, o serviço conta como não comparência.</p>
 <h2>Cancelamento</h2>
-<ul><li>Até {_v("cancel_free_h")} h antes: sem custo, com reembolso total.</li>
-<li>Entre {_v("cancel_free_h")} h e {_v("cancel_half_h")} h antes: 50 % do preço.</li>
-<li>Com menos de {_v("cancel_half_h")} h ou não comparência: 100 % do preço.</li>
-<li>Motorista à disposição, eventos, casamentos e longa distância: sem custo até {_v("cancel_long_h")} h antes.</li></ul>
-<p>Os reembolsos são feitos pelo mesmo meio de pagamento, em até {_v("refund_days")} dias. Se formos nós a cancelar, devolvemos o valor total ou enviamos uma viatura equivalente, à sua escolha.</p>
+<p>Cancelamento sem penalização até {_v("cancel_free_h")} h antes ({_v("cancel_long_h")} h em longa distância, eventos e serviços à disposição). Os custos bancários e de processamento do pagamento ({_v("fee_pct")} %) não são reembolsáveis. O reembolso é feito pelo mesmo meio de pagamento, em até {_v("refund_days")} dias úteis. Se o cancelamento for da nossa parte, o reembolso é total.</p>
+<ul><li>Entre {_v("cancel_free_h")} h e {_v("cancel_half_h")} h antes: 50 % do preço.</li>
+<li>Com menos de {_v("cancel_half_h")} h ou não comparência: 100 % do preço.</li></ul>
 <h2>Passageiros, bagagem e crianças</h2>
 <p>O número de passageiros e malas indicado define a viatura. Se não couberem com segurança mais pessoas ou malas do que as indicadas, pode ser necessária outra viatura, com custo adicional. Cadeiras de criança e assentos elevatórios são obrigatórios por lei e fornecidos {seat}, se pedidos na reserva. Bagagem especial (golfe, ski, bicicletas, carrinhos de bebé) deve ser indicada na reserva. {pets}</p>
 <h2>Conduta a bordo</h2>
-<p>Não é permitido fumar, incluindo cigarros eletrónicos. {alc} Danos ou limpeza extraordinária causados por passageiros são cobrados: {_v("cleaning_eur")} € de limpeza, ou o custo real da reparação. O motorista pode recusar ou interromper o serviço se a segurança estiver em causa.</p>
+<p>Não é permitido fumar, incluindo cigarros eletrónicos. {alc} Limpeza extraordinária ou danos causados pelos passageiros são cobrados ao custo real, com comprovativo. O motorista pode recusar ou interromper o serviço se a segurança estiver em causa.</p>
 <h2>Atrasos e força maior</h2>
 <p>Não somos responsáveis por atrasos causados por trânsito anormal, acidentes, condições meteorológicas, greves, encerramento de estradas ou outras causas fora do nosso controlo. Recomendamos margem suficiente para voos e comboios.</p>
 <h2>Objetos esquecidos</h2>
@@ -87,9 +86,9 @@ def terms_html(lang):
                'after': 'El pago se realiza al final del servicio; también puede pagar por adelantado.', None: '<mark>[a confirmar]</mark>'}[t['payment']]
         nightp = ('<mark>[a confirmar]</mark>' if night is None else '' if night in (False, 'extras') else
                   f'<p>Los servicios entre las {night["start"]} y las {night["end"]} tienen un suplemento del {night["pct"]} %.</p>')
-        pets = {'carrier': 'Se aceptan mascotas en transportín, si se indican al reservar.', 'request': 'Se aceptan mascotas bajo petición, si se indican al reservar.',
+        pets = {'request_carrier': 'Se aceptan mascotas bajo petición, en transportín, si se indican al reservar. Los perros de asistencia siempre son bienvenidos.', 'carrier': 'Se aceptan mascotas en transportín, si se indican al reservar.', 'request': 'Se aceptan mascotas bajo petición, si se indican al reservar.',
                 'no': 'No transportamos mascotas, salvo perros de asistencia.', None: '<mark>[a confirmar]</mark>'}[t['pets']]
-        alc = {'no': 'No se permite consumir bebidas alcohólicas a bordo.', 'moderate': 'Bebidas alcohólicas a bordo solo con moderación.',
+        alc = {'no': 'No se permite consumir bebidas alcohólicas a bordo, en ningún servicio.', 'moderate': 'Bebidas alcohólicas a bordo solo con moderación.',
                'events': 'Bebidas alcohólicas a bordo solo en servicios de eventos y con moderación.', None: '<mark>[a confirmar]</mark>'}[t['alcohol']]
         seat = 'sin coste' if t['child_seat_eur'] == 0 else _v('child_seat_eur', lambda x: f'por {x} € cada una')
         return f'''<p>Última actualización: {t["updated"]["es"]}. Estos términos se aplican a los servicios de Dark Diamond Luxury, nombre comercial de {co}.</p>
@@ -106,15 +105,13 @@ def terms_html(lang):
 <li>Espera adicional: por vehículo, según los extras indicados arriba.</li></ul>
 <p>Si el pasajero no aparece ni responde tras el tiempo de espera, el servicio cuenta como no presentado.</p>
 <h2>Cancelación</h2>
-<ul><li>Hasta {_v("cancel_free_h")} h antes: sin coste, con reembolso total.</li>
-<li>Entre {_v("cancel_free_h")} h y {_v("cancel_half_h")} h antes: 50 % del precio.</li>
-<li>Con menos de {_v("cancel_half_h")} h o no presentado: 100 % del precio.</li>
-<li>Chófer a disposición, eventos, bodas y larga distancia: sin coste hasta {_v("cancel_long_h")} h antes.</li></ul>
-<p>Los reembolsos se hacen por el mismo medio de pago, en un máximo de {_v("refund_days")} días. Si cancelamos nosotros, devolvemos el importe total o enviamos un vehículo equivalente, a su elección.</p>
+<p>Cancelación sin penalización hasta {_v("cancel_free_h")} h antes ({_v("cancel_long_h")} h en larga distancia, eventos y servicios a disposición). Los gastos bancarios y de procesamiento del pago ({_v("fee_pct")} %) no son reembolsables. El reembolso se hace por el mismo medio de pago, en un máximo de {_v("refund_days")} días hábiles. Si la cancelación es nuestra, el reembolso es total.</p>
+<ul><li>Entre {_v("cancel_free_h")} h y {_v("cancel_half_h")} h antes: 50 % del precio.</li>
+<li>Con menos de {_v("cancel_half_h")} h o no presentado: 100 % del precio.</li></ul>
 <h2>Pasajeros, equipaje y niños</h2>
 <p>El número de pasajeros y maletas indicado define el vehículo. Si no caben con seguridad más personas o maletas de las indicadas, puede ser necesario otro vehículo, con coste adicional. Las sillas infantiles y los elevadores son obligatorios por ley y se facilitan {seat}, si se piden al reservar. El equipaje especial (golf, esquí, bicicletas, cochecitos) debe indicarse al reservar. {pets}</p>
 <h2>Conducta a bordo</h2>
-<p>No se permite fumar, tampoco cigarrillos electrónicos. {alc} Los daños o la limpieza extraordinaria causados por pasajeros se cobran: {_v("cleaning_eur")} € de limpieza, o el coste real de la reparación. El chófer puede rechazar o interrumpir el servicio si la seguridad está en juego.</p>
+<p>No se permite fumar, tampoco cigarrillos electrónicos. {alc} La limpieza extraordinaria o los daños causados por los pasajeros se cobran al coste real, con justificante. El chófer puede rechazar o interrumpir el servicio si la seguridad está en juego.</p>
 <h2>Retrasos y fuerza mayor</h2>
 <p>No somos responsables de retrasos causados por tráfico anormal, accidentes, meteorología, huelgas, cierres de carreteras u otras causas ajenas a nuestro control. Recomendamos margen suficiente para vuelos y trenes.</p>
 <h2>Objetos olvidados</h2>
@@ -126,9 +123,9 @@ def terms_html(lang):
                'after': "Le paiement se fait à la fin du service ; vous pouvez aussi payer à l'avance.", None: '<mark>[à confirmer]</mark>'}[t['payment']]
         nightp = ('<mark>[à confirmer]</mark>' if night is None else '' if night in (False, 'extras') else
                   f"<p>Les services entre {night['start']} et {night['end']} comportent un supplément de {night['pct']} %.</p>")
-        pets = {'carrier': "Les animaux sont acceptés en caisse de transport, s'ils sont indiqués à la réservation.", 'request': "Les animaux sont acceptés sur demande, s'ils sont indiqués à la réservation.",
+        pets = {'request_carrier': "Les animaux sont acceptés sur demande, en caisse de transport, s'ils sont indiqués à la réservation. Les chiens d'assistance sont toujours acceptés.", 'carrier': "Les animaux sont acceptés en caisse de transport, s'ils sont indiqués à la réservation.", 'request': "Les animaux sont acceptés sur demande, s'ils sont indiqués à la réservation.",
                 'no': "Nous ne transportons pas d'animaux, à l'exception des chiens d'assistance.", None: '<mark>[à confirmer]</mark>'}[t['pets']]
-        alc = {'no': "La consommation d'alcool à bord n'est pas autorisée.", 'moderate': 'Alcool à bord avec modération uniquement.',
+        alc = {'no': "La consommation d'alcool à bord n'est autorisée dans aucun service.", 'moderate': 'Alcool à bord avec modération uniquement.',
                'events': 'Alcool à bord uniquement pour les services événementiels, avec modération.', None: '<mark>[à confirmer]</mark>'}[t['alcohol']]
         seat = 'sans frais' if t['child_seat_eur'] == 0 else _v('child_seat_eur', lambda x: f'à {x} € pièce')
         return f"""<p>Dernière mise à jour : {t["updated"]["fr"]}. Ces conditions s'appliquent aux services de Dark Diamond Luxury, nom commercial de {co}.</p>
@@ -145,15 +142,13 @@ def terms_html(lang):
 <li>Attente supplémentaire : par véhicule, selon les extras ci-dessus.</li></ul>
 <p>Si le passager ne se présente pas et ne répond pas après le temps d'attente, le service compte comme une non-présentation.</p>
 <h2>Annulation</h2>
-<ul><li>Jusqu'à {_v("cancel_free_h")} h avant : sans frais, remboursement intégral.</li>
-<li>Entre {_v("cancel_free_h")} h et {_v("cancel_half_h")} h avant : 50 % du prix.</li>
-<li>Moins de {_v("cancel_half_h")} h avant, ou non-présentation : 100 % du prix.</li>
-<li>Chauffeur à disposition, événements, mariages et longue distance : sans frais jusqu'à {_v("cancel_long_h")} h avant.</li></ul>
-<p>Les remboursements se font par le moyen de paiement d'origine, sous {_v("refund_days")} jours. Si nous annulons, nous remboursons intégralement ou envoyons un véhicule équivalent, à votre choix.</p>
+<p>Annulation sans pénalité jusqu'à {_v("cancel_free_h")} h avant ({_v("cancel_long_h")} h pour la longue distance, les événements et les services à disposition). Les frais bancaires et de traitement du paiement ({_v("fee_pct")} %) ne sont pas remboursables. Le remboursement se fait par le moyen de paiement d'origine, sous {_v("refund_days")} jours ouvrés. Si l'annulation vient de nous, le remboursement est intégral.</p>
+<ul><li>Entre {_v("cancel_free_h")} h et {_v("cancel_half_h")} h avant : 50 % du prix.</li>
+<li>Moins de {_v("cancel_half_h")} h avant, ou non-présentation : 100 % du prix.</li></ul>
 <h2>Passagers, bagages et enfants</h2>
 <p>Le nombre de passagers et de valises indiqué détermine le véhicule. Si plus de personnes ou de valises que prévu ne tiennent pas en sécurité, un autre véhicule peut être nécessaire, avec un coût supplémentaire. Les sièges enfants et rehausseurs sont obligatoires par la loi et fournis {seat}, s'ils sont demandés à la réservation. Les bagages spéciaux (golf, ski, vélos, poussettes) doivent être signalés à la réservation. {pets}</p>
 <h2>Conduite à bord</h2>
-<p>Interdiction de fumer, cigarettes électroniques comprises. {alc} Les dégâts ou le nettoyage extraordinaire causés par les passagers sont facturés : {_v("cleaning_eur")} € de nettoyage, ou le coût réel de la réparation. Le chauffeur peut refuser ou interrompre le service si la sécurité est en jeu.</p>
+<p>Interdiction de fumer, cigarettes électroniques comprises. {alc} Le nettoyage extraordinaire ou les dégâts causés par les passagers sont facturés au coût réel, sur justificatif. Le chauffeur peut refuser ou interrompre le service si la sécurité est en jeu.</p>
 <h2>Retards et force majeure</h2>
 <p>Nous ne sommes pas responsables des retards dus à un trafic anormal, des accidents, la météo, des grèves, des routes fermées ou d'autres causes hors de notre contrôle. Prévoyez une marge suffisante pour les vols et les trains.</p>
 <h2>Objets oubliés</h2>
@@ -164,9 +159,9 @@ def terms_html(lang):
            'after': 'Payment is made at the end of the service; you can also pay in advance.', None: '<mark>[to confirm]</mark>'}[t['payment']]
     nightp = ('<mark>[to confirm]</mark>' if night is None else '' if night in (False, 'extras') else
               f'<p>Services between {night["start"]} and {night["end"]} carry a {night["pct"]}% surcharge.</p>')
-    pets = {'carrier': 'Pets are welcome in a carrier, if mentioned when booking.', 'request': 'Pets are accepted on request, if mentioned when booking.',
+    pets = {'request_carrier': 'Pets are accepted on request, in a carrier, if mentioned when booking. Assistance dogs are always welcome.', 'carrier': 'Pets are welcome in a carrier, if mentioned when booking.', 'request': 'Pets are accepted on request, if mentioned when booking.',
             'no': 'We do not carry pets, except assistance dogs.', None: '<mark>[to confirm]</mark>'}[t['pets']]
-    alc = {'no': 'Alcohol may not be consumed on board.', 'moderate': 'Alcohol on board in moderation only.',
+    alc = {'no': 'Alcohol may not be consumed on board, on any service.', 'moderate': 'Alcohol on board in moderation only.',
            'events': 'Alcohol on board only on event services, in moderation.', None: '<mark>[to confirm]</mark>'}[t['alcohol']]
     seat = 'free of charge' if t['child_seat_eur'] == 0 else _v('child_seat_eur', lambda x: f'at €{x} each')
     return f'''<p>Last updated: {t["updated"]["en"]}. These terms apply to services provided by Dark Diamond Luxury, the trading name of {co}.</p>
@@ -183,15 +178,13 @@ def terms_html(lang):
 <li>Extra waiting: per vehicle, as set out in Extras above.</li></ul>
 <p>If the passenger does not appear or respond after the waiting time, the service counts as a no-show.</p>
 <h2>Cancellation</h2>
-<ul><li>Up to {_v("cancel_free_h")} h before: free, full refund.</li>
-<li>Between {_v("cancel_free_h")} h and {_v("cancel_half_h")} h before: 50% of the price.</li>
-<li>Less than {_v("cancel_half_h")} h before, or no-show: 100% of the price.</li>
-<li>Chauffeur at disposal, events, weddings and long distance: free up to {_v("cancel_long_h")} h before.</li></ul>
-<p>Refunds are made to the original payment method within {_v("refund_days")} days. If we cancel, we refund in full or send an equivalent vehicle, as you prefer.</p>
+<p>Cancellation without penalty up to {_v("cancel_free_h")} h before ({_v("cancel_long_h")} h for long distance, events and chauffeur-at-disposal services). Bank and payment processing costs ({_v("fee_pct")}%) are not refundable. Refunds are made to the original payment method within {_v("refund_days")} working days. If we cancel, the refund is in full.</p>
+<ul><li>Between {_v("cancel_free_h")} h and {_v("cancel_half_h")} h before: 50% of the price.</li>
+<li>Less than {_v("cancel_half_h")} h before, or no-show: 100% of the price.</li></ul>
 <h2>Passengers, luggage and children</h2>
 <p>The number of passengers and bags you give sets the vehicle. If more people or bags turn up than booked and they do not fit safely, another vehicle may be needed at extra cost. Child seats and boosters are required by law and provided {seat} when requested at booking. Special luggage (golf, ski, bicycles, pushchairs) should be mentioned when booking. {pets}</p>
 <h2>Conduct on board</h2>
-<p>No smoking, including e-cigarettes. {alc} Damage or extraordinary cleaning caused by passengers is charged: €{_v("cleaning_eur")} for cleaning, or the actual cost of repair. The driver may refuse or stop the service if safety is at risk.</p>
+<p>No smoking, including e-cigarettes. {alc} Extraordinary cleaning or damage caused by passengers is charged at actual cost, with proof. The driver may refuse or stop the service if safety is at risk.</p>
 <h2>Delays and force majeure</h2>
 <p>We are not liable for delays caused by abnormal traffic, accidents, weather, strikes, road closures or other causes beyond our control. Please allow enough time for flights and trains.</p>
 <h2>Lost property</h2>

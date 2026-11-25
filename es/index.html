@@ -73,6 +73,15 @@ button,input,select,textarea{font:inherit;color:inherit}
 .btn svg{width:16px;height:16px;color:currentColor}
 .nav .btn{padding:10px 20px;font-size:.92rem}
 @media (max-width:1200px){.nav .links{display:none}.nav{gap:12px}.nav .lang{margin-left:auto}}
+/* menu ☰ abaixo de 1200 px */
+.nav .menu{display:none;position:relative}
+.nav .menu summary{list-style:none;display:grid;place-items:center;width:44px;height:44px;border-radius:99px;cursor:pointer;color:var(--ink);background:var(--black)}
+.nav .menu summary::-webkit-details-marker{display:none}
+.nav .menu[open] summary{color:var(--gold)}
+.nav .menu nav{position:absolute;right:0;top:calc(100% + 8px);min-width:220px;display:grid;padding:8px;border-radius:18px;background:#0c0c0b;box-shadow:0 18px 40px rgba(0,0,0,.55)}
+.nav .menu nav a{display:flex;align-items:center;min-height:46px;padding:0 14px;border-radius:12px;color:var(--ink);text-decoration:none;font-size:1rem}
+.nav .menu nav a:hover,.nav .menu nav a[aria-current]{background:#1a1916;color:var(--gold)}
+@media (max-width:1200px){.nav .menu{display:block}}
 @media (max-width:520px){.nav>.btn{display:none}}
 
 /* ---------- hero ---------- */
@@ -298,7 +307,7 @@ footer .word em{background:linear-gradient(120deg,#A27A38,#F3DFA2 45%,#C69F5B 70
 .brand .dk{color:var(--gold)}
 .brand .dm{color:var(--silver)}
 @media (max-width:520px){.brand{font-size:.84rem;letter-spacing:.02em;gap:8px;flex-shrink:0}.lang{padding:2px}.lang a{padding:4px 6px;font-size:.72rem}}
-@media (max-width:370px){.brand .lux{display:none}}
+@media (max-width:400px){.brand .lux{display:none}}
 
 /* ---------- telemóvel ---------- */
 @media (max-width:860px),(hover:none){.float-cta{display:inline-flex!important}}
@@ -425,7 +434,7 @@ footer{padding-bottom:96px}
 .sp-car[aria-pressed="true"] small{color:rgba(241,219,160,.78)}
 .sp-car:disabled{opacity:.35;cursor:default}
 .sp-big{grid-column:1/-1;margin:0 0 4px}
-.sp-cond{margin-top:14px;font-size:.88rem}.sp-cond a{color:inherit;text-underline-offset:.2em}
+.sp-cond{margin-top:10px;font-size:.88rem}.sp-cond a{color:inherit;text-underline-offset:.2em}
 .sp-tags{display:flex;flex-wrap:wrap;gap:8px}
 .sp-tags button{min-height:44px;border:0;border-radius:99px;padding:9px 15px;background:rgba(10,9,8,.1);color:var(--black);font-size:.9rem;cursor:pointer;display:inline-flex;align-items:center;gap:7px;transition:background .2s,color .2s}
 .sp-tags button::before{content:"+";font-size:1.05rem;line-height:1}
@@ -459,6 +468,10 @@ footer{padding-bottom:96px}
 /* topo: só destino + Continuar */
 .qrow{grid-template-columns:minmax(0,1fr) auto}
 @media (max-width:480px){.qrow{grid-template-columns:1fr}}
+@media (max-width:520px){.nav{gap:8px;padding-inline:14px}.brand{font-size:.82rem;letter-spacing:.02em;gap:6px}.brand img{width:28px;height:28px}.lang{padding:2px}.lang a{padding:5px 6px;font-size:.74rem}.nav .menu summary{width:40px;height:40px}}
+@media (max-width:680px){.nav>.btn{display:none}}@media (max-width:340px){.nav{gap:6px;padding-inline:10px}.lang a{padding:4px 4px;font-size:.7rem}.nav .menu summary{width:38px;height:38px}}
+.nav .menu nav a.mbook{margin-top:6px;background:var(--gold);color:var(--black);justify-content:center}
+@media (min-width:681px){.nav .menu nav a.mbook{display:none}}
 </style>
 </head>
 <body>
@@ -472,6 +485,7 @@ footer{padding-bottom:96px}
   <a class="brand" href="/es/" aria-label="Dark Diamond Luxury"><img src="/assets/logo-96.webp" alt="" width="40" height="40"><span class="dk">Dark</span> <span class="dm">Diamond</span> <span class="lux">Luxury</span></a>
   <nav class="links" aria-label="Principal"><a href="#destinos">Destinos</a><a href="#servicos">Servicios</a><a href="#frota">Flota</a><a href="/es/precios/">Precios</a><a href="#parceiros">Partners</a></nav>
   <nav class="lang" aria-label="Idioma"><a href="/pt/" hreflang="pt" lang="pt">PT</a><a href="/" hreflang="en" lang="en">EN</a><a href="/es/" hreflang="es" lang="es" aria-current="true">ES</a><a href="/fr/" hreflang="fr" lang="fr">FR</a></nav>
+  <details class="menu" onclick="if(event.target.closest('a'))this.removeAttribute('open')"><summary aria-label="Menú"><svg viewBox="0 0 24 24" width="22" height="22" aria-hidden="true"><path d="M4 7h16M4 12h16M4 17h16" stroke="currentColor" stroke-width="1.6" stroke-linecap="round"/></svg></summary><nav aria-label="Menú"><a href="#destinos">Destinos</a><a href="#servicos">Servicios</a><a href="#frota">Flota</a><a href="/es/precios/">Precios</a><a href="#parceiros">Partners</a><a class="mbook" href="#reservar">Reservar</a></nav></details>
   <a class="btn" href="#reservar">Reservar</a>
 </header>
 
@@ -582,7 +596,7 @@ footer{padding-bottom:96px}
       <p class="cov"><b>Cobertura</b>Portugal, España y Francia</p></div>
     <div><b>Servicios</b><a href="/es/traslado-aeropuerto-lisboa/">Traslado aeropuerto</a><a href="/es/chofer-a-disposicion-lisboa/">Chófer a disposición</a><a href="/es/tours-privados-portugal/">Tours privados</a><a href="/es/eventos-bodas-transporte/">Eventos y bodas</a><a href="/es/traslados-larga-distancia/">Larga distancia</a><a href="/es/traslado-terminal-cruceros-lisboa/">Terminal de cruceros</a><a href="/es/precios/">Precios</a>
       <b class="sub">Destinos</b><span class="inline"><a href="/es/lisboa-sintra/">Sintra</a> <a href="/es/lisboa-cascais/">Cascais</a> <a href="/es/lisboa-arrabida/">Arrábida</a> <a href="/es/lisboa-obidos-nazare/">Óbidos y Nazaré</a> <a href="/es/lisboa-comporta/">Comporta</a> <a href="/es/lisboa-evora/">Évora</a> <a href="/es/lisboa-fatima/">Fátima</a> <a href="/es/lisboa-algarve/">Algarve</a> <a href="/es/lisboa-oporto/">Oporto</a> <a href="/es/lisboa-valle-del-duero/">Valle del Duero</a> <a href="/es/lisboa-madrid/">Madrid</a> <a href="/es/lisboa-sevilla/">Sevilla</a> <a href="/es/lisboa-marbella/">Marbella</a></span></div>
-    <div><b>Información</b><a href="/es/agencias/">Agencias y partners</a><a href="/es/aviso-legal/">Aviso legal</a><a href="/es/privacidad/">Privacidad</a><a href="https://www.livroreclamacoes.pt" rel="noopener">Libro de Reclamaciones (Livro de Reclamações)</a><a href="/es/soporte/">Soporte de la app</a></div>
+    <div><b>Información</b><a href="/es/agencias/">Agencias y partners</a><a href="/es/aviso-legal/">Aviso legal</a><a href="/es/terminos/">Términos y condiciones</a><a href="/es/privacidad/">Privacidad</a><a href="https://www.livroreclamacoes.pt" rel="noopener">Libro de Reclamaciones (Livro de Reclamações)</a><a href="/es/soporte/">Soporte de la app</a></div>
   </div>
   <p class="legalline">Dark Diamond Luxury es una marca de Artur Danilo, Unipessoal Lda · NIF (NIPC) 515565458 · Av. Vergílio Ferreira, Lote 764, 6.º Esq., 1950-339 Lisboa · Registro RNAAT n.º 682/2022</p>
   <details class="credits"><summary>Créditos de las fotografías</summary>
@@ -725,7 +739,7 @@ const SP_TXT = {
   n1:'{svc}. Ótima escolha.',n2a:'{to} fica a cerca de {t} do aeroporto.',n2b:'Destino registado.',n3:'Data registada. Já vai a meio.',n4:'Já está quase.',n5:'Último passo: confirmar.',
   eSvc:'Escolha um serviço para continuar.',eTo:'Toque num destino ou escreva a morada.',eDay:'Escolha o dia.',eHour:'Escolha a hora.',eMin:'Escolha os minutos.',ePhone:'Indique o número de telefone para lhe respondermos.',
   h7:'Pedido enviado.',l7:'Obrigado{n}. Respondemos em breve no WhatsApp com a confirmação e o preço.',again:'Fazer outro pedido',wa:'Se o WhatsApp não abriu, escreva-nos para +351 932 666 254.',
-  loc:'pt-PT',big:'Mais de 21 pessoas: enviamos um orçamento, com as viaturas necessárias.',cond:'Extras e condições'},
+  loc:'pt-PT',cx1:'Cancelamento sem penalização até 24 h antes (48 h em longa distância, eventos e serviços à disposição).',cx2:'Custos de processamento do pagamento (3 %) não reembolsáveis em caso de cancelamento.',big:'Mais de 21 pessoas: enviamos um orçamento, com as viaturas necessárias.',cond:'Extras e condições'},
  en:{of:'Step {n} of 6',done:'Done',cont:'Continue',confirm:'Confirm request',back:'Back',
   h1:'How can we help?',l1:'Choose the service. One tap and we move on.',
   sub:['Arrivals and departures, with your flight tracked','A chauffeur and car by the hour or by the day','Sintra, Cascais, Fátima, Douro, at your pace','Guests welcomed and driven on time','Porto, Algarve, Spain and France','From the pier to your hotel, the airport or a tour'],
@@ -745,7 +759,7 @@ const SP_TXT = {
   n1:'{svc}. Great choice.',n2a:'{to} is about {t} from the airport.',n2b:'Destination saved.',n3:'Date saved. Halfway there.',n4:'Almost done.',n5:'Last step: confirm.',
   eSvc:'Choose a service to continue.',eTo:'Tap a destination or type the address.',eDay:'Choose the day.',eHour:'Choose the time.',eMin:'Choose the minutes.',ePhone:'Please add a phone number so we can reply.',
   h7:'Request sent.',l7:'Thank you{n}. We will reply shortly on WhatsApp with the confirmation and the price.',again:'Make another request',wa:'If WhatsApp did not open, message us at +351 932 666 254.',
-  loc:'en-GB',big:'More than 21 people: we send a quote with the vehicles needed.',cond:'Extras and conditions'},
+  loc:'en-GB',cx1:'Cancellation without penalty up to 24 h before (48 h for long distance, events and chauffeur at disposal).',cx2:'Payment processing costs (3%) are not refundable if you cancel.',big:'More than 21 people: we send a quote with the vehicles needed.',cond:'Extras and conditions'},
  es:{of:'Paso {n} de 6',done:'Completado',cont:'Continuar',confirm:'Confirmar solicitud',back:'Volver',
   h1:'¿Cómo podemos ayudarle?',l1:'Elija el servicio. Un toque y seguimos.',
   sub:['Llegadas y salidas, con seguimiento del vuelo','Chófer y coche por horas o por días','Sintra, Cascais, Fátima, Duero, a su ritmo','Invitados recibidos y llevados a tiempo','Oporto, Algarve, España y Francia','Del muelle al hotel, al aeropuerto o a un paseo'],
@@ -765,7 +779,7 @@ const SP_TXT = {
   n1:'{svc}. Excelente elección.',n2a:'{to} está a unos {t} del aeropuerto.',n2b:'Destino guardado.',n3:'Fecha guardada. Ya va por la mitad.',n4:'Ya casi está.',n5:'Último paso: confirmar.',
   eSvc:'Elija un servicio para continuar.',eTo:'Toque un destino o escriba la dirección.',eDay:'Elija el día.',eHour:'Elija la hora.',eMin:'Elija los minutos.',ePhone:'Indique un teléfono para responderle.',
   h7:'Solicitud enviada.',l7:'Gracias{n}. Le responderemos en breve por WhatsApp con la confirmación y el precio.',again:'Hacer otra solicitud',wa:'Si WhatsApp no se abrió, escríbanos al +351 932 666 254.',
-  loc:'es-ES',big:'Más de 21 personas: le enviamos un presupuesto con los vehículos necesarios.',cond:'Extras y condiciones'},
+  loc:'es-ES',cx1:'Cancelación sin penalización hasta 24 h antes (48 h en larga distancia, eventos y servicios a disposición).',cx2:'Gastos de procesamiento del pago (3 %) no reembolsables en caso de cancelación.',big:'Más de 21 personas: le enviamos un presupuesto con los vehículos necesarios.',cond:'Extras y condiciones'},
  fr:{of:'Étape {n} sur 6',done:'Terminé',cont:'Continuer',confirm:'Confirmer la demande',back:'Retour',
   h1:'Comment pouvons-nous vous aider ?',l1:'Choisissez le service. Un geste et on avance.',
   sub:["Arrivées et départs, avec suivi du vol","Chauffeur et voiture à l'heure ou à la journée","Sintra, Cascais, Fátima, le Douro, à votre rythme","Invités accueillis et conduits à l'heure",'Porto, Algarve, Espagne et France',"Du quai à l'hôtel, à l'aéroport ou en excursion"],
@@ -785,7 +799,7 @@ const SP_TXT = {
   n1:'{svc}. Excellent choix.',n2a:"{to} est à environ {t} de l'aéroport.",n2b:'Destination enregistrée.',n3:'Date enregistrée. Vous êtes à mi-chemin.',n4:'Presque fini.',n5:'Dernière étape : confirmer.',
   eSvc:'Choisissez un service pour continuer.',eTo:"Touchez une destination ou écrivez l'adresse.",eDay:'Choisissez le jour.',eHour:"Choisissez l'heure.",eMin:'Choisissez les minutes.',ePhone:'Indiquez un numéro de téléphone pour que nous puissions vous répondre.',
   h7:'Demande envoyée.',l7:'Merci{n}. Nous répondons rapidement sur WhatsApp avec la confirmation et le prix.',again:'Faire une autre demande',wa:"Si WhatsApp ne s'est pas ouvert, écrivez-nous au +351 932 666 254.",
-  loc:'fr-FR',big:'Plus de 21 personnes : nous envoyons un devis avec les véhicules nécessaires.',cond:'Extras et conditions'}
+  loc:'fr-FR',cx1:"Annulation sans pénalité jusqu'à 24 h avant (48 h pour la longue distance, les événements et les services à disposition).",cx2:"Frais de traitement du paiement (3 %) non remboursables en cas d'annulation.",big:'Plus de 21 personnes : nous envoyons un devis avec les véhicules nécessaires.',cond:'Extras et conditions'}
 };
 const ST = SP_TXT[lang] || SP_TXT.en;
 /* preço imediato: só aparece quando o destino (ou a tour) e a viatura estão na tabela de prices.py */
@@ -862,7 +876,7 @@ sp$('form').innerHTML = `
       <div style="position:absolute;left:-9999px" aria-hidden="true"><label for="fWeb">Website</label><input id="fWeb" tabindex="-1" autocomplete="off"></div>
     </div>
   </section>
-  <section class="sp-step" data-s="6"><h3 class="sp-h" id="spH6" tabindex="-1"></h3><p class="sp-l" id="spL6"></p><dl class="sp-sum" id="spSum"></dl><p class="sp-l sp-cond"><a id="spCond" href="/es/precios/#condicoes" target="_blank" rel="noopener"></a></p></section>
+  <section class="sp-step" data-s="6"><h3 class="sp-h" id="spH6" tabindex="-1"></h3><p class="sp-l" id="spL6"></p><dl class="sp-sum" id="spSum"></dl><p class="sp-l sp-cond" id="spCx1"></p><p class="sp-l sp-cond" id="spCx2"></p><p class="sp-l sp-cond"><a id="spCond" href="/es/precios/#condicoes" target="_blank" rel="noopener"></a></p></section>
   <section class="sp-step" data-s="7" tabindex="-1">
     <svg class="sp-done" viewBox="0 0 76 76" fill="none" stroke="currentColor" stroke-width="2" aria-hidden="true"><circle cx="38" cy="38" r="36"/><path d="M24 39l10 10 19-21" stroke-linecap="round" stroke-linejoin="round"/></svg>
     <h3 class="sp-h" id="spH7"></h3><p class="sp-l" id="spL7"></p><p class="sp-l" id="spWa"></p><p class="sp-err" id="spSendErr" role="alert"></p>
@@ -874,7 +888,7 @@ sp$('form').innerHTML = `
 
 /* textos fixos */
 [['spCarT','carT'],['spH1','h1'],['spL1','l1'],['spDayT','day'],['spMinT','min'],['spH4','h4'],['spL4','l4'],['spExT','extrasT'],['spH5','h5'],['spL5','l5'],['spNameL','name'],['spPhoneL','phone'],['spCCL','cc'],['spFlightL','flight'],['spMoreBtn','moreBtn'],['spEmailL','email'],['spNotesL','notes'],['spH6','h6'],['spL6','l6'],['spH7','h7'],['spWa','wa'],['spAgain','again'],['spBack','back']].forEach(([id,k])=>{ sp$(id).textContent=ST[k]; });
-sp$('spCond').textContent=ST.cond; sp$('spTo').placeholder=ST.otherPh; sp$('spToGo').setAttribute('aria-label',ST.goAria); document.querySelector('label[for="spTo"]').textContent=ST.otherPh;
+sp$('spCond').textContent=ST.cond; sp$('spCx1').textContent=ST.cx1; sp$('spCx2').textContent=ST.cx2; sp$('spTo').placeholder=ST.otherPh; sp$('spToGo').setAttribute('aria-label',ST.goAria); document.querySelector('label[for="spTo"]').textContent=ST.otherPh;
 sp$('spName').placeholder=ST.namePh; sp$('spNotes').placeholder=ST.notesPh;
 sp$('spCC').innerHTML=CCS.map(([c,n])=>`<option value="${n}">${c} ${n}</option>`).join('');
 sp$('spCounts').innerHTML=[['pax',1,40,ST.pax,''],['bags',0,30,ST.bags,ST.bagsSub],['cabin',0,30,ST.cabin,ST.cabinSub]].map(([k,mn,mx,l,s])=>
