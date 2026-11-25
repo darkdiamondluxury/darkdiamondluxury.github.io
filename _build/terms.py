@@ -2,7 +2,7 @@
 # None = ainda por decidir → a página é gerada mas fica escondida (sem link, noindex, fora do mapa do site).
 # Quando todos os valores estiverem preenchidos e 'live' passar a True, a página aparece no rodapé.
 # Rascunho com as propostas: doc do projeto claude/termos-e-condicoes-rascunho.md
-from config import EMAIL, LEGAL
+from config import EMAIL, LEGAL, PAY_MODE
 from prices_page import EXTRAS_H, extras_items
 
 TERMS = {
@@ -43,6 +43,20 @@ def terms_html(lang):
     t = TERMS
     co = f'{LEGAL["name"]}, NIPC {LEGAL["nipc"]}, RNAAT {LEGAL["rnaat"]}'
     night = t['night']
+    # Frase da reserva: com o pagamento online ativo (PAY_MODE = 'live'), a reserva no site fica confirmada com o pagamento.
+    BOOK = {
+        'pt': 'No site, a reserva fica confirmada com o pagamento. Pedidos feitos por WhatsApp, telefone ou email só ficam reservados depois da nossa confirmação escrita, com o preço, e pagam-se por link de pagamento ou transferência.',
+        'en': 'On the website, your booking is confirmed when you pay. Requests made by WhatsApp, phone or email are only booked once we confirm them in writing, with the price, and are paid by payment link or bank transfer.',
+        'es': 'En la web, la reserva queda confirmada con el pago. Las solicitudes hechas por WhatsApp, teléfono o email solo quedan reservadas tras nuestra confirmación por escrito, con el precio, y se pagan por enlace de pago o transferencia.',
+        'fr': "Sur le site, la réservation est confirmée par le paiement. Les demandes faites par WhatsApp, téléphone ou email ne sont réservées qu'après notre confirmation écrite, avec le prix, et se paient par lien de paiement ou virement.",
+    }
+    OLD = {
+        'pt': 'Um pedido feito pelo site, WhatsApp, telefone ou email só fica reservado depois de o confirmarmos por escrito, com o preço.',
+        'en': 'A request made through the website, WhatsApp, phone or email is only booked once we confirm it in writing, with the price.',
+        'es': 'Una solicitud hecha por la web, WhatsApp, teléfono o email solo queda reservada cuando la confirmamos por escrito, con el precio.',
+        'fr': "Une demande faite par le site, WhatsApp, téléphone ou email n'est réservée qu'après notre confirmation écrite, avec le prix.",
+    }
+    booking = BOOK[lang] if PAY_MODE == 'live' else OLD[lang]
     ex = f'<h2>{EXTRAS_H[lang]}</h2><ul>' + ''.join(f'<li>{x}</li>' for x in extras_items(lang)) + '</ul>'
     if lang == 'pt':
         pay = {'full': 'O pagamento total é feito na reserva.', 'deposit': f'Na reserva paga-se um sinal de {_v("deposit_pct")} % do preço; o restante no fim do serviço.',
@@ -56,7 +70,7 @@ def terms_html(lang):
         seat = 'sem custo' if t['child_seat_eur'] == 0 else _v('child_seat_eur', lambda x: f'por {x} € cada')
         return f'''<p>Última atualização: {t["updated"]["pt"]}. Estes termos aplicam-se aos serviços da Dark Diamond Luxury, nome comercial de {co}.</p>
 <h2>Reserva e confirmação</h2>
-<p>Um pedido feito pelo site, WhatsApp, telefone ou email só fica reservado depois de o confirmarmos por escrito, com o preço. Confirme que a data, a hora, o voo, as moradas, os passageiros e as malas estão corretos. Alterações sem custo até {_v("change_free_h")} h antes, sujeitas a disponibilidade.</p>
+<p>{booking} Confirme que a data, a hora, o voo, as moradas, os passageiros e as malas estão corretos. Alterações sem custo até {_v("change_free_h")} h antes, sujeitas a disponibilidade.</p>
 <h2>Preço</h2>
 <p>O preço confirmado inclui viatura, motorista, combustível, portagens, estacionamento no aeroporto e o tempo de espera indicado abaixo{", com IVA incluído" if t["vat_included"] else "" if t["vat_included"] is False else " <mark>[IVA: a confirmar]</mark>"}. Não inclui espera extra, paragens não previstas, desvios pedidos durante a viagem nem horas extra em serviços à disposição.</p>
 {ex}
@@ -93,7 +107,7 @@ def terms_html(lang):
         seat = 'sin coste' if t['child_seat_eur'] == 0 else _v('child_seat_eur', lambda x: f'por {x} € cada una')
         return f'''<p>Última actualización: {t["updated"]["es"]}. Estos términos se aplican a los servicios de Dark Diamond Luxury, nombre comercial de {co}.</p>
 <h2>Reserva y confirmación</h2>
-<p>Una solicitud hecha por la web, WhatsApp, teléfono o email solo queda reservada cuando la confirmamos por escrito, con el precio. Compruebe que la fecha, la hora, el vuelo, las direcciones, los pasajeros y las maletas son correctos. Cambios sin coste hasta {_v("change_free_h")} h antes, según disponibilidad.</p>
+<p>{booking} Compruebe que la fecha, la hora, el vuelo, las direcciones, los pasajeros y las maletas son correctos. Cambios sin coste hasta {_v("change_free_h")} h antes, según disponibilidad.</p>
 <h2>Precio</h2>
 <p>El precio confirmado incluye vehículo, chófer, combustible, peajes, aparcamiento en el aeropuerto y el tiempo de espera indicado abajo{", IVA incluido" if t["vat_included"] else "" if t["vat_included"] is False else " <mark>[IVA: a confirmar]</mark>"}. No incluye espera adicional, paradas no previstas, desvíos pedidos durante el viaje ni horas extra en servicios a disposición.</p>
 {ex}
@@ -130,7 +144,7 @@ def terms_html(lang):
         seat = 'sans frais' if t['child_seat_eur'] == 0 else _v('child_seat_eur', lambda x: f'à {x} € pièce')
         return f"""<p>Dernière mise à jour : {t["updated"]["fr"]}. Ces conditions s'appliquent aux services de Dark Diamond Luxury, nom commercial de {co}.</p>
 <h2>Réservation et confirmation</h2>
-<p>Une demande faite par le site, WhatsApp, téléphone ou email n'est réservée qu'après notre confirmation écrite, avec le prix. Vérifiez que la date, l'heure, le vol, les adresses, les passagers et les bagages sont corrects. Modifications sans frais jusqu'à {_v("change_free_h")} h avant, selon disponibilité.</p>
+<p>{booking} Vérifiez que la date, l'heure, le vol, les adresses, les passagers et les bagages sont corrects. Modifications sans frais jusqu'à {_v("change_free_h")} h avant, selon disponibilité.</p>
 <h2>Prix</h2>
 <p>Le prix confirmé comprend le véhicule, le chauffeur, le carburant, les péages, le parking à l'aéroport et le temps d'attente indiqué ci-dessous{", TVA comprise" if t["vat_included"] else "" if t["vat_included"] is False else " <mark>[TVA : à confirmer]</mark>"}. Il ne comprend pas l'attente supplémentaire, les arrêts non prévus, les détours demandés en cours de route ni les heures supplémentaires des services à disposition.</p>
 {ex}
@@ -166,7 +180,7 @@ def terms_html(lang):
     seat = 'free of charge' if t['child_seat_eur'] == 0 else _v('child_seat_eur', lambda x: f'at €{x} each')
     return f'''<p>Last updated: {t["updated"]["en"]}. These terms apply to services provided by Dark Diamond Luxury, the trading name of {co}.</p>
 <h2>Booking and confirmation</h2>
-<p>A request made through the website, WhatsApp, phone or email is only booked once we confirm it in writing, with the price. Please check that the date, time, flight, addresses, passengers and luggage are correct. Changes are free up to {_v("change_free_h")} h before, subject to availability.</p>
+<p>{booking} Please check that the date, time, flight, addresses, passengers and luggage are correct. Changes are free up to {_v("change_free_h")} h before, subject to availability.</p>
 <h2>Price</h2>
 <p>The confirmed price includes vehicle, driver, fuel, tolls, airport parking and the waiting time below{", VAT included" if t["vat_included"] else "" if t["vat_included"] is False else " <mark>[VAT: to confirm]</mark>"}. It does not include extra waiting, unplanned stops, detours requested during the journey or extra hours on chauffeur-at-disposal services.</p>
 {ex}

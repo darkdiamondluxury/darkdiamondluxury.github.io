@@ -20,7 +20,7 @@ ROOT = os.path.dirname(HERE)
 sys.path.insert(0, HERE)
 
 from chrome import GOAT, L, SVG_DEFS, dest_name, footer, head, nav, org_ld, page_ld, tel, url  # noqa: E402
-from config import BOOKINGS_KEY, BOOKINGS_URL, DESTS, EMAIL, IMG, LANGS, PHONES, PRICE_MODE, REDIRECTS, SITE, SLUGS, WHATSAPP  # noqa: E402
+from config import BOOKINGS_KEY, BOOKINGS_URL, DESTS, EMAIL, IMG, LANGS, PHONES, PRICE_MODE, PAY_MODE, PAY_URL, REDIRECTS, SITE, SLUGS, WHATSAPP  # noqa: E402
 import content  # noqa: E402
 from faq import FAQ, FAQ_H  # noqa: E402
 from partner import partner_html  # noqa: E402
@@ -69,6 +69,7 @@ def build_home(lang):
         '{{PRICES_JSON}}': json.dumps(prices_lookup(lang), ensure_ascii=False),
         '{{PRICE_MODE}}': PRICE_MODE,
         '{{PRICES_URL}}': url('prices', lang),
+        '{{PAY_MODE}}': PAY_MODE, '{{PAY_URL}}': PAY_URL,
         '{{SEE_PRICES}}': {'pt': 'Ver preços', 'en': 'See prices', 'es': 'Ver precios', 'fr': 'Voir les tarifs'}[lang],
         '{{AIRPORT_URL}}': url('airport', lang),
         '{{CRUISE_URL}}': url('cruise', lang),
@@ -287,4 +288,10 @@ if __name__ == '__main__':
     build_404()
     build_sitemap()
     build_cname()
+    # tabela para a função de pagamento (o servidor recalcula sempre o preço)
+    import prices as _P
+    _j = _P.lookup_json('pt'); _j.pop('split', None)
+    _j['cap'] = _P.CAPACITY; _j['carNames'] = _P.VEH_NAME
+    with open(os.path.join(HERE, 'functions', 'prices.json'), 'w', encoding='utf-8') as _f:
+        json.dump(_j, _f, ensure_ascii=False, separators=(',', ':'))
     print(f'{len(written)} ficheiros gerados')
