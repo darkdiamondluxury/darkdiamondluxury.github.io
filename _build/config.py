@@ -27,10 +27,10 @@ BOOKINGS_KEY = 'eyJhbGciOiJIUzI1NiIsInR5cCI6IkpXVCJ9.eyJpc3MiOiJzdXBhYmFzZSIsInJ
 WHATSAPP_ALL = ['351932666254', '351960033622']   # ambos têm WhatsApp
 INSTAGRAM = ''         # ex.: 'https://instagram.com/darkdiamondluxury'
 
-FLEET = {'fr': 'Mercedes-Benz Classe S, Classe E, Classe V, Vito, Sprinter et minibus de 19 places',
-         'pt': 'Mercedes-Benz Classe S, Classe E, Classe V, Vito, Sprinter e minibus de 19 lugares',
-         'en': 'Mercedes-Benz S-Class, E-Class, V-Class, Vito, Sprinter and a 19-seat minibus',
-         'es': 'Mercedes-Benz Clase S, Clase E, Clase V, Vito, Sprinter y minibús de 19 plazas'}
+FLEET = {'fr': 'Mercedes-Benz Classe S, Classe E, Classe V, Vito, Sprinter et minibus de 21 places',
+         'pt': 'Mercedes-Benz Classe S, Classe E, Classe V, Vito, Sprinter e minibus de 21 lugares',
+         'en': 'Mercedes-Benz S-Class, E-Class, V-Class, Vito, Sprinter and a 21-seat minibus',
+         'es': 'Mercedes-Benz Clase S, Clase E, Clase V, Vito, Sprinter y minibús de 21 plazas'}
 LANGS_SPOKEN = {'pt': 'Português, inglês, espanhol e francês', 'en': 'Portuguese, English, Spanish and French', 'es': 'Portugués, inglés, español y francés', 'fr': 'Portugais, anglais, espagnol et français'}
 
 COVERAGE = {'pt': 'Portugal, Espanha e França', 'en': 'Portugal, Spain and France', 'es': 'Portugal, España y Francia', 'fr': 'Portugal, Espagne et France'}

@@ -3,24 +3,25 @@
 # Quando todos os valores estiverem preenchidos e 'live' passar a True, a página aparece no rodapé.
 # Rascunho com as propostas: doc do projeto claude/termos-e-condicoes-rascunho.md
 from config import EMAIL, LEGAL
+from prices_page import EXTRAS_H, extras_items
 
 TERMS = {
     'live': False,
     'updated': {'pt': 'novembro de 2026', 'en': 'November 2026', 'es': 'noviembre de 2026', 'fr': 'novembre 2026'},
     'change_free_h': None,      # alterações sem custo até X h antes (proposta 24)
-    'vat_included': None,       # True / False (proposta True)
-    'night': None,              # False = não há; ou dict(start='00:00', end='06:00', pct=20)
-    'payment': None,            # 'full' (tudo na reserva) · 'deposit' (sinal) · 'after' (no fim)
+    'vat_included': True,       # preços com IVA incluído (tabela de 25/11/2026)
+    'night': 'extras',          # suplemento noturno e restantes extras: secção Extras (prices.py, 25/11/2026)
+    'payment': 'full',          # pagamento total na reserva (reunião de 22/11/2026)
     'deposit_pct': None,        # só se payment = 'deposit' (proposta 30)
     'cash': None,               # True / False: aceitam numerário?
-    'wait_air': None,           # min grátis no aeroporto, a contar da aterragem (proposta 60)
-    'wait_other': None,         # min grátis nas outras recolhas (proposta 15)
-    'wait_extra_eur': None,     # € por cada 15 min de espera extra
-    'cancel_free_h': None,      # cancelamento grátis até X h antes (proposta 24)
-    'cancel_half_h': None,      # 50 % entre cancel_free_h e X h antes (proposta 6)
+    'wait_air': 120,            # min grátis no aeroporto, a contar da aterragem (Bruno, 22/11)
+    'wait_other': 30,           # min grátis nas outras recolhas (Bruno, 22/11)
+    'wait_extra_eur': 'extras', # por viatura, na secção Extras (prices.py)
+    'cancel_free_h': 24,        # cancelamento grátis até 24 h antes (Bruno, 22/11)
+    'cancel_half_h': 3,         # 50 % entre 24 h e 3 h antes (Bruno, 22/11)
     'cancel_long_h': None,      # à disposição, eventos e longa distância: grátis até X h (proposta 48)
     'refund_days': None,        # reembolso em até X dias (proposta 14)
-    'child_seat_eur': None,     # 0 = grátis; ou preço em €
+    'child_seat_eur': 0,        # grátis, pedidas na reserva (25/11)
     'pets': None,               # 'carrier' (em transportadora) · 'request' (a pedido) · 'no'
     'alcohol': None,            # 'no' · 'moderate' · 'events'
     'cleaning_eur': None,       # taxa de limpeza extraordinária em €
@@ -41,10 +42,11 @@ def terms_html(lang):
     t = TERMS
     co = f'{LEGAL["name"]}, NIPC {LEGAL["nipc"]}, RNAAT {LEGAL["rnaat"]}'
     night = t['night']
+    ex = f'<h2>{EXTRAS_H[lang]}</h2><ul>' + ''.join(f'<li>{x}</li>' for x in extras_items(lang)) + '</ul>'
     if lang == 'pt':
         pay = {'full': 'O pagamento total é feito na reserva.', 'deposit': f'Na reserva paga-se um sinal de {_v("deposit_pct")} % do preço; o restante no fim do serviço.',
                'after': 'O pagamento é feito no fim do serviço; pode também pagar antecipadamente.', None: '<mark>[a confirmar]</mark>'}[t['payment']]
-        nightp = ('<mark>[a confirmar: suplemento noturno]</mark>' if night is None else '' if night is False else
+        nightp = ('<mark>[a confirmar: suplemento noturno]</mark>' if night is None else '' if night in (False, 'extras') else
                   f'<p>Serviços entre as {night["start"]} e as {night["end"]} têm um suplemento de {night["pct"]} %.</p>')
         pets = {'carrier': 'Animais de estimação são aceites em transportadora, se indicados na reserva.', 'request': 'Animais de estimação são aceites a pedido, se indicados na reserva.',
                 'no': 'Não transportamos animais de estimação, exceto cães de assistência.', None: '<mark>[a confirmar: animais]</mark>'}[t['pets']]
@@ -56,13 +58,13 @@ def terms_html(lang):
 <p>Um pedido feito pelo site, WhatsApp, telefone ou email só fica reservado depois de o confirmarmos por escrito, com o preço. Confirme que a data, a hora, o voo, as moradas, os passageiros e as malas estão corretos. Alterações sem custo até {_v("change_free_h")} h antes, sujeitas a disponibilidade.</p>
 <h2>Preço</h2>
 <p>O preço confirmado inclui viatura, motorista, combustível, portagens, estacionamento no aeroporto e o tempo de espera indicado abaixo{", com IVA incluído" if t["vat_included"] else "" if t["vat_included"] is False else " <mark>[IVA: a confirmar]</mark>"}. Não inclui espera extra, paragens não previstas, desvios pedidos durante a viagem nem horas extra em serviços à disposição.</p>
-{nightp}
+{ex}
 <h2>Pagamento</h2>
 <p>{pay} Aceitamos cartão, MB WAY e transferência{", e numerário" if t["cash"] else "" if t["cash"] is False else " <mark>[numerário: a confirmar]</mark>"}. Empresas e parceiros podem ter faturação mensal, conforme acordado.</p>
 <h2>Tempo de espera</h2>
 <ul><li>Chegadas ao aeroporto: {_v("wait_air")} minutos sem custo, a contar da hora real de aterragem. Acompanhamos o voo, por isso um atraso não lhe custa nada.</li>
 <li>Outras recolhas: {_v("wait_other")} minutos sem custo.</li>
-<li>Espera extra: {_v("wait_extra_eur")} € por cada 15 minutos.</li></ul>
+<li>Espera extra: por viatura, conforme os extras acima.</li></ul>
 <p>Se o passageiro não aparecer nem responder depois do tempo de espera, o serviço conta como não comparência.</p>
 <h2>Cancelamento</h2>
 <ul><li>Até {_v("cancel_free_h")} h antes: sem custo, com reembolso total.</li>
@@ -83,7 +85,7 @@ def terms_html(lang):
     if lang == 'es':
         pay = {'full': 'El pago total se realiza al reservar.', 'deposit': f'Al reservar se paga una señal del {_v("deposit_pct")} % del precio; el resto al final del servicio.',
                'after': 'El pago se realiza al final del servicio; también puede pagar por adelantado.', None: '<mark>[a confirmar]</mark>'}[t['payment']]
-        nightp = ('<mark>[a confirmar]</mark>' if night is None else '' if night is False else
+        nightp = ('<mark>[a confirmar]</mark>' if night is None else '' if night in (False, 'extras') else
                   f'<p>Los servicios entre las {night["start"]} y las {night["end"]} tienen un suplemento del {night["pct"]} %.</p>')
         pets = {'carrier': 'Se aceptan mascotas en transportín, si se indican al reservar.', 'request': 'Se aceptan mascotas bajo petición, si se indican al reservar.',
                 'no': 'No transportamos mascotas, salvo perros de asistencia.', None: '<mark>[a confirmar]</mark>'}[t['pets']]
@@ -95,13 +97,13 @@ def terms_html(lang):
 <p>Una solicitud hecha por la web, WhatsApp, teléfono o email solo queda reservada cuando la confirmamos por escrito, con el precio. Compruebe que la fecha, la hora, el vuelo, las direcciones, los pasajeros y las maletas son correctos. Cambios sin coste hasta {_v("change_free_h")} h antes, según disponibilidad.</p>
 <h2>Precio</h2>
 <p>El precio confirmado incluye vehículo, chófer, combustible, peajes, aparcamiento en el aeropuerto y el tiempo de espera indicado abajo{", IVA incluido" if t["vat_included"] else "" if t["vat_included"] is False else " <mark>[IVA: a confirmar]</mark>"}. No incluye espera adicional, paradas no previstas, desvíos pedidos durante el viaje ni horas extra en servicios a disposición.</p>
-{nightp}
+{ex}
 <h2>Pago</h2>
 <p>{pay} Aceptamos tarjeta, MB WAY y transferencia{", y efectivo" if t["cash"] else "" if t["cash"] is False else " <mark>[efectivo: a confirmar]</mark>"}. Empresas y colaboradores pueden tener facturación mensual, según lo acordado.</p>
 <h2>Tiempo de espera</h2>
 <ul><li>Llegadas al aeropuerto: {_v("wait_air")} minutos sin coste, desde la hora real de aterrizaje. Seguimos el vuelo, así que un retraso no le cuesta nada.</li>
 <li>Otras recogidas: {_v("wait_other")} minutos sin coste.</li>
-<li>Espera adicional: {_v("wait_extra_eur")} € por cada 15 minutos.</li></ul>
+<li>Espera adicional: por vehículo, según los extras indicados arriba.</li></ul>
 <p>Si el pasajero no aparece ni responde tras el tiempo de espera, el servicio cuenta como no presentado.</p>
 <h2>Cancelación</h2>
 <ul><li>Hasta {_v("cancel_free_h")} h antes: sin coste, con reembolso total.</li>
@@ -122,7 +124,7 @@ def terms_html(lang):
     if lang == 'fr':
         pay = {'full': 'Le paiement intégral se fait à la réservation.', 'deposit': f'À la réservation, un acompte de {_v("deposit_pct")} % du prix est demandé ; le solde à la fin du service.',
                'after': "Le paiement se fait à la fin du service ; vous pouvez aussi payer à l'avance.", None: '<mark>[à confirmer]</mark>'}[t['payment']]
-        nightp = ('<mark>[à confirmer]</mark>' if night is None else '' if night is False else
+        nightp = ('<mark>[à confirmer]</mark>' if night is None else '' if night in (False, 'extras') else
                   f"<p>Les services entre {night['start']} et {night['end']} comportent un supplément de {night['pct']} %.</p>")
         pets = {'carrier': "Les animaux sont acceptés en caisse de transport, s'ils sont indiqués à la réservation.", 'request': "Les animaux sont acceptés sur demande, s'ils sont indiqués à la réservation.",
                 'no': "Nous ne transportons pas d'animaux, à l'exception des chiens d'assistance.", None: '<mark>[à confirmer]</mark>'}[t['pets']]
@@ -134,13 +136,13 @@ def terms_html(lang):
 <p>Une demande faite par le site, WhatsApp, téléphone ou email n'est réservée qu'après notre confirmation écrite, avec le prix. Vérifiez que la date, l'heure, le vol, les adresses, les passagers et les bagages sont corrects. Modifications sans frais jusqu'à {_v("change_free_h")} h avant, selon disponibilité.</p>
 <h2>Prix</h2>
 <p>Le prix confirmé comprend le véhicule, le chauffeur, le carburant, les péages, le parking à l'aéroport et le temps d'attente indiqué ci-dessous{", TVA comprise" if t["vat_included"] else "" if t["vat_included"] is False else " <mark>[TVA : à confirmer]</mark>"}. Il ne comprend pas l'attente supplémentaire, les arrêts non prévus, les détours demandés en cours de route ni les heures supplémentaires des services à disposition.</p>
-{nightp}
+{ex}
 <h2>Paiement</h2>
 <p>{pay} Nous acceptons la carte, MB WAY et le virement{", et les espèces" if t["cash"] else "" if t["cash"] is False else " <mark>[espèces : à confirmer]</mark>"}. Les entreprises et partenaires peuvent être facturés mensuellement, selon accord.</p>
 <h2>Temps d'attente</h2>
 <ul><li>Arrivées à l'aéroport : {_v("wait_air")} minutes sans frais, à compter de l'heure réelle d'atterrissage. Nous suivons votre vol : un retard ne vous coûte rien.</li>
 <li>Autres prises en charge : {_v("wait_other")} minutes sans frais.</li>
-<li>Attente supplémentaire : {_v("wait_extra_eur")} € par tranche de 15 minutes.</li></ul>
+<li>Attente supplémentaire : par véhicule, selon les extras ci-dessus.</li></ul>
 <p>Si le passager ne se présente pas et ne répond pas après le temps d'attente, le service compte comme une non-présentation.</p>
 <h2>Annulation</h2>
 <ul><li>Jusqu'à {_v("cancel_free_h")} h avant : sans frais, remboursement intégral.</li>
@@ -160,7 +162,7 @@ def terms_html(lang):
 <p>Véhicules et passagers sont couverts par des assurances de responsabilité civile et d'accidents personnels. Les données personnelles sont traitées selon la <a href="/fr/confidentialite/">politique de confidentialité</a>. Vous pouvez déposer une réclamation sur le <a href="https://www.livroreclamacoes.pt" rel="noopener">Livre de réclamations électronique</a> ou saisir le <a href="https://www.centroarbitragemlisboa.pt" rel="noopener">Centre d'arbitrage des conflits de consommation de Lisbonne</a>. Le droit portugais s'applique. Contact : <a href="mailto:{EMAIL}">{EMAIL}</a>.</p>"""
     pay = {'full': 'Full payment is made when you book.', 'deposit': f'A deposit of {_v("deposit_pct")}% is paid when you book; the balance at the end of the service.',
            'after': 'Payment is made at the end of the service; you can also pay in advance.', None: '<mark>[to confirm]</mark>'}[t['payment']]
-    nightp = ('<mark>[to confirm]</mark>' if night is None else '' if night is False else
+    nightp = ('<mark>[to confirm]</mark>' if night is None else '' if night in (False, 'extras') else
               f'<p>Services between {night["start"]} and {night["end"]} carry a {night["pct"]}% surcharge.</p>')
     pets = {'carrier': 'Pets are welcome in a carrier, if mentioned when booking.', 'request': 'Pets are accepted on request, if mentioned when booking.',
             'no': 'We do not carry pets, except assistance dogs.', None: '<mark>[to confirm]</mark>'}[t['pets']]
@@ -172,13 +174,13 @@ def terms_html(lang):
 <p>A request made through the website, WhatsApp, phone or email is only booked once we confirm it in writing, with the price. Please check that the date, time, flight, addresses, passengers and luggage are correct. Changes are free up to {_v("change_free_h")} h before, subject to availability.</p>
 <h2>Price</h2>
 <p>The confirmed price includes vehicle, driver, fuel, tolls, airport parking and the waiting time below{", VAT included" if t["vat_included"] else "" if t["vat_included"] is False else " <mark>[VAT: to confirm]</mark>"}. It does not include extra waiting, unplanned stops, detours requested during the journey or extra hours on chauffeur-at-disposal services.</p>
-{nightp}
+{ex}
 <h2>Payment</h2>
 <p>{pay} We accept card, MB WAY and bank transfer{", and cash" if t["cash"] else "" if t["cash"] is False else " <mark>[cash: to confirm]</mark>"}. Companies and partners may be invoiced monthly, as agreed.</p>
 <h2>Waiting time</h2>
 <ul><li>Airport arrivals: {_v("wait_air")} minutes free, from the actual landing time. We track your flight, so a delay costs you nothing.</li>
 <li>Other pick-ups: {_v("wait_other")} minutes free.</li>
-<li>Extra waiting: €{_v("wait_extra_eur")} per 15 minutes.</li></ul>
+<li>Extra waiting: per vehicle, as set out in Extras above.</li></ul>
 <p>If the passenger does not appear or respond after the waiting time, the service counts as a no-show.</p>
 <h2>Cancellation</h2>
 <ul><li>Up to {_v("cancel_free_h")} h before: free, full refund.</li>

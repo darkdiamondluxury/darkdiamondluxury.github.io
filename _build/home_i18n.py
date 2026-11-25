@@ -21,7 +21,7 @@ T = {
   v6h='Cruzeiros', v6p='Recebemos no cais e levamos ao hotel, ao aeroporto ou a um passeio, sempre com o horário do navio em conta.',
   vh='Uma sala de estar sobre rodas.', vp='A Mercedes-Benz Classe V é o centro da nossa frota: espaço para o grupo e para as malas, bancos frente a frente e um interior pensado para relaxar.',
 
-  f1b='Até 19 lugares', f1s='da Classe S ao minibus', f2b='Bagagem', f2s='malas de porão incluídas',
+  f1b='Até 21 lugares', f1s='da Classe S ao minibus', f2b='Bagagem', f2s='malas de porão incluídas',
   bh='Reserve em poucos toques.', bp='Seis passos rápidos, quase sem escrever. Respondemos no WhatsApp com a confirmação e o preço.',
   l_svc='Serviço', l_to='Destino', ph_to='Hotel, morada ou cidade', l_dir='Sentido', l_from='Recolha', ph_from='Aeroporto de Lisboa',
   l_bags='Malas de porão', l_cabin='Bagagem de mão', l_notes='Notas (opcional)', ph_notes='Cadeira de criança, paragem pelo caminho, pedidos especiais…',
@@ -53,7 +53,7 @@ T = {
   v6h="Cruises", v6p="We meet you at the dock and take you to your hotel, the airport or an excursion, always around the ship's schedule.",
   vh='A living room on wheels.', vp='The Mercedes-Benz V-Class is the heart of our fleet: room for the group and the luggage, facing seats and a cabin made for relaxing.',
 
-  f1b='Up to 19 seats', f1s='from S-Class to minibus', f2b='Luggage', f2s='checked bags included',
+  f1b='Up to 21 seats', f1s='from S-Class to minibus', f2b='Luggage', f2s='checked bags included',
   bh='Book in a few taps.', bp='Six quick steps, with almost no typing. We reply on WhatsApp with the confirmation and the price.',
   l_svc='Service', l_to='Destination', ph_to='Hotel, address or city', l_dir='Direction', l_from='Pick-up', ph_from='Lisbon Airport',
   l_bags='Checked bags', l_cabin='Carry-on', l_notes='Notes (optional)', ph_notes='Child seat, a stop on the way, special requests…',
@@ -85,7 +85,7 @@ T = {
   v6h="Cruceros", v6p="Le recibimos en el muelle y le llevamos al hotel, al aeropuerto o a una excursión, siempre según el horario del barco.",
   vh='Un salón sobre ruedas.', vp='La Mercedes-Benz Clase V es el centro de nuestra flota: espacio para el grupo y las maletas, asientos enfrentados y un interior pensado para relajarse.',
 
-  f1b='Hasta 19 plazas', f1s='del Clase S al minibús', f2b='Equipaje', f2s='maletas facturadas incluidas',
+  f1b='Hasta 21 plazas', f1s='del Clase S al minibús', f2b='Equipaje', f2s='maletas facturadas incluidas',
   bh='Reserve en pocos toques.', bp='Seis pasos rápidos, casi sin escribir. Le respondemos por WhatsApp con la confirmación y el precio.',
   l_svc='Servicio', l_to='Destino', ph_to='Hotel, dirección o ciudad', l_dir='Sentido', l_from='Recogida', ph_from='Aeropuerto de Lisboa',
   l_bags='Maletas facturadas', l_cabin='Equipaje de mano', l_notes='Notas (opcional)', ph_notes='Silla infantil, una parada en el camino, peticiones especiales…',
@@ -119,7 +119,7 @@ T = {
   v6h='Croisières', v6p="Nous vous accueillons sur le quai et vous conduisons à l'hôtel, à l'aéroport ou en excursion, toujours selon l'horaire du navire.",
   vh='Un salon sur roues.', vp='La Mercedes-Benz Classe V est le cœur de notre flotte : de la place pour le groupe et les bagages, des sièges face à face et un intérieur fait pour se détendre.',
 
-  f1b="Jusqu'à 19 places", f1s='de la Classe S au minibus', f2b='Bagages', f2s='valises en soute comprises',
+  f1b="Jusqu'à 21 places", f1s='de la Classe S au minibus', f2b='Bagages', f2s='valises en soute comprises',
   bh='Réservez en quelques gestes.', bp='Six étapes rapides, presque sans écrire. Nous répondons sur WhatsApp avec la confirmation et le prix.',
   l_svc='Service', l_to='Destination', ph_to='Hôtel, adresse ou ville', l_dir='Sens', l_from='Prise en charge', ph_from='Aéroport de Lisbonne',
   l_bags='Valises en soute', l_cabin='Bagages à main', l_notes='Notes (facultatif)', ph_notes='Siège enfant, un arrêt en chemin, demandes particulières…',

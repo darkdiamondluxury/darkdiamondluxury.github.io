@@ -271,3 +271,8 @@ footer .word em{background:linear-gradient(120deg,#A27A38,#F3DFA2 45%,#C69F5B 70
   #orcamento .actions{justify-content:flex-start}
 }
 @media (max-width:620px){.pr-veh{flex-wrap:nowrap;overflow-x:auto;scrollbar-width:none;margin:0 calc(-1*var(--pad));padding-inline:var(--pad);gap:6px}.pr-veh::-webkit-scrollbar{display:none}.pr-veh button{flex:none;padding:9px 14px;font-size:.86rem}.pr-vl{position:absolute;width:1px;height:1px;overflow:hidden;clip:rect(0 0 0 0)}}
+.pr-ex{list-style:none;padding:0;margin-top:18px;display:grid;gap:14px;max-width:72ch}
+.pr-ex li{color:#d6d3c6;padding-left:22px;position:relative}
+.pr-ex li::before{content:"";position:absolute;left:0;top:.62em;width:8px;height:8px;border-radius:50%;background:var(--gold)}
+.pr-ex b{color:var(--ink);font-weight:500}
+.pr-exh{font-size:clamp(1.9rem,3.6vw,2.8rem)}

@@ -29,7 +29,7 @@ PAGES_NEW['chauffeur'] = {
      'Business meetings and trips between offices', 'Shopping and days in the city', 'Several visits in a single day',
      'Dinners and events, with a timely return', 'Executives, delegations and guests']),
    dict(type='split', h='Good to know', ticks=[
-     'A private vehicle just for you and your group.', 'Mercedes-Benz S-Class, E-Class and V-Class, Sprinter and a 19-seat minibus.',
+     'A private vehicle just for you and your group.', 'Mercedes-Benz S-Class, E-Class and V-Class, Sprinter and a 21-seat minibus.',
      'Drivers who speak Portuguese, English, Spanish and French.', 'Available 24/7.', 'Price confirmed in writing before you book.']),
    dict(type='cta', h='Need a chauffeur?', p='Tell us the date, the hours and the starting point. We reply with confirmation and price.', ctas=[('book', 'Book a chauffeur'), ('tel', 'Call')]),
   ]),
@@ -49,7 +49,7 @@ PAGES_NEW['chauffeur'] = {
      'Reuniões de negócios e deslocações entre escritórios', 'Compras e dias na cidade', 'Várias visitas num só dia',
      'Jantares e eventos, com regresso a horas', 'Executivos, delegações e convidados']),
    dict(type='split', h='Bom saber', ticks=[
-     'Veículo privado só para si e para o seu grupo.', 'Mercedes-Benz Classe S, Classe E e Classe V, Sprinter e minibus de 19 lugares.',
+     'Veículo privado só para si e para o seu grupo.', 'Mercedes-Benz Classe S, Classe E e Classe V, Sprinter e minibus de 21 lugares.',
      'Motoristas que falam português, inglês, espanhol e francês.', 'Disponível 24/7.', 'Preço confirmado por escrito antes de reservar.']),
    dict(type='cta', h='Precisa de motorista?', p='Indique a data, as horas e o ponto de partida. Respondemos com a confirmação e o preço.', ctas=[('book', 'Reservar motorista'), ('tel', 'Ligar')]),
   ]),
@@ -69,7 +69,7 @@ PAGES_NEW['chauffeur'] = {
      'Reuniones de negocios y desplazamientos entre oficinas', 'Compras y días en la ciudad', 'Varias visitas en un solo día',
      'Cenas y eventos, con regreso a la hora', 'Ejecutivos, delegaciones e invitados']),
    dict(type='split', h='Conviene saber', ticks=[
-     'Vehículo privado solo para usted y su grupo.', 'Mercedes-Benz Clase S, Clase E y Clase V, Sprinter y minibús de 19 plazas.',
+     'Vehículo privado solo para usted y su grupo.', 'Mercedes-Benz Clase S, Clase E y Clase V, Sprinter y minibús de 21 plazas.',
      'Chóferes que hablan portugués, inglés, español y francés.', 'Disponible 24/7.', 'Precio confirmado por escrito antes de reservar.']),
    dict(type='cta', h='¿Necesita chófer?', p='Indique la fecha, las horas y el punto de partida. Respondemos con la confirmación y el precio.', ctas=[('book', 'Reservar chófer'), ('tel', 'Llamar')]),
   ]),
@@ -95,7 +95,7 @@ PAGES_NEW['tours'] = {
      'Sintra and Cabo da Roca', 'Cascais and the Estoril coast', 'Fátima, Nazaré and Óbidos', 'Évora and the Alentejo',
      'The Douro valley', 'Comporta and the Alentejo coast', 'The Algarve']),
    dict(type='split', h='Good to know', ticks=[
-     'A private vehicle just for your group: no shared tours.', 'From one passenger to groups of 19.',
+     'A private vehicle just for your group: no shared tours.', 'From one passenger to groups of 21.',
      'Child seats on request: tell us the children\'s ages when booking.', 'Drivers who speak Portuguese, English, Spanish and French.',
      'Price confirmed in writing before you book.'], related=DESTS),
    dict(type='cta', h='Planning a day out?', p='Tell us where you would like to go and when. We reply with a plan and a price.', ctas=[('book', 'Book a tour'), ('tel', 'Call')]),
@@ -116,7 +116,7 @@ PAGES_NEW['tours'] = {
      'Sintra e Cabo da Roca', 'Cascais e a linha do Estoril', 'Fátima, Nazaré e Óbidos', 'Évora e o Alentejo',
      'O vale do Douro', 'Comporta e o litoral alentejano', 'O Algarve']),
    dict(type='split', h='Bom saber', ticks=[
-     'Veículo privado só para o seu grupo: sem tours partilhados.', 'De um passageiro a grupos de 19.',
+     'Veículo privado só para o seu grupo: sem tours partilhados.', 'De um passageiro a grupos de 21.',
      'Cadeiras de criança por pedido: indique a idade das crianças ao reservar.', 'Motoristas que falam português, inglês, espanhol e francês.',
      'Preço confirmado por escrito antes de reservar.'], related=DESTS),
    dict(type='cta', h='Está a planear um passeio?', p='Indique onde gostaria de ir e quando. Respondemos com um plano e um preço.', ctas=[('book', 'Reservar tour'), ('tel', 'Ligar')]),
@@ -137,7 +137,7 @@ PAGES_NEW['tours'] = {
      'Sintra y Cabo da Roca', 'Cascais y la costa de Estoril', 'Fátima, Nazaré y Óbidos', 'Évora y el Alentejo',
      'El valle del Duero', 'Comporta y la costa del Alentejo', 'El Algarve']),
    dict(type='split', h='Conviene saber', ticks=[
-     'Vehículo privado solo para su grupo: sin tours compartidos.', 'De un pasajero a grupos de 19.',
+     'Vehículo privado solo para su grupo: sin tours compartidos.', 'De un pasajero a grupos de 21.',
      'Sillas infantiles bajo petición: indique la edad de los niños al reservar.', 'Chóferes que hablan portugués, inglés, español y francés.',
      'Precio confirmado por escrito antes de reservar.'], related=DESTS),
    dict(type='cta', h='¿Planea una excursión?', p='Indique adónde le gustaría ir y cuándo. Respondemos con un plan y un precio.', ctas=[('book', 'Reservar tour'), ('tel', 'Llamar')]),
@@ -164,7 +164,7 @@ PAGES_NEW['events'] = {
      '<b>Weddings.</b> Couples and guests, from the ceremony to the venue and back.']),
    dict(type='split', bg='bone', h='How we work', ticks=[
      'A single point of contact for the whole operation.', 'Times agreed with the organisers.',
-     'Vehicles for groups: V-Class, Sprinter and a 19-seat minibus.', 'As many vehicles as the number of guests requires.',
+     'Vehicles for groups: V-Class, Sprinter and a 21-seat minibus.', 'As many vehicles as the number of guests requires.',
      'Drivers who speak Portuguese, English, Spanish and French.']),
    dict(type='split', h='How it works', steps=[
      ('Send the event details', 'Dates, venues and expected number of guests.'),
@@ -189,7 +189,7 @@ PAGES_NEW['events'] = {
      '<b>Casamentos.</b> Noivos e convidados, da cerimónia ao local da festa e de volta.']),
    dict(type='split', bg='bone', h='Como trabalhamos', ticks=[
      'Um único contacto para toda a operação.', 'Horários combinados com a organização.',
-     'Veículos para grupos: Classe V, Sprinter e minibus de 19 lugares.', 'Tantos veículos quantos o número de convidados exigir.',
+     'Veículos para grupos: Classe V, Sprinter e minibus de 21 lugares.', 'Tantos veículos quantos o número de convidados exigir.',
      'Motoristas que falam português, inglês, espanhol e francês.']),
    dict(type='split', h='Como funciona?', steps=[
      ('Envie os dados do evento', 'Datas, locais e número previsto de convidados.'),
@@ -214,7 +214,7 @@ PAGES_NEW['events'] = {
      '<b>Bodas.</b> Novios e invitados, de la ceremonia al lugar de la fiesta y de vuelta.']),
    dict(type='split', bg='bone', h='Cómo trabajamos', ticks=[
      'Un único contacto para toda la operación.', 'Horarios acordados con la organización.',
-     'Vehículos para grupos: Clase V, Sprinter y minibús de 19 plazas.', 'Tantos vehículos como exija el número de invitados.',
+     'Vehículos para grupos: Clase V, Sprinter y minibús de 21 plazas.', 'Tantos vehículos como exija el número de invitados.',
      'Chóferes que hablan portugués, inglés, español y francés.']),
    dict(type='split', h='¿Cómo funciona?', steps=[
      ('Envíe los datos del evento', 'Fechas, lugares y número previsto de invitados.'),
@@ -245,7 +245,7 @@ PAGES_NEW['longdistance'] = {
      ('Door-to-door ride', 'A private vehicle from the pick-up address to the final destination.'),
      ('Stops as agreed', 'Breaks along the way, agreed in advance with the driver.')]),
    dict(type='split', h='Good to know', ticks=[
-     'A private vehicle just for you and your group.', 'Mercedes-Benz S-Class, E-Class and V-Class, Sprinter and a 19-seat minibus.',
+     'A private vehicle just for you and your group.', 'Mercedes-Benz S-Class, E-Class and V-Class, Sprinter and a 21-seat minibus.',
      'Drivers who speak Portuguese, English, Spanish and French.', 'Available 24/7.', 'Price confirmed in writing before you book.']),
    dict(type='cta', h='Planning a long trip?', p='Tell us the route, the date and the number of passengers. We reply with confirmation and price.', ctas=[('book', 'Book a transfer'), ('tel', 'Call')]),
   ]),
@@ -265,7 +265,7 @@ PAGES_NEW['longdistance'] = {
      ('Viagem de porta a porta', 'Viatura privada, da morada de recolha até ao destino final.'),
      ('Paragens combinadas', 'Pausas ao longo do caminho, combinadas antes com o motorista.')]),
    dict(type='split', h='Bom saber', ticks=[
-     'Veículo privado só para si e para o seu grupo.', 'Mercedes-Benz Classe S, Classe E e Classe V, Sprinter e minibus de 19 lugares.',
+     'Veículo privado só para si e para o seu grupo.', 'Mercedes-Benz Classe S, Classe E e Classe V, Sprinter e minibus de 21 lugares.',
      'Motoristas que falam português, inglês, espanhol e francês.', 'Disponível 24/7.', 'Preço confirmado por escrito antes de reservar.']),
    dict(type='cta', h='Vai fazer uma viagem longa?', p='Indique o trajeto, a data e o número de passageiros. Respondemos com a confirmação e o preço.', ctas=[('book', 'Reservar transfer'), ('tel', 'Ligar')]),
   ]),
@@ -285,7 +285,7 @@ PAGES_NEW['longdistance'] = {
      ('Viaje de puerta a puerta', 'Vehículo privado, desde la dirección de recogida hasta el destino final.'),
      ('Paradas acordadas', 'Pausas por el camino, acordadas antes con el chófer.')]),
    dict(type='split', h='Conviene saber', ticks=[
-     'Vehículo privado solo para usted y su grupo.', 'Mercedes-Benz Clase S, Clase E y Clase V, Sprinter y minibús de 19 plazas.',
+     'Vehículo privado solo para usted y su grupo.', 'Mercedes-Benz Clase S, Clase E y Clase V, Sprinter y minibús de 21 plazas.',
      'Chóferes que hablan portugués, inglés, español y francés.', 'Disponible 24/7.', 'Precio confirmado por escrito antes de reservar.']),
    dict(type='cta', h='¿Va a hacer un viaje largo?', p='Indique el trayecto, la fecha y el número de pasajeros. Respondemos con la confirmación y el precio.', ctas=[('book', 'Reservar traslado'), ('tel', 'Llamar')]),
   ]),

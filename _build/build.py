@@ -68,6 +68,8 @@ def build_home(lang):
         '{{PIC_LEATHER}}': pic('https://images.unsplash.com/photo-1580929945040-a16adedf9f6a?auto=format&fit=crop&w=2000&q=70', 'alt="" loading="lazy" onerror="this.style.display=\'none\'"'),
         '{{PRICES_JSON}}': json.dumps(prices_lookup(lang), ensure_ascii=False),
         '{{PRICE_MODE}}': PRICE_MODE,
+        '{{PRICES_URL}}': url('prices', lang),
+        '{{SEE_PRICES}}': {'pt': 'Ver preços', 'en': 'See prices', 'es': 'Ver precios', 'fr': 'Voir les tarifs'}[lang],
         '{{AIRPORT_URL}}': url('airport', lang),
         '{{CRUISE_URL}}': url('cruise', lang),
         '{{CHAUFFEUR_URL}}': url('chauffeur', lang),

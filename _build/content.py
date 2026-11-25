@@ -25,7 +25,7 @@ PAGES['agencies'] = {
      '<b>Flight tracking, meet and greet.</b> Your client is met at arrivals with a name sign, whatever time the flight lands.',
      '<b>A direct line, 24/7.</b> You speak to the people who plan and dispatch the service, not a call centre.',
      '<b>Multilingual drivers.</b> Portuguese, English, Spanish and French.',
-     '<b>From one passenger to groups of 19.</b> Mercedes-Benz S-Class, E-Class and V-Class, Sprinter and a 19-seat minibus.',
+     '<b>From one passenger to groups of 21.</b> Mercedes-Benz S-Class, E-Class and V-Class, Sprinter and a 21-seat minibus.',
      '<b>Written confirmation.</b> Every booking is confirmed in writing, and the driver\'s details are sent before the service.']),
    dict(type='split', bg='bone', h='Where we operate', p=['Based in Lisbon, with regular services across Portugal and long-distance transfers to Spain and France.'], ticks=[
      'Lisbon airport (LIS), city hotels and the cruise terminals', 'Sintra, Cascais and the Estoril coast', 'Comporta and the Alentejo coast',
@@ -59,7 +59,7 @@ PAGES['agencies'] = {
      '<b>Seguimento de voos e receção com placa.</b> O seu cliente é recebido nas chegadas com o nome, à hora a que o voo aterrar.',
      '<b>Contacto direto, 24/7.</b> Fale com quem planeia e despacha o serviço, não com um call center.',
      '<b>Motoristas que falam a língua do cliente.</b> Português, inglês, espanhol e francês.',
-     '<b>De um passageiro a grupos de 19.</b> Mercedes-Benz Classe S, Classe E e Classe V, Sprinter e minibus de 19 lugares.',
+     '<b>De um passageiro a grupos de 21.</b> Mercedes-Benz Classe S, Classe E e Classe V, Sprinter e minibus de 21 lugares.',
      '<b>Confirmação por escrito.</b> Cada reserva é confirmada por escrito e os dados do motorista seguem antes do serviço.']),
    dict(type='split', bg='bone', h='Onde trabalhamos', p=['Com base em Lisboa, serviços regulares em todo o país e transfers de longa distância para Espanha e França.'], ticks=[
      'Aeroporto de Lisboa, hotéis da cidade e terminais de cruzeiros', 'Sintra, Cascais e a linha do Estoril', 'Comporta e o litoral alentejano',
@@ -93,7 +93,7 @@ PAGES['agencies'] = {
      '<b>Seguimiento de vuelos y recepción con cartel.</b> Su cliente es recibido en llegadas con su nombre, a la hora a la que aterrice el vuelo.',
      '<b>Contacto directo, 24/7.</b> Hable con quien planifica y asigna el servicio, no con un call center.',
      '<b>Chóferes que hablan el idioma del cliente.</b> Portugués, inglés, español y francés.',
-     '<b>De un pasajero a grupos de 19.</b> Mercedes-Benz Clase S, Clase E y Clase V, Sprinter y minibús de 19 plazas.',
+     '<b>De un pasajero a grupos de 21.</b> Mercedes-Benz Clase S, Clase E y Clase V, Sprinter y minibús de 21 plazas.',
      '<b>Confirmación por escrito.</b> Cada reserva se confirma por escrito y los datos del chófer se envían antes del servicio.']),
    dict(type='split', bg='bone', h='Dónde trabajamos', p=['Con base en Lisboa, servicios regulares en todo Portugal y traslados de larga distancia a España y Francia.'], ticks=[
      'Aeropuerto de Lisboa, hoteles de la ciudad y terminales de cruceros', 'Sintra, Cascais y la costa de Estoril', 'Comporta y la costa del Alentejo',
@@ -192,7 +192,7 @@ PAGES['cruise'] = {
    dict(type='split', h='What we do at the port', ticks=[
      '<b>Port and airport.</b> Transfers on embarkation and disembarkation day.', '<b>Port and hotel.</b> For stays before or after the cruise.',
      '<b>Private shore excursions.</b> Lisbon, Sintra, Cascais or Fátima, with a driver who plans the return around the all-aboard time.',
-     '<b>Groups.</b> V-Class, Sprinter and a 19-seat minibus, with room for luggage.']),
+     '<b>Groups.</b> V-Class, Sprinter and a 21-seat minibus, with room for luggage.']),
    dict(type='split', bg='bone', h='Lisbon\'s cruise terminals', p=[
      'Most ships dock at the Lisbon Cruise Terminal, next to Santa Apolónia and Alfama, close to the city centre and around 20 minutes from the airport.',
      'Some ships use the Alcântara or Rocha Conde de Óbidos terminals, further west. Tell us the ship\'s name and we will meet you at the right place.']),
@@ -210,7 +210,7 @@ PAGES['cruise'] = {
    dict(type='split', h='O que fazemos no porto', ticks=[
      '<b>Porto e aeroporto.</b> Transfers no dia de embarque e de desembarque.', '<b>Porto e hotel.</b> Para estadias antes ou depois do cruzeiro.',
      '<b>Excursões privadas em terra.</b> Lisboa, Sintra, Cascais ou Fátima, com um motorista que planeia o regresso em função da hora de embarque.',
-     '<b>Grupos.</b> Classe V, Sprinter e minibus de 19 lugares, com espaço para as malas.']),
+     '<b>Grupos.</b> Classe V, Sprinter e minibus de 21 lugares, com espaço para as malas.']),
    dict(type='split', bg='bone', h='Os terminais de cruzeiros de Lisboa', p=[
      'A maioria dos navios atraca no Terminal de Cruzeiros de Lisboa, junto a Santa Apolónia e Alfama, perto do centro e a cerca de 20 minutos do aeroporto.',
      'Alguns navios usam os terminais de Alcântara ou da Rocha Conde de Óbidos, mais a oeste. Diga-nos o nome do navio e esperamos no sítio certo.']),
@@ -228,7 +228,7 @@ PAGES['cruise'] = {
    dict(type='split', h='Qué hacemos en el puerto', ticks=[
      '<b>Puerto y aeropuerto.</b> Traslados el día de embarque y de desembarque.', '<b>Puerto y hotel.</b> Para estancias antes o después del crucero.',
      '<b>Excursiones privadas en tierra.</b> Lisboa, Sintra, Cascais o Fátima, con un chófer que planifica el regreso según la hora de embarque.',
-     '<b>Grupos.</b> Clase V, Sprinter y minibús de 19 plazas, con espacio para el equipaje.']),
+     '<b>Grupos.</b> Clase V, Sprinter y minibús de 21 plazas, con espacio para el equipaje.']),
    dict(type='split', bg='bone', h='Las terminales de cruceros de Lisboa', p=[
      'La mayoría de los barcos atraca en la Terminal de Cruceros de Lisboa, junto a Santa Apolónia y Alfama, cerca del centro y a unos 20 minutos del aeropuerto.',
      'Algunos barcos utilizan las terminales de Alcântara o Rocha Conde de Óbidos, más al oeste. Díganos el nombre del barco y le esperamos en el lugar correcto.']),
@@ -731,7 +731,7 @@ PAGES['cruise']['fr'] = dict(
      "<b>Port et aéroport.</b> Transferts le jour de l'embarquement et du débarquement.",
      '<b>Port et hôtel.</b> Pour les séjours avant ou après la croisière.',
      "<b>Excursions privées à terre.</b> Lisbonne, Sintra, Cascais ou Fátima, avec un chauffeur qui planifie le retour selon l'heure d'embarquement.",
-     '<b>Groupes.</b> Classe V, Sprinter et minibus de 19 places, avec de la place pour les bagages.']),
+     '<b>Groupes.</b> Classe V, Sprinter et minibus de 21 places, avec de la place pour les bagages.']),
    dict(type='split', bg='bone', h='Les terminaux de croisières de Lisbonne', p=[
      "La plupart des navires accostent au Terminal de croisières de Lisbonne, près de Santa Apolónia et de l'Alfama, proche du centre et à une vingtaine de minutes de l'aéroport.",
      "Certains navires utilisent les terminaux d'Alcântara ou de Rocha Conde de Óbidos, plus à l'ouest. Donnez-nous le nom du navire et nous attendrons au bon endroit."]),
@@ -753,7 +753,7 @@ PAGES['agencies']['fr'] = dict(
      "<b>Suivi des vols et accueil avec pancarte.</b> Votre client est accueilli aux arrivées avec son nom, à l'heure réelle d'atterrissage.",
      "<b>Contact direct, 24/7.</b> Vous parlez à la personne qui planifie et dispatche le service, pas à un centre d'appels.",
      '<b>Des chauffeurs qui parlent la langue du client.</b> Portugais, anglais, espagnol et français.',
-     "<b>D'un passager aux groupes de 19.</b> Mercedes-Benz Classe S, Classe E et Classe V, Sprinter et minibus de 19 places.",
+     "<b>D'un passager aux groupes de 21.</b> Mercedes-Benz Classe S, Classe E et Classe V, Sprinter et minibus de 21 places.",
      '<b>Confirmation par écrit.</b> Chaque réservation est confirmée par écrit et les coordonnées du chauffeur sont envoyées avant le service.']),
    dict(type='split', bg='bone', h='Où nous travaillons', p=[
      "Basés à Lisbonne, des services réguliers dans tout le pays et des transferts longue distance vers l'Espagne et la France."], ticks=[
@@ -843,7 +843,7 @@ PAGES['chauffeur']['fr'] = dict(
      "Réunions d'affaires et trajets entre bureaux", 'Shopping et journées en ville', 'Plusieurs visites en une seule journée',
      "Dîners et événements, avec retour à l'heure", 'Cadres, délégations et invités']),
    dict(type='split', h='Bon à savoir', ticks=[
-     'Véhicule privé rien que pour vous et votre groupe.', 'Mercedes-Benz Classe S, Classe E et Classe V, Sprinter et minibus de 19 places.',
+     'Véhicule privé rien que pour vous et votre groupe.', 'Mercedes-Benz Classe S, Classe E et Classe V, Sprinter et minibus de 21 places.',
      'Des chauffeurs qui parlent français, anglais, espagnol et portugais.', 'Disponible 24/7.', 'Prix confirmé par écrit avant de réserver.']),
    dict(type='cta', h="Besoin d'un chauffeur ?", p='Indiquez la date, les heures et le point de départ. Nous répondons avec la confirmation et le prix.', ctas=[('book', 'Réserver un chauffeur'), ('tel', 'Appeler')]),
   ])
@@ -864,7 +864,7 @@ PAGES['tours']['fr'] = dict(
      'Sintra et le cap de Roca', "Cascais et la côte d'Estoril", 'Fátima, Nazaré et Óbidos', "Évora et l'Alentejo",
      'La vallée du Douro', "Comporta et le littoral de l'Alentejo", "L'Algarve"]),
    dict(type='split', h='Bon à savoir', ticks=[
-     'Véhicule privé rien que pour votre groupe : pas de tours partagés.', "D'un passager aux groupes de 19.",
+     'Véhicule privé rien que pour votre groupe : pas de tours partagés.', "D'un passager aux groupes de 21.",
      "Sièges enfants sur demande : indiquez l'âge des enfants en réservant.",
      'Des chauffeurs qui parlent français, anglais, espagnol et portugais.', 'Prix confirmé par écrit avant de réserver.'], related=list(DESTS)),
    dict(type='cta', h='Vous préparez une excursion ?', p='Dites-nous où vous aimeriez aller et quand. Nous répondons avec un plan et un prix.', ctas=[('book', 'Réserver un tour'), ('tel', 'Appeler')]),
@@ -885,7 +885,7 @@ PAGES['events']['fr'] = dict(
      '<b>Mariages.</b> Mariés et invités, de la cérémonie au lieu de réception et retour.']),
    dict(type='split', bg='bone', h='Notre façon de travailler', ticks=[
      "Un seul contact pour toute l'opération.", "Des horaires définis avec l'organisation.",
-     'Des véhicules pour groupes : Classe V, Sprinter et minibus de 19 places.',
+     'Des véhicules pour groupes : Classe V, Sprinter et minibus de 21 places.',
      "Autant de véhicules que le nombre d'invités l'exige.",
      'Des chauffeurs qui parlent français, anglais, espagnol et portugais.']),
    dict(type='split', h='Comment ça marche ?', steps=[
@@ -912,7 +912,7 @@ PAGES['longdistance']['fr'] = dict(
      ['Voyage porte à porte', "Véhicule privé, de l'adresse de prise en charge à la destination finale."],
      ['Arrêts convenus', "Des pauses en chemin, convenues à l'avance avec le chauffeur."]]),
    dict(type='split', h='Bon à savoir', ticks=[
-     'Véhicule privé rien que pour vous et votre groupe.', 'Mercedes-Benz Classe S, Classe E et Classe V, Sprinter et minibus de 19 places.',
+     'Véhicule privé rien que pour vous et votre groupe.', 'Mercedes-Benz Classe S, Classe E et Classe V, Sprinter et minibus de 21 places.',
      'Des chauffeurs qui parlent français, anglais, espagnol et portugais.', 'Disponible 24/7.', 'Prix confirmé par écrit avant de réserver.']),
    dict(type='cta', h='Un long voyage en vue ?', p='Indiquez le trajet, la date et le nombre de passagers. Nous répondons avec la confirmation et le prix.', ctas=[('book', 'Réserver un transfert'), ('tel', 'Appeler')]),
   ])

@@ -35,8 +35,9 @@ TRANSFERS = [
         (_n('Sesimbra'), 44, [95, 118, 132, 149, 193, 228]),
         (_n('Palmela'), 46, [97, 121, 134, 151, 196, 231]),
         (_n('Setúbal'), 49, [99, 123, 137, 154, 199, 234]),
-        (_n('Tróia por barco ¹', 'Tróia by ferry ¹', 'Tróia en ferry ¹', 'Tróia en ferry ¹'), 49, [178, 219, 245, 250, 380, 433]),
+        (_n('Tróia por barco ¹', 'Tróia by ferry ¹', 'Tróia en ferry ¹', 'Tróia en ferry ¹'), 49, [178, 219, 245, 250, 380, 450]),
         (_n('Tróia por Alcácer', 'Tróia via Alcácer', 'Tróia por Alcácer', 'Tróia via Alcácer'), 137, [295, 333, 362, 408, 476, 530]),
+        (_n('Comporta'), 118, [255, 290, 316, 357, 417, 468]),
     ]),
     (_n('Oeste', 'West coast', 'Oeste', 'Ouest'), [
         (_n('Mafra'), 35, [89, 112, 125, 141, 185, 219]),
@@ -100,6 +101,13 @@ TOURS = [
     (_n('Algarve — 12 h'), [789, 876, 952, 1150, None, None]),
 ]
 
+# Extras (secção 3 do documento, 25/11/2026)
+NIGHT_EUR = 51                       # só tours e serviços à disposição, 20h00–07h30; transfers sem suplemento
+NIGHT_FROM, NIGHT_TO = '20h00', '07h30'
+EXTRA_15MIN = [10, 11, 13, 18, 19, 20]   # espera extra e paragem extra, por cada 15 min (E, V, Vito, S, Sprinter, Minibus)
+ROUND_TRIP_PCT = 15                  # desconto no regresso, só reservas diretas no site
+CAPACITY = [3, 6, 8, 3, 15, 21]      # passageiros (tabela da CM)
+
 # Nomes do formulário de reserva (carrossel de destinos) que correspondem a uma linha da tabela.
 # Destinos do carrossel que são uma região (Algarve, Arrábida, Comporta, Óbidos e Nazaré) ficam sem preço automático.
 ALIASES = {
@@ -108,6 +116,9 @@ ALIASES = {
     'valle del duero': 'Régua / Douro', 'vallée du douro': 'Régua / Douro', 'douro': 'Régua / Douro', 'régua': 'Régua / Douro',
     'oporto': 'Porto', 'troia': 'Tróia por barco ¹', 'tróia': 'Tróia por barco ¹', 'bussaco': 'Buçaco',
 }
+# Destinos do carrossel que são regiões: Óbidos e Nazaré têm linhas próprias; a Arrábida liga à tour; o Algarve fica sob orçamento.
+TOUR_ALIASES = {'arrábida': 'Sesimbra, Arrábida e Setúbal — 8 h', 'arrabida': 'Sesimbra, Arrábida e Setúbal — 8 h'}
+SPLIT = {'óbidos e nazaré': ['Óbidos', 'Nazaré'], 'óbidos and nazaré': ['Óbidos', 'Nazaré'], 'óbidos y nazaré': ['Óbidos', 'Nazaré'], 'óbidos et nazaré': ['Óbidos', 'Nazaré']}
 
 
 def _check():
@@ -136,4 +147,8 @@ def lookup_json(lang):
     for n, p in TOURS:
         for x in n.values():
             to[x.lower()] = p
-    return {'tr': tr, 'tour': to}
+    tours_pt = {n['pt']: (n[lang], p) for n, p in TOURS}
+    alias_tour = {a: tours_pt[t] for a, t in TOUR_ALIASES.items()}
+    split = {k: [(x, tr[x.lower()]) for x in v] for k, v in SPLIT.items()}
+    night = [x.lower() for n, _ in TOURS for x in n.values() if any(w in x for w in ('noite', 'night', 'noche', 'by night'))]
+    return {'tr': tr, 'tour': to, 'aliasTour': alias_tour, 'split': split, 'night': night, 'nightEur': NIGHT_EUR}
