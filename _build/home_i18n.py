@@ -5,7 +5,7 @@ T = {
  'pt': dict(
   title='Dark Diamond Luxury · Transfers privados e motorista em Lisboa',
   desc='O seu motorista, à sua medida. Transfers privados, tours, eventos e motorista à disposição a partir de Lisboa. Portugal, Espanha e França.',
-  nav_dest='Destinos', nav_svc='Serviços', nav_fleet='Frota', nav_ag='Parceiros', cta_short='Reservar',
+  nav_dest='Destinos', nav_svc='Serviços', nav_fleet='Frota', nav_ag='Parceiros', nav_prices='Preços', cta_short='Reservar',
   h1a='O seu motorista,', h1b='à sua medida.', sub='Transfers, tours, eventos e motorista à disposição em Portugal, Espanha e França.',
   cta='Pedir orçamento', pick_q='Para onde o levam os seus sonhos?', pick_cta='Reservar este trajeto',
   more_dest='Mais destinos', sending='A enviar…', date_err='Data inválida. Escreva dd/mm/aaaa.', send_err='Não foi possível enviar agora. Pode escrever-nos pelo WhatsApp.', date_ph='dd/mm/aaaa', q_to='Destino', q_to_ph='Cidade, hotel ou morada', q_date='Data', q_phone_ph='Telefone / WhatsApp', q_send='Pedir orçamento', q_svc='Orçamento', q_ok='Pedido recebido. Respondemos em breve com o orçamento.', qmsg='Olá! Gostaria de um orçamento.\nDestino: {to}\nData: {date}\nContacto: {phone}',
@@ -37,7 +37,7 @@ T = {
  'en': dict(
   title='Dark Diamond Luxury · Private transfers and chauffeur in Lisbon',
   desc='Your chauffeur, tailored to you. Private transfers, tours, events and chauffeur at disposal from Lisbon. Portugal, Spain and France.',
-  nav_dest='Destinations', nav_svc='Services', nav_fleet='Fleet', nav_ag='Partners', cta_short='Book',
+  nav_dest='Destinations', nav_svc='Services', nav_fleet='Fleet', nav_ag='Partners', nav_prices='Prices', cta_short='Book',
   h1a='Your chauffeur,', h1b='tailored to you.', sub='Transfers, tours, events and chauffeur at disposal in Portugal, Spain and France.',
   cta='Get a quote', pick_q='Where do your dreams take you?', pick_cta='Book this route',
   more_dest='More destinations', sending='Sending…', date_err='Invalid date. Please write dd/mm/yyyy.', send_err='We could not send it just now. You can message us on WhatsApp.', date_ph='dd/mm/yyyy', q_to='Destination', q_to_ph='City, hotel or address', q_date='Date', q_phone_ph='Phone / WhatsApp', q_send='Get a quote', q_svc='Quote', q_ok='Request received. We will reply shortly with your quote.', qmsg='Hello! I would like a quote.\nDestination: {to}\nDate: {date}\nContact: {phone}',
@@ -69,7 +69,7 @@ T = {
  'es': dict(
   title='Dark Diamond Luxury · Traslados privados y chófer en Lisboa',
   desc='Su chófer, a su medida. Traslados privados, tours, eventos y chófer a disposición desde Lisboa. Portugal, España y Francia.',
-  nav_dest='Destinos', nav_svc='Servicios', nav_fleet='Flota', nav_ag='Partners', cta_short='Reservar',
+  nav_dest='Destinos', nav_svc='Servicios', nav_fleet='Flota', nav_ag='Partners', nav_prices='Precios', cta_short='Reservar',
   h1a='Su chófer,', h1b='a su medida.', sub='Traslados, tours, eventos y chófer a disposición en Portugal, España y Francia.',
   cta='Pedir presupuesto', pick_q='¿Adónde le llevan sus sueños?', pick_cta='Reservar este trayecto',
   more_dest='Más destinos', sending='Enviando…', date_err='Fecha no válida. Escriba dd/mm/aaaa.', send_err='No pudimos enviarlo ahora. Puede escribirnos por WhatsApp.', date_ph='dd/mm/aaaa', q_to='Destino', q_to_ph='Ciudad, hotel o dirección', q_date='Fecha', q_phone_ph='Teléfono / WhatsApp', q_send='Pedir presupuesto', q_svc='Presupuesto', q_ok='Solicitud recibida. Le responderemos en breve con el presupuesto.', qmsg='¡Hola! Me gustaría un presupuesto.\nDestino: {to}\nFecha: {date}\nContacto: {phone}',
@@ -101,7 +101,7 @@ T = {
  'fr': dict(
   title='Dark Diamond Luxury · Transferts privés et chauffeur à Lisbonne',
   desc='Votre chauffeur, à votre mesure. Transferts privés, tours, événements et chauffeur à disposition au départ de Lisbonne. Portugal, Espagne et France.',
-  nav_dest='Destinations', nav_svc='Services', nav_fleet='Flotte', nav_ag='Partenaires', cta_short='Réserver',
+  nav_dest='Destinations', nav_svc='Services', nav_fleet='Flotte', nav_ag='Partenaires', nav_prices='Tarifs', cta_short='Réserver',
   h1a='Votre chauffeur,', h1b='à votre mesure.', sub='Transferts, tours, événements et chauffeur à disposition au Portugal, en Espagne et en France.',
   cta='Demander un devis', pick_q='Où vos rêves vous emmènent-ils ?', pick_cta='Réserver ce trajet',
   more_dest='Plus de destinations', sending='Envoi…', date_err='Date non valide. Écrivez jj/mm/aaaa.', send_err="Impossible d'envoyer pour le moment. Vous pouvez nous écrire sur WhatsApp.", date_ph='jj/mm/aaaa', q_to='Destination', q_to_ph='Ville, hôtel ou adresse', q_date='Date', q_phone_ph='Téléphone / WhatsApp',

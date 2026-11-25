@@ -916,3 +916,8 @@ PAGES['longdistance']['fr'] = dict(
      'Des chauffeurs qui parlent français, anglais, espagnol et portugais.', 'Disponible 24/7.', 'Prix confirmé par écrit avant de réserver.']),
    dict(type='cta', h='Un long voyage en vue ?', p='Indiquez le trajet, la date et le nombre de passagers. Nous répondons avec la confirmation et le prix.', ctas=[('book', 'Réserver un transfert'), ('tel', 'Appeler')]),
   ])
+
+# PREÇOS (tabela fechada a 25/11/2026; valores em prices.py, textos em prices_page.py)
+from prices_page import TXT as _PT  # noqa: E402
+PAGES['prices'] = {l: dict(title=v['title'], desc=v['desc'], crumb=v['crumb'], h1=v['h1'], lead=v['lead'],
+                           ctas=[], blocks=[dict(type='prices')]) for l, v in _PT.items()}

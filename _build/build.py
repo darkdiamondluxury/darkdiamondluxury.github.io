@@ -20,10 +20,12 @@ ROOT = os.path.dirname(HERE)
 sys.path.insert(0, HERE)
 
 from chrome import GOAT, L, SVG_DEFS, dest_name, footer, head, nav, org_ld, page_ld, tel, url  # noqa: E402
-from config import BOOKINGS_KEY, BOOKINGS_URL, DESTS, EMAIL, IMG, LANGS, PHONES, PRICE_MODE, PRICES, REDIRECTS, SITE, SLUGS, WHATSAPP  # noqa: E402
+from config import BOOKINGS_KEY, BOOKINGS_URL, DESTS, EMAIL, IMG, LANGS, PHONES, PRICE_MODE, REDIRECTS, SITE, SLUGS, WHATSAPP  # noqa: E402
 import content  # noqa: E402
 from faq import FAQ, FAQ_H  # noqa: E402
 from partner import partner_html  # noqa: E402
+from prices_page import prices_html  # noqa: E402
+from prices import lookup_json as prices_lookup  # noqa: E402
 from terms import TERMS, missing as terms_missing  # noqa: E402
 from home_i18n import MSG, MSG_FLIGHT, MSG_NOTES, PLACES, T  # noqa: E402
 
@@ -49,7 +51,7 @@ def build_home(lang):
     t = T[lang]
     tpl = open(os.path.join(HERE, 'home.html'), encoding='utf-8').read()
     links = (f'<a href="#destinos">{t["nav_dest"]}</a><a href="#servicos">{t["nav_svc"]}</a>'
-             f'<a href="#frota">{t["nav_fleet"]}</a><a href="#parceiros">{t["nav_ag"]}</a>')
+             f'<a href="#frota">{t["nav_fleet"]}</a><a href="{url("prices", lang)}">{t["nav_prices"]}</a><a href="#parceiros">{t["nav_ag"]}</a>')
     dlinks = f'<span>{L[lang]["dests"]}:</span> ' + ' '.join(f'<a href="{url(d, lang)}">{dest_name(d, lang)}</a>' for d in DESTS)
     js_t = {k: v for k, v in t.items() if k not in ('title', 'desc')}
     rep = {
@@ -64,8 +66,7 @@ def build_home(lang):
         '{{HERO_PIC}}': pic('https://images.unsplash.com/photo-1765461734605-34657fa04db2?auto=format&fit=crop&w=2200&q=70', 'id="heroImg" alt="" fetchpriority="high" onerror="this.style.display=\'none\'"', fp=.6),
         '{{PIC_STMT}}': pic('https://images.unsplash.com/photo-1503944251010-cbf290919d9d?auto=format&fit=crop&w=1600&q=70', 'alt="" loading="lazy" onerror="this.style.display=\'none\'"'),
         '{{PIC_LEATHER}}': pic('https://images.unsplash.com/photo-1580929945040-a16adedf9f6a?auto=format&fit=crop&w=2000&q=70', 'alt="" loading="lazy" onerror="this.style.display=\'none\'"'),
-        '{{PRICES_JSON}}': json.dumps({(n[lang] if isinstance(n, dict) else n): PRICES[n['pt'] if isinstance(n, dict) else n]
-                                       for n, _, _ in PLACES if (n['pt'] if isinstance(n, dict) else n) in PRICES}, ensure_ascii=False),
+        '{{PRICES_JSON}}': json.dumps(prices_lookup(lang), ensure_ascii=False),
         '{{PRICE_MODE}}': PRICE_MODE,
         '{{AIRPORT_URL}}': url('airport', lang),
         '{{CRUISE_URL}}': url('cruise', lang),
@@ -168,6 +169,8 @@ def block_html(b, lang, ctx):
     if k == 'faq':
         items = ''.join(f'<details><summary>{q}</summary><p>{a}</p></details>' for q, a in b['items'])
         return f'<section class="sec{cls}"><div class="wrap split"><h2 class="display">{b["h"]}</h2><div class="body faq">{items}</div></div></section>'
+    if k == 'prices':
+        return prices_html(lang, url('home', lang))
     if k == 'prose':
         return f'<section class="sec"><div class="wrap prose">{b["html"]}</div></section>'
     raise ValueError(k)
@@ -196,6 +199,7 @@ def build_page(page, lang, d):
     h = url('home', lang)
     links = (f'<a href="{h}#destinos">{t["nav_dest"]}</a><a href="{h}#servicos">{t["nav_svc"]}</a>'
              f'<a href="{h}#frota">{t["nav_fleet"]}</a>'
+             f'<a href="{url("prices", lang)}"{" aria-current=" + chr(34) + "page" + chr(34) if page == "prices" else ""}>{t["nav_prices"]}</a>'
              f'<a href="{url("agencies", lang)}"{" aria-current=" + chr(34) + "page" + chr(34) if page == "agencies" else ""}>{t["nav_ag"]}</a>')
     ld = page_ld(page, lang, d, ' '.join(re.sub('<[^>]+>', ' ', d.get('crumb', d['h1'])).split()), url('home', lang), url(page, lang), faq)
     doc = f'''<!doctype html>

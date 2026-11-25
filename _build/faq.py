@@ -4,10 +4,10 @@
 FAQ_H = {'pt': 'Perguntas frequentes', 'en': 'Frequently asked questions', 'es': 'Preguntas frecuentes', 'fr': 'Questions fréquentes'}
 
 _PRICE = {
-    'pt': ('Quanto custa?', 'Depende do trajeto, da viatura e da hora. Envie o pedido pelo site e respondemos no WhatsApp com o preço, confirmado por escrito antes de reservar.'),
-    'en': ('How much does it cost?', 'It depends on the route, the vehicle and the time. Send your request through the site and we reply on WhatsApp with the price, confirmed in writing before you book.'),
-    'es': ('¿Cuánto cuesta?', 'Depende del trayecto, del vehículo y de la hora. Envíe su solicitud desde la web y le respondemos por WhatsApp con el precio, confirmado por escrito antes de reservar.'),
-    'fr': ('Combien ça coûte ?', "Cela dépend du trajet, du véhicule et de l'heure. Envoyez votre demande depuis le site : nous répondons sur WhatsApp avec le prix, confirmé par écrit avant de réserver."),
+    'pt': ('Quanto custa?', 'Os preços dos transfers e das tours estão na página Preços, por viatura e com IVA incluído. Ao reservar, o formulário mostra o preço do seu trajeto. Serviços à medida têm orçamento, confirmado por escrito antes de reservar.'),
+    'en': ('How much does it cost?', 'Transfer and tour prices are on the Prices page, per vehicle and VAT included. When you book, the form shows the price of your journey. Tailor-made services get a quote, confirmed in writing before you book.'),
+    'es': ('¿Cuánto cuesta?', 'Los precios de traslados y tours están en la página Precios, por vehículo y con IVA incluido. Al reservar, el formulario muestra el precio de su trayecto. Los servicios a medida tienen presupuesto, confirmado por escrito antes de reservar.'),
+    'fr': ('Combien ça coûte ?', "Les prix des transferts et des tours sont sur la page Tarifs, par véhicule et TVA incluse. Lors de la réservation, le formulaire affiche le prix de votre trajet. Les services sur mesure font l'objet d'un devis, confirmé par écrit avant de réserver."),
 }
 _LANGS = {
     'pt': ('Os motoristas falam inglês?', 'Sim. Os nossos motoristas falam português, inglês, espanhol e francês.'),

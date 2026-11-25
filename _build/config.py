@@ -27,10 +27,10 @@ BOOKINGS_KEY = 'eyJhbGciOiJIUzI1NiIsInR5cCI6IkpXVCJ9.eyJpc3MiOiJzdXBhYmFzZSIsInJ
 WHATSAPP_ALL = ['351932666254', '351960033622']   # ambos têm WhatsApp
 INSTAGRAM = ''         # ex.: 'https://instagram.com/darkdiamondluxury'
 
-FLEET = {'fr': 'Mercedes-Benz Classe S, Classe E, Classe V, Sprinter et minibus de 19 places',
-         'pt': 'Mercedes-Benz Classe S, Classe E, Classe V, Sprinter e minibus de 19 lugares',
-         'en': 'Mercedes-Benz S-Class, E-Class, V-Class, Sprinter and a 19-seat minibus',
-         'es': 'Mercedes-Benz Clase S, Clase E, Clase V, Sprinter y minibús de 19 plazas'}
+FLEET = {'fr': 'Mercedes-Benz Classe S, Classe E, Classe V, Vito, Sprinter et minibus de 19 places',
+         'pt': 'Mercedes-Benz Classe S, Classe E, Classe V, Vito, Sprinter e minibus de 19 lugares',
+         'en': 'Mercedes-Benz S-Class, E-Class, V-Class, Vito, Sprinter and a 19-seat minibus',
+         'es': 'Mercedes-Benz Clase S, Clase E, Clase V, Vito, Sprinter y minibús de 19 plazas'}
 LANGS_SPOKEN = {'pt': 'Português, inglês, espanhol e francês', 'en': 'Portuguese, English, Spanish and French', 'es': 'Portugués, inglés, español y francés', 'fr': 'Portugais, anglais, espagnol et français'}
 
 COVERAGE = {'pt': 'Portugal, Espanha e França', 'en': 'Portugal, Spain and France', 'es': 'Portugal, España y Francia', 'fr': 'Portugal, Espagne et France'}
@@ -46,6 +46,7 @@ SLUGS = {
     'airport':  {'en': '/lisbon-airport-transfer/', 'pt': '/pt/transfer-aeroporto-lisboa/', 'es': '/es/traslado-aeropuerto-lisboa/'},
     'cruise':   {'en': '/lisbon-cruise-port-transfer/', 'pt': '/pt/transfer-terminal-cruzeiros-lisboa/', 'es': '/es/traslado-terminal-cruceros-lisboa/'},
     'chauffeur':   {'en': '/chauffeur-at-disposal-lisbon/', 'pt': '/pt/motorista-disposicao-lisboa/', 'es': '/es/chofer-a-disposicion-lisboa/'},
+    'prices':      {'en': '/prices/', 'pt': '/pt/precos/', 'es': '/es/precios/'},
     'tours':       {'en': '/private-tours-portugal/', 'pt': '/pt/tours-privados-portugal/', 'es': '/es/tours-privados-portugal/'},
     'events':      {'en': '/events-weddings-transport-portugal/', 'pt': '/pt/eventos-casamentos-transporte/', 'es': '/es/eventos-bodas-transporte/'},
     'longdistance': {'en': '/long-distance-transfers-portugal-spain/', 'pt': '/pt/transfers-longa-distancia/', 'es': '/es/traslados-larga-distancia/'},
@@ -72,7 +73,7 @@ SLUGS = {
 _FR = {
     'home': '/fr/', 'agencies': '/fr/agences/', 'airport': '/fr/transfert-aeroport-lisbonne/',
     'cruise': '/fr/transfert-port-croisieres-lisbonne/', 'chauffeur': '/fr/chauffeur-a-disposition-lisbonne/',
-    'tours': '/fr/tours-prives-portugal/', 'events': '/fr/evenements-mariages-transport/',
+    'prices': '/fr/tarifs/', 'tours': '/fr/tours-prives-portugal/', 'events': '/fr/evenements-mariages-transport/',
     'longdistance': '/fr/transferts-longue-distance/',
     'd-sintra': '/fr/lisbonne-sintra/', 'd-cascais': '/fr/lisbonne-cascais/', 'd-comporta': '/fr/lisbonne-comporta/',
     'd-evora': '/fr/lisbonne-evora/', 'd-fatima': '/fr/lisbonne-fatima/', 'd-algarve': '/fr/lisbonne-algarve/',
@@ -116,11 +117,6 @@ IMG = {
 
 
 # ---------------------------------------------------------------------------------
-# ORÇAMENTO INSTANTÂNEO (B8). Vazio = desligado: o site não mostra preço nenhum.
-# Quando houver tabela do Bruno, preencher assim (euros, IVA incluído, por trajeto):
-#   PRICES = {'Cascais': {'E': 60, 'S': 90, 'V': 80, 'M': 150}, 'Porto': {...}}
-# A chave é o nome do destino tal como está em PLACES (home_i18n.py), em português.
-# Viaturas: E = Classe E, S = Classe S, V = Classe V, M = Sprinter/minibus.
-# Vale para Aeroporto (chegada ou partida) e Longa distância, quando o cliente toca num destino da lista.
-PRICES = {}
-PRICE_MODE = 'desde'   # 'desde' mostra "desde 60 €"; 'fixo' mostra "60 €"
+# PREÇOS: a tabela vive em prices.py (versão de 25/11/2026). O formulário mostra o preço quando o destino
+# (ou a tour) e a viatura estão na tabela; caso contrário, segue como pedido de orçamento.
+PRICE_MODE = 'fixo'   # 'desde' mostra "desde 60 €"; 'fixo' mostra "60 €"
