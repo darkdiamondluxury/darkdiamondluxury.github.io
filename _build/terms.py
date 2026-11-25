@@ -45,10 +45,10 @@ def terms_html(lang):
     night = t['night']
     # Frase da reserva: com o pagamento online ativo (PAY_MODE = 'live'), a reserva no site fica confirmada com o pagamento.
     BOOK = {
-        'pt': 'No site, a reserva fica confirmada com o pagamento. Pedidos feitos por WhatsApp, telefone ou email só ficam reservados depois da nossa confirmação escrita, com o preço, e pagam-se por link de pagamento ou transferência.',
-        'en': 'On the website, your booking is confirmed when you pay. Requests made by WhatsApp, phone or email are only booked once we confirm them in writing, with the price, and are paid by payment link or bank transfer.',
-        'es': 'En la web, la reserva queda confirmada con el pago. Las solicitudes hechas por WhatsApp, teléfono o email solo quedan reservadas tras nuestra confirmación por escrito, con el precio, y se pagan por enlace de pago o transferencia.',
-        'fr': "Sur le site, la réservation est confirmée par le paiement. Les demandes faites par WhatsApp, téléphone ou email ne sont réservées qu'après notre confirmation écrite, avec le prix, et se paient par lien de paiement ou virement.",
+        'pt': 'No site, a reserva fica confirmada com o pagamento. Pedidos feitos por WhatsApp, telefone ou email só ficam reservados depois da nossa confirmação escrita, com o preço, e pagam-se por link de pagamento ou transferência. O pagamento online no site exige pelo menos 24 h de antecedência (48 h em Sprinter e minibus); com menos tempo, fale connosco por WhatsApp (+351 932 666 254).',
+        'en': 'On the website, your booking is confirmed when you pay. Requests made by WhatsApp, phone or email are only booked once we confirm them in writing, with the price, and are paid by payment link or bank transfer. Paying online requires at least 24 h notice (48 h for Sprinter and minibus); for shorter notice, message us on WhatsApp (+351 932 666 254).',
+        'es': 'En la web, la reserva queda confirmada con el pago. Las solicitudes hechas por WhatsApp, teléfono o email solo quedan reservadas tras nuestra confirmación por escrito, con el precio, y se pagan por enlace de pago o transferencia. El pago en línea en la web exige al menos 24 h de antelación (48 h en Sprinter y minibús); con menos tiempo, escríbanos por WhatsApp (+351 932 666 254).',
+        'fr': "Sur le site, la réservation est confirmée par le paiement. Les demandes faites par WhatsApp, téléphone ou email ne sont réservées qu'après notre confirmation écrite, avec le prix, et se paient par lien de paiement ou virement. Le paiement en ligne exige au moins 24 h d'avance (48 h en Sprinter et minibus) ; en deçà, écrivez-nous sur WhatsApp (+351 932 666 254).",
     }
     OLD = {
         'pt': 'Um pedido feito pelo site, WhatsApp, telefone ou email só fica reservado depois de o confirmarmos por escrito, com o preço.',

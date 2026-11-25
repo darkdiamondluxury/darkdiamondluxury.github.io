@@ -14,11 +14,11 @@ const SB = Deno.env.get("SUPABASE_URL")!, SR = Deno.env.get("SUPABASE_SERVICE_RO
 const db = (path: string, init: RequestInit = {}) => fetch(`${SB}/rest/v1/${path}`, { ...init, headers: { apikey: SR, authorization: `Bearer ${SR}`, "content-type": "application/json", prefer: "return=representation", ...(init.headers || {}) } });
 
 const CARS = ["E", "V", "T", "S", "P", "M"];
-const TXT: Record<string, { err: string; full: string; past: string; quote: string; svc: string[]; pax: (n: number) => string }> = {
-  pt: { err: "Não foi possível iniciar o pagamento. Tente de novo ou fale connosco por WhatsApp.", full: "Demasiados pedidos seguidos. Tente daqui a pouco.", past: "A data e a hora já passaram.", quote: "Este serviço tem preço sob orçamento.", svc: ["Transfer aeroporto", "À disposição", "Tour", "Evento", "Longa distância", "Cruzeiro"], pax: (n) => n === 1 ? "1 passageiro" : `${n} passageiros` },
-  en: { err: "We could not start the payment. Please try again or message us on WhatsApp.", full: "Too many requests in a row. Please try again shortly.", past: "That date and time have already passed.", quote: "This service is priced on request.", svc: ["Airport transfer", "At your disposal", "Tour", "Event", "Long distance", "Cruise"], pax: (n) => n === 1 ? "1 passenger" : `${n} passengers` },
-  es: { err: "No se pudo iniciar el pago. Inténtelo de nuevo o escríbanos por WhatsApp.", full: "Demasiadas solicitudes seguidas. Inténtelo dentro de un momento.", past: "La fecha y la hora ya han pasado.", quote: "Este servicio tiene precio bajo presupuesto.", svc: ["Traslado aeropuerto", "A disposición", "Tour", "Evento", "Larga distancia", "Crucero"], pax: (n) => n === 1 ? "1 pasajero" : `${n} pasajeros` },
-  fr: { err: "Impossible de lancer le paiement. Réessayez ou écrivez-nous sur WhatsApp.", full: "Trop de demandes à la suite. Réessayez dans un instant.", past: "La date et l'heure sont déjà passées.", quote: "Ce service est sur devis.", svc: ["Transfert aéroport", "À disposition", "Tour", "Événement", "Longue distance", "Croisière"], pax: (n) => n === 1 ? "1 passager" : `${n} passagers` },
+const TXT: Record<string, { err: string; full: string; past: string; quote: string; soon: string; svc: string[]; pax: (n: number) => string }> = {
+  pt: { err: "Não foi possível iniciar o pagamento. Tente de novo ou fale connosco por WhatsApp.", full: "Demasiados pedidos seguidos. Tente daqui a pouco.", past: "A data e a hora já passaram.", quote: "Este serviço tem preço sob orçamento.", soon: "Para reservas com menos de 24 h (48 h em Sprinter e minibus), fale connosco por WhatsApp: +351 932 666 254.", svc: ["Transfer aeroporto", "À disposição", "Tour", "Evento", "Longa distância", "Cruzeiro"], pax: (n) => n === 1 ? "1 passageiro" : `${n} passageiros` },
+  en: { err: "We could not start the payment. Please try again or message us on WhatsApp.", full: "Too many requests in a row. Please try again shortly.", past: "That date and time have already passed.", quote: "This service is priced on request.", soon: "For bookings less than 24 h ahead (48 h for Sprinter and minibus), please message us on WhatsApp: +351 932 666 254.", svc: ["Airport transfer", "At your disposal", "Tour", "Event", "Long distance", "Cruise"], pax: (n) => n === 1 ? "1 passenger" : `${n} passengers` },
+  es: { err: "No se pudo iniciar el pago. Inténtelo de nuevo o escríbanos por WhatsApp.", full: "Demasiadas solicitudes seguidas. Inténtelo dentro de un momento.", past: "La fecha y la hora ya han pasado.", quote: "Este servicio tiene precio bajo presupuesto.", soon: "Para reservas con menos de 24 h de antelación (48 h en Sprinter y minibús), escríbanos por WhatsApp: +351 932 666 254.", svc: ["Traslado aeropuerto", "A disposición", "Tour", "Evento", "Larga distancia", "Crucero"], pax: (n) => n === 1 ? "1 pasajero" : `${n} pasajeros` },
+  fr: { err: "Impossible de lancer le paiement. Réessayez ou écrivez-nous sur WhatsApp.", full: "Trop de demandes à la suite. Réessayez dans un instant.", past: "La date et l'heure sont déjà passées.", quote: "Ce service est sur devis.", soon: "Pour les réservations à moins de 24 h (48 h en Sprinter et minibus), écrivez-nous sur WhatsApp : +351 932 666 254.", svc: ["Transfert aéroport", "À disposition", "Tour", "Événement", "Longue distance", "Croisière"], pax: (n) => n === 1 ? "1 passager" : `${n} passagers` },
 };
 
 // O mesmo cálculo do formulário do site (home.html → spPrice), feito no servidor.
@@ -33,6 +33,17 @@ function price(svc: number, to: string, car: string, hour: number, min: number):
   if (tour && (hour >= 20 || hour < 7 || (hour === 7 && min < 30)) && !P.night.includes(k)) v += P.nightEur;
   return { eur: v, label };
 }
+
+// Hora de Lisboa → instante real (trata a hora de verão)
+function lisbonEpoch(date: string, hour: number, min: number): number {
+  const [y, m, d] = date.split("-").map(Number);
+  const guess = Date.UTC(y, m - 1, d, hour, min);
+  const parts = Object.fromEntries(new Intl.DateTimeFormat("en-GB", { timeZone: "Europe/Lisbon", year: "numeric", month: "2-digit", day: "2-digit", hour: "2-digit", minute: "2-digit", hourCycle: "h23" }).formatToParts(new Date(guess)).map((x) => [x.type, x.value]));
+  const asUtc = Date.UTC(+parts.year, +parts.month - 1, +parts.day, +parts.hour, +parts.minute);
+  return guess - (asUtc - guess);
+}
+// Antecedência mínima para pagar online: 24 h; 48 h em Sprinter e minibus (decisão de 25/11/2026)
+const LEAD_H: Record<string, number> = { P: 48, M: 48 };
 
 async function sha(s: string) { const h = await crypto.subtle.digest("SHA-256", new TextEncoder().encode(s)); return [...new Uint8Array(h)].map((b) => b.toString(16).padStart(2, "0")).join("").slice(0, 32); }
 
@@ -66,8 +77,9 @@ Deno.serve(async (req) => {
   const svc = Number(b.svc), car = s("car", 2), to = s("to", 200), date = s("date", 10);
   const hour = Number(b.hour), min = Number(b.min), pax = Number(b.pax), bags = Number(b.bags) || 0, cabin = Number(b.cabin) || 0;
   if (![0, 2, 4, 5].includes(svc) || !/^\d{4}-\d{2}-\d{2}$/.test(date) || !(hour >= 0 && hour < 24) || !(min >= 0 && min < 60) || !(pax >= 1 && pax <= P.cap[CARS.indexOf(car)])) return json({ error: t.quote }, 400);
-  const when = new Date(`${date}T${String(hour).padStart(2, "0")}:${String(min).padStart(2, "0")}:00+00:00`);
-  if (isNaN(when.getTime()) || when.getTime() < Date.now() - 2 * 3600e3) return json({ error: t.past }, 400); // margem para a hora de verão
+  const when = lisbonEpoch(date, hour, min);
+  if (isNaN(when) || when < Date.now()) return json({ error: t.past }, 400);
+  if (when - Date.now() < (LEAD_H[car] || 24) * 3600e3) return json({ error: t.soon, soon: true }, 400);
   const pr = price(svc, to, car, hour, min);
   if (!pr) return json({ error: t.quote }, 400);
 
