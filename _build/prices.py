@@ -87,10 +87,10 @@ TRANSFERS = [
 TOURS = [
     (_n('Lisboa — 4 h', 'Lisbon — 4 h', 'Lisboa — 4 h', 'Lisbonne — 4 h'), [160, 180, 200, 280, 300, 320]),
     (_n('Lisboa — 8 h', 'Lisbon — 8 h', 'Lisboa — 8 h', 'Lisbonne — 8 h'), [280, 315, 350, 490, 525, 560]),
-    (_n('Lisboa à noite — 3 h', 'Lisbon by night — 3 h', 'Lisboa de noche — 3 h', 'Lisbonne by night — 3 h'), [171, 186, 201, 261, 276, 291]),
+    (_n('Lisboa à noite — 3 h', 'Lisbon by night — 3 h', 'Lisboa de noche — 3 h', 'Lisbonne de nuit — 3 h'), [171, 186, 201, 261, 276, 291]),
     (_n('Sintra e Cascais — 4 h', 'Sintra and Cascais — 4 h', 'Sintra y Cascais — 4 h', 'Sintra et Cascais — 4 h'), [185, 221, 247, 320, 376, 423]),
     (_n('Queluz, Sintra, Cascais e Estoril — 8 h', 'Queluz, Sintra, Cascais and Estoril — 8 h', 'Queluz, Sintra, Cascais y Estoril — 8 h', 'Queluz, Sintra, Cascais et Estoril — 8 h'), [315, 367, 409, 548, 620, 683]),
-    (_n('Estoril e Cascais à noite — 3h30', 'Estoril and Cascais by night — 3h30', 'Estoril y Cascais de noche — 3h30', 'Estoril et Cascais by night — 3h30'), [216, 249, 273, 336, 390, 434]),
+    (_n('Estoril e Cascais à noite — 3h30', 'Estoril and Cascais by night — 3h30', 'Estoril y Cascais de noche — 3h30', 'Estoril et Cascais de nuit — 3h30'), [216, 249, 273, 336, 390, 434]),
     (_n('Sesimbra, Arrábida e Setúbal — 8 h', 'Sesimbra, Arrábida and Setúbal — 8 h', 'Sesimbra, Arrábida y Setúbal — 8 h', 'Sesimbra, Arrábida et Setúbal — 8 h'), [334, 387, 431, 565, 640, 704]),
     (_n('Fátima — 4 h de visita', 'Fátima — 4 h visit', 'Fátima — 4 h de visita', 'Fátima — 4 h de visite'), [419, 475, 520, 642, 723, 794]),
     (_n('Óbidos, Nazaré, Alcobaça e Fátima — 10 h', 'Óbidos, Nazaré, Alcobaça and Fátima — 10 h', 'Óbidos, Nazaré, Alcobaça y Fátima — 10 h', 'Óbidos, Nazaré, Alcobaça et Fátima — 10 h'), [489, 554, 606, 760, 849, 929]),
@@ -150,5 +150,6 @@ def lookup_json(lang):
     tours_pt = {n['pt']: (n[lang], p) for n, p in TOURS}
     alias_tour = {a: tours_pt[t] for a, t in TOUR_ALIASES.items()}
     split = {k: [(x, tr[x.lower()]) for x in v] for k, v in SPLIT.items()}
-    night = [x.lower() for n, _ in TOURS for x in n.values() if any(w in x for w in ('noite', 'night', 'noche', 'by night'))]
-    return {'tr': tr, 'tour': to, 'aliasTour': alias_tour, 'split': split, 'night': night, 'nightEur': NIGHT_EUR}
+    night = [x.lower() for n, _ in TOURS for x in n.values() if any(w in x for w in ('noite', 'night', 'noche', 'nuit'))]
+    tours = [[n[lang], p] for n, p in TOURS]  # lista das tours tabeladas, para o passo 2 do formulário
+    return {'tr': tr, 'tour': to, 'aliasTour': alias_tour, 'split': split, 'night': night, 'nightEur': NIGHT_EUR, 'tours': tours}

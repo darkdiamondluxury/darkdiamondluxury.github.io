@@ -281,6 +281,7 @@ footer p.copy{margin-top:14px;font-size:.82rem;color:#7f8573}
 .brand{font-size:1.02rem;letter-spacing:.04em}
 .brand .lux{color:var(--gold)}
 footer .word{font-size:clamp(2.1rem,7vw,7.6rem);line-height:1.02;letter-spacing:.02em}
+@media (max-width:420px){footer .word{font-size:8vw}}
 footer .word .dk{background:linear-gradient(120deg,#A27A38,#F3DFA2 45%,#C69F5B 70%,#FBE8AE);-webkit-background-clip:text;background-clip:text;color:transparent}
 footer .word .dm{background:linear-gradient(120deg,#8a8a8a,#fff 45%,#c4c3c2 70%,#f2f2f2);-webkit-background-clip:text;background-clip:text;color:transparent}
 footer .word em{background:linear-gradient(120deg,#A27A38,#F3DFA2 45%,#C69F5B 70%,#FBE8AE);-webkit-background-clip:text;background-clip:text;color:transparent}
@@ -741,6 +742,7 @@ const ST = SP_TXT[lang] || SP_TXT.en;
 /* preço imediato: só aparece quando o destino (ou a tour) e a viatura estão na tabela de prices.py */
 const PRICES = {{PRICES_JSON}}, PMODE = '{{PRICE_MODE}}';
 const PR_T = ({pt:['Preço','desde','Preço indicado no site','confirmado por escrito'],en:['Price','from','Price shown on the site','confirmed in writing'],es:['Precio','desde','Precio indicado en la web','confirmado por escrito'],fr:['Prix','à partir de','Prix indiqué sur le site','confirmé par écrit']})[lang];
+const TOUR_T = ({pt:['Que tour quer fazer?','Escolha uma tour da tabela ou escreva a sua ideia: fazemos orçamento.','Mais tours →','desde','Outra ideia de tour'],en:['Which tour would you like?','Pick a tour from our price list or write your own idea: we will send a quote.','More tours →','from','Another tour idea'],es:['¿Qué tour quiere hacer?','Elija un tour de la tabla o escriba su idea: le enviamos presupuesto.','Más tours →','desde','Otra idea de tour'],fr:['Quel tour souhaitez-vous ?','Choisissez un tour de notre grille ou décrivez votre idée : nous faisons un devis.','Plus de tours →','dès','Autre idée de tour']})[lang];
 const CARI=['E','V','T','S','P','M'];
 const eur=v=>new Intl.NumberFormat(lang==='en'?'en-GB':lang==='es'?'es-ES':'pt-PT',{style:'currency',currency:'EUR',maximumFractionDigits:0}).format(v);
 function spPrice(){ const k=sp.to.trim().toLowerCase(), i=CARI.indexOf(sp.car); if(i<0||!k) return '';
@@ -851,12 +853,16 @@ function spRenderDest(){
   sp$('spDir').hidden=!isAir();
   sp$('spDir').setAttribute('aria-label',ST.arr+' / '+ST.dep);
   sp$('spDir').innerHTML=[ST.arr,ST.dep].map((t,i)=>`<button type="button" data-i="${i}" aria-pressed="${i===sp.dir}">${t}</button>`).join('');
-  sp$('spH2').textContent= isAir() ? (sp.dir===0?ST.h2arr:ST.h2dep) : (sp.svc===1?ST.h2disp:ST.h2);
-  sp$('spL2').textContent= isAir() ? (sp.dir===0?ST.l2arr:ST.l2dep) : ST.l2;
-  const list=sp.all?PLACES:PLACES.slice(0,6), cur=sp.to.trim().toLowerCase(), sub=isAir()?ST.fromAir:ST.fromLx;
-  sp$('spPlaces').innerHTML=list.map(([n,t])=>`<button type="button" class="sp-row" data-p="${escH(n)}" aria-pressed="${n.toLowerCase()===cur}"><span>${escH(n)}</span>${t?`<em>${t} ${sub}</em>`:''}</button>`).join('')
-    +(sp.all?'':`<button type="button" class="sp-row sp-more" data-more="1">${ST.more}</button>`);
-  sp$('spTo').value = PLACES.some(([n])=>n.toLowerCase()===cur) ? '' : sp.to;
+  const isTour=sp.svc===2; /* tours: a lista mostra as tours da tabela de preços, com o preço "desde" */
+  sp$('spH2').textContent= isAir() ? (sp.dir===0?ST.h2arr:ST.h2dep) : isTour ? TOUR_T[0] : (sp.svc===1?ST.h2disp:ST.h2);
+  sp$('spL2').textContent= isAir() ? (sp.dir===0?ST.l2arr:ST.l2dep) : isTour ? TOUR_T[1] : ST.l2;
+  const sub=isAir()?ST.fromAir:ST.fromLx;
+  const all=isTour ? (PRICES.tours||[]).map(([n,p])=>[n, p&&p[0]?TOUR_T[3]+' '+eur(p[0]):'']) : PLACES.map(([n,t])=>[n, t?t+' '+sub:'']);
+  const list=sp.all?all:all.slice(0,6), cur=sp.to.trim().toLowerCase();
+  sp$('spPlaces').innerHTML=list.map(([n,t])=>`<button type="button" class="sp-row" data-p="${escH(n)}" aria-pressed="${n.toLowerCase()===cur}"><span>${escH(n)}</span>${t?`<em>${escH(t)}</em>`:''}</button>`).join('')
+    +(sp.all||all.length<=6?'':`<button type="button" class="sp-row sp-more" data-more="1">${isTour?TOUR_T[2]:ST.more}</button>`);
+  sp$('spTo').placeholder=isTour?TOUR_T[4]:ST.otherPh; document.querySelector('label[for="spTo"]').textContent=sp$('spTo').placeholder;
+  sp$('spTo').value = all.some(([n])=>n.toLowerCase()===cur) ? '' : sp.to;
 }
 sp$('spDir').addEventListener('click',e=>{ const b=e.target.closest('button'); if(!b) return; sp.dir=+b.dataset.i; spSave(); spRenderDest(); });
 sp$('spPlaces').addEventListener('click',e=>{ const b=e.target.closest('button'); if(!b) return;
