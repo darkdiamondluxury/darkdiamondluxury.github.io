@@ -7,7 +7,7 @@ import Pj from "./prices.json" with { type: "json" };
 // deno-lint-ignore no-explicit-any
 const P = Pj as any;
 
-const SITE = "https://darkdiamondluxury.github.io";
+const SITE = "https://darkdiamondluxury.pt";
 const CORS = { "Access-Control-Allow-Origin": "*", "Access-Control-Allow-Headers": "content-type, apikey, authorization", "Access-Control-Allow-Methods": "POST, GET, OPTIONS" };
 const json = (b: unknown, s = 200) => new Response(JSON.stringify(b), { status: s, headers: { ...CORS, "content-type": "application/json" } });
 const SB = Deno.env.get("SUPABASE_URL")!, SR = Deno.env.get("SUPABASE_SERVICE_ROLE_KEY")!;
