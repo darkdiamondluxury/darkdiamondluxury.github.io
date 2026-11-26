@@ -1,7 +1,7 @@
 # Dados da empresa e do site. Mudar aqui muda em todas as páginas e línguas.
 # Depois de mudar: python3 _build/build.py  (gera os ficheiros .html)
 
-SITE = 'https://darkdiamondluxury.github.io'   # quando houver domínio: 'https://darkdiamondluxury.pt'
+SITE = 'https://darkdiamondluxury.pt'   # domínio próprio desde 26/11/2026
 BRAND = 'Dark Diamond Luxury'
 
 LEGAL = {

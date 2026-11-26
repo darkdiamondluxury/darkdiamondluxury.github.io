@@ -3,4 +3,4 @@ User-agent: *
 Disallow: /Despacho/
 Disallow: /_build/
 
-Sitemap: https://darkdiamondluxury.github.io/sitemap.xml
+Sitemap: https://darkdiamondluxury.pt/sitemap.xml
