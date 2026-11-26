@@ -2,6 +2,7 @@
 import json
 
 PT = {
+    'ok': 'Obrigado. Recebemos o seu pedido.',
     'h': 'Vamos trabalhar juntos.',
     'p': 'Diga-nos quem é e o que precisa. Respondemos com uma tabela de preços para o seu negócio.',
     'type_q': 'O seu negócio', 'types': ['Agência de viagens', 'Operador ou DMC', 'Hotel ou alojamento', 'Linha de cruzeiros', 'Empresa', 'Empresa de transportes ou motorista', 'Outro'],
@@ -13,6 +14,7 @@ PT = {
     'msg_h': 'Pedido de parceria', 'l_type': 'Tipo', 'l_vol': 'Volume mensal', 'l_svc': 'Serviços', 'l_name': 'Nome', 'l_company': 'Empresa', 'l_contact': 'Contacto',
 }
 EN = {
+    'ok': 'Thank you. We have received your request.',
     'h': 'Let\'s work together.',
     'p': 'Tell us who you are and what you need. We reply with a rate sheet for your business.',
     'type_q': 'Your business', 'types': ['Travel agency', 'Tour operator or DMC', 'Hotel or rental', 'Cruise line', 'Company', 'Transport company or driver', 'Other'],
@@ -24,6 +26,7 @@ EN = {
     'msg_h': 'Partnership request', 'l_type': 'Type', 'l_vol': 'Monthly volume', 'l_svc': 'Services', 'l_name': 'Name', 'l_company': 'Company', 'l_contact': 'Contact',
 }
 ES = {
+    'ok': 'Gracias. Hemos recibido su solicitud.',
     'h': 'Trabajemos juntos.',
     'p': 'Díganos quién es y qué necesita. Le respondemos con una tabla de tarifas para su negocio.',
     'type_q': 'Su negocio', 'types': ['Agencia de viajes', 'Operador o DMC', 'Hotel o alojamiento', 'Naviera', 'Empresa', 'Empresa de transporte o chófer', 'Otro'],
@@ -35,6 +38,7 @@ ES = {
     'msg_h': 'Solicitud de colaboración', 'l_type': 'Tipo', 'l_vol': 'Volumen mensual', 'l_svc': 'Servicios', 'l_name': 'Nombre', 'l_company': 'Empresa', 'l_contact': 'Contacto',
 }
 FR = {
+    'ok': 'Merci. Nous avons bien reçu votre demande.',
     'h': 'Travaillons ensemble.',
     'p': "Dites-nous qui vous êtes et ce qu'il vous faut. Nous répondons avec une grille tarifaire pour votre activité.",
     'type_q': 'Votre activité', 'types': ['Agence de voyages', 'Tour-opérateur ou DMC', 'Hôtel ou location', 'Compagnie de croisières', 'Entreprise', 'Société de transport ou chauffeur', 'Autre'],
@@ -63,19 +67,21 @@ def partner_html(lang, whatsapp, email, esc):
     <label><span>{t['company']}</span><input id="pfCo" autocomplete="organization"></label>
     <label class="wide"><span>{t['contact']}</span><input id="pfContact" autocomplete="email" inputmode="email"></label>
   </div>
+  <div class="hp" aria-hidden="true" style="position:absolute;left:-10000px;width:1px;height:1px;overflow:hidden"><label for="pfWeb">Website</label><input id="pfWeb" name="website" type="text" tabindex="-1" autocomplete="off"></div>
   <p class="pf-err" id="pfErr" role="alert"></p>
   <div class="actions"><button class="btn dark" type="submit">{t['send']}</button><button class="btn ghost" type="button" id="pfMail">{t['mail']}</button></div>
 </form>
 </div></section>
 <script>
-(()=>{{const T={json.dumps({k: t[k] for k in ('err', 'msg_h', 'l_type', 'l_vol', 'l_svc', 'l_name', 'l_company', 'l_contact')}, ensure_ascii=False)};
+(()=>{{const T={json.dumps({k: t[k] for k in ('err', 'ok', 'msg_h', 'l_type', 'l_vol', 'l_svc', 'l_name', 'l_company', 'l_contact')}, ensure_ascii=False)};
 const f=document.getElementById('pf'),err=document.getElementById('pfErr'),v=id=>document.getElementById(id).value.trim();
 f.addEventListener('click',e=>{{const b=e.target.closest('[data-g]');if(!b)return;
   if(b.hasAttribute('data-multi'))b.setAttribute('aria-pressed',b.getAttribute('aria-pressed')!=='true');
   else f.querySelectorAll(`[data-g="${{b.dataset.g}}"]`).forEach(x=>x.setAttribute('aria-pressed',x===b));
   err.textContent='';}});
 const pick=g=>[...f.querySelectorAll(`[data-g="${{g}}"][aria-pressed="true"]`)].map(x=>x.textContent).join(', ');
-const msg=()=>{{if(!pick('type')||!v('pfName')){{err.textContent=T.err;(pick('type')?document.getElementById('pfName'):f.querySelector('[data-g]')).focus();return null;}}
+const trap=()=>{{if(document.getElementById('pfWeb').value){{err.textContent=T.ok;f.querySelectorAll('input').forEach(i=>i.value='');return true;}}return false;}};
+const msg=()=>{{if(trap())return null;if(!pick('type')||!v('pfName')){{err.textContent=T.err;(pick('type')?document.getElementById('pfName'):f.querySelector('[data-g]')).focus();return null;}}
   const L=[[T.l_type,pick('type')],[T.l_vol,pick('vol')],[T.l_svc,pick('svc')],[T.l_name,v('pfName')],[T.l_company,v('pfCo')],[T.l_contact,v('pfContact')]];
   try{{window.goatcounter&&goatcounter.count({{path:'parceria-pedido',event:true}})}}catch(e){{}}
   return T.msg_h+' · Dark Diamond Luxury\\n\\n'+L.filter(x=>x[1]).map(x=>x[0]+': '+x[1]).join('\\n');}};

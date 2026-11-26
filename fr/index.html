@@ -441,6 +441,7 @@ footer{padding-bottom:96px}
 .sp-tags button::before{content:"+";font-size:1.05rem;line-height:1}
 .sp-tags button[aria-pressed="true"]{background:var(--black);color:var(--gold-hi)}
 .sp-tags button[aria-pressed="true"]::before{content:"✓";font-size:.9rem}
+.hp{position:absolute;left:-10000px;top:auto;width:1px;height:1px;overflow:hidden}
 .sp-fields{margin-top:18px;display:grid;grid-template-columns:minmax(0,1fr);gap:14px}
 .sp-fields .sp-fields{margin-top:0}
 .sp-tel{display:flex;gap:8px}
@@ -684,7 +685,8 @@ document.getElementById('selGo').textContent = t.go;
 function render(){
   const t = T[lang];
   document.documentElement.lang = lang;
-  document.querySelectorAll('[data-i18n]').forEach(el=>{ const v=t[el.dataset.i18n]; if(typeof v==='string') el.textContent=v; });
+  /* o texto já vem traduzido no HTML: só se troca o que for diferente (trocar o topo atrasava o primeiro ecrã no telemóvel) */
+  document.querySelectorAll('[data-i18n]').forEach(el=>{ const v=t[el.dataset.i18n]; if(typeof v==='string' && el.textContent!==v) el.textContent=v; });
   document.querySelectorAll('[data-i18n-ph]').forEach(el=>{ el.placeholder=t[el.dataset.i18nPh]; });
   document.getElementById('track').innerHTML = PLACES.map(([n],i)=>`<button class="place" type="button" role="option" data-i="${i}" aria-current="${i===destI}">${n}</button>`).join('');
   document.getElementById('destBg').innerHTML = DIMG.map((u,i)=>`<img src="${u}" alt="" decoding="async" class="${i===destI?'on':''}" data-i="${i}" onerror="this.remove()">`).join('');
@@ -886,7 +888,7 @@ sp$('form').innerHTML = `
         <div><label for="spEmail" id="spEmailL"></label><input id="spEmail" type="email" autocomplete="email"></div>
         <div><label for="spNotes" id="spNotesL"></label><textarea id="spNotes" rows="3"></textarea></div>
       </div>
-      <div style="position:absolute;left:-9999px" aria-hidden="true"><label for="fWeb">Website</label><input id="fWeb" tabindex="-1" autocomplete="off"></div>
+      <div class="hp" aria-hidden="true"><label for="fWeb">Website</label><input id="fWeb" name="website" type="text" tabindex="-1" autocomplete="off"></div>
     </div>
   </section>
   <section class="sp-step" data-s="6"><h3 class="sp-h" id="spH6" tabindex="-1"></h3><p class="sp-l" id="spL6"></p><dl class="sp-sum" id="spSum"></dl><p class="sp-l sp-soon" id="spSoon" role="status" hidden></p><p class="sp-l sp-cond" id="spCx1"></p><p class="sp-l sp-cond" id="spCx2"></p><p class="sp-l sp-cond"><a id="spCond" href="/fr/tarifs/#condicoes" target="_blank" rel="noopener"></a></p></section>
@@ -1100,7 +1102,7 @@ function spSend(){
   }
   if(live&&window.gcEv){ gcEv('reserva-servico/'+t.svcs[sp.svc]); const pl=PLACES.find(x=>x[0]===sp.to.trim()); gcEv('reserva-destino/'+(pl?pl[0]:'outro')); }
   if(live&&window.goatcounter&&goatcounter.count) goatcounter.count({path:'reserva-pedido',title:'Pedido de reserva enviado',event:true});
-  if(WHATSAPP){ const msg=t.msg({svc:t.svcs[sp.svc],from:pickup||'—',to:dropoff||'—',date:dmy,time,pax:String(sp.pax),bags:String(sp.bags),cabin:String(sp.cabin),flight,name:sp.name.trim()||'—',notes});
+  if(WHATSAPP && !sp$('fWeb').value){ const msg=t.msg({svc:t.svcs[sp.svc],from:pickup||'—',to:dropoff||'—',date:dmy,time,pax:String(sp.pax),bags:String(sp.bags),cabin:String(sp.cabin),flight,name:sp.name.trim()||'—',notes});
     window.open(`https://wa.me/${WHATSAPP}?text=${encodeURIComponent(msg)}`,'_blank','noopener'); }
   const first=sp.name.trim().split(' ')[0];
   sp$('spL7').textContent=ST.l7.replace('{n}', first?', '+first:'');
@@ -1119,7 +1121,7 @@ function spPay(){
     pax:sp.pax,bags:sp.bags,cabin:sp.cabin,flight:arr?sp.flight.trim():'',name:sp.name.trim(),phone:spPhoneFmt(),email:sp.email.trim(),notes:sp.notes.trim(),extras:sp.extras,
     pickup,dropoff,website:sp$('fWeb').value,back:location.origin+location.pathname})})
     .then(r=>r.json().then(j=>({ok:r.ok,j})))
-    .then(({ok,j})=>{ if(ok&&j.url){ spSave(); location.href=j.url; } else { sp$('spSendErr').textContent=(j&&j.error)||t.send_err; setBusy(b,false,ST.pay.replace('{p}',eur(spPayEur()))); } })
+    .then(({ok,j})=>{ if(ok&&j.url){ spSave(); location.href=j.url; } else if(ok){ sp$('spL7').textContent=ST.l7.replace('{n}',''); spGo(7); } else { sp$('spSendErr').textContent=(j&&j.error)||t.send_err; setBusy(b,false,ST.pay.replace('{p}',eur(spPayEur()))); } })
     .catch(()=>{ sp$('spSendErr').textContent=t.send_err; setBusy(b,false,ST.pay.replace('{p}',eur(spPayEur()))); });
 }
 /* regresso da Stripe: ?pago=<sessão> (pago) ou ?cancelado=1 */
@@ -1235,13 +1237,11 @@ addEventListener('DOMContentLoaded',()=>{ if(!window.gsap || reduce) return;
   ScrollTrigger.config({ignoreMobileResize:true});
   const E='expo.out';
 
-  // Entrada: a fotografia assenta, o título sobe, o resto chega
+  // Entrada: só o fundo se mexe (a fotografia assenta e surge em fade).
+  // O texto do topo (título, subtítulo, destino e botão) já está no ecrã desde o início: não espera pelo GSAP (26/11/2026, velocidade no telemóvel).
   gsap.timeline({defaults:{ease:E}})
     .from('.hero .bg img',{scale:1.14,duration:2.2,ease:'power3.out'},0)
-    // a carrinha surge em fade, ao mesmo ritmo que as letras
-    .from('.hero .bg',{opacity:0,duration:2.4,ease:'sine.inOut'},.1)
-    .from('.hero h1 .line>span',{yPercent:110,duration:1.2,stagger:.12},.15)
-    .from('.hero .sub, .hero .pick, .hero .hprice',{y:22,opacity:0,duration:.9,stagger:.1},.6);
+    .from('.hero .bg',{opacity:0,duration:2.4,ease:'sine.inOut'},.1);
   gsap.to('.hero .bg img',{yPercent:10,ease:'none',scrollTrigger:{trigger:'.hero',start:'top top',end:'bottom top',scrub:true}});
 
   // O gesto principal: a frase acende-se palavra a palavra com o scroll

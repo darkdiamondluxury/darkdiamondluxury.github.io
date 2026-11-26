@@ -49,19 +49,21 @@
     <label><span>Empresa</span><input id="pfCo" autocomplete="organization"></label>
     <label class="wide"><span>Email ou telefone</span><input id="pfContact" autocomplete="email" inputmode="email"></label>
   </div>
+  <div class="hp" aria-hidden="true" style="position:absolute;left:-10000px;width:1px;height:1px;overflow:hidden"><label for="pfWeb">Website</label><input id="pfWeb" name="website" type="text" tabindex="-1" autocomplete="off"></div>
   <p class="pf-err" id="pfErr" role="alert"></p>
   <div class="actions"><button class="btn dark" type="submit">Enviar no WhatsApp</button><button class="btn ghost" type="button" id="pfMail">Prefiro email</button></div>
 </form>
 </div></section>
 <script>
-(()=>{const T={"err": "Escolha o tipo de negócio e escreva o seu nome.", "msg_h": "Pedido de parceria", "l_type": "Tipo", "l_vol": "Volume mensal", "l_svc": "Serviços", "l_name": "Nome", "l_company": "Empresa", "l_contact": "Contacto"};
+(()=>{const T={"err": "Escolha o tipo de negócio e escreva o seu nome.", "ok": "Obrigado. Recebemos o seu pedido.", "msg_h": "Pedido de parceria", "l_type": "Tipo", "l_vol": "Volume mensal", "l_svc": "Serviços", "l_name": "Nome", "l_company": "Empresa", "l_contact": "Contacto"};
 const f=document.getElementById('pf'),err=document.getElementById('pfErr'),v=id=>document.getElementById(id).value.trim();
 f.addEventListener('click',e=>{const b=e.target.closest('[data-g]');if(!b)return;
   if(b.hasAttribute('data-multi'))b.setAttribute('aria-pressed',b.getAttribute('aria-pressed')!=='true');
   else f.querySelectorAll(`[data-g="${b.dataset.g}"]`).forEach(x=>x.setAttribute('aria-pressed',x===b));
   err.textContent='';});
 const pick=g=>[...f.querySelectorAll(`[data-g="${g}"][aria-pressed="true"]`)].map(x=>x.textContent).join(', ');
-const msg=()=>{if(!pick('type')||!v('pfName')){err.textContent=T.err;(pick('type')?document.getElementById('pfName'):f.querySelector('[data-g]')).focus();return null;}
+const trap=()=>{if(document.getElementById('pfWeb').value){err.textContent=T.ok;f.querySelectorAll('input').forEach(i=>i.value='');return true;}return false;};
+const msg=()=>{if(trap())return null;if(!pick('type')||!v('pfName')){err.textContent=T.err;(pick('type')?document.getElementById('pfName'):f.querySelector('[data-g]')).focus();return null;}
   const L=[[T.l_type,pick('type')],[T.l_vol,pick('vol')],[T.l_svc,pick('svc')],[T.l_name,v('pfName')],[T.l_company,v('pfCo')],[T.l_contact,v('pfContact')]];
   try{window.goatcounter&&goatcounter.count({path:'parceria-pedido',event:true})}catch(e){}
   return T.msg_h+' · Dark Diamond Luxury\n\n'+L.filter(x=>x[1]).map(x=>x[0]+': '+x[1]).join('\n');};

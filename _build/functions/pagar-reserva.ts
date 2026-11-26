@@ -71,7 +71,8 @@ Deno.serve(async (req) => {
   try { b = await req.json(); } catch { return json({ error: "pedido" }, 400); }
   const lang = ["pt", "en", "es", "fr"].includes(String(b.lang)) ? String(b.lang) : "en";
   const t = TXT[lang];
-  if (String(b.website || "") !== "") return json({ error: t.err }, 400); // campo-armadilha preenchido: robô
+  // campo-armadilha preenchido: robô. Responde como se tudo tivesse corrido bem, mas não guarda nada nem cria pagamento.
+  if (String(b.website || "") !== "") return json({ ok: true });
 
   const s = (k: string, n: number) => String(b[k] ?? "").trim().slice(0, n);
   const svc = Number(b.svc), car = s("car", 2), to = s("to", 200), date = s("date", 10);
