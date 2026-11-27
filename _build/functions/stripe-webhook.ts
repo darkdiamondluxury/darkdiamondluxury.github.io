@@ -30,26 +30,111 @@ function serviceType(p: Record<string, any>) {
   return "Transfer";
 }
 
-const MAIL: Record<string, { subj: string; hi: string; body: string; rows: string[]; cancel: string; contact: string }> = {
-  pt: { subj: "Reserva confirmada", hi: "Olá", body: "O pagamento foi recebido e a sua reserva está confirmada.", rows: ["Serviço", "Data e hora", "Recolha", "Destino", "Viatura", "Passageiros", "Voo", "Pago"], cancel: "Cancelamento sem penalização até 24 h antes (48 h em longa distância, eventos e serviços à disposição). Custos de processamento do pagamento (3 %) não reembolsáveis em caso de cancelamento.", contact: "Para alterar ou cancelar, responda a este email ou fale connosco por WhatsApp: +351 932 666 254." },
-  en: { subj: "Booking confirmed", hi: "Hello", body: "Your payment has been received and your booking is confirmed.", rows: ["Service", "Date and time", "Pick-up", "Destination", "Vehicle", "Passengers", "Flight", "Paid"], cancel: "Cancellation without penalty up to 24 h before (48 h for long distance, events and chauffeur at disposal). Payment processing costs (3%) are not refundable if you cancel.", contact: "To change or cancel, reply to this email or message us on WhatsApp: +351 932 666 254." },
-  es: { subj: "Reserva confirmada", hi: "Hola", body: "Hemos recibido el pago y su reserva está confirmada.", rows: ["Servicio", "Fecha y hora", "Recogida", "Destino", "Vehículo", "Pasajeros", "Vuelo", "Pagado"], cancel: "Cancelación sin penalización hasta 24 h antes (48 h en larga distancia, eventos y servicios a disposición). Gastos de procesamiento del pago (3 %) no reembolsables en caso de cancelación.", contact: "Para cambiar o cancelar, responda a este email o escríbanos por WhatsApp: +351 932 666 254." },
-  fr: { subj: "Réservation confirmée", hi: "Bonjour", body: "Votre paiement a bien été reçu et votre réservation est confirmée.", rows: ["Service", "Date et heure", "Prise en charge", "Destination", "Véhicule", "Passagers", "Vol", "Payé"], cancel: "Annulation sans pénalité jusqu'à 24 h avant (48 h pour la longue distance, les événements et les services à disposition). Frais de traitement du paiement (3 %) non remboursables en cas d'annulation.", contact: "Pour modifier ou annuler, répondez à cet email ou écrivez-nous sur WhatsApp : +351 932 666 254." },
+// Email de confirmação ao cliente. Estética do orçamento da Colorama (documento limpo: títulos serifados, etiquetas a negrito, destaque com barra à esquerda).
+// Os clientes de email só mostram letras instaladas no aparelho: Georgia nos títulos, Helvetica/Arial no texto.
+type Txt = { subj: string; title: string; booking: string; of: string; to: string; service: string; paid: string; vat: string; confirmed: string;
+  hService: string; hDay: string; hCond: string; hContact: string; rows: string[]; bags: (a: number, b: number) => string; pax: (n: number) => string;
+  svc: (p: Record<string, any>) => string; meet: string[]; wait: string; other: string; cond: string[]; wa: string; cal: string; locale: string; test: string };
+const PAX = { pt: (n: number) => n === 1 ? "1 passageiro" : `${n} passageiros`, en: (n: number) => n === 1 ? "1 passenger" : `${n} passengers`, es: (n: number) => n === 1 ? "1 pasajero" : `${n} pasajeros`, fr: (n: number) => n === 1 ? "1 passager" : `${n} passagers` };
+const svcName = (names: string[], dirs: string[]) => (p: Record<string, any>) => p.svc === 0 ? `${names[0]} · ${dirs[p.dir === 1 ? 1 : 0]}` : names[p.svc] || names[0];
+const MAIL: Record<string, Txt> = {
+  pt: { subj: "Reserva confirmada", title: "Reserva confirmada", booking: "Reserva", of: "de", to: "Para", service: "Serviço", paid: "Pagamento recebido", vat: "IVA incluído", confirmed: "A sua reserva está confirmada.",
+    hService: "O seu serviço", hDay: "No dia", hCond: "Condições", hContact: "Contacto",
+    rows: ["Data e hora", "Recolha", "Destino", "Voo", "Viatura", "Passageiros e malas", "O seu pedido", "Contacto"],
+    bags: (a, b) => `${a} de porão · ${b} de mão`, pax: PAX.pt,
+    svc: svcName(["Transfer aeroporto", "À disposição", "Tour privado", "Evento", "Longa distância", "Cruzeiro"], ["chegada", "partida"]),
+    meet: ["Onde nos encontra", "o motorista espera nas chegadas com uma placa com o seu nome.", "Se o voo atrasar", "acompanhamos o voo e esperamos por si. A espera está incluída até 120 minutos depois da aterragem."],
+    wait: "Espera incluída", other: "o motorista chega à hora marcada ao local de recolha. Estão incluídos 30 minutos de espera.",
+    cond: ["Cancelamento", "sem penalização até 24 h antes (48 h em longa distância, eventos e serviços à disposição).", "Custos de processamento", "3 % do pagamento, não reembolsáveis em caso de cancelamento.", "Alterar ou cancelar", "responda a este email ou fale connosco por WhatsApp."],
+    wa: "Falar connosco no WhatsApp", cal: "Adicionar ao calendário", locale: "pt-PT", test: "TESTE — modo de teste da Stripe, nenhum pagamento real" },
+  en: { subj: "Booking confirmed", title: "Booking confirmed", booking: "Booking", of: "of", to: "For", service: "Service", paid: "Payment received", vat: "VAT included", confirmed: "Your booking is confirmed.",
+    hService: "Your service", hDay: "On the day", hCond: "Terms", hContact: "Contact",
+    rows: ["Date and time", "Pick-up", "Destination", "Flight", "Vehicle", "Passengers and luggage", "Your request", "Phone"],
+    bags: (a, b) => `${a} checked · ${b} cabin`, pax: PAX.en,
+    svc: svcName(["Airport transfer", "Chauffeur at disposal", "Private tour", "Event", "Long distance", "Cruise"], ["arrival", "departure"]),
+    meet: ["Where to find us", "your driver waits in the arrivals hall with a sign bearing your name.", "If your flight is delayed", "we track your flight and wait for you. Waiting is included up to 120 minutes after landing."],
+    wait: "Waiting included", other: "your driver arrives at the pick-up point at the agreed time. 30 minutes of waiting are included.",
+    cond: ["Cancellation", "free of charge up to 24 h before (48 h for long distance, events and chauffeur at disposal).", "Processing costs", "3% of the payment, not refundable if you cancel.", "To change or cancel", "reply to this email or message us on WhatsApp."],
+    wa: "Message us on WhatsApp", cal: "Add to calendar", locale: "en-GB", test: "TEST — Stripe test mode, no real payment" },
+  es: { subj: "Reserva confirmada", title: "Reserva confirmada", booking: "Reserva", of: "del", to: "Para", service: "Servicio", paid: "Pago recibido", vat: "IVA incluido", confirmed: "Su reserva está confirmada.",
+    hService: "Su servicio", hDay: "El día del servicio", hCond: "Condiciones", hContact: "Contacto",
+    rows: ["Fecha y hora", "Recogida", "Destino", "Vuelo", "Vehículo", "Pasajeros y maletas", "Su petición", "Teléfono"],
+    bags: (a, b) => `${a} facturadas · ${b} de mano`, pax: PAX.es,
+    svc: svcName(["Traslado aeropuerto", "A disposición", "Tour privado", "Evento", "Larga distancia", "Crucero"], ["llegada", "salida"]),
+    meet: ["Dónde encontrarnos", "el conductor le espera en llegadas con un cartel con su nombre.", "Si el vuelo se retrasa", "seguimos el vuelo y le esperamos. La espera está incluida hasta 120 minutos después del aterrizaje."],
+    wait: "Espera incluida", other: "el conductor llega a la hora acordada al punto de recogida. Se incluyen 30 minutos de espera.",
+    cond: ["Cancelación", "sin penalización hasta 24 h antes (48 h en larga distancia, eventos y servicios a disposición).", "Gastos de procesamiento", "3 % del pago, no reembolsables en caso de cancelación.", "Cambiar o cancelar", "responda a este email o escríbanos por WhatsApp."],
+    wa: "Escríbanos por WhatsApp", cal: "Añadir al calendario", locale: "es-ES", test: "PRUEBA — modo de prueba de Stripe, ningún pago real" },
+  fr: { subj: "Réservation confirmée", title: "Réservation confirmée", booking: "Réservation", of: "du", to: "Pour", service: "Service", paid: "Paiement reçu", vat: "TVA incluse", confirmed: "Votre réservation est confirmée.",
+    hService: "Votre service", hDay: "Le jour J", hCond: "Conditions", hContact: "Contact",
+    rows: ["Date et heure", "Prise en charge", "Destination", "Vol", "Véhicule", "Passagers et bagages", "Votre demande", "Téléphone"],
+    bags: (a, b) => `${a} en soute · ${b} en cabine`, pax: PAX.fr,
+    svc: svcName(["Transfert aéroport", "Chauffeur à disposition", "Tour privé", "Événement", "Longue distance", "Croisière"], ["arrivée", "départ"]),
+    meet: ["Où nous trouver", "votre chauffeur vous attend aux arrivées avec une pancarte à votre nom.", "Si votre vol est retardé", "nous suivons votre vol et vous attendons. L'attente est incluse jusqu'à 120 minutes après l'atterrissage."],
+    wait: "Attente incluse", other: "votre chauffeur arrive au point de prise en charge à l'heure convenue. 30 minutes d'attente sont incluses.",
+    cond: ["Annulation", "sans pénalité jusqu'à 24 h avant (48 h pour la longue distance, les événements et les services à disposition).", "Frais de traitement", "3 % du paiement, non remboursables en cas d'annulation.", "Modifier ou annuler", "répondez à cet email ou écrivez-nous sur WhatsApp."],
+    wa: "Écrivez-nous sur WhatsApp", cal: "Ajouter au calendrier", locale: "fr-FR", test: "TEST — mode test de Stripe, aucun paiement réel" },
 };
 const esc = (s: unknown) => String(s ?? "").replace(/[&<>"]/g, (c) => ({ "&": "&amp;", "<": "&lt;", ">": "&gt;", '"': "&quot;" }[c]!));
+export const bookingRef = (id: string) => "DDL-" + String(id).replace(/-/g, "").slice(0, 6).toUpperCase();
+const LOGO = "https://darkdiamondluxury.pt/assets/email-logo.png";
+const SERIF = "Georgia,'Times New Roman',serif", SANS = "-apple-system,'Segoe UI',Helvetica,Arial,sans-serif";
 
-async function sendMail(to: string, p: Record<string, any>, cents: number, test: boolean): Promise<string | null> {
+export function mailHtml(p: Record<string, any>, cents: number, test: boolean, ref: string): { subject: string; html: string } {
+  const m = MAIL[p.lang] || MAIL.en;
+  const [y, mo, d] = String(p.date).split("-").map(Number);
+  const day = (dt: Date) => dt.toLocaleDateString(m.locale, { weekday: "long", day: "numeric", month: "long", year: "numeric", timeZone: "UTC" });
+  const today = new Date().toLocaleDateString(m.locale, { day: "numeric", month: "long", year: "numeric", timeZone: "Europe/Lisbon" });
+  const when = `${day(new Date(Date.UTC(y, mo - 1, d)))} · ${p.time}`;
+  const arrival = p.svc === 0 && p.dir !== 1;
+  const phone = [p.cc, p.phone].filter(Boolean).join(" ");
+  const vals = [when, p.pickup || "", p.svc === 2 ? p.label : (p.dropoff || p.label || p.to || ""), p.flight || "", p.carName ? `Mercedes ${p.carName}` : "",
+    `${m.pax(Number(p.pax) || 1)} · ${m.bags(Number(p.bags) || 0, Number(p.cabin) || 0)}`, p.notes || "", phone];
+  const li = (k: string, v: string) => `<li style="margin:0 0 4px"><b>${esc(k)}:</b> ${esc(v)}</li>`;
+  const ul = (items: string) => `<ul style="margin:0;padding:0 0 0 22px;font-family:${SANS};font-size:15px;line-height:1.6;color:#1a1a1a">${items}</ul>`;
+  const h2 = (t: string) => `<h2 style="margin:28px 0 10px;font-family:${SERIF};font-weight:normal;font-size:22px;line-height:1.3;color:#1a1a1a">${esc(t)}</h2>`;
+  const pl = (k: string, v: string) => `<p style="margin:4px 0 0;font-family:${SANS};font-size:15px;line-height:1.6;color:#1a1a1a"><b>${esc(k)}:</b> ${esc(v)}</p>`;
+  const service = m.svc(p);
+  const pad = (n: number) => String(n).padStart(2, "0");
+  const [hh, mm] = String(p.time).split(":").map(Number);
+  const end = new Date(Date.UTC(y, mo - 1, d, hh + 1, mm));
+  const cal = "https://calendar.google.com/calendar/render?" + new URLSearchParams({ action: "TEMPLATE", text: `Dark Diamond Luxury · ${service}`,
+    dates: `${y}${pad(mo)}${pad(d)}T${pad(hh)}${pad(mm)}00/${end.getUTCFullYear()}${pad(end.getUTCMonth() + 1)}${pad(end.getUTCDate())}T${pad(end.getUTCHours())}${pad(end.getUTCMinutes())}00`,
+    ctz: "Europe/Lisbon", details: `${m.booking} ${ref} · WhatsApp +351 932 666 254`, location: p.pickup || "" }).toString();
+  const html = `<!doctype html><html><head><meta charset="utf-8"><meta name="viewport" content="width=device-width,initial-scale=1"><meta name="color-scheme" content="light"></head>
+<body style="margin:0;padding:0;background:#ffffff">
+<table role="presentation" width="100%" cellpadding="0" cellspacing="0" border="0" style="background:#ffffff"><tr><td align="center" style="padding:0">
+<table role="presentation" width="600" cellpadding="0" cellspacing="0" border="0" style="max-width:600px;width:100%"><tr><td style="padding:32px 24px 40px;color:#1a1a1a">
+${test ? `<p style="margin:0 0 16px;font-family:${SANS};font-size:13px;color:#b00020">${m.test}</p>` : ""}
+<h1 style="margin:0;font-family:${SERIF};font-weight:normal;font-size:32px;line-height:1.2;color:#1a1a1a">${m.title}</h1>
+<p style="margin:12px 0 0;font-family:${SANS};font-size:15px;line-height:1.6;color:#1a1a1a"><b>Dark Diamond Luxury</b> · ${m.booking} ${ref} ${m.of} ${esc(today)}</p>
+${p.name ? pl(m.to, String(p.name)) : ""}${pl(m.service, service)}
+<table role="presentation" width="100%" cellpadding="0" cellspacing="0" border="0" style="margin:20px 0 0"><tr><td style="border-left:3px solid #d9d6d0;padding:6px 0 6px 18px;font-family:${SANS};font-size:15px;line-height:1.6;color:#1a1a1a"><b>${m.paid}:</b> ${eurTxt(cents)} (${m.vat}). ${m.confirmed}</td></tr></table>
+${h2(m.hService)}${ul(m.rows.map((r, i) => vals[i] ? li(r, vals[i]) : "").join(""))}
+${h2(m.hDay)}${ul(arrival ? li(m.meet[0], m.meet[1]) + li(m.meet[2], m.meet[3]) : li(m.wait, m.other))}
+<p style="margin:18px 0 0;font-family:${SANS}"><a href="https://wa.me/351932666254" style="display:inline-block;background:#1a1a1a;color:#ffffff;text-decoration:none;font-size:14px;font-weight:bold;padding:11px 20px;border-radius:6px">${m.wa}</a>&nbsp;&nbsp;<a href="${esc(cal)}" style="display:inline-block;color:#1a1a1a;text-decoration:underline;font-size:14px;padding:11px 4px">${m.cal}</a></p>
+${h2(m.hCond)}${ul(li(m.cond[0], m.cond[1]) + li(m.cond[2], m.cond[3]) + li(m.cond[4], m.cond[5]))}
+${h2(m.hContact)}
+<table cellpadding="0" cellspacing="0" border="0" style="border-collapse:collapse;font-family:${SANS};color:#1a1a1a"><tr>
+<td style="padding:0 16px 0 0;vertical-align:middle"><a href="https://darkdiamondluxury.pt" style="text-decoration:none"><img src="${LOGO}" width="72" height="72" alt="Dark Diamond Luxury" style="display:block;width:72px;height:72px;border:0"></a></td>
+<td style="padding:0 0 0 16px;vertical-align:middle;border-left:2px solid #b08a3a">
+<div style="font-size:16px;font-weight:bold;letter-spacing:0.5px">Dark Diamond Luxury</div>
+<div style="font-size:13px;color:#8a6a24;padding:2px 0 8px">Luxury Transport &amp; Transfers · Lisboa</div>
+<div style="font-size:13px;color:#333;line-height:1.6"><a href="tel:+351932666254" style="color:#333;text-decoration:none">+351 932 666 254</a> · <a href="mailto:geral@darkdiamondluxury.pt" style="color:#333;text-decoration:none">geral@darkdiamondluxury.pt</a><br>
+<a href="https://wa.me/351932666254" style="color:#333;text-decoration:none">WhatsApp 24/7</a> · <a href="https://darkdiamondluxury.pt" style="color:#8a6a24;text-decoration:none;font-weight:bold">darkdiamondluxury.pt</a></div>
+</td></tr></table>
+</td></tr></table></td></tr></table></body></html>`;
+  return { subject: `${test ? "[TESTE] " : ""}${m.subj} ${ref} · Dark Diamond Luxury`, html };
+}
+
+async function sendMail(to: string, p: Record<string, any>, cents: number, test: boolean, ref: string): Promise<string | null> {
   const key = Deno.env.get("RESEND_API_KEY");
   if (!key) return "sem RESEND_API_KEY";
-  const m = MAIL[p.lang] || MAIL.en;
-  const [y, mo, d] = String(p.date).split("-");
-  const vals = [p.label, `${d}/${mo}/${y} ${p.time}`, p.pickup || "—", p.dropoff || p.to || "—", p.carName, String(p.pax), p.flight || "", eurTxt(cents)];
-  const rows = m.rows.map((r, i) => vals[i] ? `<tr><td style="padding:6px 14px 6px 0;color:#777">${r}</td><td style="padding:6px 0">${esc(vals[i])}</td></tr>` : "").join("");
-  const html = `<div style="font-family:Georgia,serif;max-width:560px;color:#111">${test ? '<p style="color:#b00">[TESTE — modo de teste da Stripe, nenhum pagamento real]</p>' : ""}<h2 style="font-weight:400">Dark Diamond Luxury</h2><p>${m.hi}${p.name ? " " + esc(String(p.name).split(" ")[0]) : ""},</p><p>${m.body}</p><table style="border-collapse:collapse;font-size:15px">${rows}</table><p style="font-size:13px;color:#555;margin-top:18px">${m.cancel}</p><p>${m.contact}</p></div>`;
+  const { subject, html } = mailHtml(p, cents, test, ref);
   const copy = Deno.env.get("EMAIL_COPY");
   const r = await fetch("https://api.resend.com/emails", { method: "POST", headers: { authorization: `Bearer ${key}`, "content-type": "application/json" }, body: JSON.stringify({
     from: (Deno.env.get("EMAIL_FROM") || "").includes("@darkdiamondluxury.pt") ? Deno.env.get("EMAIL_FROM") : "Dark Diamond Luxury <reservas@darkdiamondluxury.pt>", to: [to], ...(copy ? { bcc: [copy] } : {}),
-    reply_to: "geral@darkdiamondluxury.pt", subject: `${test ? "[TESTE] " : ""}${m.subj} · Dark Diamond Luxury`, html }) });
+    reply_to: "geral@darkdiamondluxury.pt", subject, html }) });
   return r.ok ? null : `resend ${r.status}: ${(await r.text()).slice(0, 300)}`;
 }
 
@@ -78,7 +163,7 @@ async function paid(session: Record<string, any>) {
     client_name: p.name || cd.name || null, client_phone: phone, client_email: email, pax: p.pax, checked_bags: p.bags, cabin_bags: p.cabin,
     notes: [p.svc === 2 ? `Tour: ${p.label}` : "", p.svc === 5 ? "Cruzeiro" : "", p.notes].filter(Boolean).join(" · ") || null,
     requirements: req.slice(0, 1000), channel: "Site", source: "site", origin: "direct",
-    internal_notes: `${live ? "" : "TESTE · "}Pago online pela Stripe: ${eurTxt(cents)} · ${session.payment_intent || session.id}`,
+    internal_notes: `${live ? "" : "TESTE · "}${bookingRef(row.id)} · Pago online pela Stripe: ${eurTxt(cents)} · ${session.payment_intent || session.id}`,
     seat_child: extras.some((x) => SEAT.includes(x)) ? 1 : 0, seat_booster: extras.some((x) => BOOST.includes(x)) ? 1 : 0,
   };
   const ins = await db("services", { method: "POST", body: JSON.stringify(svc) });
@@ -89,7 +174,7 @@ async function paid(session: Record<string, any>) {
   await db("service_events", { method: "POST", body: JSON.stringify({ company_id: co, service_id: sid, kind: "criado", note: `Reserva paga no site (${eurTxt(cents)})`, money: true }) });
   await db(`site_checkouts?id=eq.${row.id}`, { method: "PATCH", body: JSON.stringify({ status: "pago", paid_at: new Date().toISOString(), service_id: sid, company_id: co, payment_intent: session.payment_intent || null, livemode: live }) });
   const to = email;
-  const err = to ? await sendMail(to, p, cents, !live) : "sem email do cliente";
+  const err = to ? await sendMail(to, p, cents, !live, bookingRef(row.id)) : "sem email do cliente";
   await db(`site_checkouts?id=eq.${row.id}`, { method: "PATCH", body: JSON.stringify(err ? { email_error: err } : { email_sent_at: new Date().toISOString(), email_error: null }) });
 }
 
