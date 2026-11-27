@@ -3,7 +3,8 @@
 // - checkout.session.expired / async_payment_failed → fica registado, nada entra na app
 // - charge.refunded → o serviço fica "cancelado" na app, com o valor reembolsado (os reembolsos fazem-se no painel da Stripe)
 // Modo de teste → empresa demo (settings.site_test_bookings); modo real → empresa com settings.site_bookings (ou a primeira).
-// Segredos: STRIPE_WEBHOOK_SECRET (whsec_...), RESEND_API_KEY (opcional; sem ela não sai email), EMAIL_FROM (opcional), EMAIL_COPY (opcional).
+// Emails (Resend, a partir de reservas@): confirmação ao cliente + aviso à equipa (geral@) quando paga; cancelamento ao cliente + aviso à equipa no 1.º reembolso.
+// Segredos: STRIPE_WEBHOOK_SECRET (whsec_...), RESEND_API_KEY (opcional; sem ela não sai email), EMAIL_FROM (opcional).
 const SB = Deno.env.get("SUPABASE_URL")!, SR = Deno.env.get("SUPABASE_SERVICE_ROLE_KEY")!;
 const db = (path: string, init: RequestInit = {}) => fetch(`${SB}/rest/v1/${path}`, { ...init, headers: { apikey: SR, authorization: `Bearer ${SR}`, "content-type": "application/json", prefer: "return=representation", ...(init.headers || {}) } });
 const ok = (msg = "ok") => new Response(msg, { status: 200 });
@@ -79,6 +80,27 @@ const esc = (s: unknown) => String(s ?? "").replace(/[&<>"]/g, (c) => ({ "&": "&
 export const bookingRef = (id: string) => "DDL-" + String(id).replace(/-/g, "").slice(0, 6).toUpperCase();
 const LOGO = "https://darkdiamondluxury.pt/assets/email-logo.png";
 const SERIF = "Georgia,'Times New Roman',serif", SANS = "-apple-system,'Segoe UI',Helvetica,Arial,sans-serif";
+const li = (k: string, v: string) => `<li style="margin:0 0 4px"><b>${esc(k)}:</b> ${esc(v)}</li>`;
+const ul = (items: string) => `<ul style="margin:0;padding:0 0 0 22px;font-family:${SANS};font-size:15px;line-height:1.6;color:#1a1a1a">${items}</ul>`;
+const h2 = (t: string) => `<h2 style="margin:28px 0 10px;font-family:${SERIF};font-weight:normal;font-size:22px;line-height:1.3;color:#1a1a1a">${esc(t)}</h2>`;
+const pl = (k: string, v: string) => `<p style="margin:4px 0 0;font-family:${SANS};font-size:15px;line-height:1.6;color:#1a1a1a"><b>${esc(k)}:</b> ${esc(v)}</p>`;
+const note = (html: string) => `<table role="presentation" width="100%" cellpadding="0" cellspacing="0" border="0" style="margin:20px 0 0"><tr><td style="border-left:3px solid #d9d6d0;padding:6px 0 6px 18px;font-family:${SANS};font-size:15px;line-height:1.6;color:#1a1a1a">${html}</td></tr></table>`;
+const waBtn = (t: string) => `<a href="https://wa.me/351932666254" style="display:inline-block;background:#1a1a1a;color:#ffffff;text-decoration:none;font-family:${SANS};font-size:14px;font-weight:bold;padding:11px 20px;border-radius:6px">${esc(t)}</a>`;
+const SIGN = `<table cellpadding="0" cellspacing="0" border="0" style="border-collapse:collapse;font-family:${SANS};color:#1a1a1a"><tr>
+<td style="padding:0 16px 0 0;vertical-align:middle"><a href="https://darkdiamondluxury.pt" style="text-decoration:none"><img src="${LOGO}" width="72" height="72" alt="Dark Diamond Luxury" style="display:block;width:72px;height:72px;border:0"></a></td>
+<td style="padding:0 0 0 16px;vertical-align:middle;border-left:2px solid #b08a3a">
+<div style="font-size:16px;font-weight:bold;letter-spacing:0.5px">Dark Diamond Luxury</div>
+<div style="font-size:13px;color:#8a6a24;padding:2px 0 8px">Luxury Transport &amp; Transfers · Lisboa</div>
+<div style="font-size:13px;color:#333;line-height:1.6"><a href="tel:+351932666254" style="color:#333;text-decoration:none">+351 932 666 254</a> · <a href="mailto:geral@darkdiamondluxury.pt" style="color:#333;text-decoration:none">geral@darkdiamondluxury.pt</a><br>
+<a href="https://wa.me/351932666254" style="color:#333;text-decoration:none">WhatsApp 24/7</a> · <a href="https://darkdiamondluxury.pt" style="color:#8a6a24;text-decoration:none;font-weight:bold">darkdiamondluxury.pt</a></div>
+</td></tr></table>`;
+const shell = (inner: string, testLine = "") => `<!doctype html><html><head><meta charset="utf-8"><meta name="viewport" content="width=device-width,initial-scale=1"><meta name="color-scheme" content="light"></head>
+<body style="margin:0;padding:0;background:#ffffff">
+<table role="presentation" width="100%" cellpadding="0" cellspacing="0" border="0" style="background:#ffffff"><tr><td align="center" style="padding:0">
+<table role="presentation" width="600" cellpadding="0" cellspacing="0" border="0" style="max-width:600px;width:100%"><tr><td style="padding:32px 24px 40px;color:#1a1a1a">
+${testLine ? `<p style="margin:0 0 16px;font-family:${SANS};font-size:13px;color:#b00020">${testLine}</p>` : ""}
+${inner}
+</td></tr></table></td></tr></table></body></html>`;
 
 export function mailHtml(p: Record<string, any>, cents: number, test: boolean, ref: string): { subject: string; html: string } {
   const m = MAIL[p.lang] || MAIL.en;
@@ -90,10 +112,6 @@ export function mailHtml(p: Record<string, any>, cents: number, test: boolean, r
   const phone = [p.cc, p.phone].filter(Boolean).join(" ");
   const vals = [when, p.pickup || "", p.svc === 2 ? p.label : (p.dropoff || p.label || p.to || ""), p.flight || "", p.carName ? `Mercedes ${p.carName}` : "",
     `${m.pax(Number(p.pax) || 1)} · ${m.bags(Number(p.bags) || 0, Number(p.cabin) || 0)}`, p.notes || "", phone];
-  const li = (k: string, v: string) => `<li style="margin:0 0 4px"><b>${esc(k)}:</b> ${esc(v)}</li>`;
-  const ul = (items: string) => `<ul style="margin:0;padding:0 0 0 22px;font-family:${SANS};font-size:15px;line-height:1.6;color:#1a1a1a">${items}</ul>`;
-  const h2 = (t: string) => `<h2 style="margin:28px 0 10px;font-family:${SERIF};font-weight:normal;font-size:22px;line-height:1.3;color:#1a1a1a">${esc(t)}</h2>`;
-  const pl = (k: string, v: string) => `<p style="margin:4px 0 0;font-family:${SANS};font-size:15px;line-height:1.6;color:#1a1a1a"><b>${esc(k)}:</b> ${esc(v)}</p>`;
   const service = m.svc(p);
   const pad = (n: number) => String(n).padStart(2, "0");
   const [hh, mm] = String(p.time).split(":").map(Number);
@@ -101,40 +119,71 @@ export function mailHtml(p: Record<string, any>, cents: number, test: boolean, r
   const cal = "https://calendar.google.com/calendar/render?" + new URLSearchParams({ action: "TEMPLATE", text: `Dark Diamond Luxury · ${service}`,
     dates: `${y}${pad(mo)}${pad(d)}T${pad(hh)}${pad(mm)}00/${end.getUTCFullYear()}${pad(end.getUTCMonth() + 1)}${pad(end.getUTCDate())}T${pad(end.getUTCHours())}${pad(end.getUTCMinutes())}00`,
     ctz: "Europe/Lisbon", details: `${m.booking} ${ref} · WhatsApp +351 932 666 254`, location: p.pickup || "" }).toString();
-  const html = `<!doctype html><html><head><meta charset="utf-8"><meta name="viewport" content="width=device-width,initial-scale=1"><meta name="color-scheme" content="light"></head>
-<body style="margin:0;padding:0;background:#ffffff">
-<table role="presentation" width="100%" cellpadding="0" cellspacing="0" border="0" style="background:#ffffff"><tr><td align="center" style="padding:0">
-<table role="presentation" width="600" cellpadding="0" cellspacing="0" border="0" style="max-width:600px;width:100%"><tr><td style="padding:32px 24px 40px;color:#1a1a1a">
-${test ? `<p style="margin:0 0 16px;font-family:${SANS};font-size:13px;color:#b00020">${m.test}</p>` : ""}
-<h1 style="margin:0;font-family:${SERIF};font-weight:normal;font-size:32px;line-height:1.2;color:#1a1a1a">${m.title}</h1>
+  const inner = `<h1 style="margin:0;font-family:${SERIF};font-weight:normal;font-size:32px;line-height:1.2;color:#1a1a1a">${m.title}</h1>
 <p style="margin:12px 0 0;font-family:${SANS};font-size:15px;line-height:1.6;color:#1a1a1a"><b>Dark Diamond Luxury</b> · ${m.booking} ${ref} ${m.of} ${esc(today)}</p>
 ${p.name ? pl(m.to, String(p.name)) : ""}${pl(m.service, service)}
-<table role="presentation" width="100%" cellpadding="0" cellspacing="0" border="0" style="margin:20px 0 0"><tr><td style="border-left:3px solid #d9d6d0;padding:6px 0 6px 18px;font-family:${SANS};font-size:15px;line-height:1.6;color:#1a1a1a"><b>${m.paid}:</b> ${eurTxt(cents)} (${m.vat}). ${m.confirmed}</td></tr></table>
+${note(`<b>${m.paid}:</b> ${eurTxt(cents)} (${m.vat}). ${m.confirmed}`)}
 ${h2(m.hService)}${ul(m.rows.map((r, i) => vals[i] ? li(r, vals[i]) : "").join(""))}
 ${h2(m.hDay)}${ul(arrival ? li(m.meet[0], m.meet[1]) + li(m.meet[2], m.meet[3]) : li(m.wait, m.other))}
-<p style="margin:18px 0 0;font-family:${SANS}"><a href="https://wa.me/351932666254" style="display:inline-block;background:#1a1a1a;color:#ffffff;text-decoration:none;font-size:14px;font-weight:bold;padding:11px 20px;border-radius:6px">${m.wa}</a>&nbsp;&nbsp;<a href="${esc(cal)}" style="display:inline-block;color:#1a1a1a;text-decoration:underline;font-size:14px;padding:11px 4px">${m.cal}</a></p>
+<p style="margin:18px 0 0;font-family:${SANS}">${waBtn(m.wa)}&nbsp;&nbsp;<a href="${esc(cal)}" style="display:inline-block;color:#1a1a1a;text-decoration:underline;font-size:14px;padding:11px 4px">${m.cal}</a></p>
 ${h2(m.hCond)}${ul(li(m.cond[0], m.cond[1]) + li(m.cond[2], m.cond[3]) + li(m.cond[4], m.cond[5]))}
-${h2(m.hContact)}
-<table cellpadding="0" cellspacing="0" border="0" style="border-collapse:collapse;font-family:${SANS};color:#1a1a1a"><tr>
-<td style="padding:0 16px 0 0;vertical-align:middle"><a href="https://darkdiamondluxury.pt" style="text-decoration:none"><img src="${LOGO}" width="72" height="72" alt="Dark Diamond Luxury" style="display:block;width:72px;height:72px;border:0"></a></td>
-<td style="padding:0 0 0 16px;vertical-align:middle;border-left:2px solid #b08a3a">
-<div style="font-size:16px;font-weight:bold;letter-spacing:0.5px">Dark Diamond Luxury</div>
-<div style="font-size:13px;color:#8a6a24;padding:2px 0 8px">Luxury Transport &amp; Transfers · Lisboa</div>
-<div style="font-size:13px;color:#333;line-height:1.6"><a href="tel:+351932666254" style="color:#333;text-decoration:none">+351 932 666 254</a> · <a href="mailto:geral@darkdiamondluxury.pt" style="color:#333;text-decoration:none">geral@darkdiamondluxury.pt</a><br>
-<a href="https://wa.me/351932666254" style="color:#333;text-decoration:none">WhatsApp 24/7</a> · <a href="https://darkdiamondluxury.pt" style="color:#8a6a24;text-decoration:none;font-weight:bold">darkdiamondluxury.pt</a></div>
-</td></tr></table>
-</td></tr></table></td></tr></table></body></html>`;
+${h2(m.hContact)}${SIGN}`;
+  const html = shell(inner, test ? m.test : "");
   return { subject: `${test ? "[TESTE] " : ""}${m.subj} ${ref} · Dark Diamond Luxury`, html };
 }
 
-async function sendMail(to: string, p: Record<string, any>, cents: number, test: boolean, ref: string): Promise<string | null> {
+// Email de cancelamento ao cliente (sai quando o pagamento é reembolsado na Stripe).
+const CANCEL: Record<string, { subj: string; title: string; lead: (r: string) => string; rows: string[]; kept: string; bye: string }> = {
+  pt: { subj: "Reserva cancelada", title: "Reserva cancelada", lead: (r) => `<b>Reembolso:</b> ${r} para o cartão usado no pagamento. Pode demorar 5 a 10 dias úteis a aparecer na sua conta.`,
+    rows: ["Data e hora", "Pago", "Reembolsado", "Retido"], kept: "O valor retido corresponde aos custos de processamento do pagamento (3 %) e, quando se aplica, à penalização de cancelamento prevista nas condições.", bye: "Esperamos voltar a recebê-lo em breve. Se precisar de alguma coisa, estamos no WhatsApp." },
+  en: { subj: "Booking cancelled", title: "Booking cancelled", lead: (r) => `<b>Refund:</b> ${r} to the card used for payment. It may take 5 to 10 business days to appear in your account.`,
+    rows: ["Date and time", "Paid", "Refunded", "Retained"], kept: "The retained amount covers payment processing costs (3%) and, where applicable, the cancellation penalty set out in our terms.", bye: "We hope to welcome you again soon. If you need anything, we are on WhatsApp." },
+  es: { subj: "Reserva cancelada", title: "Reserva cancelada", lead: (r) => `<b>Reembolso:</b> ${r} a la tarjeta usada en el pago. Puede tardar de 5 a 10 días hábiles en aparecer en su cuenta.`,
+    rows: ["Fecha y hora", "Pagado", "Reembolsado", "Retenido"], kept: "El importe retenido corresponde a los gastos de procesamiento del pago (3 %) y, cuando procede, a la penalización de cancelación prevista en las condiciones.", bye: "Esperamos volver a recibirle pronto. Si necesita algo, estamos en WhatsApp." },
+  fr: { subj: "Réservation annulée", title: "Réservation annulée", lead: (r) => `<b>Remboursement :</b> ${r} sur la carte utilisée pour le paiement. Le montant peut mettre 5 à 10 jours ouvrés à apparaître sur votre compte.`,
+    rows: ["Date et heure", "Payé", "Remboursé", "Retenu"], kept: "Le montant retenu correspond aux frais de traitement du paiement (3 %) et, le cas échéant, à la pénalité d'annulation prévue dans nos conditions.", bye: "Nous espérons vous accueillir de nouveau bientôt. Pour toute question, nous sommes sur WhatsApp." },
+};
+
+export function cancelHtml(p: Record<string, any>, paidC: number, refC: number, test: boolean, ref: string): { subject: string; html: string } {
+  const m = MAIL[p.lang] || MAIL.en, c = CANCEL[p.lang] || CANCEL.en;
+  const [y, mo, d] = String(p.date).split("-").map(Number);
+  const when = `${new Date(Date.UTC(y, mo - 1, d)).toLocaleDateString(m.locale, { weekday: "long", day: "numeric", month: "long", year: "numeric", timeZone: "UTC" })} · ${p.time}`;
+  const kept = Math.max(0, paidC - refC);
+  const inner = `<h1 style="margin:0;font-family:${SERIF};font-weight:normal;font-size:32px;line-height:1.2;color:#1a1a1a">${c.title}</h1>
+<p style="margin:12px 0 0;font-family:${SANS};font-size:15px;line-height:1.6;color:#1a1a1a"><b>Dark Diamond Luxury</b> · ${m.booking} ${ref}</p>
+${p.name ? pl(m.to, String(p.name)) : ""}${pl(m.service, m.svc(p))}
+${note(c.lead(eurTxt(refC)))}
+${h2(m.hService)}${ul(li(c.rows[0], when) + li(c.rows[1], eurTxt(paidC)) + li(c.rows[2], eurTxt(refC)) + (kept ? li(c.rows[3], eurTxt(kept)) : ""))}
+${kept ? `<p style="margin:12px 0 0;font-family:${SANS};font-size:14px;line-height:1.6;color:#555">${c.kept}</p>` : ""}
+<p style="margin:20px 0 0;font-family:${SANS};font-size:15px;line-height:1.6;color:#1a1a1a">${c.bye}</p>
+<p style="margin:16px 0 0">${waBtn(m.wa)}</p>
+${h2(m.hContact)}${SIGN}`;
+  return { subject: `${test ? "[TESTE] " : ""}${c.subj} ${ref} · Dark Diamond Luxury`, html: shell(inner, test ? m.test : "") };
+}
+
+// Aviso curto à equipa (geral@, que reencaminha para o Gmail da empresa), em cada reserva paga e em cada reembolso.
+export function teamHtml(kind: "nova" | "cancelada", p: Record<string, any>, ref: string, paidC: number, refC: number, test: boolean): { subject: string; html: string } {
+  const [y, mo, d] = String(p.date).split("-");
+  const when = `${d}/${mo}/${y} ${p.time}`;
+  const svc = MAIL.pt.svc(p);
+  const head = kind === "nova" ? `Nova reserva paga no site · ${ref}` : `Reserva cancelada e reembolsada · ${ref}`;
+  const rows = [["Serviço", svc], ["Data e hora", when], ["Recolha", p.pickup], ["Destino", p.svc === 2 ? p.label : (p.dropoff || p.label)], ["Voo", p.flight],
+    ["Viatura", p.carName], ["Passageiros", `${p.pax} · malas ${p.bags || 0} + ${p.cabin || 0}`], ["Cliente", p.name], ["Telefone", p.phone], ["Email", p.email],
+    ["Pedido do cliente", p.notes], ["Extras", (p.extras || []).join(", ")], ["Língua", String(p.lang || "").toUpperCase()], ["Pago", eurTxt(paidC)],
+    ...(kind === "cancelada" ? [["Reembolsado", eurTxt(refC)], ["Fica com a empresa", eurTxt(Math.max(0, paidC - refC))]] : [])].filter((r) => r[1]);
+  const inner = `<h1 style="margin:0;font-family:${SERIF};font-weight:normal;font-size:26px;line-height:1.2;color:#1a1a1a">${esc(head)}</h1>
+${note(kind === "nova" ? "O serviço já está na app, com o pagamento registado. Falta atribuir motorista." : "O serviço já passou a cancelado na app. O cliente recebeu o email de cancelamento.")}
+${h2("Detalhes")}${ul(rows.map(([k, v]) => li(String(k), String(v))).join(""))}`;
+  return { subject: `${test ? "[TESTE] " : ""}${kind === "nova" ? "Nova reserva" : "Cancelada"} ${ref} · ${when} · ${p.carName} · ${eurTxt(kind === "nova" ? paidC : refC)}`, html: shell(inner, test ? "TESTE — modo de teste da Stripe" : "") };
+}
+
+const TEAM = "geral@darkdiamondluxury.pt";
+async function send(to: string, mail: { subject: string; html: string }, replyTo = "geral@darkdiamondluxury.pt"): Promise<string | null> {
   const key = Deno.env.get("RESEND_API_KEY");
   if (!key) return "sem RESEND_API_KEY";
-  const { subject, html } = mailHtml(p, cents, test, ref);
-  const copy = Deno.env.get("EMAIL_COPY");
   const r = await fetch("https://api.resend.com/emails", { method: "POST", headers: { authorization: `Bearer ${key}`, "content-type": "application/json" }, body: JSON.stringify({
-    from: (Deno.env.get("EMAIL_FROM") || "").includes("@darkdiamondluxury.pt") ? Deno.env.get("EMAIL_FROM") : "Dark Diamond Luxury <reservas@darkdiamondluxury.pt>", to: [to], ...(copy ? { bcc: [copy] } : {}),
-    reply_to: "geral@darkdiamondluxury.pt", subject, html }) });
+    from: (Deno.env.get("EMAIL_FROM") || "").includes("@darkdiamondluxury.pt") ? Deno.env.get("EMAIL_FROM") : "Dark Diamond Luxury <reservas@darkdiamondluxury.pt>", to: [to],
+    reply_to: replyTo, subject: mail.subject, html: mail.html }) });
   return r.ok ? null : `resend ${r.status}: ${(await r.text()).slice(0, 300)}`;
 }
 
@@ -174,7 +223,10 @@ async function paid(session: Record<string, any>) {
   await db("service_events", { method: "POST", body: JSON.stringify({ company_id: co, service_id: sid, kind: "criado", note: `Reserva paga no site (${eurTxt(cents)})`, money: true }) });
   await db(`site_checkouts?id=eq.${row.id}`, { method: "PATCH", body: JSON.stringify({ status: "pago", paid_at: new Date().toISOString(), service_id: sid, company_id: co, payment_intent: session.payment_intent || null, livemode: live }) });
   const to = email;
-  const err = to ? await sendMail(to, p, cents, !live, bookingRef(row.id)) : "sem email do cliente";
+  const ref = bookingRef(row.id);
+  const err = to ? await send(to, mailHtml(p, cents, !live, ref)) : "sem email do cliente";
+  const tErr = await send(TEAM, teamHtml("nova", p, ref, cents, 0, !live), to || TEAM);
+  if (tErr) console.error("aviso equipa", tErr);
   await db(`site_checkouts?id=eq.${row.id}`, { method: "PATCH", body: JSON.stringify(err ? { email_error: err } : { email_sent_at: new Date().toISOString(), email_error: null }) });
 }
 
@@ -183,11 +235,19 @@ async function refunded(charge: Record<string, any>) {
   const rows = await (await db(`site_checkouts?select=*&payment_intent=eq.${pi}`)).json();
   const row = rows[0]; if (!row) return;
   const ref = charge.amount_refunded || 0, full = ref >= (charge.amount || row.amount_cents);
+  const first = row.status === "pago"; // os emails só saem no primeiro reembolso (a Stripe repete o aviso em cada reembolso parcial)
   await db(`site_checkouts?id=eq.${row.id}`, { method: "PATCH", body: JSON.stringify({ refunded_cents: ref, status: full ? "reembolsado" : "reembolso_parcial" }) });
+  if (first) {
+    const p = row.payload, paidC = charge.amount || row.amount_cents, live = !!charge.livemode, bref = bookingRef(row.id), to = p.email || charge.billing_details?.email;
+    const e1 = to ? await send(to, cancelHtml(p, paidC, ref, !live, bref)) : "sem email do cliente";
+    if (e1) console.error("email cancelamento", e1);
+    const e2 = await send(TEAM, teamHtml("cancelada", p, bref, paidC, ref, !live), to || TEAM);
+    if (e2) console.error("aviso equipa", e2);
+  }
   if (!row.service_id) return;
-  const note = `Reembolso na Stripe: ${eurTxt(ref)} de ${eurTxt(charge.amount || row.amount_cents)}`;
-  await db(`services?id=eq.${row.service_id}&status=neq.cancelado`, { method: "PATCH", body: JSON.stringify({ status: "cancelado", cancel_reason: note }) });
-  await db("service_events", { method: "POST", body: JSON.stringify({ company_id: row.company_id, service_id: row.service_id, kind: "cancelado", note, money: true }) });
+  const why = `Reembolso na Stripe: ${eurTxt(ref)} de ${eurTxt(charge.amount || row.amount_cents)}`;
+  await db(`services?id=eq.${row.service_id}&status=neq.cancelado`, { method: "PATCH", body: JSON.stringify({ status: "cancelado", cancel_reason: why }) });
+  await db("service_events", { method: "POST", body: JSON.stringify({ company_id: row.company_id, service_id: row.service_id, kind: "cancelado", note: why, money: true }) });
   // o que fica com a empresa (penalização + 3 % de processamento) passa a taxa de cancelamento do serviço
   await db(`service_money?service_id=eq.${row.service_id}`, { method: "PATCH", body: JSON.stringify({ cancel_fee: Math.max(0, (charge.amount || row.amount_cents) - ref) / 100 }) });
 }
