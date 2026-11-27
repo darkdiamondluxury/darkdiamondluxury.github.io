@@ -48,8 +48,8 @@ async function sendMail(to: string, p: Record<string, any>, cents: number, test:
   const html = `<div style="font-family:Georgia,serif;max-width:560px;color:#111">${test ? '<p style="color:#b00">[TESTE — modo de teste da Stripe, nenhum pagamento real]</p>' : ""}<h2 style="font-weight:400">Dark Diamond Luxury</h2><p>${m.hi}${p.name ? " " + esc(String(p.name).split(" ")[0]) : ""},</p><p>${m.body}</p><table style="border-collapse:collapse;font-size:15px">${rows}</table><p style="font-size:13px;color:#555;margin-top:18px">${m.cancel}</p><p>${m.contact}</p></div>`;
   const copy = Deno.env.get("EMAIL_COPY");
   const r = await fetch("https://api.resend.com/emails", { method: "POST", headers: { authorization: `Bearer ${key}`, "content-type": "application/json" }, body: JSON.stringify({
-    from: Deno.env.get("EMAIL_FROM") || "Dark Diamond Luxury <onboarding@resend.dev>", to: [to], ...(copy ? { bcc: [copy] } : {}),
-    reply_to: "darkdiamondluxury@gmail.com", subject: `${test ? "[TESTE] " : ""}${m.subj} · Dark Diamond Luxury`, html }) });
+    from: (Deno.env.get("EMAIL_FROM") || "").includes("@darkdiamondluxury.pt") ? Deno.env.get("EMAIL_FROM") : "Dark Diamond Luxury <reservas@darkdiamondluxury.pt>", to: [to], ...(copy ? { bcc: [copy] } : {}),
+    reply_to: "geral@darkdiamondluxury.pt", subject: `${test ? "[TESTE] " : ""}${m.subj} · Dark Diamond Luxury`, html }) });
   return r.ok ? null : `resend ${r.status}: ${(await r.text()).slice(0, 300)}`;
 }
 

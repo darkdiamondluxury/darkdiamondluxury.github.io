@@ -17,7 +17,7 @@ LEGAL = {
 }
 
 PHONES = ['+351 932 666 254', '+351 960 033 622']
-EMAIL = 'darkdiamondluxury@gmail.com'
+EMAIL = 'geral@darkdiamondluxury.pt'   # desde 27/11/2026 (antes: darkdiamondluxury@gmail.com)
 WHATSAPP = '351932666254'   # número para onde o formulário de reserva envia (só números, com indicativo)
 # Pedidos de reserva do formulário entram na app (tabela booking_requests, função submit_booking).
 # A chave "anon" é pública por natureza: só deixa chamar a função que guarda pedidos, nada mais.
