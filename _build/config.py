@@ -25,7 +25,7 @@ WHATSAPP = '351932666254'   # número para onde o formulário de reserva envia (
 BOOKINGS_URL = 'https://ccwzqtdxugutkgdupgxc.supabase.co/rest/v1/rpc/submit_booking'
 # Pagamento online (Stripe Checkout, funções pagar-reserva e stripe-webhook no Supabase).
 # 'off' = sem pagamento · 'test' = só aparece com ?pagamento=teste no endereço · 'live' = para todos (só depois de ativar a conta Stripe)
-PAY_MODE = 'test'
+PAY_MODE = 'live'   # ligado a 27/11/2026
 PAY_URL = 'https://ccwzqtdxugutkgdupgxc.supabase.co/functions/v1/pagar-reserva'
 BOOKINGS_KEY = 'eyJhbGciOiJIUzI1NiIsInR5cCI6IkpXVCJ9.eyJpc3MiOiJzdXBhYmFzZSIsInJlZiI6ImNjd3pxdGR4dWd1dGtnZHVwZ3hjIiwicm9sZSI6ImFub24iLCJpYXQiOjE3OTIwNjE1NTgsImV4cCI6MjEwNzYzNzU1OH0.xLQwoKKGOUXW3g4SN3B6wnRUcjO0EhXZ7dREUpzASBQ'
 WHATSAPP_ALL = ['351932666254', '351960033622']   # ambos têm WhatsApp

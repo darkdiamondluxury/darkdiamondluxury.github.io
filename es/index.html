@@ -825,7 +825,7 @@ function spPrice(){ const k=sp.to.trim().toLowerCase(), i=CARI.indexOf(sp.car); 
 /* valor a pagar online: só quando há um preço único da tabela (transfers, tours, longa distância, cruzeiros) */
 function spPayEur(){ spPayEur.v=0; const k=sp.to.trim().toLowerCase(); if(![0,2,4,5].includes(sp.svc) || PRICES.split[k]) return 0; spPrice(); return spPayEur.v||0; }
 /* Pagamento online (Stripe). Em modo de teste só aparece com ?pagamento=teste no endereço, para os clientes não o verem. */
-const PAY_MODE='test', PAY_URL='https://ccwzqtdxugutkgdupgxc.supabase.co/functions/v1/pagar-reserva';
+const PAY_MODE='live', PAY_URL='https://ccwzqtdxugutkgdupgxc.supabase.co/functions/v1/pagar-reserva';
 const PAY_ON=(()=>{ if(PAY_MODE==='live') return true; if(PAY_MODE!=='test') return false;
   try{ if(new URLSearchParams(location.search).get('pagamento')==='teste') sessionStorage.setItem('ddl-pag','1'); return sessionStorage.getItem('ddl-pag')==='1'; }catch(e){ return false; } })();
 /* antecedência mínima para pagar online: 24 h; 48 h em Sprinter e minibus (o servidor confirma) */
