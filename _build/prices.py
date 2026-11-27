@@ -151,7 +151,5 @@ def lookup_json(lang):
     alias_tour = {a: tours_pt[t] for a, t in TOUR_ALIASES.items()}
     split = {k: [(x, tr[x.lower()]) for x in v] for k, v in SPLIT.items()}
     night = [x.lower() for n, _ in TOURS for x in n.values() if any(w in x for w in ('noite', 'night', 'noche', 'nuit'))]
-    # TEMPORÁRIO (27/11/2026): rota escondida de 5 € para o teste de pagamento real. Só aparece se alguém escrever o nome exato. Retirar depois do teste.
-    tr['teste interno ddl'] = [5, 5, 5, 5, 5, 5]
     tours = [[n[lang], p] for n, p in TOURS]  # lista das tours tabeladas, para o passo 2 do formulário
     return {'tr': tr, 'tour': to, 'aliasTour': alias_tour, 'split': split, 'night': night, 'nightEur': NIGHT_EUR, 'tours': tours}
