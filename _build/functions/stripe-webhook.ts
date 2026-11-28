@@ -171,9 +171,22 @@ export function teamHtml(kind: "nova" | "cancelada", p: Record<string, any>, ref
     ["Viatura", p.carName], ["Passageiros", `${p.pax} · malas ${p.bags || 0} + ${p.cabin || 0}`], ["Cliente", p.name], ["Telefone", p.phone], ["Email", p.email],
     ["Pedido do cliente", p.notes], ["Extras", (p.extras || []).join(", ")], ["Língua", String(p.lang || "").toUpperCase()], ["Pago", eurTxt(paidC)],
     ...(kind === "cancelada" ? [["Reembolsado", eurTxt(refC)], ["Fica com a empresa", eurTxt(Math.max(0, paidC - refC))]] : [])].filter((r) => r[1]);
+  // Quanto devolver se o cliente cancelar (regras do Bruno, 22/11 e termos de 25/11): até 24 h antes (48 h em longa distância) devolve-se tudo menos 3 %;
+  // entre esse prazo e 3 h antes, 50 %; com menos de 3 h, nada. Se for a DDL a cancelar, devolve-se tudo.
+  const lead = p.svc === 4 || p.svc === 3 || p.svc === 1 ? 48 : 24;
+  const [hh, mm] = String(p.time).split(":").map(Number);
+  const at = (h: number) => { const x = new Date(Date.UTC(Number(y), Number(mo) - 1, Number(d), hh, mm) - h * 3600e3);
+    return `${String(x.getUTCDate()).padStart(2, "0")}/${String(x.getUTCMonth() + 1).padStart(2, "0")} ${String(x.getUTCHours()).padStart(2, "0")}:${String(x.getUTCMinutes()).padStart(2, "0")}`; };
+  const refundRows = kind === "nova" ? h2("Se o cliente cancelar: quanto devolver na Stripe") + ul(
+    li(`Até ${at(lead)}`, `devolver ${eurTxt(Math.round(paidC * 0.97))} (fica com a empresa ${eurTxt(paidC - Math.round(paidC * 0.97))}, os 3 % de processamento)`) +
+    li(`De ${at(lead)} até ${at(3)}`, `devolver ${eurTxt(Math.round(paidC * 0.5))} (50 %)`) +
+    li(`Depois de ${at(3)}`, "não se devolve nada") +
+    li("Se for a DDL a cancelar", `devolver tudo, ${eurTxt(paidC)}`)) +
+    `<p style="margin:10px 0 0;font-family:${SANS};font-size:14px;line-height:1.6;color:#555">Na Stripe: Pagamentos › este pagamento › Reembolsar › escrever o valor em Amount. Sem mudar o valor, a Stripe devolve tudo.</p>` : "";
   const inner = `<h1 style="margin:0;font-family:${SERIF};font-weight:normal;font-size:26px;line-height:1.2;color:#1a1a1a">${esc(head)}</h1>
 ${note(kind === "nova" ? "O serviço já está na app, com o pagamento registado. Falta atribuir motorista." : "O serviço já passou a cancelado na app. O cliente recebeu o email de cancelamento.")}
-${h2("Detalhes")}${ul(rows.map(([k, v]) => li(String(k), String(v))).join(""))}`;
+${h2("Detalhes")}${ul(rows.map(([k, v]) => li(String(k), String(v))).join(""))}
+${refundRows}`;
   return { subject: `${test ? "[TESTE] " : ""}${kind === "nova" ? "Nova reserva" : "Cancelada"} ${ref} · ${when} · ${p.carName} · ${eurTxt(kind === "nova" ? paidC : refC)}`, html: shell(inner, test ? "TESTE — modo de teste da Stripe" : "") };
 }
 
